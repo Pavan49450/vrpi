@@ -1,0 +1,19 @@
+@import url("https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap");
+.root {
+  width: auto;
+}
+
+.main {
+  min-height: calc(100vh + 90px);
+  display: flex;
+  justify-content: center;
+  /* margin-bottom: 2rem; */
+}
+
+@media (max-width: 800px) {
+  .main {
+  }
+  .root {
+    overflow: hidden;
+  }
+}

@@ -1,0 +1,17 @@
+.WhyChooseUsPoints {
+  grid-gap: 2rem;
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+  justify-items: center;
+}
+
+.WhyChooseUsPoint {
+  max-width: 400px;
+}
+
+.WhyChooseUsPoint h1 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin: 1rem 0;
+}

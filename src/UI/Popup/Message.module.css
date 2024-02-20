@@ -1,0 +1,32 @@
+.message {
+  width: 300px;
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-300px);
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  color: var(--white);
+}
+
+.message p {
+  margin: 0;
+  color: var(--white);
+}
+
+.error {
+  background-color: var(--darkInvalidColor);
+  color: var(--white);
+}
+
+.success {
+  background-color: var(--successColor);
+  color: var(--white);
+}
+
+.show {
+  opacity: 0.6;
+}
