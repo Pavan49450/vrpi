@@ -9,7 +9,10 @@ const AboutUsSection = () => {
       <Section title="About Us">
         <div className={style.AboutUsSection}>
           <div className={style.image1}>
-            <img src={require(`../../../assets/home/aboutUs.png`)} alt=""></img>
+            <img
+              src={require(`../../../assets/home/aboutUsSection1.png`)}
+              alt=""
+            ></img>
           </div>
           <div className={style.content}>
             <p>

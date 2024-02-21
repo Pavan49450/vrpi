@@ -13,7 +13,7 @@ const OurServices = () => {
                 <PictureDragCard
                   image={company.image}
                   title={company.title}
-                  color={company.color}
+                  color={company.backgroundColor}
                   key={company.index}
                 />
               )}

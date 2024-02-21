@@ -66,13 +66,13 @@ const Footer = ({ links, quickLinks, ContactUs, JoinUsBarData }) => {
       <div className={style.allContacts}>
         <div className={style.contact}>
           <img
-            src={require("../../../assets/footer/HomeWork.png")}
+            src={require("../../../assets/footer/Location.png")}
             alt=""
           ></img>
           {/* <p>{ContactUs.address}</p> */}
           <div>
             {ContactUs.address.map((addrr) => (
-              <p style={{ marginBottom: "1rem" }}>{addrr}</p>
+              <p style={{ marginBottom: "0.5rem" }}>{addrr}</p>
             ))}
           </div>
         </div>

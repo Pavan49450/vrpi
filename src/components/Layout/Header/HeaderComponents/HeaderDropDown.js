@@ -1,13 +1,26 @@
 import React, { useState } from "react";
 import styles from "./HeaderDropDown.module.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Button from "../../../../UI/Button/Button";
+import { useDispatch } from "react-redux";
+import { setComingSoon } from "../../../../store/CommingSoonSlice";
 
 const HeaderDropdown = ({ data, onMouseEnter, onMouseLeave, style }) => {
   const [selectedItem, setSelectedItem] = useState(data[0]);
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleItemHover = (item) => {
     console.log(selectedItem);
     setSelectedItem(item);
+  };
+
+  const handleLinks = () => {
+    if (selectedItem.description.active) {
+      navigate(selectedItem.description.link);
+    } else {
+      dispatch(setComingSoon(true));
+    }
   };
 
   return (
@@ -40,9 +53,12 @@ const HeaderDropdown = ({ data, onMouseEnter, onMouseLeave, style }) => {
             {selectedItem.description.descriptionContent}
           </div>
         </div>
-        <div className={styles.link}>
+        {/* <div className={styles.link}>
           <Link to={selectedItem.description.link}>Explore More</Link>
-        </div>
+        </div> */}
+        <Button onClick={handleLinks} className={styles.link}>
+          Explore Us
+        </Button>
       </div>
     </div>
   );

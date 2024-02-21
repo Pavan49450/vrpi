@@ -17,11 +17,11 @@
   transition: all 0.3s ease;
   object-fit: cover;
   width: 200px;
-  border: 1px solid;
+  /* border: 1px solid; */
 }
 
 .companyCard h2 {
-  background-color: rgb(255, 237, 171);
+  /* background-color: rgb(255, 237, 171); */
   width: 100%;
   text-align: center;
   display: flex;

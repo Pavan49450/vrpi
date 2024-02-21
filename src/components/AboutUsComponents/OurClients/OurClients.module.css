@@ -18,6 +18,7 @@
 .clientImage {
   padding: 1rem;
   border: 1.5px solid var(--black);
+  cursor: pointer;
 }
 
 .clientsImages img {

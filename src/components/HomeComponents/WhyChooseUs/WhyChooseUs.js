@@ -37,7 +37,7 @@ const WhyChooseUsData = [
 const WhyChooseUs = () => {
   return (
     <div>
-      <Section title="Why Choose Us">
+      <Section title="Why to Choose Us">
         <div className={style.WhyChooseUsPoints}>
           {WhyChooseUsData.map((data, index) => {
             return (
@@ -56,9 +56,11 @@ const WhyChooseUs = () => {
 
 const WhyChooseUsPoints = ({ heading, content }) => {
   return (
-    <div className={style.WhyChooseUsPoint}>
-      <h1>{heading}</h1>
-      <p>{content}</p>
+    <div className={style.pointContainer}>
+      <div className={style.WhyChooseUsPoint}>
+        <h1>{heading}</h1>
+        <p>{content}</p>
+      </div>
     </div>
   );
 };
