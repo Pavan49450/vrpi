@@ -72,7 +72,7 @@
   opacity: 1;
 }
 
-.nav .element a,
+.mainNavLink,
 .dropdownLink {
   color: var(--white);
   text-decoration: none;
@@ -87,13 +87,13 @@
   font-weight: 500;
 }
 
-.nav .element a {
+.mainNavLink {
   transform: skew(30deg);
   /* opacity: 0.9; */
   color: var(--white);
 }
 
-.nav .element a:hover,
+.mainNavLink:hover,
 .companiesDropdown li a:hover {
   transform: scale(1.05) skew(30deg);
   transition: all 0.2s ease;

@@ -10,12 +10,12 @@ const WhyChooseUsData = [
   {
     heading: "02 . Customization and Flexibility",
     content:
-      "VR PI Group of Companies provides customizable solutions tailored to clients' specific needs, highlight this flexibility. Emphasize how you can adapt your products or services to accommodate diverse requirements and preferences.",
+      "VR PI Group of Companies provide customizable solutions tailored to clients' specific needs, highlight this flexibility. Emphasize how you can adapt your products or services to accommodate diverse requirements and preferences.",
   },
   {
     heading: "03 . Cost-Effectiveness",
     content:
-      " If your products or services offer exceptional value for the cost, emphasize how choosing VR PI Group of Companies provides a cost-effective solution without compromising quality or performance.",
+      "Our products or services offer exceptional value for the cost, emphasize how choosing VR PI Group of Companies provides a cost-effective solution without compromising quality or performance.",
   },
   {
     heading: "04 . Global Reach",
@@ -25,7 +25,7 @@ const WhyChooseUsData = [
   {
     heading: "05 . Customer Satisfaction",
     content:
-      "VR PI Group of Companies prioritizes customer satisfaction above all else, striving to deliver value-driven solutions that delight clients and end-users alike. Clients can rely on the company's responsive customer support, attentive service, and unwavering dedication to their long-term success.",
+      "VR PI Group of Companies prioritize customer satisfaction above all else, striving to deliver value-driven solutions that delight clients and end-users alike. Clients can rely on the company's responsive customer support, attentive service, and unwavering dedication to their long-term success.",
   },
   {
     heading: "06 . Quality and Reliability",

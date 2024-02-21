@@ -3,6 +3,9 @@ import style from "./HeaderNew.module.css";
 import { NavLink } from "react-router-dom";
 import HeaderDropdown from "./HeaderComponents/HeaderDropDown";
 import Logo from "../../Logo/Logo";
+import CommingSoon from "../../../UI/CommingSoon/CommingSoon";
+import { useDispatch, useSelector } from "react-redux";
+import { setComingSoon } from "../../../store/CommingSoonSlice";
 
 const Header = ({ links, buttons, dropdownLinks, JoinUsBarData }) => {
   const sideNavbarRef = useRef(null);
@@ -11,6 +14,23 @@ const Header = ({ links, buttons, dropdownLinks, JoinUsBarData }) => {
   const [showDropDown, setShowDropDown] = useState(null);
   const [width, setWidth] = useState(window.innerWidth);
   const breakpoint = 700;
+  // const [showCommingSoon, setShowCommingSoon] = useState(false);
+  const dispatch = useDispatch();
+  // useEffect(()=>{
+
+  //   const handleShowCommingSoon = () => {
+  //     dispatch(setComingSoon(true));
+  //   };
+  // })
+
+  const isComingSoon = useSelector((state) => state.commingSoon.isComingSoon);
+
+  const handleLinkClick = () => {
+    // Dispatch action to set isComingSoon to true only if it's not already true
+    if (!isComingSoon) {
+      dispatch(setComingSoon(true));
+    }
+  };
 
   const handleResize = () => {
     setWidth(window.innerWidth);
@@ -56,43 +76,62 @@ const Header = ({ links, buttons, dropdownLinks, JoinUsBarData }) => {
 
   const navElements = links.map((link, index) => (
     <li key={index} className={style.element}>
-      <NavLink
-        to={link.address}
-        title={`Link to ${link.name}`}
-        onClick={handleMobileMenuToggle}
-        className={({ isActive }) =>
-          isActive ? `${style.active} ${style.mainNavLink}` : style.mainNavLink
-        }
-      >
-        {link.name}
-      </NavLink>
+      {link.active ? (
+        <NavLink
+          to={link.address}
+          title={`Link to ${link.name}`}
+          onClick={handleMobileMenuToggle}
+          className={({ isActive }) =>
+            isActive
+              ? `${style.active} ${style.mainNavLink}`
+              : style.mainNavLink
+          }
+        >
+          {link.name}
+        </NavLink>
+      ) : (
+        <button
+          href=""
+          onClick={handleLinkClick}
+          title={`Link to ${link.name}`}
+          className={style.mainNavLink}
+        >
+          {link.name}
+        </button>
+      )}
     </li>
   ));
 
   const dropdownElements = dropdownLinks
     ? dropdownLinks.map((link, index) => (
         <li key={index} className={style.dropdownElement}>
-          <NavLink
-            to={link.address}
-            title={`Link to ${link.name}`}
-            onClick={handleMobileMenuToggle}
-            className={style.dropdownLink}
-            onMouseEnter={() => setShowDropDown(index)}
-            onMouseLeave={() => setShowDropDown(null)}
-            style={{
-              borderBottom: showDropDown === index && `3px solid #ff6501`,
-            }}
-          >
-            {link.name}
-          </NavLink>
-          {/* {index === showDropDown && ( */}
-          <HeaderDropdown
-            onMouseEnter={() => setShowDropDown(index)}
-            onMouseLeave={() => setShowDropDown(null)}
-            data={link.content}
-            style={{ display: index === showDropDown ? "flex" : "none" }}
-          />
-          {/* )} */}
+          {link.active ? (
+            <>
+              <NavLink
+                to={link.address}
+                title={`Link to ${link.name}`}
+                onClick={handleMobileMenuToggle}
+                className={style.dropdownLink}
+                onMouseEnter={() => setShowDropDown(index)}
+                onMouseLeave={() => setShowDropDown(null)}
+                style={{
+                  borderBottom: showDropDown === index && `3px solid #ff6501`,
+                }}
+              >
+                {link.name}
+              </NavLink>
+              <HeaderDropdown
+                onMouseEnter={() => setShowDropDown(index)}
+                onMouseLeave={() => setShowDropDown(null)}
+                data={link.content}
+                style={{ display: index === showDropDown ? "flex" : "none" }}
+              />
+            </>
+          ) : (
+            <button className={style.dropdownLink} onClick={handleLinkClick}>
+              {link.name}
+            </button>
+          )}
         </li>
       ))
     : null;
@@ -121,26 +160,85 @@ const Header = ({ links, buttons, dropdownLinks, JoinUsBarData }) => {
     </div>
   );
 
-  return (
-    <nav className={style.Header}>
-      <Logo />
-      <div className={style.navbar}>
-        {JoinUsBar}
-        <div className={style.navBackground}>
-          <div className={style.triangle}></div>
+  const navElementsForMobileData = [
+    { name: "Home", link: "/", dropdownElement: false, active: true },
+    {
+      name: "About Us",
+      link: "/aboutus",
+      dropdownElement: false,
+      active: true,
+    },
+    {
+      name: "Companies & Services",
+      dropdownElement: true,
+      links: [
+        { name: "Construction & Infra", link: "", active: false },
+        { name: "Financial Services", link: "", active: false },
+        { name: "Food Processing", link: "", active: false },
+        { name: "Imports & Exports", link: "", active: false },
+        { name: "Management & Consulting", link: "", active: false },
+        { name: "Tech Solutions", link: "", active: false },
+      ],
+    },
+    {
+      name: "Knowledge Hub",
+      dropdownElement: true,
+      links: [
+        { name: "Edu-Tech", link: "edutech", active: true },
+        { name: "Internship", link: "internships", active: true },
+      ],
+    },
+    {
+      name: "Trust & Welfare",
+      link: "/",
+      dropdownElement: true,
+      active: false,
+    },
+    { name: "Careers", link: "/", dropdownElement: false, active: false },
+    { name: "Contact Us", link: "/", dropdownElement: false, active: false },
+  ];
 
-          <div className={style.nav}>{navElements}</div>
-        </div>
-        {dropdownLinks && (
-          <div className={style.lowerBar}>
-            <div className={style.dropdownNavbar}>
-              <ul className={style.dropdownNav}>{dropdownElements}</ul>
+  const navElementsForMobile = (
+    <div className={style.navBarForMobile}>
+      {navElementsForMobileData.map((element) => {
+        return {
+          element,
+        };
+      })}
+    </div>
+  );
+
+  return (
+    <>
+      {width > breakpoint ? (
+        <nav className={style.Header}>
+          <Logo />
+          <div className={style.navbar}>
+            {JoinUsBar}
+            <div className={style.navBackground}>
+              <div className={style.triangle}></div>
+
+              <div className={style.nav}>{navElements}</div>
             </div>
+            {dropdownLinks && (
+              <div className={style.lowerBar}>
+                <div className={style.dropdownNavbar}>
+                  <ul className={style.dropdownNav}>{dropdownElements}</ul>
+                </div>
+                {navButtons}
+              </div>
+            )}
+          </div>
+        </nav>
+      ) : (
+        <nav className={style.headerForMobile}>
+          <div>
+            <Logo />
             {navButtons}
           </div>
-        )}
-      </div>
-    </nav>
+        </nav>
+      )}
+    </>
   );
 };
 

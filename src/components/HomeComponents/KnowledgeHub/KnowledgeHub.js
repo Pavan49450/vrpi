@@ -7,15 +7,15 @@ const programs = [
   {
     title: "Edu-Tech Program",
     description:
-      '"Experience our cutting-edge EduTech program:An innovative platform offering advanced learning tools, personalized guidance, and collaborative opportunities. Empowering participants with modern skills and knowledge, fostering growth and success in the ever-evolving landscape of education and technology.”',
-    link: "",
+      '"Experience our cutting-edge EduTech program: An innovative platform offering advanced learning tools, personalized guidance, and collaborative opportunities. Empowering participants with modern skills and knowledge, fostering growth and success in the ever-evolving landscape of education and technology.”',
+    link: "edutech",
     image: "edutechPageBackground.jpeg",
   },
   {
-    title: "Edu-Tech Program",
+    title: "Internship Program",
     description:
-      '"Step into our immersive Internship Program: a dynamic opportunity showcasing hands-on experiences, mentorship, and professional networking. Tailored to cultivate talent, it provides a springboard for personal development and industry immersion, igniting pathways to future success."',
-    link: "",
+      '"Step into our immersive Internship Program: A dynamic opportunity showcasing hands-on experiences, mentorship, and professional networking. Tailored to cultivate talent, it provides a springboard for personal development and industry immersion, igniting pathways to future success."',
+    link: "internships",
     image: "intershipPageBackground.jpg",
   },
 ];

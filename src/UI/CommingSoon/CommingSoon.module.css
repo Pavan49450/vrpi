@@ -1,0 +1,65 @@
+.commingSoon {
+  height: 60vh;
+  width: 60vw;
+  max-width: 600px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, 25%);
+}
+
+.backgroundImage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.content {
+  padding-top: 10%;
+  padding-left: 10%;
+
+  position: relative;
+  z-index: 4;
+}
+
+.content h1 {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.content p {
+  font-size: 1.5rem;
+}
+
+.closeBtn {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  cursor: pointer;
+  color: var(--primary);
+  font-size: 2rem;
+  font-weight: 700;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 600px) {
+  .backgroundImage {
+    width: 100%;
+    height: 250px;
+    margin: auto;
+    /* align-self: center; */
+  }
+  .commingSoon {
+    width: 90vw;
+    height: 250px;
+    margin: auto;
+  }
+}

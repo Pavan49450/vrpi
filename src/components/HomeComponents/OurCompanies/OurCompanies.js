@@ -5,6 +5,8 @@ import { Companies } from "../../../data/CompaniesData";
 import CirclarText from "../../../UI/CircularText/CircularText";
 import { useNavigate } from "react-router-dom";
 import Button from "../../../UI/Button/Button";
+import { useDispatch } from "react-redux";
+import { setComingSoon } from "../../../store/CommingSoonSlice";
 const OurCompanies = () => {
   const [selectedCompany, setSelectedCompany] = useState(Companies[0]);
 
@@ -17,7 +19,7 @@ const OurCompanies = () => {
       <Section title="Our Companies">
         <div>
           <p className={style.campanyiesDecription}>
-            "Our coalition of companies represents a diverse spectrum of
+            "Our coalition of companies represent a diverse spectrum of
             expertise, each dedicated to excellence in their respective fields.
             With a shared commitment to innovation, quality, and clients
             satisfaction, we collectively strive to elevate industry standards,
@@ -41,7 +43,7 @@ const OurCompanies = () => {
 const Company = ({ company, handleCompanyClick }) => {
   const [width, setWidth] = useState(window.innerWidth);
   const breakpoint = 700;
-
+  const dispatch = useDispatch();
   const handleResize = () => {
     setWidth(window.innerWidth);
   };
@@ -53,12 +55,23 @@ const Company = ({ company, handleCompanyClick }) => {
     };
   }, []);
 
+  const handleLinks = () => {
+    if (company.active) {
+      console.log("active");
+      naviagte(company.link);
+    } else {
+      console.log("not active");
+
+      dispatch(setComingSoon(true));
+    }
+  };
+
   const naviagte = useNavigate();
   return (
     <div className={style.company}>
       <div className={style.companyHeading}>
         <h2>{company.title}</h2>
-        <Button onClick={() => naviagte(company.link)}>Explore more</Button>
+        <Button onClick={handleLinks}>Explore more</Button>
       </div>
       <p>{company.content}</p>
       <div className={style.belowContent}>
