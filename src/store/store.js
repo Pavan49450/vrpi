@@ -1,7 +1,7 @@
 // src/redux/store.js
 
 import { configureStore } from "@reduxjs/toolkit";
-import commingSoonReducer from "./CommingSoonSliceommingSoonSlice";
+import commingSoonReducer from "./CommingSoonSlice";
 
 const store = configureStore({
   reducer: {
