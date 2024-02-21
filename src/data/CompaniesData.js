@@ -8,6 +8,7 @@ export const Companies = [
     // titleForAnimation: "VR pi Group of Companies",
     link: "#",
     backgroundColor: "#FFEDAB",
+    active: false,
   },
   {
     title: "Imports & Exports",
@@ -17,6 +18,7 @@ export const Companies = [
     // titleForAnimation: "VR pi Group of Companies",
     link: "#",
     backgroundColor: "#FFD7D7",
+    active: false,
   },
   {
     title: "Financial Services",
@@ -26,6 +28,7 @@ export const Companies = [
     // titleForAnimation: "VR pi Group of Companies",
     link: "#",
     backgroundColor: "#C0F7FF",
+    active: false,
   },
   {
     title: "Management & Consulting",
@@ -36,6 +39,7 @@ export const Companies = [
     // titleForAnimation: "VR pi Group of Companies",
     link: "#",
     backgroundColor: "#9FA2FF",
+    active: false,
   },
   {
     title: "Food Processing",
@@ -46,6 +50,7 @@ export const Companies = [
     // titleForAnimation: "VR pi Group of Companies",
     link: "#",
     backgroundColor: "#DFFFD3",
+    active: false,
   },
   {
     title: "Tech Solutions",
@@ -56,5 +61,6 @@ export const Companies = [
     // titleForAnimation: "VR pi Group of Companies",
     link: "#",
     backgroundColor: "#D7E5FF",
+    active: false,
   },
 ];

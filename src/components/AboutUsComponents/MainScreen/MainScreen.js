@@ -9,7 +9,7 @@ const MainScreen = () => {
       <div className={style.mainContent}>
         <h1>WHO WE ARE?</h1>
         <p>
-          "VR PI Group of Company is a dynamic and innovative organization
+          "VR PI Group of Companies is a dynamic and innovative organization
           specializing in industry . With a strong focus on innovative software
           technology, we are committed to delivering exceptional services while
           fostering a culture of creativity, inclusivity, and excellence in all

@@ -1,5 +1,5 @@
-export default function Careers(){
-    return<div>
-        Careers
-    </div>
-} 
+import CommingSoon from "../../UI/CommingSoon/CommingSoon";
+
+export default function Careers() {
+  return <CommingSoon show={true} />;
+}

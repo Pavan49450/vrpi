@@ -1,7 +1,9 @@
+import { useNavigate } from "react-router-dom";
 import Button from "../../../UI/Button/Button";
 import Section from "../../../UI/Sections/Section";
 import style from "./AboutUsSection.module.css";
 const AboutUsSection = () => {
+  const navigate = useNavigate();
   return (
     <div>
       <Section title="About Us">
@@ -24,7 +26,12 @@ const AboutUsSection = () => {
               propel growth, generate value, and effect positive change within
               our industry and wider community."
             </p>
-            <Button className={style.exploreBtn}>Explore Us</Button>
+            <Button
+              className={style.exploreBtn}
+              onClick={() => navigate("/about")}
+            >
+              Explore Us
+            </Button>
           </div>
         </div>
       </Section>

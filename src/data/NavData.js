@@ -1,11 +1,11 @@
 export const MainHeaderLinks = [
-  { name: "Home", address: "/" },
-  { name: "About Us", address: "/about" },
+  { name: "Home", address: "/", active: true },
+  { name: "About Us", address: "/about", active: true },
   // { name: "Services", address: "/services" },
   // { name: "Campanies", address: "/companies" },
-  { name: "Careers", address: "/careers" },
+  { name: "Careers", address: "/careers", active: false },
   // { name: "KnowledgeHub", address: "/knowledgeHub" },
-  { name: "Contact Us", address: "/contact" },
+  { name: "Contact Us", address: "/contact", active: false },
 ];
 
 export const KnowledgeHubHeaderLinks = [
@@ -18,6 +18,7 @@ export const MainDropdownLinks = [
   {
     name: "Companies",
     address: "/companies",
+    active: true,
     content: [
       {
         label: "Construction and Infra",
@@ -78,6 +79,7 @@ export const MainDropdownLinks = [
   {
     name: "Knowledge Hub",
     address: "/edutech",
+    active: true,
     content: [
       {
         label: "Edu-Tech",
@@ -102,6 +104,7 @@ export const MainDropdownLinks = [
   {
     name: "Trust and Welfare",
     address: "trust",
+    active: false,
     content: [
       {
         label: "Women Welfare Organization",
@@ -176,13 +179,17 @@ export const footerLinks = [
 ];
 
 export const quickLinks = [
+  { name: "Home", address: "/" },
+  { name: "About Us", address: "/about" },
+  { name: "Campanies", address: "/companies" },
+  { name: "Services", address: "/services" },
+  { name: "Careers", address: "/careers" },
   { name: "Edutech", address: "/edutech" },
   { name: "Internships", address: "/internships" },
 ];
 
 export const ContactUs = {
-  address:
-    "Door No: 2-27-163, Gandhi Nagar, Near Jammichettu, Wanaparthy, Telangana-509103, india",
+  address: ["Hyderabad [India]", "New Jersey [USA]"],
   phoneNumber: "+91 8790946714",
   infoEmailId: "info@vrpigroup.com",
 };

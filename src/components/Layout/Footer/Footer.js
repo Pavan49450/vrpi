@@ -69,7 +69,12 @@ const Footer = ({ links, quickLinks, ContactUs, JoinUsBarData }) => {
             src={require("../../../assets/footer/HomeWork.png")}
             alt=""
           ></img>
-          <p>{ContactUs.address}</p>
+          {/* <p>{ContactUs.address}</p> */}
+          <div>
+            {ContactUs.address.map((addrr) => (
+              <p style={{ marginBottom: "1rem" }}>{addrr}</p>
+            ))}
+          </div>
         </div>
         <div className={style.contact}>
           <img src={require("../../../assets/footer/Call.png")} alt=""></img>
@@ -103,36 +108,44 @@ const Footer = ({ links, quickLinks, ContactUs, JoinUsBarData }) => {
 
   const lowerBar = (
     <div className={style.lowerBar}>
-      <p>Copyright &copy; 2021 VR PI Group - All Rights are Reserved</p>
-      <p>Powered by VR PI Group og Companies</p>
+      <p>Copyright &copy; 2021 VR PI Group - All Rights Reserved</p>
+      <p>Powered by VR PI Group of Companies</p>
     </div>
   );
 
   return (
-    <div>
-      <div className={style.Footer}>
-        <Logo />
-        {width < breakpoint ? (
-          <>
-            <div className={style.navAndQuick}>
-              {navElements}
+    <div className={style.container}>
+      <div className={style.brand}>
+        <Logo className={style.logo} />
+        <div>
+          <h1>“Like TATA...... </h1>
+          <h1>Like VR PI.......”</h1>
+        </div>
+      </div>
+      <div style={{ width: "100%" }}>
+        <div className={style.Footer}>
+          {width < breakpoint ? (
+            <>
+              <div className={style.navAndQuick}>
+                {/* {navElements} */}
+                {QuickLinks}
+              </div>
+              <div className={style.contactAndJoin}>
+                {ContactUsSection}
+                {JoinUsBar}
+              </div>
+            </>
+          ) : (
+            <>
+              {/* {navElements} */}
               {QuickLinks}
-            </div>
-            <div className={style.contactAndJoin}>
               {ContactUsSection}
               {JoinUsBar}
-            </div>
-          </>
-        ) : (
-          <>
-            {navElements}
-            {QuickLinks}
-            {ContactUsSection}
-            {JoinUsBar}
-          </>
-        )}
+            </>
+          )}
+        </div>
+        {lowerBar}
       </div>
-      {lowerBar}
     </div>
   );
 };
