@@ -179,6 +179,11 @@ export const footerLinks = [
 ];
 
 export const quickLinks = [
+  { name: "Home", address: "/" },
+  { name: "About Us", address: "/about" },
+  { name: "Campanies", address: "/companies" },
+  { name: "Services", address: "/services" },
+  { name: "Careers", address: "/careers" },
   { name: "Edutech", address: "/edutech" },
   { name: "Internships", address: "/internships" },
 ];

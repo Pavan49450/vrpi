@@ -3,7 +3,7 @@ import CustomImage from "../../UI/Image/Image";
 import logo from "../../assets/vrpiLogo.png";
 import style from "./Logo.module.css";
 
-const Logo = () => {
+const Logo = ({ className }) => {
   const navigate = useNavigate();
 
   return (
@@ -15,7 +15,8 @@ const Logo = () => {
       //   height: "100%",
       //   objectFit: "contain",
       // }}
-      className={style.logo}
+      className={`${style.logo}`}
+      classForDiv={className}
       src={logo}
       alt="logo"
       title="logo"

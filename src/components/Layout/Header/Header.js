@@ -200,11 +200,40 @@ const Header = ({ links, buttons, dropdownLinks, JoinUsBarData }) => {
 
   const navElementsForMobile = (
     <div className={style.navBarForMobile}>
-      {navElementsForMobileData.map((element) => {
-        return {
-          element,
-        };
-      })}
+      {navElementsForMobileData.map((element) => (
+        <div key={element.name}>
+          {element.active ? (
+            <NavLink to={element.link} className={style.linksForMobile}>
+              {element.name}
+            </NavLink>
+          ) : (
+            <button className={style.linksForMobile} onClick={() => {}}>
+              {element.name}
+            </button>
+          )}
+          {element.dropdownElement &&
+            element.links && ( // Check if dropdownElement is true and links array is defined
+              <div className={style.dropdownContent}>
+                {" "}
+                {/* Add CSS class for dropdown content */}
+                {element.links.map(
+                  (
+                    link,
+                    index // Map through the links array to render dropdown items
+                  ) => (
+                    <NavLink
+                      key={index}
+                      to={link.link}
+                      className={style.dropdownLink}
+                    >
+                      {link.name}
+                    </NavLink>
+                  )
+                )}
+              </div>
+            )}
+        </div>
+      ))}
     </div>
   );
 
@@ -232,10 +261,11 @@ const Header = ({ links, buttons, dropdownLinks, JoinUsBarData }) => {
         </nav>
       ) : (
         <nav className={style.headerForMobile}>
-          <div>
+          <div className={style.mainForMobile}>
             <Logo />
             {navButtons}
           </div>
+          {navElementsForMobile}
         </nav>
       )}
     </>
