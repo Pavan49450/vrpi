@@ -168,23 +168,6 @@
   border-right: 50px solid #000; 
   transform: rotate(90deg); } */
 
-.navBarForMobile {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  background-color: #eb3223;
-  color: white;
-  padding: 10px;
-  gap: 5px;
-}
-
-.linksForMobile {
-  padding: 5px;
-  background-color: #f3483a;
-  font-size: 1.1rem;
-}
-
 @media (max-width: 700px) {
   .Header {
     margin: 0;

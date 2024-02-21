@@ -6,6 +6,7 @@ import Logo from "../../Logo/Logo";
 import CommingSoon from "../../../UI/CommingSoon/CommingSoon";
 import { useDispatch, useSelector } from "react-redux";
 import { setComingSoon } from "../../../store/CommingSoonSlice";
+import NavbarForMobile from "./HeaderComponents/NavbarForMobile/NavbarForMobile";
 
 const Header = ({ links, buttons, dropdownLinks, JoinUsBarData }) => {
   const sideNavbarRef = useRef(null);
@@ -164,7 +165,7 @@ const Header = ({ links, buttons, dropdownLinks, JoinUsBarData }) => {
     { name: "Home", link: "/", dropdownElement: false, active: true },
     {
       name: "About Us",
-      link: "/aboutus",
+      link: "/about",
       dropdownElement: false,
       active: true,
     },
@@ -197,45 +198,30 @@ const Header = ({ links, buttons, dropdownLinks, JoinUsBarData }) => {
     { name: "Careers", link: "/", dropdownElement: false, active: false },
     { name: "Contact Us", link: "/", dropdownElement: false, active: false },
   ];
+  // const [activeDropdown, setActiveDropdown] = useState(null);
 
-  const navElementsForMobile = (
-    <div className={style.navBarForMobile}>
-      {navElementsForMobileData.map((element) => (
-        <div key={element.name}>
-          {element.active ? (
-            <NavLink to={element.link} className={style.linksForMobile}>
-              {element.name}
-            </NavLink>
-          ) : (
-            <button className={style.linksForMobile} onClick={() => {}}>
-              {element.name}
-            </button>
-          )}
-          {element.dropdownElement &&
-            element.links && ( // Check if dropdownElement is true and links array is defined
-              <div className={style.dropdownContent}>
-                {" "}
-                {/* Add CSS class for dropdown content */}
-                {element.links.map(
-                  (
-                    link,
-                    index // Map through the links array to render dropdown items
-                  ) => (
-                    <NavLink
-                      key={index}
-                      to={link.link}
-                      className={style.dropdownLink}
-                    >
-                      {link.name}
-                    </NavLink>
-                  )
-                )}
-              </div>
-            )}
-        </div>
-      ))}
-    </div>
-  );
+  // const toggleDropdown = (name) => {
+  //   setActiveDropdown(activeDropdown === name ? null : name);
+  // };
+
+  // const navElementsForMobile = (
+  //   <div className={style.navBarForMobile}>
+  //     {links.map((element, index) => (
+  //       <div key={index}>
+  //         <NavItem
+  //           name={element.name}
+  //           link={element.link}
+  //           active={element.active}
+  //           dropdownElement={element.dropdownElement}
+  //           toggleDropdown={toggleDropdown}
+  //         />
+  //         {element.dropdownElement && activeDropdown === element.name && (
+  //           <Dropdown links={element.links} />
+  //         )}
+  //       </div>
+  //     ))}
+  //   </div>
+  // );
 
   return (
     <>
@@ -265,10 +251,52 @@ const Header = ({ links, buttons, dropdownLinks, JoinUsBarData }) => {
             <Logo />
             {navButtons}
           </div>
-          {navElementsForMobile}
+          {/* {navElementsForMobile} */}
+          <NavbarForMobile navElements={navElementsForMobileData} />
         </nav>
       )}
     </>
+  );
+};
+
+const NavItem = ({ name, link, active, dropdownElement, toggleDropdown }) => {
+  return (
+    <div>
+      {true ? (
+        <div>
+          <NavLink to={link} className={style.linksForMobile}>
+            <div>
+              {name}
+              {dropdownElement && <div>&#8964;</div>}
+            </div>
+          </NavLink>
+          {dropdownElement && (
+            <button
+              className={style.dropdownButton}
+              onClick={() => toggleDropdown(name)}
+            >
+              ▼
+            </button>
+          )}
+        </div>
+      ) : (
+        <button className={style.linksForMobile} onClick={() => {}}>
+          {name}
+        </button>
+      )}
+    </div>
+  );
+};
+
+const Dropdown = ({ links }) => {
+  return (
+    <div className={style.dropdownContent}>
+      {links.map((link, index) => (
+        <NavLink key={index} to={link.link} className={style.dropdownLink}>
+          {link.name}
+        </NavLink>
+      ))}
+    </div>
   );
 };
 
