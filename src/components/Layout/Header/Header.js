@@ -110,9 +110,9 @@ const Header = ({ links, buttons, dropdownLinks, JoinUsBarData }) => {
           {link.active ? (
             <>
               <NavLink
-                to={link.address}
+                // to={link.address}
                 title={`Link to ${link.name}`}
-                onClick={handleMobileMenuToggle}
+                // onClick={handleMobileMenuToggle}
                 className={style.dropdownLink}
                 onMouseEnter={() => setShowDropDown(index)}
                 onMouseLeave={() => setShowDropDown(null)}
@@ -130,7 +130,12 @@ const Header = ({ links, buttons, dropdownLinks, JoinUsBarData }) => {
               />
             </>
           ) : (
-            <button className={style.dropdownLink} onClick={handleLinkClick}>
+            <button
+              className={style.dropdownLink}
+              onClick={handleLinkClick}
+              onMouseEnter={() => setShowDropDown(index)}
+              onMouseLeave={() => setShowDropDown(null)}
+            >
               {link.name}
             </button>
           )}
@@ -161,31 +166,6 @@ const Header = ({ links, buttons, dropdownLinks, JoinUsBarData }) => {
       </ul>
     </div>
   );
-
-  // const [activeDropdown, setActiveDropdown] = useState(null);
-
-  // const toggleDropdown = (name) => {
-  //   setActiveDropdown(activeDropdown === name ? null : name);
-  // };
-
-  // const navElementsForMobile = (
-  //   <div className={style.navBarForMobile}>
-  //     {links.map((element, index) => (
-  //       <div key={index}>
-  //         <NavItem
-  //           name={element.name}
-  //           link={element.link}
-  //           active={element.active}
-  //           dropdownElement={element.dropdownElement}
-  //           toggleDropdown={toggleDropdown}
-  //         />
-  //         {element.dropdownElement && activeDropdown === element.name && (
-  //           <Dropdown links={element.links} />
-  //         )}
-  //       </div>
-  //     ))}
-  //   </div>
-  // );
 
   return (
     <>
@@ -220,47 +200,6 @@ const Header = ({ links, buttons, dropdownLinks, JoinUsBarData }) => {
         </nav>
       )}
     </>
-  );
-};
-
-const NavItem = ({ name, link, active, dropdownElement, toggleDropdown }) => {
-  return (
-    <div>
-      {true ? (
-        <div>
-          <NavLink to={link} className={style.linksForMobile}>
-            <div>
-              {name}
-              {dropdownElement && <div>&#8964;</div>}
-            </div>
-          </NavLink>
-          {dropdownElement && (
-            <button
-              className={style.dropdownButton}
-              onClick={() => toggleDropdown(name)}
-            >
-              ▼
-            </button>
-          )}
-        </div>
-      ) : (
-        <button className={style.linksForMobile} onClick={() => {}}>
-          {name}
-        </button>
-      )}
-    </div>
-  );
-};
-
-const Dropdown = ({ links }) => {
-  return (
-    <div className={style.dropdownContent}>
-      {links.map((link, index) => (
-        <NavLink key={index} to={link.link} className={style.dropdownLink}>
-          {link.name}
-        </NavLink>
-      ))}
-    </div>
   );
 };
 

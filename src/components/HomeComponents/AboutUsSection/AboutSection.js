@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import Button from "../../../UI/Button/Button";
 import Section from "../../../UI/Sections/Section";
 import style from "./AboutUsSection.module.css";
+import CustomImage from "../../../UI/Image/Image";
 const AboutUsSection = () => {
   const navigate = useNavigate();
   return (
@@ -9,10 +10,10 @@ const AboutUsSection = () => {
       <Section title="About Us">
         <div className={style.AboutUsSection}>
           <div className={style.image1}>
-            <img
+            <CustomImage
               src={require(`../../../assets/home/aboutUsSection1.png`)}
               alt=""
-            ></img>
+            ></CustomImage>
           </div>
           <div className={style.content}>
             <p>

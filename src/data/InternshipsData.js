@@ -20,45 +20,40 @@ const cards = {
   highlightWord: "Internships",
   content: [
     {
-      name: "Java Full-Stack",
+      name: "Software Development",
       courseLink: "#",
       content:
-        "Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur. ",
+        "Skills Required: Machine Learning, Linux, Python, Java, Amazon Web Services, Back End and SQL.",
       buttonContent: "Apply",
     },
     {
-      name: "Python Full-Stack",
+      name: "UI/UX Designing",
       courseLink: "#",
       content:
-        "Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur. ",
+        "Skills Required: User Research, Wireframing, Prototyping, Visual Design, IA, Interaction design, Usability Testing",
       buttonContent: "Apply",
     },
     {
-      name: "DevOps with Cloud",
+      name: "Digital Marketing",
       courseLink: "#",
       content:
-        "Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur. ",
+        "Skills Required: Video Marketing, SEO & SEM, Content Marketing, Data & Analytics, Design Thinking and Planning, Social Media, Email Marketing",
       // price: "$99.99",
       buttonContent: "Apply",
     },
     {
-      name: "Data Engineering",
+      name: "Chartered Accountant",
       courseLink: "#",
       content:
-        "Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur. ",
+        "Skills Required: Problem Solving, Financial analysis, Business Communication, Analytical skills",
       // price: "$99.99",
       buttonContent: "Apply",
     },
     {
-      name: "Artificial Intelligence",
+      name: "Civil Engineering",
       courseLink: "/javascript-course",
-      content: "Master JavaScript programming language from scratch.",
-      buttonContent: "Apply",
-    },
-    {
-      name: "Embedded & IoT",
-      courseLink: "/javascript-course",
-      content: "Master JavaScript programming language from scratch.",
+      content:
+        "Skills Required: Maths & Physics Proficiency, Basic knowledge on foundation",
       buttonContent: "Apply",
     },
   ],

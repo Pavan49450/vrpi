@@ -42,7 +42,7 @@ const OurCompanies = () => {
 
 const Company = ({ company, handleCompanyClick }) => {
   const [width, setWidth] = useState(window.innerWidth);
-  const breakpoint = 700;
+  const breakpoint = 1000;
   const dispatch = useDispatch();
   const handleResize = () => {
     setWidth(window.innerWidth);
@@ -84,7 +84,7 @@ const Company = ({ company, handleCompanyClick }) => {
               // onClick={() => handleCompanyClick(index)}
               onMouseEnter={() => handleCompanyClick(index)}
               style={{
-                width: company.title === companyForImage.title ? "30%" : "10%",
+                width: company.title === companyForImage.title ? "40%" : "10%",
               }}
               className={style.companyImage}
             />

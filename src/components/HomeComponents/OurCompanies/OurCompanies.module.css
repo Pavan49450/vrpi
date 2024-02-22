@@ -16,6 +16,7 @@
 }
 
 .company p {
+  height: 100px;
   /* height: 100px; */
 }
 .company {
@@ -74,12 +75,30 @@
   transform-origin: center;
 } */
 
-@media (max-width: 700px) {
+@media (max-width: 1000px) {
   .companyImages {
     width: 100%;
-    height: 150px;
+    height: 250px;
   }
   .companyImage {
     height: 100%;
+  }
+
+  .companies {
+    padding: 1rem;
+  }
+
+  .company p {
+    height: auto;
+  }
+}
+@media (max-width: 700px) {
+  .companyImages {
+    height: 150px;
+  }
+  .companyHeading {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
   }
 }
