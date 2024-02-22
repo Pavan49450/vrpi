@@ -41,7 +41,7 @@
   position: relative;
   width: 98%;
   height: 39px;
-  background: var(--secondary);
+  background: var(--primary);
   display: flex;
   justify-content: center;
   padding-left: 50px;
