@@ -1,10 +1,10 @@
 import { NavLink } from "react-router-dom";
-import Background3 from "../../UI/background/Background3";
 import style from "./CustomKnowlege.module.css";
 import FAQsComponent from "./FAQs/FAQs";
 import Card from "./Card/Card";
 import Section from "../../UI/Sections/Section";
 import { useEffect, useState } from "react";
+import HighlightCapsWords from "../../UI/HighlightWords/HighlightCapsWords";
 
 const CustomKnowledgeHubComponent = ({ data, backgroundImage }) => {
   const [width, setWidth] = useState(window.innerWidth);
@@ -23,13 +23,28 @@ const CustomKnowledgeHubComponent = ({ data, backgroundImage }) => {
 
   return (
     <div>
-      <div>
-        <Background3 image={backgroundImage} />
+      <div style={{ position: "relative" }}>
+        <img
+          className={style.backgroundImage}
+          src={require(`../../assets/${backgroundImage}`)}
+          alt=""
+        />
         <div className={style.mainScreen}>
-          <h2>{data.mainContent.head}</h2>
-          <p>{data.mainContent.description}</p>
+          <h2>
+            <HighlightCapsWords
+              sentence={data.mainContent.head}
+              color="#ff6501"
+            ></HighlightCapsWords>
+          </h2>
+          <p>
+            {" "}
+            <HighlightCapsWords
+              sentence={data.mainContent.description}
+              color="#ff6501"
+            ></HighlightCapsWords>
+          </p>
           <NavLink className={style.btn} to="/register">
-            Register Now
+            {data.mainContent.button}
           </NavLink>
         </div>
       </div>
@@ -74,9 +89,9 @@ const CustomKnowledgeHubComponent = ({ data, backgroundImage }) => {
             viewAll="true"
           >
             <div className={style.cardStack}>
-              {data.cards.multipleCardsSection.freeCourse.courses.map(
-                (CardDetails) => {
-                  return <Card CardDetails={CardDetails} />;
+              {data.cards.multipleCardsSection.paidCourse.courses.map(
+                (CardDetails, index) => {
+                  return <Card key={index} CardDetails={CardDetails} />;
                 }
               )}
             </div>

@@ -9,10 +9,10 @@ export const MainHeaderLinks = [
 ];
 
 export const KnowledgeHubHeaderLinks = [
-  { name: "Edu-tech", address: "/edutech" },
-  { name: "Interships", address: "/internships" },
+  { name: "Edu-tech", address: "/edutech", active: true },
+  { name: "Interships", address: "/internships", active: true },
 
-  { name: "Contact Us", address: "/contact" },
+  { name: "Contact Us", address: "/contact", active: true },
 ];
 
 export const MainDropdownLinks = [

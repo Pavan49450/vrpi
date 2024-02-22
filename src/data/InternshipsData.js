@@ -2,6 +2,7 @@ const mainContent = {
   head: '"The best way to predict the future is to create it."',
   description:
     '"Internships offer a unique opportunity to step out of your comfort zone, challenge yourself, and discover what you are truly capable of achieving."',
+  button: "Check now",
 };
 
 const WhatIsSection = {
