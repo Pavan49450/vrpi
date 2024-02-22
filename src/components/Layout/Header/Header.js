@@ -7,6 +7,7 @@ import CommingSoon from "../../../UI/CommingSoon/CommingSoon";
 import { useDispatch, useSelector } from "react-redux";
 import { setComingSoon } from "../../../store/CommingSoonSlice";
 import NavbarForMobile from "./HeaderComponents/NavbarForMobile/NavbarForMobile";
+import { navElementsForMobileData } from "../../../data/NavData";
 
 const Header = ({ links, buttons, dropdownLinks, JoinUsBarData }) => {
   const sideNavbarRef = useRef(null);
@@ -161,43 +162,6 @@ const Header = ({ links, buttons, dropdownLinks, JoinUsBarData }) => {
     </div>
   );
 
-  const navElementsForMobileData = [
-    { name: "Home", link: "/", dropdownElement: false, active: true },
-    {
-      name: "About Us",
-      link: "/about",
-      dropdownElement: false,
-      active: true,
-    },
-    {
-      name: "Companies & Services",
-      dropdownElement: true,
-      links: [
-        { name: "Construction & Infra", link: "", active: false },
-        { name: "Financial Services", link: "", active: false },
-        { name: "Food Processing", link: "", active: false },
-        { name: "Imports & Exports", link: "", active: false },
-        { name: "Management & Consulting", link: "", active: false },
-        { name: "Tech Solutions", link: "", active: false },
-      ],
-    },
-    {
-      name: "Knowledge Hub",
-      dropdownElement: true,
-      links: [
-        { name: "Edu-Tech", link: "edutech", active: true },
-        { name: "Internship", link: "internships", active: true },
-      ],
-    },
-    {
-      name: "Trust & Welfare",
-      link: "/",
-      dropdownElement: true,
-      active: false,
-    },
-    { name: "Careers", link: "/", dropdownElement: false, active: false },
-    { name: "Contact Us", link: "/", dropdownElement: false, active: false },
-  ];
   // const [activeDropdown, setActiveDropdown] = useState(null);
 
   // const toggleDropdown = (name) => {

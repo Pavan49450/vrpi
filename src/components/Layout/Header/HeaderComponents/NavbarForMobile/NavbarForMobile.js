@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import style from "./NavbarForMobile.module.css";
+import { useDispatch } from "react-redux";
+import { setComingSoon } from "../../../../../store/CommingSoonSlice";
 
 function NavbarForMobile({ navElements }) {
   const { pathname } = useLocation();
@@ -24,20 +26,34 @@ function NavbarForMobile({ navElements }) {
   const toggleMenuIcon = () => {
     setMenuIconClicked(!menuIconClicked);
   };
+  const dispatch = useDispatch();
 
   const renderDropdownContent = (links, navItemName) => {
     return (
       <ul className={style.dropdown}>
         {links &&
           links.map((link) => (
-            <li key={link.name}>
-              <NavLink
-                to={link.link}
-                className={({ isActive }) => (isActive ? "active" : null)}
-              >
-                {link.name}
-              </NavLink>
-            </li>
+            <>
+              {link.active ? (
+                <li key={link.name}>
+                  <NavLink
+                    to={link.link}
+                    className={({ isActive }) => (isActive ? "active" : null)}
+                  >
+                    {link.name}
+                  </NavLink>
+                </li>
+              ) : (
+                <li key={link.name}>
+                  <button
+                    onClick={() => dispatch(setComingSoon(true))}
+                    className={({ isActive }) => (isActive ? "active" : null)}
+                  >
+                    {link.name}
+                  </button>
+                </li>
+              )}
+            </>
           ))}
       </ul>
     );
@@ -81,9 +97,20 @@ function NavbarForMobile({ navElements }) {
                     renderDropdownContent(navItem.links, navItem.name)}
                 </>
               ) : (
-                <NavLink to={navItem.link} className={style.linksForMobile}>
-                  {navItem.name}
-                </NavLink>
+                <>
+                  {navItem.active ? (
+                    <NavLink to={navItem.link} className={style.linksForMobile}>
+                      {navItem.name}
+                    </NavLink>
+                  ) : (
+                    <button
+                      onClick={() => dispatch(setComingSoon(true))}
+                      className={style.linksForMobile}
+                    >
+                      {navItem.name}
+                    </button>
+                  )}
+                </>
               )}
             </li>
           );

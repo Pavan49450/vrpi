@@ -9,7 +9,7 @@ import WhyChooseUs from "../../components/HomeComponents/WhyChooseUs/WhyChooseUs
 
 const Home = () => {
   return (
-    <div>
+    <div style={{ width: "100%" }}>
       <MainScreen />
       <AboutUsSection />
       <WhyChooseUs />

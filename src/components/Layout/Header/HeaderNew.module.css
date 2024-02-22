@@ -111,7 +111,7 @@
   border: none;
   color: white;
   border-radius: 10px;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   text-align: center;
   text-decoration: none;
   padding: 0 5px;
@@ -157,7 +157,8 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 0 1rem;
+  margin: 0 1rem 0 0rem;
+  height: 70px;
 }
 /* .triangle {
   position: absolute;
@@ -181,7 +182,7 @@
   .Header .element a {
     transform: skew(0deg);
   }
-  .signUpBtn {
+  /* .signUpBtn {
     height: 50px;
-  }
+  } */
 }
