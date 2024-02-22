@@ -34,3 +34,13 @@
   font-weight: 600;
   margin: 1rem 0;
 }
+
+/* @media (max-width: 768px) {
+  .pointContainer:hover {
+    box-shadow: none;
+    cursor: pointer;
+  }
+  .pointContainer:hover .WhyChooseUsPoint {
+    border-left: 0px solid;
+  }
+} */

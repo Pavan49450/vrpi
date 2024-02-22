@@ -1,8 +1,8 @@
 import React from "react";
-import useInput from "../../../../hooks/use-Input";
-import CustomInput from "../../../../UI/Input/Input";
 import style from "./ContactUs.module.css";
-import Button from "../../../../UI/Button/Button";
+import useInput from "../../../hooks/use-Input";
+import CustomInput from "../../../UI/Input/Input";
+import Button from "../../../UI/Button/Button";
 
 const validateName = (input) => {
   return input.length >= 3;
@@ -151,7 +151,6 @@ const ContactUsForm = () => {
             : `${style.InputFields}`
         }
       />
-      {/* </div> */}
       <Button type="submit" className={style.submitBtn}>
         Contact Us
       </Button>

@@ -18,7 +18,7 @@ export const KnowledgeHubHeaderLinks = [
 export const MainDropdownLinks = [
   {
     name: "Companies and Services",
-    address: "/companies",
+    address: "/",
     active: true,
     content: [
       {
@@ -244,8 +244,12 @@ export const navElementsForMobileData = [
   },
   {
     name: "Trust & Welfare",
-    link: "/",
-    dropdownElement: false,
+    // link: "/",
+    dropdownElement: true,
+    links: [
+      { name: "Women Welfare Organization", link: "", active: false },
+      { name: "Farmer Welfare Organization", link: "", active: false },
+    ],
     active: false,
   },
   { name: "Careers", link: "/", dropdownElement: false, active: false },

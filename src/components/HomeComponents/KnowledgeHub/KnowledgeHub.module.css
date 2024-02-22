@@ -55,13 +55,19 @@
 @media (max-width: 768px) {
   .program {
     flex-direction: column;
+    padding: 1rem 0;
   }
   .programImage {
     max-width: none;
-
+    padding: 1rem 0;
     /* flex-direction: column; */
+  }
+  .knowledgeHubDecription {
+    padding: 0;
   }
   .programContent {
     width: 90%;
+    padding: 1rem 0;
+    align-items: center;
   }
 }

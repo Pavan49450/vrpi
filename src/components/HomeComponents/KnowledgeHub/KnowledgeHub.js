@@ -1,4 +1,5 @@
 import Button from "../../../UI/Button/Button";
+import CustomImage from "../../../UI/Image/Image";
 import Section from "../../../UI/Sections/Section";
 import style from "./KnowledgeHub.module.css";
 import { useNavigate } from "react-router-dom";
@@ -38,7 +39,7 @@ const KnowledgeHub = () => {
             {programs.map((program) => (
               <div className={style.program}>
                 <div className={style.programImage}>
-                  <img
+                  <CustomImage
                     src={require(`../../../assets/${program.image}`)}
                     alt=""
                   />
