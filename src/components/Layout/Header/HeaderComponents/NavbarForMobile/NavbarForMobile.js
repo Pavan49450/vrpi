@@ -7,18 +7,22 @@ function NavbarForMobile({ navElements }) {
 
   // Initialize state to track dropdown states
   const [dropdownStates, setDropdownStates] = useState({});
+  const [menuIconClicked, setMenuIconClicked] = useState(false);
 
   // Function to toggle dropdown state
   const toggleDropdown = (navItemName) => {
+    // Close all other dropdowns
+    const updatedDropdownStates = Object.fromEntries(
+      Object.keys(dropdownStates).map((name) => [name, false])
+    );
     setDropdownStates({
-      ...dropdownStates,
+      ...updatedDropdownStates,
       [navItemName]: !dropdownStates[navItemName],
     });
   };
 
-  // Function to close all dropdowns
-  const closeAllDropdowns = () => {
-    setDropdownStates({});
+  const toggleMenuIcon = () => {
+    setMenuIconClicked(!menuIconClicked);
   };
 
   const renderDropdownContent = (links, navItemName) => {
@@ -29,7 +33,6 @@ function NavbarForMobile({ navElements }) {
             <li key={link.name}>
               <NavLink
                 to={link.link}
-                // onClick={closeAllDropdowns}
                 className={({ isActive }) => (isActive ? "active" : null)}
               >
                 {link.name}
@@ -41,8 +44,23 @@ function NavbarForMobile({ navElements }) {
   };
 
   return (
-    <nav className="mobile-navbar">
-      <ul className={style.navBarForMobile}>
+    <nav className={style.navbar}>
+      <div
+        className={`${style.menuIcon} ${
+          menuIconClicked && style.menuIconChange
+        }`}
+        onClick={toggleMenuIcon}
+      >
+        <div className={style.bar1}></div>
+        <div className={style.bar2}></div>
+        <div className={style.bar3}></div>
+      </div>
+
+      <ul
+        className={`${style.navBarForMobile} ${
+          menuIconClicked ? style.active : ""
+        }`}
+      >
         {navElements.map((navItem) => {
           return (
             <li key={navItem.name}>
@@ -50,25 +68,20 @@ function NavbarForMobile({ navElements }) {
                 <>
                   <button
                     className={style.linksForMobile}
-                    onClick={() => toggleDropdown(navItem.name)} // Pass navItem name to toggleDropdown
+                    onClick={() => toggleDropdown(navItem.name)}
                   >
-                    {navItem.name} <i className="fas fa-angle-down"></i>
+                    {navItem.name}
+                    {dropdownStates[navItem.name] ? (
+                      <span>&#11165;</span>
+                    ) : (
+                      <span>&#11167;</span>
+                    )}
                   </button>
                   {dropdownStates[navItem.name] &&
                     renderDropdownContent(navItem.links, navItem.name)}
                 </>
               ) : (
-                <NavLink
-                  to={navItem.link}
-                  // className={({ isActive }) =>
-                  //   navItem.link === pathname
-                  //     ? "active"
-                  //     : isActive && navItem.active
-                  //     ? "active"
-                  //     : null
-                  // }
-                  className={style.linksForMobile}
-                >
+                <NavLink to={navItem.link} className={style.linksForMobile}>
                   {navItem.name}
                 </NavLink>
               )}
