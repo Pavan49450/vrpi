@@ -1,5 +1,9 @@
-export default function ContactUs(){
-    return<div>
-        Contact Us
+import ContactUsForm from "../../components/Companies/Construction/ContactForm/ContactUsForm";
+
+export default function ContactUs() {
+  return (
+    <div>
+      <ContactUsForm />
     </div>
-} 
+  );
+}

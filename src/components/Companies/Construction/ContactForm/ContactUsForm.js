@@ -7,17 +7,54 @@ import Button from "../../../../UI/Button/Button";
 const validateName = (input) => {
   return input.length >= 3;
 };
+// Validate mobile number: Exactly 10 digits and starts with a valid country code
 const validateMobile = (input) => {
-  return input.length === 10;
+  // Regular expression to validate the mobile number format
+  const mobileRegex = /^\+[1-9]\d{1,3}-\d{3}-\d{3}-\d{4}$/;
+
+  // Check if the mobile number matches the regular expression
+  if (!mobileRegex.test(input)) {
+    return false; // Mobile number format is incorrect
+  }
+
+  return true; // Mobile number is valid
 };
+
 const validateDescription = (input) => {
   return input.length >= 10;
+};
+const validateEmail = (input) => {
+  // Regular expression to validate email format
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  // Check if the email matches the regular expression
+  if (!emailRegex.test(input)) {
+    return false; // Email format is incorrect
+  }
+
+  // Check if the email length is at least 8 characters
+  if (input.length < 8) {
+    return false; // Email is too short
+  }
+
+  // Check if the email contains only one "@" symbol
+  if ((input.match(/@/g) || []).length !== 1) {
+    return false; // Email contains multiple "@" symbols
+  }
+
+  // Additional validations can be added here, such as checking the domain part and TLD
+
+  return true; // Email is valid
 };
 
 const ContactUsForm = () => {
   const nameInput = useInput({
     initialValue: "",
     validateValue: validateName,
+  });
+  const emailInput = useInput({
+    initialValue: "",
+    validateValue: validateEmail,
   });
   const mobileInput = useInput({
     initialValue: "",
@@ -50,6 +87,7 @@ const ContactUsForm = () => {
     <form onSubmit={handleSubmit} className={style.Form}>
       {/* <div className={style.form_input}> */}
       {/* <label htmlFor="name">Name</label> */}
+      {console.log(nameInput.hasError)}
       <CustomInput
         id="name"
         placeholder="Name"
@@ -58,6 +96,25 @@ const ContactUsForm = () => {
         // isInvalid={nameInput.hasError}
         onBlur={nameInput.validateValueHandler}
         onFocus={nameInput.focusHandler}
+        className={
+          nameInput.hasError
+            ? ` ${style.invalid} ${style.InputFields}`
+            : `${style.InputFields}`
+        }
+      />
+      <CustomInput
+        id="Email"
+        placeholder="Email-ID"
+        value={emailInput.value}
+        onChange={emailInput.valueChangeHandler}
+        // isInvalid={nameInput.hasError}
+        onBlur={emailInput.validateValueHandler}
+        onFocus={emailInput.focusHandler}
+        className={
+          emailInput.hasError
+            ? ` ${style.invalid} ${style.InputFields}`
+            : `${style.InputFields}`
+        }
       />
       {/* </div> */}
       {/* <div className={style.form_input}> */}
@@ -70,6 +127,11 @@ const ContactUsForm = () => {
         isInvalid={!mobileInput.isValid}
         onBlur={mobileInput.validateValueHandler}
         onFocus={mobileInput.focusHandler}
+        className={
+          mobileInput.hasError
+            ? ` ${style.invalid} ${style.InputFields}`
+            : `${style.InputFields}`
+        }
       />
       {/* </div> */}
       {/* <div className={style.form_input}> */}
@@ -82,6 +144,11 @@ const ContactUsForm = () => {
         isInvalid={!descriptionInput.isValid}
         onBlur={descriptionInput.validateValueHandler}
         onFocus={descriptionInput.focusHandler}
+        className={
+          descriptionInput.hasError
+            ? ` ${style.invalid} ${style.InputFields}`
+            : `${style.InputFields}`
+        }
       />
       {/* </div> */}
       <Button type="submit" className={style.submitBtn}>

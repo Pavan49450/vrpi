@@ -8,9 +8,11 @@
 }
 
 .invalid {
-  border: 2px solid var(--darkInvalidColor);
+  /* border: 2px solid var(--darkInvalidColor);
+   */
+  border-color: var(--darkInvalidColor);
 }
-.Form input {
+.InputFields {
   border: 0px solid;
   background: transparent;
   font-size: 1.5rem;
