@@ -24,13 +24,14 @@
 @media (max-width: 1050px) {
   .content p,
   .exploreBtn {
+    margin-top: 1rem;
     font-size: 1rem;
   }
   .content {
-    padding: 1rem;
+    padding: 0 1rem;
   }
   .image1 {
-    width: 60%;
+    width: 100%;
   }
 }
 
@@ -40,12 +41,15 @@
     align-items: center;
   }
   .image1 img {
-    max-width: 500px;
+    /* max-width: 500px; */
     margin: auto;
   }
   .image1,
   .content {
     width: 90%;
-    text-align: center;
+    /* text-align: center; */
+  }
+  .content {
+    padding: 0;
   }
 }

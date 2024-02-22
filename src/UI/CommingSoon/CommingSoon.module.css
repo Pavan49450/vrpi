@@ -6,6 +6,7 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, 25%);
+  z-index: 10;
 }
 
 .backgroundImage {

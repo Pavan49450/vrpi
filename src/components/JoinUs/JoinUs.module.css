@@ -67,9 +67,9 @@
   transition: all 0.3s ease;
 }
 
-.searchButton:hover {
+/* .searchButton:hover {
   background-color: var(--dilutedPrimary);
-}
+} */
 
 @media (max-width: 650px) {
   .searchContainer {

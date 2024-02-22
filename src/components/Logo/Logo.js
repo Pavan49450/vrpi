@@ -9,17 +9,11 @@ const Logo = ({ className }) => {
   return (
     // <div className={style.logoContainer}>
     <CustomImage
-      // style={{
-      //   cursor: "pointer",
-      //   width: "200px",
-      //   height: "100%",
-      //   objectFit: "contain",
-      // }}
       className={`${style.logo}`}
       classForDiv={className}
       src={logo}
       alt="logo"
-      title="logo"
+      // title="Home"
       onClick={() => navigate("/")}
     />
     // </div>
