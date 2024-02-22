@@ -9,10 +9,10 @@ export const MainHeaderLinks = [
 ];
 
 export const KnowledgeHubHeaderLinks = [
-  { name: "Edu-tech", address: "/edutech" },
-  { name: "Interships", address: "/internships" },
+  { name: "Edu-tech", address: "/edutech", active: true },
+  { name: "Interships", address: "/internships", active: true },
 
-  { name: "Contact Us", address: "/contact" },
+  { name: "Contact Us", address: "/contact", active: true },
 ];
 
 export const MainDropdownLinks = [
@@ -213,3 +213,41 @@ export const ContactUs = {
 // };
 
 // export default MainNavData;
+
+export const navElementsForMobileData = [
+  { name: "Home", link: "/", dropdownElement: false, active: true },
+  {
+    name: "About Us",
+    link: "/about",
+    dropdownElement: false,
+    active: true,
+  },
+  {
+    name: "Companies & Services",
+    dropdownElement: true,
+    links: [
+      { name: "Construction & Infra", link: "", active: false },
+      { name: "Financial Services", link: "", active: false },
+      { name: "Food Processing", link: "", active: false },
+      { name: "Imports & Exports", link: "", active: false },
+      { name: "Management & Consulting", link: "", active: false },
+      { name: "Tech Solutions", link: "", active: false },
+    ],
+  },
+  {
+    name: "Knowledge Hub",
+    dropdownElement: true,
+    links: [
+      { name: "Edu-Tech", link: "edutech", active: true },
+      { name: "Internship", link: "internships", active: true },
+    ],
+  },
+  {
+    name: "Trust & Welfare",
+    link: "/",
+    dropdownElement: false,
+    active: false,
+  },
+  { name: "Careers", link: "/", dropdownElement: false, active: false },
+  { name: "Contact Us", link: "/", dropdownElement: false, active: false },
+];

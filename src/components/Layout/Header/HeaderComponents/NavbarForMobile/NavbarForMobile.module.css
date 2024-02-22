@@ -1,3 +1,38 @@
+.navbar {
+  position: relative;
+  overflow: hidden;
+}
+
+.menuIcon {
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  padding: 10px;
+  background-color: #eb3223;
+}
+
+.menuIcon .bar1,
+.menuIcon .bar2,
+.menuIcon .bar3 {
+  width: 25px;
+  height: 2px;
+  background-color: var(--white);
+  margin: 3px 0;
+  transition: 0.4s;
+}
+
+.menuIconChange .bar1 {
+  transform: translate(0, 5px) rotate(-45deg);
+}
+
+.menuIconChange .bar2 {
+  opacity: 0;
+}
+
+.menuIconChange .bar3 {
+  transform: translate(0, -11px) rotate(45deg);
+}
+
 .navBarForMobile {
   width: 100%;
   display: flex;
@@ -7,30 +42,48 @@
   color: white;
   padding: 10px;
   gap: 5px;
+  opacity: 0;
+  transform: translate(0, -500px);
+  height: 0;
+  padding-top: 0;
+}
+.active {
+  opacity: 1;
+  height: auto;
+  transform: translate(0, 0);
+  transition: all 0.3s ease;
+}
+
+/* .dropdown {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.3s ease-in-out;
+  margin-top: 5px;
+  background-color: #f3483a;
+  padding: 0.5rem;
+} */
+.dropdown {
+  margin-top: 5px;
+}
+
+.dropdown a,
+.dropdown button {
+  padding: 5px;
+  background-color: #f3483a;
+  font-size: 1rem;
+  display: block;
+  width: 100%;
+  text-align: start;
+  padding-left: 10px;
 }
 
 .linksForMobile {
   padding: 5px;
   background-color: #f3483a;
   font-size: 1rem;
-  display: block;
   width: 100%;
   text-align: start;
   padding-left: 10px;
-}
-
-.dropdown {
-  margin-top: 5px;
-  background-color: #f3483a;
-  padding: 0.5rem;
-}
-
-.dropdown a {
-  padding: 5px;
-  background-color: #f3483a;
-  font-size: 1rem;
-  display: block;
-  width: 100%;
-  text-align: start;
-  padding-left: 10px;
+  display: flex;
+  justify-content: space-between;
 }

@@ -8,12 +8,23 @@
   justify-content: center;
   gap: 3rem;
   min-height: calc(400px - 120px);
+  /* background: url(../../assets/edutechPageBackground.jpeg); */
 }
 
 .mainScreen h2 {
   text-align: center;
   font-size: 2rem; /* Base font size */
   font-weight: 700;
+}
+
+.backgroundImage {
+  position: absolute;
+  z-index: -1;
+  height: 100%;
+  width: calc(100% - 2rem);
+  margin: 0 1rem;
+  object-fit: cover;
+  opacity: 0.6;
 }
 
 .mainScreen p {
@@ -202,7 +213,7 @@
 
 @media (max-width: 900px) {
   .mainScreen h2 {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
   }
   .mainScreen p {
     font-size: 1rem;

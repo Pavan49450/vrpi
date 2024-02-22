@@ -1,6 +1,7 @@
 const mainContent = {
-  head: "FOR HUNDREDS OF SUCCESSFUL STUDENTS HERE EMBRACE OUR NEW COMMUNITY EXPLORE AND GROW",
+  head: "For hundreds of succesful students here embrace our new COMMUNITY explore and grow",
   description: "If you are DETERMINED to learn, no one can stop YOU!!",
+  button: "Register",
 };
 
 const WhatIsSection = {
