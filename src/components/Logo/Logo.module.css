@@ -5,6 +5,11 @@
   object-fit: contain;
 }
 
+.logo:hover {
+  transform: scale(1.1);
+  transition: all 0.3s ease;
+}
+
 @media (max-width: 650px) {
   .logo {
     /* width: 150px;

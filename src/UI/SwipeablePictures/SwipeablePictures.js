@@ -5,24 +5,33 @@ import { makeStyles } from "@material-ui/core/styles";
 import style from "./SwipeablePicture.module.css";
 import Button from "../Button/Button";
 import { useNavigate } from "react-router-dom";
+import HighlightCapsWords from "../HighlightWords/HighlightCapsWords";
+import Title from "../Title/Title";
 const mainScreenDetails = [
   {
-    content:
-      "VR PI Group of Companies is a dynamic conglomerate specializing in cutting-edge technology solutions, innovative construction and infrastructure projects, and seamless import-export services.",
+    content: [
+      "VR Pi Group of Companies is a dynamic conglomerate specializing in cutting-edge technology solutions, innovative construction and infrastructure projects, and seamless import-export services.",
+    ],
+    head: "VR Pi",
     image: "mainScreen1.png",
-    link: "",
+    link: "about",
   },
   {
-    content:
-      "VR PI Group of Companies is a dynamic conglomerate specializing in cutting-edge technology solutions, innovative construction and infrastructure projects, and seamless import-export services.",
+    head: "Edu-Tech",
+    content: [
+      "Embarking on an innovative journey, our VR Pi group of companies intertwines with the realm of Edu-Tech, forging new pathways in immersive education experiences.",
+    ],
     image: "mainScreen2.png",
-    link: "",
+    link: "edutech",
   },
   {
-    content:
-      "VR PI Group of Companies is a dynamic conglomerate specializing in cutting-edge technology solutions, innovative construction and infrastructure projects, and seamless import-export services.",
+    head: "Internships",
+    content: [
+      "As our VR Pi group of companies aligns with the future, we proudly extend opportunities for immersive Internships, fostering the next generation of visionary talent.",
+      "At VR Pi Group of Companies, we stand at the forefront of creativity and superiority across numerous categories, we drive growth and create lasting value for our partners and communities worldwide.",
+    ],
     image: "mainScreen3.png",
-    link: "",
+    link: "internships",
   },
 ];
 
@@ -72,18 +81,31 @@ const SwipeablePictures = () => {
     <div className={style.imageContainer}>
       <SwipeableViews index={index} enableMouseEvents>
         {mainScreenDetails.map((screen, idx) => (
-          <div
-            key={idx}
-            className={classes.slide}
-            // style={{
-            //   backgroundImage: `url(../../assets/${image})`,
-            //   width: "100%",
-            //   height: "100%",
-            // }}
-          >
+          <div key={idx} className={classes.slide}>
             <div className={style.contentContainer}>
-              {/* <div className={style.backlay}>{screen.link}</div> */}
-              <h1>{screen.content}</h1>
+              {/* <h1 className={style.head}>{screen.head}</h1> */}
+              {/* <h1 className={style.content}>{screen.content}</h1> */}
+              {screen.content.map((content) => (
+                // <HighlightCapsWords
+                //   sentence={content}
+                //   // color="#ff6501"
+                //   style={{
+                //     color: "#ff6501",
+                //     fontSize: "1.5rem",
+                //     fontWeight: "600",
+                //   }}
+                //   className={style.content}
+                // />
+                <Title
+                  title={content}
+                  highlightWord={screen.head}
+                  styles={{
+                    border: "0px solid",
+                    fontSize: "1.2rem",
+                    color: "white",
+                  }}
+                ></Title>
+              ))}
               <Button onClick={() => navigate(screen.link)}>
                 Explore More
               </Button>

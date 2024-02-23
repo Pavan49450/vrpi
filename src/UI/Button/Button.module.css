@@ -9,6 +9,11 @@
   color: white;
 }
 
+.customButton:hover {
+  transform: scale(1.1);
+  transition: all 0.3s ease;
+}
+
 .customButton:active {
   transform: scale(0.8);
 }

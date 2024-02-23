@@ -1,0 +1,19 @@
+.formSection h1 {
+  font-size: 2rem;
+  font-weight: 600;
+  text-align: center;
+  padding: 1rem;
+}
+
+.form {
+  display: flex;
+  /* width: 100%; */
+  align-items: center;
+  margin: 2rem;
+  gap: 1rem;
+}
+
+.form img {
+  width: 50%;
+  object-fit: cover;
+}
