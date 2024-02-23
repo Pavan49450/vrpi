@@ -1,5 +1,5 @@
-import Background2 from "../../UI/background/Background2";
-import Content from "../../components/Companies/Construction/Content";
+import Background2 from "../../../UI/background/Background2";
+import Content from "../../../components/Companies/Construction/Content";
 
 const Construction = () => {
   return (

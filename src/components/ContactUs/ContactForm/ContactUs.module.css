@@ -5,26 +5,53 @@
   flex-direction: column;
   justify-content: space-evenly;
   align-items: center;
+  gap: 1rem;
 }
 
 .invalid {
-  /* border: 2px solid var(--darkInvalidColor);
-   */
-  border: 0px solid;
   background: transparent;
-  font-size: 1.5rem;
+  font-size: 1rem;
   /* border-bottom: 2px solid grey; */
-  width: 80%;
+  border: 2px solid var(--primary);
+  width: 100%;
   padding: 10px;
-  border-bottom: 2px solid var(--darkInvalidColor);
+  border-radius: 5px;
+  border: 2px solid var(--darkInvalidColor);
 }
 .InputFields {
-  border: 0px solid;
   background: transparent;
-  font-size: 1.5rem;
-  border-bottom: 2px solid grey;
-  width: 80%;
+  font-size: 1rem;
+  /* border-bottom: 2px solid grey; */
+  border: 2px solid var(--primary);
+  width: 100%;
   padding: 10px;
+  border-radius: 5px;
+}
+
+.description {
+  background: transparent;
+  font-size: 1rem;
+  /* border-bottom: 2px solid grey; */
+  border: 2px solid var(--primary);
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  height: 100px;
+}
+
+.descriptionInvalid {
+  border: 2px solid var(--darkInvalidColor);
+}
+
+.description:focus-visible {
+  background: transparent;
+  font-size: 1rem;
+  /* border-bottom: 2px solid grey; */
+  border: 2px solid var(--primary);
+  width: 100%;
+  padding: 10px;
+  border-radius: 5px;
+  height: 100px;
 }
 
 .submitBtn {
@@ -33,7 +60,7 @@
   border: none;
   color: var(--white);
   border-radius: 5px;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   transition: all 0.5s ease;
   text-align: center;
   text-decoration: none;

@@ -5,7 +5,7 @@ export const MainHeaderLinks = [
   // { name: "Campanies", address: "/companies" },
   // { name: "Careers", address: "/careers", active: false },
   // { name: "KnowledgeHub", address: "/knowledgeHub" },
-  { name: "Contact Us", address: "/contact", active: true },
+  { name: "Contact Us", address: "/contact", active: false },
 ];
 
 export const KnowledgeHubHeaderLinks = [
@@ -202,7 +202,7 @@ export const quickLinks = [
 ];
 
 export const ContactUs = {
-  address: ["Wanaparthy (India)", "Hyderabad (India)", "New Jersey (USA)"],
+  address: ["Hyderabad (India)", "New Jersey (USA)"],
   phoneNumber: "+91 8790946714",
   infoEmailId: "info@vrpigroup.com",
 };

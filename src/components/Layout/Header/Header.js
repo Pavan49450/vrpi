@@ -144,9 +144,22 @@ const Header = ({ links, buttons, dropdownLinks, JoinUsBarData }) => {
     : null;
 
   const navButtons = buttons.map((button, index) => (
-    <NavLink key={index} className={style.signUpBtn} to={button.link}>
-      {button.name}
-    </NavLink>
+    <>
+      {button.active ? (
+        <NavLink key={index} className={style.signUpBtn} to={button.link}>
+          {button.name}
+        </NavLink>
+      ) : (
+        <button
+          key={index}
+          className={style.signUpBtn}
+          onClick={() => dispatch(setComingSoon(true))}
+        >
+          {" "}
+          {button.name}
+        </button>
+      )}
+    </>
   ));
 
   const JoinUsBar = (

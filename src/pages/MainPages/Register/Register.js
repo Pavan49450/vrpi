@@ -1,10 +1,10 @@
 import React, { useState } from "react";
-import SignIn from "../../components/Login-Signup/SignIn";
-import SignUp from "../../components/Login-Signup/SignUp";
+import SignIn from "../../../components/Login-Signup/SignIn";
+import SignUp from "../../../components/Login-Signup/SignUp";
 import styles from "./RegisterPage.module.css";
-import Background1 from "../../UI/background/Background1";
-import logo from "../../assets/vrpiLogo.png";
-import CustomImage from "../../UI/Image/Image";
+import Background1 from "../../../UI/background/Background1";
+import logo from "../../../assets/vrpiLogo.png";
+import CustomImage from "../../../UI/Image/Image";
 import { Link } from "react-router-dom";
 
 const RegisterPage = () => {

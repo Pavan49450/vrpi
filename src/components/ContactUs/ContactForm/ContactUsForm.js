@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import style from "./ContactUs.module.css";
 import useInput from "../../../hooks/use-Input";
 import CustomInput from "../../../UI/Input/Input";
 import Button from "../../../UI/Button/Button";
+import Message from "../../../UI/Popup/Message";
 
 const validateName = (input) => {
   return input.length >= 3;
@@ -54,6 +55,16 @@ const validateEmail = (input) => {
 };
 
 const ContactUsForm = () => {
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const closeErrMessageHandler = () => {
+    setErrorMessage("");
+  };
+
+  useEffect(() => {
+    console.log("Err->", errorMessage);
+  });
+
   const nameInput = useInput({
     initialValue: "",
     validateValue: validateName,
@@ -85,6 +96,7 @@ const ContactUsForm = () => {
       mobileInput.reset();
       descriptionInput.reset();
     } else {
+      setErrorMessage("Please fill out all fields correctly");
       console.log("Please fill out all fields correctly");
     }
   };
@@ -137,23 +149,27 @@ const ContactUsForm = () => {
       {/* </div> */}
       {/* <div className={style.form_input}> */}
       {/* <label htmlFor="description">Description</label> */}
-      <CustomInput
+      <textarea
         id="description"
         placeholder="Description"
         value={descriptionInput.value}
         onChange={descriptionInput.valueChangeHandler}
-        isInvalid={!descriptionInput.isValid}
         onBlur={descriptionInput.validateValueHandler}
         onFocus={descriptionInput.focusHandler}
-        className={
-          descriptionInput.hasError
-            ? ` ${style.invalid} `
-            : `${style.InputFields}`
-        }
+        className={`${style.description}${
+          descriptionInput.hasError ? ` ${style.descriptionInvalid}` : ""
+        }`}
       />
       <Button type="submit" className={style.submitBtn}>
         Contact Us
       </Button>
+      {errorMessage && (
+        <Message
+          message={errorMessage}
+          type="error"
+          onClose={closeErrMessageHandler}
+        />
+      )}
     </form>
   );
 };
