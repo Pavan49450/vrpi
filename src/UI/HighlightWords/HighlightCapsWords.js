@@ -1,6 +1,6 @@
 import React from "react";
 
-const HighlightCapsWords = ({ sentence, color }) => {
+const HighlightCapsWords = ({ sentence, style, className }) => {
   // Function to check if a word is in all caps
   const isAllCaps = (word) => {
     return word === word.toUpperCase();
@@ -12,7 +12,7 @@ const HighlightCapsWords = ({ sentence, color }) => {
     return words.map((word, index) => {
       if (isAllCaps(word)) {
         return (
-          <span key={index} style={{ color: color }}>
+          <span key={index} style={style}>
             {word}{" "}
           </span>
         );
@@ -26,7 +26,7 @@ const HighlightCapsWords = ({ sentence, color }) => {
     });
   };
 
-  return <div>{renderHighlightedSentence()}</div>;
+  return <div className={className}>{renderHighlightedSentence()}</div>;
 };
 
 export default HighlightCapsWords;

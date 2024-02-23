@@ -8,7 +8,8 @@
   flex-direction: column;
   cursor: pointer;
   padding: 10px;
-  background-color: #eb3223;
+  /* background-color: #eb3223; */
+  background-color: var(--primary);
 }
 
 .menuIcon .bar1,
@@ -38,7 +39,8 @@
   display: flex;
   flex-direction: column;
   text-align: center;
-  background-color: #eb3223;
+  /* background-color: #eb3223; */
+  background-color: var(--primary);
   color: white;
   padding: 10px;
   gap: 5px;
@@ -69,7 +71,8 @@
 .dropdown a,
 .dropdown button {
   padding: 5px;
-  background-color: #f3483a;
+  /* background-color: #f3483a; */
+  background-color: #fd8230;
   font-size: 1rem;
   display: block;
   width: 100%;
@@ -79,7 +82,7 @@
 
 .linksForMobile {
   padding: 5px;
-  background-color: #f3483a;
+  background-color: #fd8230;
   font-size: 1rem;
   width: 100%;
   text-align: start;

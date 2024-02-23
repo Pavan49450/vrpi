@@ -2,6 +2,12 @@
   display: flex;
   justify-content: space-between;
   margin: 0 1rem;
+  position: fixed;
+  z-index: 10;
+  width: calc(100% - 2rem);
+  top: 0;
+  left: 0;
+  backdrop-filter: blur(46px);
 }
 
 .nav {
@@ -111,7 +117,7 @@
   border: none;
   color: white;
   border-radius: 10px;
-  font-size: 1.1rem;
+  font-size: 1rem;
   text-align: center;
   text-decoration: none;
   padding: 0 5px;
