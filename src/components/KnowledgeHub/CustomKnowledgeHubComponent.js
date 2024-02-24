@@ -5,10 +5,14 @@ import Card from "./Card/Card";
 import Section from "../../UI/Sections/Section";
 import { useEffect, useState } from "react";
 import HighlightCapsWords from "../../UI/HighlightWords/HighlightCapsWords";
+import { useDispatch } from "react-redux";
+import { setComingSoon } from "../../store/CommingSoonSlice";
 
 const CustomKnowledgeHubComponent = ({ data, backgroundImage }) => {
   const [width, setWidth] = useState(window.innerWidth);
   const breakpoint = 650;
+
+  const dispatch = useDispatch();
 
   const handleResize = () => {
     setWidth(window.innerWidth);
@@ -43,9 +47,19 @@ const CustomKnowledgeHubComponent = ({ data, backgroundImage }) => {
               color="#ff6501"
             ></HighlightCapsWords>
           </p>
-          <NavLink className={style.btn} to="/register">
-            {data.mainContent.button}
-          </NavLink>
+          {data.mainContent.button.active ? (
+            <NavLink className={style.btn} to={data.mainContent.button.link}>
+              {data.mainContent.button.name}
+            </NavLink>
+          ) : (
+            <button
+              className={style.btn}
+              onClick={() => dispatch(setComingSoon(true))}
+            >
+              {" "}
+              {data.mainContent.button.name}
+            </button>
+          )}
         </div>
       </div>
       <Section

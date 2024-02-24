@@ -1,7 +1,7 @@
 const mainContent = {
   head: "For hundreds of succesful students here embrace our new COMMUNITY explore and grow",
   description: "If you are DETERMINED to learn, no one can stop YOU!!",
-  button: "Register",
+  button: { name: "Register", link: "register", active: false },
 };
 
 const WhatIsSection = {
@@ -23,6 +23,8 @@ const cards = {
         {
           name: "Java Full-Stack",
           courseLink: "/",
+          active: false,
+
           content: "Free Certificate Course and Virtual Classes",
           price: "₹1799",
           buttonContent: "Enroll Now",
@@ -30,6 +32,8 @@ const cards = {
         {
           name: "DevOps with Cloud",
           courseLink: "/",
+          active: false,
+
           content: "Free Certificate Course and Virtual Classes",
           price: "₹1799",
           buttonContent: "Enroll Now",
@@ -46,6 +50,8 @@ const cards = {
         {
           name: "Embedded & IoT",
           courseLink: "/",
+          active: false,
+
           content:
             "Certificate Course, Virtual Classes and Live Practical Training",
           buttonContent: "Enroll Now",
@@ -53,6 +59,8 @@ const cards = {
         {
           name: "Artificial Intelligence",
           courseLink: "/",
+          active: false,
+
           content:
             "Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur. ",
           // price: "₹1799",
