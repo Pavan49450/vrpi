@@ -2,7 +2,7 @@ const mainContent = {
   head: '"The best way to predict the future is to create it."',
   description:
     '"Internships offer a unique opportunity to step out of your comfort zone, challenge yourself, and discover what you are truly capable of achieving."',
-  button: "Check now",
+  button: { name: "Check now", link: "register", active: false },
 };
 
 const WhatIsSection = {
@@ -22,6 +22,7 @@ const cards = {
     {
       name: "Software Development",
       courseLink: "#",
+      active: false,
       content:
         "Skills Required: Machine Learning, Linux, Python, Java, Amazon Web Services, Back End and SQL.",
       buttonContent: "Apply",
@@ -29,6 +30,8 @@ const cards = {
     {
       name: "UI/UX Designing",
       courseLink: "#",
+      active: false,
+
       content:
         "Skills Required: User Research, Wireframing, Prototyping, Visual Design, IA, Interaction design, Usability Testing",
       buttonContent: "Apply",
@@ -36,6 +39,8 @@ const cards = {
     {
       name: "Digital Marketing",
       courseLink: "#",
+      active: false,
+
       content:
         "Skills Required: Video Marketing, SEO & SEM, Content Marketing, Data & Analytics, Design Thinking and Planning, Social Media, Email Marketing",
       // price: "$99.99",
@@ -44,6 +49,8 @@ const cards = {
     {
       name: "Chartered Accountant",
       courseLink: "#",
+      active: false,
+
       content:
         "Skills Required: Problem Solving, Financial analysis, Business Communication, Analytical skills",
       // price: "$99.99",
@@ -52,6 +59,8 @@ const cards = {
     {
       name: "Civil Engineering",
       courseLink: "/javascript-course",
+      active: false,
+
       content:
         "Skills Required: Maths & Physics Proficiency, Basic knowledge on foundation",
       buttonContent: "Apply",

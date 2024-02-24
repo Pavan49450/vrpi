@@ -15,6 +15,7 @@ import JoinUs from "../components/JoinUs/JoinUs";
 import CommingSoon from "../UI/CommingSoon/CommingSoon";
 
 const hideHeaderRoutes = ["/register"];
+
 const buttons = [{ name: "Sign up", link: "register", active: false }];
 
 const RootLayout = () => {

@@ -57,7 +57,19 @@ const useStyles = makeStyles({
 const SwipeablePictures = () => {
   const classes = useStyles();
   const [index, setIndex] = useState(0);
+  const [width, setWidth] = useState(window.innerWidth);
+  const breakpoint = 768;
 
+  const handleResize = () => {
+    setWidth(window.innerWidth);
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -101,8 +113,11 @@ const SwipeablePictures = () => {
                   highlightWord={screen.head}
                   styles={{
                     border: "0px solid",
-                    fontSize: "1.2rem",
+                    fontSize: width > breakpoint ? "1.5rem" : "1rem",
                     color: "white",
+                    padding: "0",
+                    display: "inline",
+                    textAlign: "center",
                   }}
                 ></Title>
               ))}
