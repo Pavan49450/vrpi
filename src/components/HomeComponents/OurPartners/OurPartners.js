@@ -6,27 +6,27 @@ const partners = [
     title: "Micrsoft",
     description:
       '“Empowering individuals and organizations with innovative technology solutions."',
-    link: "https://prod.uhrs.playmsn.com/uhrs/",
+    link: "",
     image: "microsoftLogo2.png",
   },
   {
     title: "Bajaj Allianze",
     description:
       '“Providing trusted insurance and financial solutions for all."',
-    link: "https://www.bajajallianzlife.com",
+    link: "",
     image: "bajajLogo.jpg",
   },
   {
     title: "Mahindra Insurence Brokers",
     description: '“Delivering reliable insurance services with integrity." ',
-    link: "https://www.mahindrainsurance.com",
+    link: "",
     image: "mahindraLogo.png",
   },
   {
     title: "IIFL Securities",
     description:
       '“Empowering investors with comprehensive financial solutions and expertise."',
-    link: "https://www.iiflsecurities.com",
+    link: "",
     image: "IIFLLogo.jpeg",
   },
 ];
