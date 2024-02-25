@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import style from "./NavbarForMobile.module.css";
 import { useDispatch } from "react-redux";
@@ -10,6 +10,8 @@ function NavbarForMobile({ navElements }) {
   // Initialize state to track dropdown states
   const [dropdownStates, setDropdownStates] = useState({});
   const [menuIconClicked, setMenuIconClicked] = useState(false);
+  const [navbarHeight, setnavbarHeight] = useState();
+  const [dropdownHeight, setDropdownHeight] = useState("0");
 
   // Function to toggle dropdown state
   const toggleDropdown = (navItemName) => {
@@ -28,32 +30,52 @@ function NavbarForMobile({ navElements }) {
   };
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    if (menuIconClicked) {
+      setnavbarHeight("auto");
+    } else {
+      setTimeout(() => {
+        setnavbarHeight("0");
+      }, 300);
+    }
+  }, [menuIconClicked]);
+
+  // const getHeightAfterDelay = (boolean) => {
+  //   if (boolean !== undefined) {
+  //     return "auto";
+  //   } else {
+  //     setTimeout(() => {
+  //       return "0";
+  //     }, 300);
+  //   }
+  // };
+
   const renderDropdownContent = (links, navItemName) => {
     return (
-      <ul className={style.dropdown}>
+      <ul
+        className={style.dropdown}
+        // style={{ height: getHeightAfterDelay(dropdownStates[navItemName]) }}
+      >
         {links &&
           links.map((link) => (
-            <>
+            <li key={link.name}>
               {link.active ? (
-                <li key={link.name}>
-                  <NavLink
-                    to={link.link}
-                    className={({ isActive }) => (isActive ? "active" : null)}
-                  >
-                    {link.name}
-                  </NavLink>
-                </li>
+                <NavLink
+                  to={link.link}
+                  className={({ isActive }) => (isActive ? "active" : null)}
+                  onClick={toggleMenuIcon}
+                >
+                  {link.name}
+                </NavLink>
               ) : (
-                <li key={link.name}>
-                  <button
-                    onClick={() => dispatch(setComingSoon(true))}
-                    className={({ isActive }) => (isActive ? "active" : null)}
-                  >
-                    {link.name}
-                  </button>
-                </li>
+                <button
+                  onClick={() => dispatch(setComingSoon(true))}
+                  className={({ isActive }) => (isActive ? "active" : null)}
+                >
+                  {link.name}
+                </button>
               )}
-            </>
+            </li>
           ))}
       </ul>
     );
@@ -76,6 +98,7 @@ function NavbarForMobile({ navElements }) {
         className={`${style.navBarForMobile} ${
           menuIconClicked ? style.active : ""
         }`}
+        style={{ height: navbarHeight }}
       >
         {navElements.map((navItem) => {
           return (
@@ -88,18 +111,33 @@ function NavbarForMobile({ navElements }) {
                   >
                     {navItem.name}
                     {dropdownStates[navItem.name] ? (
-                      <span>&#11165;</span>
+                      <img
+                        src={require(`../../../../../assets/navBarForMobile/arrowDown.png`)}
+                        alt="arrow down icon"
+                      />
                     ) : (
-                      <span>&#11167;</span>
+                      <img
+                        src={require(`../../../../../assets/navBarForMobile/arrowUp.png`)}
+                        alt="arrow up icon"
+                      />
                     )}
                   </button>
-                  {dropdownStates[navItem.name] &&
-                    renderDropdownContent(navItem.links, navItem.name)}
+                  <div
+                    className={`${style.dropdownHide} ${
+                      dropdownStates[navItem.name] ? style.showDropdown : ""
+                    } `}
+                  >
+                    {renderDropdownContent(navItem.links, navItem.name)}
+                  </div>
                 </>
               ) : (
                 <>
                   {navItem.active ? (
-                    <NavLink to={navItem.link} className={style.linksForMobile}>
+                    <NavLink
+                      to={navItem.link}
+                      className={style.linksForMobile}
+                      onClick={toggleMenuIcon}
+                    >
                       {navItem.name}
                     </NavLink>
                   ) : (
