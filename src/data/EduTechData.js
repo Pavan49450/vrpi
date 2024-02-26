@@ -15,9 +15,9 @@ const WhatIsSection = {
 const cards = {
   courses: true,
   internships: false,
-  multipleCardsSection: {
-    paidCourse: {
-      title: "Edu-Tech Free Courses",
+  courseSections: [
+    {
+      title: "Edu-Tech Online Courses",
       highlightWord: "Edu-Tech",
       courses: [
         {
@@ -25,25 +25,38 @@ const cards = {
           courseLink: "/",
           active: false,
 
-          content: "Free Certificate Course and Virtual Classes",
-          price: "₹1799",
+          content: [" Scholarship on course fee", "Virtual Classes"],
+
+          price: "34999",
           buttonContent: "Enroll Now",
+          image: "javaCourse.png",
         },
         {
           name: "DevOps with Cloud",
           courseLink: "/",
           active: false,
 
-          content: "Free Certificate Course and Virtual Classes",
-          price: "₹1799",
+          content: [" Scholarship on course fee", "Virtual Classes"],
+
+          price: "24999",
           buttonContent: "Enroll Now",
+          image: "devopsCourse.png",
+        },
+        {
+          name: "UI/UX Designing",
+          courseLink: "/",
+          active: false,
+
+          content: [" Scholarship on course fee", "Virtual Classes"],
+          price: "34999",
+          buttonContent: "Enroll Now",
+          image: "UIUXCourse.png",
         },
       ],
     },
-
-    freeCourse: {
+    {
       type: "freeCourse",
-      title: "Edu-Tech Paid Courses",
+      title: "Edu-Tech Offline Courses",
       highlightWord: "Edu-Tech",
 
       courses: [
@@ -52,8 +65,14 @@ const cards = {
           courseLink: "/",
           active: false,
 
-          content:
-            "Certificate Course, Virtual Classes and Live Practical Training",
+          content: [
+            " Scholarship on course fee",
+            "Virtual Classes",
+            "Live Practical Training ",
+          ],
+          price: "1799",
+          image: "embeddedCourse.png",
+
           buttonContent: "Enroll Now",
         },
         {
@@ -61,14 +80,18 @@ const cards = {
           courseLink: "/",
           active: false,
 
-          content:
-            "Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur. ",
-          // price: "₹1799",
+          content: [
+            " Scholarship on course fee",
+            "Virtual Classes",
+            "Live Practical Training ",
+          ],
+          price: "1799",
+          image: "aiCourse.png",
           buttonContent: "Enroll Now",
         },
       ],
     },
-  },
+  ],
 };
 
 const benefitsData = {
@@ -127,25 +150,24 @@ const InstructorSection = {
 const FAQs = [
   {
     question: "How many courses can be taken for enrollment?",
-    answer:
-      "Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur. ",
+    answer: "Multiple courses can be taken for enrollment in Edutech.",
   },
   {
     question:
       "How long does it typically take for a student to complete the course? ",
     answer:
-      "Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur. ",
+      "Completion time varies, typically depending on course complexity and commitment,Approx time is 3-6months.",
   },
   {
     question:
       "For what kinds of jobs and positions does the program train its students?",
     answer:
-      "Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur. ",
+      "The program trains students for diverse roles in technology, education, instructional design, e-learning development, and related fields.",
   },
   {
     question: "How old do i have to be to take on online class?",
     answer:
-      "Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur. ",
+      "Age requirements for online classes vary by program and institution.",
   },
 ];
 
@@ -154,6 +176,6 @@ export const EduTechData = {
   WhatIsSection,
   cards,
   benefitsData,
-  InstructorSection,
+  // InstructorSection,
   FAQs,
 };

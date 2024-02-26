@@ -16,54 +16,82 @@ const WhatIsSection = {
 const cards = {
   courses: false,
   internships: true,
-  title: "Internships on",
-  highlightWord: "Internships",
-  content: [
+  internshipSections: [
     {
-      name: "Software Development",
-      courseLink: "#",
-      active: false,
-      content:
-        "Skills Required: Machine Learning, Linux, Python, Java, Amazon Web Services, Back End and SQL.",
-      buttonContent: "Apply",
+      title: "Internships on",
+      highlightWord: "Internships",
+      internships: [
+        {
+          name: "Software Development",
+          courseLink: "#",
+          active: false,
+          content:
+            "Skills Required: Machine Learning, Linux, Python, Java, Amazon Web Services, Back End and SQL.",
+          buttonContent: "Apply",
+        },
+        {
+          name: "UI/UX Designing",
+          courseLink: "#",
+          active: false,
+
+          content:
+            "Skills Required: User Research, Wireframing, Prototyping, Visual Design, IA, Interaction design, Usability Testing",
+          buttonContent: "Apply",
+        },
+        {
+          name: "Digital Marketing",
+          courseLink: "#",
+          active: false,
+
+          content:
+            "Skills Required: Video Marketing, SEO & SEM, Content Marketing, Data & Analytics, Design Thinking and Planning, Social Media, Email Marketing",
+          // price: "$99.99",
+          buttonContent: "Apply",
+        },
+        {
+          name: "Chartered Accountant",
+          courseLink: "#",
+          active: false,
+
+          content:
+            "Skills Required: Problem Solving, Financial analysis, Business Communication, Analytical skills",
+          // price: "$99.99",
+          buttonContent: "Apply",
+        },
+        {
+          name: "Civil Engineering",
+          courseLink: "/javascript-course",
+          active: false,
+
+          content:
+            "Skills Required: Maths & Physics Proficiency, Basic knowledge on foundation",
+          buttonContent: "Apply",
+        },
+      ],
     },
     {
-      name: "UI/UX Designing",
-      courseLink: "#",
-      active: false,
+      title: "Comming Soon Internships",
+      highlightWord: "Internships",
+      internships: [
+        {
+          name: "Hotel Management",
+          courseLink: "",
+          active: false,
 
-      content:
-        "Skills Required: User Research, Wireframing, Prototyping, Visual Design, IA, Interaction design, Usability Testing",
-      buttonContent: "Apply",
-    },
-    {
-      name: "Digital Marketing",
-      courseLink: "#",
-      active: false,
+          content:
+            "Skills Required: Empathy, Multi tasking and Management, Leadership, Customer Service",
+          buttonContent: "Apply",
+        },
+        {
+          name: "Graphic Designing",
+          courseLink: "",
+          active: false,
 
-      content:
-        "Skills Required: Video Marketing, SEO & SEM, Content Marketing, Data & Analytics, Design Thinking and Planning, Social Media, Email Marketing",
-      // price: "$99.99",
-      buttonContent: "Apply",
-    },
-    {
-      name: "Chartered Accountant",
-      courseLink: "#",
-      active: false,
-
-      content:
-        "Skills Required: Problem Solving, Financial analysis, Business Communication, Analytical skills",
-      // price: "$99.99",
-      buttonContent: "Apply",
-    },
-    {
-      name: "Civil Engineering",
-      courseLink: "/javascript-course",
-      active: false,
-
-      content:
-        "Skills Required: Maths & Physics Proficiency, Basic knowledge on foundation",
-      buttonContent: "Apply",
+          content:
+            "Skills Required: Adobe Creative Suite, including Photoshop, InDesign, and Illustrator, Creativity, Color theory, Typography, Communication, Drawing, Problem-solving.",
+          buttonContent: "Apply",
+        },
+      ],
     },
   ],
 };

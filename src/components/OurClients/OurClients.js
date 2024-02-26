@@ -1,4 +1,4 @@
-import Section from "../../../UI/Sections/Section";
+import Section from "../../UI/Sections/Section";
 import style from "./OurClients.module.css";
 
 const ImageList = [
@@ -20,7 +20,7 @@ const OurClients = () => {
             {ImageList.map((clientImage) => (
               <div className={style.clientImage}>
                 <img
-                  src={require(`../../../assets/clients/${clientImage}`)}
+                  src={require(`../../assets/clients/${clientImage}`)}
                   alt=""
                 />
               </div>

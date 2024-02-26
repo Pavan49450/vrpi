@@ -1,12 +1,14 @@
 import { NavLink } from "react-router-dom";
 import style from "./CustomKnowlege.module.css";
 import FAQsComponent from "./FAQs/FAQs";
-import Card from "./Card/Card";
 import Section from "../../UI/Sections/Section";
 import { useEffect, useState } from "react";
 import HighlightCapsWords from "../../UI/HighlightWords/HighlightCapsWords";
 import { useDispatch } from "react-redux";
 import { setComingSoon } from "../../store/CommingSoonSlice";
+import InternshipCard from "./InternshipCard/InternshipCard";
+import CourseCard from "./CourseCard/CourseCard";
+import OurPartners from "../OurPartners/OurPartners";
 
 const CustomKnowledgeHubComponent = ({ data, backgroundImage }) => {
   const [width, setWidth] = useState(window.innerWidth);
@@ -37,14 +39,15 @@ const CustomKnowledgeHubComponent = ({ data, backgroundImage }) => {
           <h2>
             <HighlightCapsWords
               sentence={data.mainContent.head}
-              color="#ff6501"
+              // color="#ff6501"
+              style={{ color: "#ff6501" }}
             ></HighlightCapsWords>
           </h2>
           <p>
             {" "}
             <HighlightCapsWords
               sentence={data.mainContent.description}
-              color="#ff6501"
+              style={{ color: "#ff6501" }}
             ></HighlightCapsWords>
           </p>
           {data.mainContent.button.active ? (
@@ -76,54 +79,42 @@ const CustomKnowledgeHubComponent = ({ data, backgroundImage }) => {
           <p>{data.WhatIsSection.description}</p>
         </div>
       </Section>
-      {data.cards.courses ? (
+      {data.cards.courseSections ? (
         <>
-          <Section
-            className={style.cardSection}
-            title={data.cards.multipleCardsSection.paidCourse.title}
-            highlightWord={
-              data.cards.multipleCardsSection.paidCourse.highlightWord
-            }
-            viewAll="true"
-          >
-            <div className={style.cardStack}>
-              {data.cards.multipleCardsSection.paidCourse.courses.map(
-                (CardDetails) => {
-                  return <Card CardDetails={CardDetails} />;
-                }
-              )}
-            </div>
-          </Section>
-          <Section
-            className={style.cardSection}
-            title={data.cards.multipleCardsSection.freeCourse.title}
-            highlightWord={
-              data.cards.multipleCardsSection.freeCourse.highlightWord
-            }
-            viewAll="true"
-          >
-            <div className={style.cardStack}>
-              {data.cards.multipleCardsSection.paidCourse.courses.map(
-                (CardDetails, index) => {
-                  return <Card key={index} CardDetails={CardDetails} />;
-                }
-              )}
-            </div>
-          </Section>
+          {data.cards.courseSections.map((courseSection) => {
+            return (
+              <Section
+                className={style.cardSection}
+                title={courseSection.title}
+                highlightWord={courseSection.highlightWord}
+                viewAll="true"
+              >
+                <div className={style.cardStack}>
+                  {courseSection.courses.map((CardDetails) => {
+                    return <CourseCard CardDetails={CardDetails} />;
+                  })}
+                </div>
+              </Section>
+            );
+          })}
         </>
       ) : (
-        <Section
-          className={style.cardSection}
-          title={data.cards.title}
-          highlightWord={data.cards.highlightWord}
-          viewAll="true"
-        >
-          <div className={style.cardStack}>
-            {data.cards.content.map((CardDetails) => {
-              return <Card CardDetails={CardDetails} />;
-            })}
-          </div>
-        </Section>
+        <>
+          {data.cards.internshipSections.map((internships) => (
+            <Section
+              className={style.cardSection}
+              title={internships.title}
+              highlightWord={internships.highlightWord}
+              viewAll="true"
+            >
+              <div className={style.cardStack}>
+                {internships.internships.map((CardDetails) => {
+                  return <InternshipCard CardDetails={CardDetails} />;
+                })}
+              </div>
+            </Section>
+          ))}
+        </>
       )}
       <Section
         className={style.benefitsSection}
@@ -183,18 +174,9 @@ const CustomKnowledgeHubComponent = ({ data, backgroundImage }) => {
           </div>
         </Section>
       )}
-      {data.partnersWith && (
-        <Section title={data.partnersWith.title}>
-          <div className={style.partners}>
-            {data.partnersWith.partners.map((partner) => (
-              <div className={style.box}>{partner.name}</div>
-            ))}
-          </div>
-        </Section>
-      )}
+      {data.partnersWith && <OurPartners />}
 
       <FAQsComponent FAQs={data.FAQs} />
-      {/* <Footer /> */}
     </div>
   );
 };

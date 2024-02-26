@@ -1,9 +1,9 @@
 import { Link } from "react-router-dom";
-import style from "./Card.module.css";
+import style from "./InternshipCard.module.css";
 import { useDispatch } from "react-redux";
 import { setComingSoon } from "../../../store/CommingSoonSlice";
 
-const Card = ({ key, CardDetails }) => {
+const InternshipCard = ({ key, CardDetails }) => {
   const dispatch = useDispatch();
   return (
     <div className={style.card}>
@@ -39,4 +39,4 @@ const Card = ({ key, CardDetails }) => {
   );
 };
 
-export default Card;
+export default InternshipCard;

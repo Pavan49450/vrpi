@@ -1,4 +1,4 @@
-import Section from "../../../UI/Sections/Section";
+import Section from "../../UI/Sections/Section";
 import style from "./OurPartners.module.css";
 
 const partners = [
@@ -35,11 +35,7 @@ const OurPartners = () => {
   return (
     <div className={style.OurPartnersSection}>
       <Section title="Our Partners" />
-      {/* <img
-        src={require("../../../assets/aboutus/ourPartners.png")}
-        alt=""
-        className={style.background}
-      /> */}
+
       <div className={style.content}>
         <h1>We work with</h1>
         <p>
@@ -60,7 +56,7 @@ const PartnerCard = ({ partnerDetails }) => {
   return (
     <div className={style.partner}>
       <img
-        src={require(`../../../assets/partners/${partnerDetails.image}`)}
+        src={require(`../../assets/partners/${partnerDetails.image}`)}
         alt={partnerDetails.title}
       />
       <div className={style.partnerContent}>
