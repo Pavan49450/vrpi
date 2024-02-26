@@ -119,7 +119,7 @@ const Footer = ({ links, quickLinks, ContactUs, JoinUsBarData }) => {
     <div className={style.container}>
       <div className={style.brand}>
         <Logo className={style.logo} />
-        <div>
+        <div className={style.tagLine}>
           <h1>“Like TATA...... </h1>
           <h1>Like VR PI.......”</h1>
         </div>

@@ -9,6 +9,7 @@ import { setComingSoon } from "../../store/CommingSoonSlice";
 import InternshipCard from "./InternshipCard/InternshipCard";
 import CourseCard from "./CourseCard/CourseCard";
 import OurPartners from "../OurPartners/OurPartners";
+import AllCardsSection from "./AllCardsSection/AllCardsSection";
 
 const CustomKnowledgeHubComponent = ({ data, backgroundImage }) => {
   const [width, setWidth] = useState(window.innerWidth);
@@ -101,21 +102,27 @@ const CustomKnowledgeHubComponent = ({ data, backgroundImage }) => {
               style={{ color: "#ff6501" }}
             ></HighlightCapsWords>
           </p>
-          {data.mainContent.button.active ? (
-            <NavLink className={style.btn} to={data.mainContent.button.link}>
-              {data.mainContent.button.name}
-            </NavLink>
+          {data.mainContent.button ? (
+            data.mainContent.button.active ? (
+              <NavLink className={style.btn} to={data.mainContent.button.link}>
+                {data.mainContent.button.name}
+              </NavLink>
+            ) : (
+              <button
+                className={style.btn}
+                onClick={() => dispatch(setComingSoon(true))}
+              >
+                {" "}
+                {data.mainContent.button.name}
+              </button>
+            )
           ) : (
-            <button
-              className={style.btn}
-              onClick={() => dispatch(setComingSoon(true))}
-            >
-              {" "}
-              {data.mainContent.button.name}
-            </button>
+            <></>
           )}
         </div>
       </div>
+      <AllCardsSection data={data} />
+
       <Section
         className={style.WhatIsSection}
         title={data.WhatIsSection.title}
@@ -131,52 +138,6 @@ const CustomKnowledgeHubComponent = ({ data, backgroundImage }) => {
         </div>
       </Section>
 
-      {data.Courses ? (
-        <>
-          {allCourses.map((courseSection) => {
-            return (
-              <>
-                {courseSection.courses.length !== 0 && (
-                  <Section
-                    className={style.cardSection}
-                    title={courseSection.title}
-                    highlightWord={courseSection.highlightWord}
-                    viewAll="true"
-                  >
-                    <div className={style.cardStack}>
-                      {courseSection.courses.map((CardDetails) => {
-                        return <CourseCard CardDetails={CardDetails} />;
-                      })}
-                    </div>
-                  </Section>
-                )}
-              </>
-            );
-          })}
-        </>
-      ) : (
-        <>
-          {allInternships.map((internships) => (
-            <>
-              {console.log("length->", internships.internships.length)}
-              {internships.internships.length !== 0 && (
-                <Section
-                  className={style.cardSection}
-                  title={internships.title}
-                  highlightWord={internships.highlightWord}
-                  viewAll="true"
-                >
-                  <div className={style.cardStack}>
-                    {internships.internships.map((CardDetails) => {
-                      return <InternshipCard CardDetails={CardDetails} />;
-                    })}
-                  </div>
-                </Section>
-              )}
-            </>
-          ))}
-        </>
-      )}
       <Section
         className={style.benefitsSection}
         title={data.benefitsData.title}

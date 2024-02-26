@@ -9,27 +9,27 @@ const InternshipCard = ({ key, CardDetails }) => {
     <div className={style.card}>
       <div className={style.cardHead}>
         <h2>{CardDetails.name}</h2>
-        <div className={style.cardLink}>
+        {/* <div className={style.cardLink}>
           <Link to={`/internships/${CardDetails.id}`}>
             <img src={require("../../../assets/ArrowForward.png")} alt=""></img>
           </Link>
-        </div>
+        </div> */}
       </div>
       <div>
         <div className={style.cardContent}>{CardDetails.content}</div>
-        <div className={style.checkDetails}>
+        {/* <div className={style.checkDetails}>
           <Link to={`/internships/${CardDetails.id}`}>Check Details</Link>
-        </div>
+        </div> */}
       </div>
       {CardDetails.active ? (
-        <div className={style.btn} style={{ width: "80%" }}>
+        <div className={style.btn}>
           {CardDetails.buttonContent} {CardDetails.price}
         </div>
       ) : (
         <button
           onClick={() => dispatch(setComingSoon(true))}
           className={style.btn}
-          style={{ width: "80%" }}
+          // style={{ width: "80%" }}
         >
           {" "}
           {CardDetails.buttonContent} {CardDetails.price}

@@ -23,7 +23,7 @@ const Courses = [
 
     price: "34999",
     buttonContent: "Enroll Now",
-    image: "javaCourse.png",
+    image: "javaCourse2.jpg",
   },
   {
     id: "2",
@@ -37,7 +37,7 @@ const Courses = [
 
     price: "24999",
     buttonContent: "Enroll Now",
-    image: "devopsCourse.png",
+    image: "devopsCourse2.jpg",
   },
   {
     id: "3",
@@ -50,7 +50,7 @@ const Courses = [
     content: [" Scholarship on course fee", "Virtual Classes"],
     price: "34999",
     buttonContent: "Enroll Now",
-    image: "UIUXCourse.png",
+    image: "UIUXCourse2.webp",
   },
   {
     id: "4",
@@ -66,7 +66,7 @@ const Courses = [
       "Live Practical Training ",
     ],
     price: "1799",
-    image: "embeddedCourse.png",
+    image: "embeddedCourse2.webp",
 
     buttonContent: "Enroll Now",
   },
@@ -84,7 +84,7 @@ const Courses = [
       "Live Practical Training ",
     ],
     price: "1799",
-    image: "aiCourse.png",
+    image: "aiCourse2.webp",
     buttonContent: "Enroll Now",
   },
   {
@@ -101,7 +101,7 @@ const Courses = [
       "Live Practical Training ",
     ],
     // price: "1799",
-    image: "python.png",
+    image: "python2.png",
     buttonContent: "Enroll Now",
   },
 ];
