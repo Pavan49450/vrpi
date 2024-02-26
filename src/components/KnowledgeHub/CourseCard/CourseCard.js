@@ -14,9 +14,9 @@ const CourseCard = ({ key, CardDetails }) => {
           className={style.courseImage}
         ></img>
         <div className={style.cardContent}>
-          <Link to={CardDetails.Link} className={style.link}>
+          <Link to={`/edutech/${CardDetails.id}`} className={style.link}>
             <button
-              onClick={() => dispatch(setComingSoon(true))}
+              // onClick={() => dispatch(setComingSoon(true))}
               className={style.btn}
             >
               Learn More

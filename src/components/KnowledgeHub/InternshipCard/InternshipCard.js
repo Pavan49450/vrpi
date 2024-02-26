@@ -10,7 +10,7 @@ const InternshipCard = ({ key, CardDetails }) => {
       <div className={style.cardHead}>
         <h2>{CardDetails.name}</h2>
         <div className={style.cardLink}>
-          <Link to={CardDetails.Link}>
+          <Link to={`/internships/${CardDetails.id}`}>
             <img src={require("../../../assets/ArrowForward.png")} alt=""></img>
           </Link>
         </div>
@@ -18,7 +18,7 @@ const InternshipCard = ({ key, CardDetails }) => {
       <div>
         <div className={style.cardContent}>{CardDetails.content}</div>
         <div className={style.checkDetails}>
-          <Link to={CardDetails.cardLink}>Check Details</Link>
+          <Link to={`/internships/${CardDetails.id}`}>Check Details</Link>
         </div>
       </div>
       {CardDetails.active ? (

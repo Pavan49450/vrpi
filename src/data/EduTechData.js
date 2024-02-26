@@ -12,87 +12,99 @@ const WhatIsSection = {
     "EduTech integrates education and technology, employing digital tools such as online platforms, educational apps, and virtual reality to enrich learning. Its objectives include personalized education, enhanced teaching efficacy, and broader access to quality learning. EduTech's ultimate goal is to equip learners with vital skills for thriving in the digital era.",
 };
 
-const cards = {
-  courses: true,
-  internships: false,
-  courseSections: [
-    {
-      title: "Edu-Tech Online Courses",
-      highlightWord: "Edu-Tech",
-      courses: [
-        {
-          name: "Java Full-Stack",
-          courseLink: "/",
-          active: false,
+const Courses = [
+  {
+    id: "1",
+    name: "Java Full-Stack",
+    courseLink: "/",
+    active: false,
+    type: "online",
+    content: [" Scholarship on course fee", "Virtual Classes"],
 
-          content: [" Scholarship on course fee", "Virtual Classes"],
+    price: "34999",
+    buttonContent: "Enroll Now",
+    image: "javaCourse.png",
+  },
+  {
+    id: "2",
+    type: "online",
 
-          price: "34999",
-          buttonContent: "Enroll Now",
-          image: "javaCourse.png",
-        },
-        {
-          name: "DevOps with Cloud",
-          courseLink: "/",
-          active: false,
+    name: "DevOps with Cloud",
+    courseLink: "/",
+    active: false,
 
-          content: [" Scholarship on course fee", "Virtual Classes"],
+    content: [" Scholarship on course fee", "Virtual Classes"],
 
-          price: "24999",
-          buttonContent: "Enroll Now",
-          image: "devopsCourse.png",
-        },
-        {
-          name: "UI/UX Designing",
-          courseLink: "/",
-          active: false,
+    price: "24999",
+    buttonContent: "Enroll Now",
+    image: "devopsCourse.png",
+  },
+  {
+    id: "3",
+    type: "online",
 
-          content: [" Scholarship on course fee", "Virtual Classes"],
-          price: "34999",
-          buttonContent: "Enroll Now",
-          image: "UIUXCourse.png",
-        },
-      ],
-    },
-    {
-      type: "freeCourse",
-      title: "Edu-Tech Offline Courses",
-      highlightWord: "Edu-Tech",
+    name: "UI/UX Designing",
+    courseLink: "/",
+    active: false,
 
-      courses: [
-        {
-          name: "Embedded & IoT",
-          courseLink: "/",
-          active: false,
+    content: [" Scholarship on course fee", "Virtual Classes"],
+    price: "34999",
+    buttonContent: "Enroll Now",
+    image: "UIUXCourse.png",
+  },
+  {
+    id: "4",
+    type: "offline",
 
-          content: [
-            " Scholarship on course fee",
-            "Virtual Classes",
-            "Live Practical Training ",
-          ],
-          price: "1799",
-          image: "embeddedCourse.png",
+    name: "Embedded & IoT",
+    courseLink: "/",
+    active: false,
 
-          buttonContent: "Enroll Now",
-        },
-        {
-          name: "Artificial Intelligence",
-          courseLink: "/",
-          active: false,
+    content: [
+      " Scholarship on course fee",
+      "Virtual Classes",
+      "Live Practical Training ",
+    ],
+    price: "1799",
+    image: "embeddedCourse.png",
 
-          content: [
-            " Scholarship on course fee",
-            "Virtual Classes",
-            "Live Practical Training ",
-          ],
-          price: "1799",
-          image: "aiCourse.png",
-          buttonContent: "Enroll Now",
-        },
-      ],
-    },
-  ],
-};
+    buttonContent: "Enroll Now",
+  },
+  {
+    id: "5",
+    type: "offline",
+
+    name: "Artificial Intelligence",
+    courseLink: "/",
+    active: false,
+
+    content: [
+      " Scholarship on course fee",
+      "Virtual Classes",
+      "Live Practical Training ",
+    ],
+    price: "1799",
+    image: "aiCourse.png",
+    buttonContent: "Enroll Now",
+  },
+  {
+    id: "6",
+    type: "upcoming",
+
+    name: "Python",
+    courseLink: "/",
+    active: false,
+
+    content: [
+      " Scholarship on course fee",
+      "Virtual Classes",
+      "Live Practical Training ",
+    ],
+    // price: "1799",
+    image: "python.png",
+    buttonContent: "Enroll Now",
+  },
+];
 
 const benefitsData = {
   title: "Edu-Tech Benefits",
@@ -174,8 +186,8 @@ const FAQs = [
 export const EduTechData = {
   mainContent,
   WhatIsSection,
-  cards,
   benefitsData,
   // InstructorSection,
+  Courses,
   FAQs,
 };

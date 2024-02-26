@@ -13,6 +13,7 @@ import KnowledgeHub from "./pages/KnowledgeHub/KnowledgeHub";
 import Internships from "./pages/KnowledgeHub/Internships";
 import EduTech from "./pages/KnowledgeHub/EduTech";
 import ContactUs from "./pages/MainPages/ContactUs/ContactUs";
+import CIDetails from "./pages/KnowledgeHub/CIDetails/CIDetails";
 
 function App() {
   const router = createBrowserRouter([
@@ -85,14 +86,24 @@ function App() {
           errorElement: <ErrorPage />,
         },
         {
-          path: "edutech",
+          path: "/edutech",
           // index: true,
           element: <EduTech />,
           errorElement: <ErrorPage />,
         },
         {
-          path: "internships",
+          path: "/edutech/:courseId",
+          element: <CIDetails />,
+          errorElement: <ErrorPage />,
+        },
+        {
+          path: "/internships",
           element: <Internships />,
+          errorElement: <ErrorPage />,
+        },
+        {
+          path: "/internships/:internshipId",
+          element: <CIDetails />,
           errorElement: <ErrorPage />,
         },
       ],

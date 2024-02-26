@@ -4,7 +4,6 @@ import MainScreen from "../../../components/HomeComponents/MainSection/MainSecti
 import OurClients from "../../../components/OurClients/OurClients";
 import OurCompanies from "../../../components/HomeComponents/OurCompanies/OurCompanies";
 import OurPartners from "../../../components/OurPartners/OurPartners";
-import OurServices from "../../../components/HomeComponents/OurServices/OurServices";
 import WhyChooseUs from "../../../components/HomeComponents/WhyChooseUs/WhyChooseUs";
 
 const Home = () => {

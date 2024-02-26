@@ -13,98 +13,103 @@ const WhatIsSection = {
     "Internships offer hands-on experience, linking classroom knowledge with practical skills. They allow for networking, skill development, and personal growth. Interns gain insights into their desired fields, enhancing their resumes and paving the way for future career success.",
 };
 
-const cards = {
-  courses: false,
-  internships: true,
-  internshipSections: [
-    {
-      title: "Internships on",
-      highlightWord: "Internships",
-      internships: [
-        {
-          name: "Software Development",
-          courseLink: "#",
-          active: false,
-          content:
-            "Skills Required: Machine Learning, Linux, Python, Java, Amazon Web Services, Back End and SQL.",
-          buttonContent: "Apply",
-        },
-        {
-          name: "UI/UX Designing",
-          courseLink: "#",
-          active: false,
+const Internships = [
+  {
+    id: "1",
+    type: "live",
+    name: "Software Development",
+    courseLink: "#",
+    active: false,
+    content:
+      "Skills Required: Machine Learning, Linux, Python, Java, Amazon Web Services, Back End and SQL.",
+    buttonContent: "Apply",
+  },
+  {
+    id: "2",
+    type: "live",
 
-          content:
-            "Skills Required: User Research, Wireframing, Prototyping, Visual Design, IA, Interaction design, Usability Testing",
-          buttonContent: "Apply",
-        },
-        {
-          name: "Digital Marketing",
-          courseLink: "#",
-          active: false,
+    name: "UI/UX Designing",
+    courseLink: "#",
+    active: false,
 
-          content:
-            "Skills Required: Video Marketing, SEO & SEM, Content Marketing, Data & Analytics, Design Thinking and Planning, Social Media, Email Marketing",
-          // price: "$99.99",
-          buttonContent: "Apply",
-        },
-        {
-          name: "Chartered Accountant",
-          courseLink: "#",
-          active: false,
+    content:
+      "Skills Required: User Research, Wireframing, Prototyping, Visual Design, IA, Interaction design, Usability Testing",
+    buttonContent: "Apply",
+  },
+  {
+    id: "3",
+    type: "live",
 
-          content:
-            "Skills Required: Problem Solving, Financial analysis, Business Communication, Analytical skills",
-          // price: "$99.99",
-          buttonContent: "Apply",
-        },
-        {
-          name: "Civil Engineering",
-          courseLink: "/javascript-course",
-          active: false,
+    name: "Digital Marketing",
+    courseLink: "#",
+    active: false,
 
-          content:
-            "Skills Required: Maths & Physics Proficiency, Basic knowledge on foundation",
-          buttonContent: "Apply",
-        },
-      ],
-    },
-    {
-      title: "Comming Soon Internships",
-      highlightWord: "Internships",
-      internships: [
-        {
-          name: "Hotel Management",
-          courseLink: "",
-          active: false,
+    content:
+      "Skills Required: Video Marketing, SEO & SEM, Content Marketing, Data & Analytics, Design Thinking and Planning, Social Media, Email Marketing",
+    // price: "$99.99",
+    buttonContent: "Apply",
+  },
+  {
+    id: "4",
+    type: "live",
 
-          content:
-            "Skills Required: Empathy, Multi tasking and Management, Leadership, Customer Service",
-          buttonContent: "Apply",
-        },
-        {
-          name: "Graphic Designing",
-          courseLink: "",
-          active: false,
+    name: "Chartered Accountant",
+    courseLink: "#",
+    active: false,
 
-          content:
-            "Skills Required: Adobe Creative Suite, including Photoshop, InDesign, and Illustrator, Creativity, Color theory, Typography, Communication, Drawing, Problem-solving.",
-          buttonContent: "Apply",
-        },
-      ],
-    },
-  ],
-};
+    content:
+      "Skills Required: Problem Solving, Financial analysis, Business Communication, Analytical skills",
+    // price: "$99.99",
+    buttonContent: "Apply",
+  },
+  {
+    id: "5",
+    type: "live",
+
+    name: "Civil Engineering",
+    courseLink: "/javascript-course",
+    active: false,
+
+    content:
+      "Skills Required: Maths & Physics Proficiency, Basic knowledge on foundation",
+    buttonContent: "Apply",
+  },
+
+  {
+    id: "6",
+    type: "upcoming",
+
+    name: "Hotel Management",
+    courseLink: "",
+    active: false,
+
+    content:
+      "Skills Required: Empathy, Multi tasking and Management, Leadership, Customer Service",
+    buttonContent: "Apply",
+  },
+  {
+    id: "7",
+    type: "upcoming",
+
+    name: "Graphic Designing",
+    courseLink: "",
+    active: false,
+
+    content:
+      "Skills Required: Adobe Creative Suite, including Photoshop, InDesign, and Illustrator, Creativity, Color theory, Typography, Communication, Drawing, Problem-solving.",
+    buttonContent: "Apply",
+  },
+];
 
 const benefitsData = {
   title: "Internships Benefits",
   highlightWord: "Internships",
-  head: "  Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur.",
+  head: "We believe “An Internship can be an excellent way to try out your dream career.",
   benefits: [
-    "Lorem ipsum dolor sit",
-    "Lorem ipsum dolor sit ",
-    "Lorem ipsum dolor sit ",
-    "Lorem ipsum dolor sit ",
+    "Internship Certificate",
+    "Live Projects",
+    "Industrial Trainers",
+    "Full-Time Job Role",
   ],
   image: "Internship2.png",
 };
@@ -148,31 +153,33 @@ const partnersWith = {
 
 const FAQs = [
   {
-    question: "Lorem ipsum dolor sit amet consectetur ? ",
+    question:
+      "Are there any specific software/tools I need to familiarize myself with?",
     answer:
-      "Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur. ",
+      "Certainly! Familiarize yourself with Microsoft Office Suite, collaboration platforms, project management tools, industry-specific software, data analysis tools, coding languages, and design tools.",
   },
   {
-    question: "Lorem ipsum dolor sit amet consectetur ? ",
+    question: "Who should I report to for daily tasks?",
     answer:
-      "Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur. ",
+      "Your supervisor oversees your tasks, guides you, assigns projects, and provides feedback. Clarify any uncertainties about your supervisor with HR or colleagues.",
   },
   {
-    question: "Lorem ipsum dolor sit amet consectetur ? ",
+    question: "Is there a performance evaluation process for interns?",
     answer:
-      "Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur. ",
+      "Yes,Interns receive regular feedback and a final evaluation from supervisors. Criteria may include work quality, meeting deadlines, teamwork, and communication.",
   },
   {
-    question: "Lorem ipsum dolor sit amet consectetur ? ",
+    question:
+      "How do I provide feedback or suggestions for improvement during my internship?",
     answer:
-      "Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur. ",
+      "Schedule a meeting with your supervisor to offer constructive feedback. Provide specific examples and actionable suggestions, focusing on solutions. Participate in formal feedback processes.",
   },
 ];
 
 export const InternshipsData = {
   mainContent,
   WhatIsSection,
-  cards,
+  Internships,
   benefitsData,
   partnersWith,
   FAQs,

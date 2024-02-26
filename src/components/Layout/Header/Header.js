@@ -106,7 +106,7 @@ const Header = ({ links, buttons, dropdownLinks, JoinUsBarData }) => {
 
   const dropdownElements = dropdownLinks
     ? dropdownLinks.map((link, index) => (
-        <li key={index} className={style.dropdownElement}>
+        <li key={link.name} className={style.dropdownElement}>
           {link.active ? (
             <>
               <NavLink

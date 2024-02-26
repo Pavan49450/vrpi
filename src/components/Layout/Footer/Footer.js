@@ -71,8 +71,10 @@ const Footer = ({ links, quickLinks, ContactUs, JoinUsBarData }) => {
           ></img>
           {/* <p>{ContactUs.address}</p> */}
           <div>
-            {ContactUs.address.map((addrr) => (
-              <p style={{ marginBottom: "0.5rem" }}>{addrr}</p>
+            {ContactUs.address.map((addrr, index) => (
+              <p style={{ marginBottom: "0.5rem" }} key={index}>
+                {addrr}
+              </p>
             ))}
           </div>
         </div>
