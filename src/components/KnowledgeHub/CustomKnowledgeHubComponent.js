@@ -9,6 +9,7 @@ import { setComingSoon } from "../../store/CommingSoonSlice";
 import InternshipCard from "./InternshipCard/InternshipCard";
 import CourseCard from "./CourseCard/CourseCard";
 import OurPartners from "../OurPartners/OurPartners";
+import AllCardsSection from "./AllCardsSection/AllCardsSection";
 
 const CustomKnowledgeHubComponent = ({ data, backgroundImage }) => {
   const [width, setWidth] = useState(window.innerWidth);
@@ -20,7 +21,58 @@ const CustomKnowledgeHubComponent = ({ data, backgroundImage }) => {
     setWidth(window.innerWidth);
   };
 
+  const onlineCourses =
+    data.Courses && data.Courses.filter((course) => course.type === "online");
+
+  const offlineCourses =
+    data.Courses && data.Courses.filter((course) => course.type === "offline");
+  const upcomingCourses =
+    data.Courses && data.Courses.filter((course) => course.type === "upcoming");
+
+  const allCourses = [
+    {
+      title: "Edu-Tech Online Courses",
+      highlightWord: "Edu-Tech",
+      courses: onlineCourses,
+    },
+    {
+      title: "Edu-Tech Offline Courses",
+      highlightWord: "Edu-Tech",
+      courses: offlineCourses,
+    },
+    {
+      title: "Upcoming Courses",
+      highlightWord: "Upcoming",
+      courses: upcomingCourses,
+    },
+  ];
+
+  const liveInternships =
+    data.Internships &&
+    data.Internships.filter((intership) => intership.type === "live");
+  const upcomingInternships =
+    data.Internships &&
+    data.Internships.filter((intership) => intership.type === "upcoming");
+
+  const allInternships = [
+    {
+      title: "Internships on",
+      highlightWord: "Internships",
+      internships: liveInternships,
+    },
+    {
+      title: "Upcoming Internships",
+      highlightWord: "Internships",
+      internships: upcomingInternships,
+    },
+  ];
+
   useEffect(() => {
+    // console.log(onlineCourses);
+    // console.log(offlineCourses);
+    // console.log(upcomingCourses);
+    // console.log("L IN", liveInternships);
+    // console.log("Up IN", upcomingInternships);
     window.addEventListener("resize", handleResize);
     return () => {
       window.removeEventListener("resize", handleResize);
@@ -50,21 +102,27 @@ const CustomKnowledgeHubComponent = ({ data, backgroundImage }) => {
               style={{ color: "#ff6501" }}
             ></HighlightCapsWords>
           </p>
-          {data.mainContent.button.active ? (
-            <NavLink className={style.btn} to={data.mainContent.button.link}>
-              {data.mainContent.button.name}
-            </NavLink>
+          {data.mainContent.button ? (
+            data.mainContent.button.active ? (
+              <NavLink className={style.btn} to={data.mainContent.button.link}>
+                {data.mainContent.button.name}
+              </NavLink>
+            ) : (
+              <button
+                className={style.btn}
+                onClick={() => dispatch(setComingSoon(true))}
+              >
+                {" "}
+                {data.mainContent.button.name}
+              </button>
+            )
           ) : (
-            <button
-              className={style.btn}
-              onClick={() => dispatch(setComingSoon(true))}
-            >
-              {" "}
-              {data.mainContent.button.name}
-            </button>
+            <></>
           )}
         </div>
       </div>
+      <AllCardsSection data={data} />
+
       <Section
         className={style.WhatIsSection}
         title={data.WhatIsSection.title}
@@ -79,43 +137,7 @@ const CustomKnowledgeHubComponent = ({ data, backgroundImage }) => {
           <p>{data.WhatIsSection.description}</p>
         </div>
       </Section>
-      {data.cards.courseSections ? (
-        <>
-          {data.cards.courseSections.map((courseSection) => {
-            return (
-              <Section
-                className={style.cardSection}
-                title={courseSection.title}
-                highlightWord={courseSection.highlightWord}
-                viewAll="true"
-              >
-                <div className={style.cardStack}>
-                  {courseSection.courses.map((CardDetails) => {
-                    return <CourseCard CardDetails={CardDetails} />;
-                  })}
-                </div>
-              </Section>
-            );
-          })}
-        </>
-      ) : (
-        <>
-          {data.cards.internshipSections.map((internships) => (
-            <Section
-              className={style.cardSection}
-              title={internships.title}
-              highlightWord={internships.highlightWord}
-              viewAll="true"
-            >
-              <div className={style.cardStack}>
-                {internships.internships.map((CardDetails) => {
-                  return <InternshipCard CardDetails={CardDetails} />;
-                })}
-              </div>
-            </Section>
-          ))}
-        </>
-      )}
+
       <Section
         className={style.benefitsSection}
         title={data.benefitsData.title}

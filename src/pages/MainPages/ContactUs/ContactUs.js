@@ -7,10 +7,10 @@ export default function ContactUs() {
     <div className={style.ContactUs}>
       <div className={style.formSection}>
         <h1>Get in Touch</h1>
-        <div className={style.form}>
-          <img src={require(`../../../assets/contactUs1.png`)} alt="" />
-          <ContactUsForm />
-        </div>
+        {/* <div className={style.form}>
+          <img src={require(`../../../assets/contactUs1.png`)} alt="" /> */}
+        <ContactUsForm />
+        {/* </div> */}
       </div>
       <Locations />
     </div>

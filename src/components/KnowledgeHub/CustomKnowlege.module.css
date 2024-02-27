@@ -229,6 +229,8 @@
 @media (max-width: 650px) {
   .WhatIsContent {
     flex-direction: column;
+    background-color: var(--black);
+    padding: 1rem 0;
   }
   .mainScreen h2 {
     font-size: 1.2rem;
@@ -251,6 +253,9 @@
     gap: 1rem;
   }
   .WhatIsContent img {
-    width: 90%;
+    width: 50%;
+  }
+  .WhatIsContent p {
+    height: auto;
   }
 }

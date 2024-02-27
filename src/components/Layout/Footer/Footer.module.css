@@ -119,6 +119,13 @@
   font-size: 0.8rem;
 }
 
+.tagLine {
+  font-family: "Oleo Script", system-ui;
+  font-weight: 300;
+  font-style: normal;
+  color: var(--primary);
+}
+
 @media (max-width: 700px) {
   .Footer {
     gap: 2rem;

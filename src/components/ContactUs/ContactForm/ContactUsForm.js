@@ -102,75 +102,78 @@ const ContactUsForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className={style.Form}>
-      {/* <div className={style.form_input}> */}
-      {/* <label htmlFor="name">Name</label> */}
-      {console.log(nameInput.hasError)}
-      <CustomInput
-        id="name"
-        placeholder="Name"
-        value={nameInput.value}
-        onChange={nameInput.valueChangeHandler}
-        // isInvalid={nameInput.hasError}
-        onBlur={nameInput.validateValueHandler}
-        onFocus={nameInput.focusHandler}
-        className={
-          nameInput.hasError ? ` ${style.invalid} ` : `${style.InputFields}`
-        }
-        style={{ borderBottom: nameInput.hasError && `4px solid red` }}
-      />
-      <CustomInput
-        id="Email"
-        placeholder="Email-ID"
-        value={emailInput.value}
-        onChange={emailInput.valueChangeHandler}
-        // isInvalid={nameInput.hasError}
-        onBlur={emailInput.validateValueHandler}
-        onFocus={emailInput.focusHandler}
-        className={
-          emailInput.hasError ? ` ${style.invalid} ` : `${style.InputFields}`
-        }
-      />
-      {/* </div> */}
-      {/* <div className={style.form_input}> */}
-      {/* <label htmlFor="mobile">Mobile</label> */}
-      <CustomInput
-        id="mobile"
-        placeholder="Mobile number"
-        value={mobileInput.value}
-        onChange={mobileInput.valueChangeHandler}
-        isInvalid={!mobileInput.isValid}
-        onBlur={mobileInput.validateValueHandler}
-        onFocus={mobileInput.focusHandler}
-        className={
-          mobileInput.hasError ? ` ${style.invalid} ` : `${style.InputFields}`
-        }
-      />
-      {/* </div> */}
-      {/* <div className={style.form_input}> */}
-      {/* <label htmlFor="description">Description</label> */}
-      <textarea
-        id="description"
-        placeholder="Description"
-        value={descriptionInput.value}
-        onChange={descriptionInput.valueChangeHandler}
-        onBlur={descriptionInput.validateValueHandler}
-        onFocus={descriptionInput.focusHandler}
-        className={`${style.description}${
-          descriptionInput.hasError ? ` ${style.descriptionInvalid}` : ""
-        }`}
-      />
-      <Button type="submit" className={style.submitBtn}>
-        Contact Us
-      </Button>
-      {errorMessage && (
-        <Message
-          message={errorMessage}
-          type="error"
-          onClose={closeErrMessageHandler}
+    <div className={style.form}>
+      <img src={require(`../../../assets/contactUs1.png`)} alt="" />
+      <form onSubmit={handleSubmit} className={style.Form}>
+        {/* <div className={style.form_input}> */}
+        {/* <label htmlFor="name">Name</label> */}
+        {console.log(nameInput.hasError)}
+        <CustomInput
+          id="name"
+          placeholder="Name"
+          value={nameInput.value}
+          onChange={nameInput.valueChangeHandler}
+          // isInvalid={nameInput.hasError}
+          onBlur={nameInput.validateValueHandler}
+          onFocus={nameInput.focusHandler}
+          className={
+            nameInput.hasError ? ` ${style.invalid} ` : `${style.InputFields}`
+          }
+          style={{ borderBottom: nameInput.hasError && `4px solid red` }}
         />
-      )}
-    </form>
+        <CustomInput
+          id="Email"
+          placeholder="Email-ID"
+          value={emailInput.value}
+          onChange={emailInput.valueChangeHandler}
+          // isInvalid={nameInput.hasError}
+          onBlur={emailInput.validateValueHandler}
+          onFocus={emailInput.focusHandler}
+          className={
+            emailInput.hasError ? ` ${style.invalid} ` : `${style.InputFields}`
+          }
+        />
+        {/* </div> */}
+        {/* <div className={style.form_input}> */}
+        {/* <label htmlFor="mobile">Mobile</label> */}
+        <CustomInput
+          id="mobile"
+          placeholder="Mobile number"
+          value={mobileInput.value}
+          onChange={mobileInput.valueChangeHandler}
+          isInvalid={!mobileInput.isValid}
+          onBlur={mobileInput.validateValueHandler}
+          onFocus={mobileInput.focusHandler}
+          className={
+            mobileInput.hasError ? ` ${style.invalid} ` : `${style.InputFields}`
+          }
+        />
+        {/* </div> */}
+        {/* <div className={style.form_input}> */}
+        {/* <label htmlFor="description">Description</label> */}
+        <textarea
+          id="description"
+          placeholder="Description"
+          value={descriptionInput.value}
+          onChange={descriptionInput.valueChangeHandler}
+          onBlur={descriptionInput.validateValueHandler}
+          onFocus={descriptionInput.focusHandler}
+          className={`${style.description}${
+            descriptionInput.hasError ? ` ${style.descriptionInvalid}` : ""
+          }`}
+        />
+        <Button type="submit" className={style.submitBtn}>
+          Contact Us
+        </Button>
+        {errorMessage && (
+          <Message
+            message={errorMessage}
+            type="error"
+            onClose={closeErrMessageHandler}
+          />
+        )}
+      </form>
+    </div>
   );
 };
 
