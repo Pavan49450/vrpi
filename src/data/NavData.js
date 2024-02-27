@@ -12,7 +12,7 @@ export const KnowledgeHubHeaderLinks = [
   { name: "Edu-tech", address: "/edutech", active: true },
   { name: "Interships", address: "/internships", active: true },
 
-  { name: "Contact Us", address: "/contact", active: true },
+  { name: "Contact Us", address: "/contact", active: false },
 ];
 
 export const MainDropdownLinks = [
