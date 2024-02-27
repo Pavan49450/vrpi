@@ -80,3 +80,12 @@
   padding: 1rem 2rem;
   cursor: pointer;
 }
+
+@media (max-width: 769px) {
+  .form img {
+    display: none;
+  }
+  .submitBtn {
+    width: auto;
+  }
+}

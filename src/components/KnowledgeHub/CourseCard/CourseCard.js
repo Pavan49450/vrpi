@@ -20,12 +20,12 @@ const CourseCard = ({ key, CardDetails }) => {
         ></img>
         <div className={style.cardContent}>
           <Link
-            // to={`/edutech/${CardDetails.id}`}
+            to={`/edutech/${CardDetails.id}`}
             className={style.link}
             onClick={handleClick}
           >
             <Button
-              onClick={() => dispatch(setComingSoon(true))}
+              // onClick={() => dispatch(setComingSoon(true))}
               className={style.btn}
             >
               Learn More
