@@ -24,6 +24,15 @@ const Courses = [
     price: "34999",
     buttonContent: "Enroll Now",
     image: "javaCourse2.jpg",
+    language: "English",
+    instructor: {
+      name: "Gayathri Prasad",
+      image: "Instructor1.png",
+    },
+    rating: "4.5",
+    reviewsCount: "10k",
+    studentsEnrolled: "50",
+    updatedDate: "Feb 2014",
   },
   {
     id: "2",
@@ -38,6 +47,15 @@ const Courses = [
     price: "24999",
     buttonContent: "Enroll Now",
     image: "devopsCourse2.jpg",
+    language: "English",
+    instructor: {
+      name: "Gayathri Prasad",
+      image: "Instructor1.png",
+    },
+    rating: "4.5",
+    reviewsCount: "10k",
+    studentsEnrolled: "50",
+    updatedDate: "Feb 2014",
   },
   {
     id: "3",
@@ -51,6 +69,15 @@ const Courses = [
     price: "34999",
     buttonContent: "Enroll Now",
     image: "UIUXCourse2.webp",
+    language: "English",
+    instructor: {
+      name: "Gayathri Prasad",
+      image: "Instructor1.png",
+    },
+    rating: "4.5",
+    reviewsCount: "10k",
+    studentsEnrolled: "50",
+    updatedDate: "Feb 2014",
   },
   {
     id: "4",
@@ -69,6 +96,15 @@ const Courses = [
     image: "embeddedCourse2.webp",
 
     buttonContent: "Enroll Now",
+    language: "English",
+    instructor: {
+      name: "Gayathri Prasad",
+      image: "Instructor1.png",
+    },
+    rating: "4.5",
+    reviewsCount: "10k",
+    studentsEnrolled: "50",
+    updatedDate: "Feb 2014",
   },
   {
     id: "5",
@@ -86,6 +122,15 @@ const Courses = [
     price: "1799",
     image: "aiCourse2.webp",
     buttonContent: "Enroll Now",
+    language: "English",
+    instructor: {
+      name: "Gayathri Prasad",
+      image: "Instructor1.png",
+    },
+    rating: "4.5",
+    reviewsCount: "10k",
+    studentsEnrolled: "50",
+    updatedDate: "Feb 2014",
   },
   {
     id: "6",
@@ -103,6 +148,15 @@ const Courses = [
     // price: "1799",
     image: "python2.png",
     buttonContent: "Enroll Now",
+    language: "English",
+    instructor: {
+      name: "Gayathri Prasad",
+      image: "Instructor1.png",
+    },
+    rating: "4.5",
+    reviewsCount: "10k",
+    studentsEnrolled: "50",
+    updatedDate: "Feb 2014",
   },
 ];
 

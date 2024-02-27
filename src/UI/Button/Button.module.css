@@ -11,11 +11,11 @@
 }
 
 .customButton:hover {
-  /* transform: scale(1.1);
-  transition: all 0.3s ease; */
+  transform: scale(1.1);
+  transition: all 0.3s ease;
   /* animation: borderPass 0.2s ease infinite;
-   */
-  animation: rotateShadow 1s linear infinite;
+  
+  /* animation: rotateShadow 1s linear infinite; */
 }
 
 .customButton:active {
