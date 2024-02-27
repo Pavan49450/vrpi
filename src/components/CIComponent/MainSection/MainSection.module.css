@@ -7,7 +7,7 @@
   height: 300px;
 }
 
-.container img {
+.container .courseImage {
   width: 40%;
   object-fit: cover;
 }
@@ -87,4 +87,25 @@
   border-radius: 10px;
   padding: 5px 20px;
   font-size: 15px;
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+    height: auto;
+  }
+
+  .container .courseImage {
+    width: 100%;
+  }
+  .buttons {
+    justify-content: center;
+  }
+  .content {
+    gap: 1rem;
+  }
+  .line {
+    height: 40px;
+  }
 }

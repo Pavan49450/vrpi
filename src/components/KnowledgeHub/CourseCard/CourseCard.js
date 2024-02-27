@@ -2,9 +2,14 @@ import { Link } from "react-router-dom";
 import style from "./CourseCard.module.css";
 import { useDispatch } from "react-redux";
 import { setComingSoon } from "../../../store/CommingSoonSlice";
+import Button from "../../../UI/Button/Button";
 
 const CourseCard = ({ key, CardDetails }) => {
   const dispatch = useDispatch();
+
+  const handleClick = () => {
+    window.scrollTo(0, 0); // Scroll to the top of the page
+  };
   return (
     <div className={style.card}>
       <div className={style.cardSubContainer}>
@@ -14,13 +19,17 @@ const CourseCard = ({ key, CardDetails }) => {
           className={style.courseImage}
         ></img>
         <div className={style.cardContent}>
-          <Link to={`/edutech/${CardDetails.id}`} className={style.link}>
-            <button
-              // onClick={() => dispatch(setComingSoon(true))}
+          <Link
+            // to={`/edutech/${CardDetails.id}`}
+            className={style.link}
+            onClick={handleClick}
+          >
+            <Button
+              onClick={() => dispatch(setComingSoon(true))}
               className={style.btn}
             >
               Learn More
-            </button>
+            </Button>
           </Link>
           <h2 className={style.cardHeading}>{CardDetails.name}</h2>
           <div

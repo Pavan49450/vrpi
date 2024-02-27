@@ -11,7 +11,11 @@ const MainSection = ({ content }) => {
 
   return (
     <div className={style.container}>
-      <img src={require(`../../../assets/courses/${content.image}`)} alt="" />
+      <img
+        src={require(`../../../assets/courses/${content.image}`)}
+        alt=""
+        className={style.courseImage}
+      />
       <div className={style.content}>
         <h1>
           {content.name}
