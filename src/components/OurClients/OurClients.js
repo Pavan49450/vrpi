@@ -9,7 +9,8 @@ const ImageList = [
   "softHQLogo.jpg",
   "reflectionsLogo.jpg",
   "profitShadowKLogo.jpg",
-  "ICICILogo.jpg",
+  "ICICILogo.png",
+  "mahindraLogo.jpg",
 ];
 const OurClients = () => {
   return (
