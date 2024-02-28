@@ -6,9 +6,9 @@ import AllCardsSection from "../../../components/KnowledgeHub/AllCardsSection/Al
 import Section from "../../../UI/Sections/Section";
 import ContactUsForm from "../../../components/ContactUs/ContactForm/ContactUsForm";
 import FAQsComponent from "../../../components/KnowledgeHub/FAQs/FAQs";
-import style from "./CIDetails.module.css";
-import CIComponent from "../../../components/CIComponent/CIComponent";
-const CIDetails = () => {
+import style from "./CourseDetails.module.css";
+import CourseDetailsComponent from "../../../components/CourseDetailsComponent/CourseDetailsComponent";
+const CourseDetails = () => {
   const { courseId } = useParams();
   const { internshipId } = useParams();
   const [content, setContent] = useState();
@@ -39,7 +39,7 @@ const CIDetails = () => {
 
   return (
     <div className={style.container}>
-      {content && <CIComponent content={content} />}
+      {content && <CourseDetailsComponent content={content} />}
       <AllCardsSection data={internshipId ? InternshipsData : EduTechData} />
       <Section title="Get In Touch with us">
         <ContactUsForm />
@@ -51,4 +51,4 @@ const CIDetails = () => {
   );
 };
 
-export default CIDetails;
+export default CourseDetails;
