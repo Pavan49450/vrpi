@@ -42,9 +42,11 @@ const CourseCard = ({ key, CardDetails }) => {
               </div>
             ))}
           </div>
-          <span style={{ color: "#ff6501", fontWeight: 700 }}>
-            ₹{CardDetails.price}/-
-          </span>
+          {CardDetails.price && (
+            <span style={{ color: "#ff6501", fontWeight: 700 }}>
+              ₹{CardDetails.price}/-
+            </span>
+          )}
         </div>
       </div>
     </div>

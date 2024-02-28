@@ -14,8 +14,7 @@ const Header = ({ links, buttons, dropdownLinks, JoinUsBarData }) => {
   const mobileMenuIconRef = useRef(null);
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [showDropDown, setShowDropDown] = useState(null);
-  const [width, setWidth] = useState(window.innerWidth);
-  const breakpoint = 700;
+
   // const [showCommingSoon, setShowCommingSoon] = useState(false);
   const dispatch = useDispatch();
   // useEffect(()=>{
@@ -26,6 +25,9 @@ const Header = ({ links, buttons, dropdownLinks, JoinUsBarData }) => {
   // })
 
   const isComingSoon = useSelector((state) => state.commingSoon.isComingSoon);
+
+  const [width, setWidth] = useState(window.innerWidth);
+  const breakpoint = 700;
 
   const handleLinkClick = () => {
     // Dispatch action to set isComingSoon to true only if it's not already true
