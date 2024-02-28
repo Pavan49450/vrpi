@@ -4,6 +4,12 @@
   gap: 1rem;
 }
 
+.techStack {
+  margin-bottom: 2rem;
+  font-weight: 500;
+  text-align: center;
+}
+
 .chapterHeader {
   border: 2px solid var(--primary);
   border-radius: 5px;
@@ -11,6 +17,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  cursor: pointer;
 }
 .chapterHeader h3 {
   padding-left: 2rem;
@@ -28,13 +35,16 @@
 
 .module {
   overflow: hidden;
+  /* cursor: pointer; */
 }
 .moduleEach {
-  background-color: #ff670134;
+  background-color: #ff65014d;
   padding: 0.5rem;
   transform: skew(-30deg) translate(1rem);
   width: calc(100% + 1rem);
   display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .moduleEach h4 {
@@ -45,4 +55,42 @@
 
 .moduleEach img {
   transform: skew(30deg);
+  padding-right: 2rem;
+}
+
+.lessons {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: flex-end;
+}
+
+.lesson {
+  width: 90%;
+  box-shadow: 2px 2px 2px #ff65014d;
+  margin-right: 2px;
+  margin-bottom: 2px;
+}
+
+.realProject {
+  display: flex;
+  background-color: #003362;
+  margin-top: 2rem;
+  padding: 1rem;
+  gap: 1rem;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.realProject h2 {
+  color: var(--white);
+  font-size: 1.2rem;
+  /* font-weight: 300; */
+}
+
+.viewBtn {
+  font-size: 1.2rem;
+  /* font-weight: 500; */
+  width: 180px;
+  padding: 0.8rem 0;
 }

@@ -1,10 +1,15 @@
 import React, { useState } from "react";
 import styles from "./CourseContent.module.css"; // Import your modular CSS file
 import Section from "../../../UI/Sections/Section";
+import Button from "../../../UI/Button/Button";
+import { useDispatch } from "react-redux";
+import { setComingSoon } from "../../../store/CommingSoonSlice";
 
 const CourseContent = ({ courseContent }) => {
   const [openChapters, setOpenChapters] = useState([]);
   const [openModules, setOpenModule] = useState([]);
+
+  const dispatch = useDispatch();
 
   const toggleChapter = (index) => {
     if (openChapters.includes(index)) {
@@ -31,6 +36,8 @@ const CourseContent = ({ courseContent }) => {
   };
   return (
     <Section title="Course Content">
+      <h1 className={styles.techStack}>{courseContent.techStack}</h1>
+
       <div className={styles.courseContent}>
         {courseContent.chapters.map((chapter, chapterIndex) => (
           <div key={chapterIndex} className={styles.chapter}>
@@ -42,21 +49,18 @@ const CourseContent = ({ courseContent }) => {
               {/* <span> */}
               {isChapterOpen(chapterIndex) ? (
                 <img
-                  src={require("../../../assets/courses/arrowDown.png")}
+                  src={require("../../../assets/courses/arrowUpPrimary.png")}
                   alt=""
                   style={{
-                    width: "15px",
-                    height: "15px",
-                    transform: "rotate(180deg)",
+                    width: "30px",
                   }}
                 ></img>
               ) : (
                 <img
-                  src={require("../../../assets/courses/arrowDown.png")}
+                  src={require("../../../assets/courses/arrowDownPrimary.png")}
                   alt=""
                   style={{
-                    width: "15px",
-                    height: "15px",
+                    width: "30px",
                   }}
                 ></img>
               )}
@@ -68,35 +72,27 @@ const CourseContent = ({ courseContent }) => {
                   <div
                     key={moduleIndex}
                     className={styles.module}
+                    style={{ cursor: module.lessons ? "pointer" : "default" }}
                     onClick={() => toggleModule(moduleIndex)}
                   >
                     <div className={styles.moduleEach}>
                       <h4>{module.title}</h4>
-                      {isModuleOpen(moduleIndex) ? (
+                      {module.lessons && !isModuleOpen(moduleIndex) && (
                         <img
-                          src={require("../../../assets/courses/arrowDown.png")}
+                          src={require("../../../assets/courses/arrowRight.png")}
                           alt=""
                           style={{
-                            width: "15px",
-                            height: "15px",
-                            transform: "rotate(180deg)",
-                          }}
-                        ></img>
-                      ) : (
-                        <img
-                          src={require("../../../assets/courses/arrowDown.png")}
-                          alt=""
-                          style={{
-                            width: "15px",
-                            height: "15px",
+                            width: "50px",
                           }}
                         ></img>
                       )}
                     </div>
-                    {isModuleOpen(moduleIndex) && (
-                      <ul>
+                    {module.lessons && isModuleOpen(moduleIndex) && (
+                      <ul className={styles.lessons}>
                         {module.lessons.map((lesson, lessonIndex) => (
-                          <li key={lessonIndex}>{lesson.title}</li>
+                          <li key={lessonIndex} className={styles.lesson}>
+                            {lesson.title}
+                          </li>
                         ))}
                       </ul>
                     )}
@@ -106,6 +102,20 @@ const CourseContent = ({ courseContent }) => {
             )}
           </div>
         ))}
+      </div>
+      <div className={styles.realProject}>
+        <h2>
+          Get Hands-on experience by enrolling to our course which includes a
+          Real-Time Project
+        </h2>
+        <Button
+          onClick={() => {
+            dispatch(setComingSoon(true));
+          }}
+          className={styles.viewBtn}
+        >
+          View My Project
+        </Button>
       </div>
     </Section>
   );

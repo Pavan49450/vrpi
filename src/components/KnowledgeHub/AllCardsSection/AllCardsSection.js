@@ -62,7 +62,7 @@ const AllCardsSection = ({ data }) => {
                     className={style.cardSection}
                     title={courseSection.title}
                     highlightWord={courseSection.highlightWord}
-                    viewAll="true"
+                    viewAll={courseSection.courses.length >= 5}
                   >
                     <div className={style.cardStack}>
                       {courseSection.courses.map((CardDetails) => {

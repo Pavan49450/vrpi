@@ -24,15 +24,16 @@ export const JavaFullStackCourse = {
       "Full Stack Development involves various tools and technologies across different areas of development.",
     techStacks: [
       {
-        title: "Tools Used:",
+        title: "Frontend Technology:",
         stacks: [
-          "IDE: Intellij/ Eclipse/ STS",
-          "GIT/Bitbucked",
-          "Postman/Swagger",
-          "LOMBAK",
-          "JUNIT/MOCKITO",
+          "HTML+CSS+JavaScript (ECMA 6-13)",
+          "ReactJS / Angular JS",
+          "AJax, Async/Axios, React Redux, React Hooks",
+          "Bootstrap",
+          "JQuery",
         ],
       },
+
       {
         title: "Backend Technology:",
         stacks: [
@@ -47,13 +48,13 @@ export const JavaFullStackCourse = {
         ],
       },
       {
-        title: "Frontend Technology:",
+        title: "Tools Used:",
         stacks: [
-          "HTML+CSS+JavaScript (ECMA 6-13)",
-          "ReactJS / Angular JS",
-          "AJax, Async/Axios, React Redux, React Hooks",
-          "Bootstrap",
-          "JQuery",
+          "IDE: Intellij/ Eclipse/ STS",
+          "GIT/Bitbucked",
+          "Postman/Swagger",
+          "LOMBAK",
+          "JUNIT/MOCKITO",
         ],
       },
     ],
