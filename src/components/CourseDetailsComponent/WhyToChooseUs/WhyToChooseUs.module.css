@@ -28,7 +28,7 @@
   color: var(--white);
   margin: 1rem 0;
 }
-p {
+.description {
   color: var(--white);
 }
 
