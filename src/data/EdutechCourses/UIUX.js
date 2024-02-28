@@ -14,6 +14,11 @@ export const UIUX = {
   instructor: {
     name: "Gayathri Prasad",
     image: "Instructor1.png",
+    description: [
+      "I’m Gayatri. Your Instructor for this Course",
+      "Lorem ipsum dolor sit amet consectetur. Sodales eget convallis sem iaculis. Lorem ipsum dolor sit amet consectetur. Sodales eget convallis sem iaculis.",
+      "Lorem ipsum dolor sit amet consectetur. Sodales eget convallis sem iaculis. Lorem ipsum dolor sit amet consectetur. Sodales eget convallis sem iaculis.",
+    ],
   },
   rating: "4.5",
   reviewsCount: "10k",

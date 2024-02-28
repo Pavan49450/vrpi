@@ -1,6 +1,7 @@
 import CourseBenefits from "./CourseBenefits/CourseBenefits";
 import CourseContent from "./CourseContent/CourseContent";
 import CourseEligibility from "./CourseEligibility/CourseEligibility";
+import Instructor from "./Instructor/Instructor";
 import MainSection from "./MainSection/MainSection";
 import Syllabus from "./Syllabus/Syllabus";
 import ToolsRequired from "./ToolsRequired/ToolsRequired";
@@ -16,6 +17,8 @@ const CourseDetails = ({ content }) => {
       <ToolsRequired toolsRequired={content.toolsAndTechnologyUsed} />
       <CourseEligibility />
       <WhyToChooseUs />
+      {console.log("content", content)}
+      <Instructor instructorData={content.instructor} />
     </div>
   );
 };

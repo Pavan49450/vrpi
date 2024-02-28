@@ -9,7 +9,7 @@
 
 .container h1 {
   color: var(--white);
-  width: 80%;
+  /* width: 80%; */
   text-align: center;
   padding: 1rem;
   margin: auto;

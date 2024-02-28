@@ -1,0 +1,26 @@
+.Instructor {
+  background-color: #262626;
+  position: relative;
+}
+
+.bar1,
+.bar2 {
+  width: 40%;
+  height: 2rem;
+  background-color: var(--primary);
+  position: absolute;
+}
+
+.bar1 {
+  right: 0;
+  top: 0;
+}
+.bar2 {
+  left: 0;
+  bottom: 0;
+}
+.content {
+  padding: 3rem;
+  display: flex;
+  gap: 1rem;
+}
