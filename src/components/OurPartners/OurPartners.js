@@ -16,12 +16,7 @@ const partners = [
     link: "",
     image: "bajajLogo.jpg",
   },
-  {
-    title: "Mahindra Insurence Brokers",
-    description: '“Delivering reliable insurance services with integrity." ',
-    link: "",
-    image: "mahindraLogo.png",
-  },
+
   {
     title: "IIFL Securities",
     description:
