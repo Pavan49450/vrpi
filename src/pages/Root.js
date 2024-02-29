@@ -16,7 +16,7 @@ import ComingSoon from "../UI/ComingSoon/ComingSoon";
 
 const hideHeaderRoutes = ["/login", "/signup"];
 
-const buttons = [{ name: "Login", link: "/login", active: true }];
+const buttons = [{ name: "Login", link: "/login", active: false }];
 
 const RootLayout = () => {
   const location = useLocation();
