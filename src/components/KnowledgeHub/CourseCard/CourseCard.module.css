@@ -1,5 +1,5 @@
 .card {
-  min-width: 300px;
+  /* min-width: 300px; */
   /* border: 2px solid var(--primary); */
   padding: 1rem;
   display: flex;
@@ -23,7 +23,7 @@
   align-items: center;
   width: 100%;
 }
-.cardSubContainer .courseImage {
+.courseImage {
   width: 50%;
   height: 200px;
   object-fit: cover;
@@ -70,4 +70,22 @@
 .btn:hover {
   transform: scale(1.1);
   transition: all 0.2s ease;
+}
+
+@media (max-width: 400px) {
+  .courseImage {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  .cardSubContainer {
+    flex-direction: column;
+  }
+  .card {
+    width: 90vw;
+  }
+  .link {
+    justify-content: center;
+  }
 }

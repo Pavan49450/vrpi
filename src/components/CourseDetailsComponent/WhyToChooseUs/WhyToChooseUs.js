@@ -3,22 +3,22 @@ import style from "./WhyToChooseUs.module.css";
 
 const WhyToChooseUsData = {
   description:
-    "Lorem ipsum dolor sit amet consectetur. Sodales eget convallis sem iaculis.",
+    "Choosing our institute over others can be a significant decision for potential students or learners. Here are some reasons why they might choose our institute:",
   points: [
     {
-      title: "Lorem ipsum dolor sit",
+      title: "High-Quality Education:",
       description:
-        "Lorem ipsum dolor sit amet consectetur. Sodales eget convallis sem iaculis. Lorem ipsum dolor sit amet consectetur. Sodales eget convallis sem iaculis. ",
+        "Emphasize the quality of education and training provided by our institute. Highlight our experienced faculty members, comprehensive curriculum, and state-of-the-art facilities.",
     },
     {
-      title: "Lorem ipsum dolor sit",
+      title: "Affordability and Financial Aid:",
       description:
-        "Lorem ipsum dolor sit amet consectetur. Sodales eget convallis sem iaculis. Lorem ipsum dolor sit amet consectetur. Sodales eget convallis sem iaculis. ",
+        "Our institute offers competitive tuition rates, scholarships, or financial aid options, make sure to highlight these as reasons for students to choose our institute, especially for those who may be concerned about the cost of education.",
     },
     {
-      title: "Lorem ipsum dolor sit",
+      title: "Flexible Learning Options:",
       description:
-        "Lorem ipsum dolor sit amet consectetur. Sodales eget convallis sem iaculis. Lorem ipsum dolor sit amet consectetur. Sodales eget convallis sem iaculis. ",
+        "Our institute offers flexible learning options such as online courses, part-time programs, or evening classes, make sure to emphasize this as a benefit for students who may have other commitments or prefer a more flexible schedule.",
     },
   ],
 };

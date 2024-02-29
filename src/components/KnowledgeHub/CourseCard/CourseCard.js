@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import style from "./CourseCard.module.css";
 import { useDispatch } from "react-redux";
-import { setComingSoon } from "../../../store/CommingSoonSlice";
+import { setComingSoon } from "../../../store/ComingSoonSlice";
 import Button from "../../../UI/Button/Button";
 
 const CourseCard = ({ key, CardDetails }) => {

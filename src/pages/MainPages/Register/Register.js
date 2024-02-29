@@ -76,38 +76,6 @@ const RegisterPage = () => {
         >
           {showSignIn ? SignInBox : SignUpBox}
         </div>
-        {/* <div
-          className={
-            showSignIn ? styles["sign-up-toggle"] : styles["sign-in-toggle"]
-          }
-          onClick={toggleForm}
-        >
-          {showSignIn ? (
-            <>
-              <p
-                style={{
-                  fontSize: "1rem",
-                  fontFamily: '"Libre Baskerville", serif',
-                }}
-              >
-                Are you new to VR Pi?
-              </p>
-              <button className={styles.btn}>Sign Up</button>
-            </>
-          ) : (
-            <>
-              <p
-                style={{
-                  fontSize: "1rem",
-                  fontFamily: '"Libre Baskerville", serif',
-                }}
-              >
-                Already have an account
-              </p>
-              <button className={styles.btn}>Sign In</button>
-            </>
-          )}
-        </div> */}
       </div>
     </div>
   );

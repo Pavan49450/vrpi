@@ -6,7 +6,7 @@ const initialState = {
   isComingSoon: false,
 };
 
-const commingSoonSlice = createSlice({
+const comingSoonSlice = createSlice({
   name: "comingSoon",
   initialState,
   reducers: {
@@ -16,6 +16,6 @@ const commingSoonSlice = createSlice({
   },
 });
 
-export const { setComingSoon } = commingSoonSlice.actions;
+export const { setComingSoon } = comingSoonSlice.actions;
 
-export default commingSoonSlice.reducer;
+export default comingSoonSlice.reducer;

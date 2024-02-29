@@ -2,7 +2,7 @@ import CustomImage from "../../../UI/Image/Image";
 import Rating from "../../../UI/Rating/Rating";
 import style from "./MainSection.module.css";
 import { useDispatch } from "react-redux";
-import { setComingSoon } from "../../../store/CommingSoonSlice";
+import { setComingSoon } from "../../../store/ComingSoonSlice";
 import Button from "../../../UI/Button/Button";
 const MainSection = ({ content }) => {
   const line = <div className={style.line}></div>;

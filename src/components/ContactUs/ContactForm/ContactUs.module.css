@@ -89,3 +89,9 @@
     width: auto;
   }
 }
+
+@media (max-width: 500px) {
+  .form {
+    margin: 0;
+  }
+}

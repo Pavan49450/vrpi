@@ -7,13 +7,16 @@ import AboutUs from "./pages/MainPages/AboutUs/AboutUs";
 import Companies from "./pages/MainPages/Companies/Companies";
 import Services from "./pages/MainPages/Services/Services";
 import Careers from "./pages/MainPages/Carrers/Careers";
-import RegisterPage from "./pages/MainPages/Register/Register";
+// import RegisterPage from "./pages/MainPages/Register/Register";
 import Construction from "./pages/MainPages/Construction/Contruction";
 import KnowledgeHub from "./pages/KnowledgeHub/KnowledgeHub";
 import Internships from "./pages/KnowledgeHub/Internships";
 import EduTech from "./pages/KnowledgeHub/EduTech";
 import ContactUs from "./pages/MainPages/ContactUs/ContactUs";
 import CourseDetails from "./pages/KnowledgeHub/CourseDetails/CourseDetails";
+import SignUp from "./pages/MainPages/SignUp/SignUp";
+
+import Login from "./pages/MainPages/Login/Login";
 
 function App() {
   const router = createBrowserRouter([
@@ -64,22 +67,22 @@ function App() {
           element: <ContactUs />,
           errorElement: <ErrorPage />,
         },
+        // {
+        //   path: "/register",
+        //   element: <RegisterPage />,
+        //   errorElement: <ErrorPage />,
+        // },
+
         {
-          path: "/register",
-          element: <RegisterPage />,
+          path: "/signup",
+          element: <SignUp />,
           errorElement: <ErrorPage />,
         },
-
-        // {
-        //   path: "/signup",
-        //   element: <SignUp />,
-        //   errorElement: <ErrorPage />,
-        // },
-        // {
-        //   path: "/signin",
-        //   element: <SignIn />,
-        //   errorElement: <ErrorPage />,
-        // },
+        {
+          path: "/login",
+          element: <Login />,
+          errorElement: <ErrorPage />,
+        },
         {
           path: "/knowledgeHub",
           element: <KnowledgeHub />,
