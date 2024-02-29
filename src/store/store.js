@@ -1,11 +1,11 @@
 // src/redux/store.js
 
 import { configureStore } from "@reduxjs/toolkit";
-import commingSoonReducer from "./CommingSoonSlice";
+import comingSoonReducer from "./ComingSoonSlice";
 
 const store = configureStore({
   reducer: {
-    commingSoon: commingSoonReducer,
+    comingSoon: comingSoonReducer,
   },
   devTools: process.env.NODE_ENV !== "production", // Enable Redux DevTools Extension
 });

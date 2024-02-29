@@ -3,7 +3,7 @@ import styles from "./HeaderDropDown.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import Button from "../../../../UI/Button/Button";
 import { useDispatch } from "react-redux";
-import { setComingSoon } from "../../../../store/CommingSoonSlice";
+import { setComingSoon } from "../../../../store/ComingSoonSlice";
 
 const HeaderDropdown = ({ data, onMouseEnter, onMouseLeave, style }) => {
   const [selectedItem, setSelectedItem] = useState(data[0]);

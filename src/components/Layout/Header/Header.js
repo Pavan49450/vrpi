@@ -3,9 +3,9 @@ import style from "./HeaderNew.module.css";
 import { NavLink } from "react-router-dom";
 import HeaderDropdown from "./HeaderComponents/HeaderDropDown";
 import Logo from "../../Logo/Logo";
-import CommingSoon from "../../../UI/CommingSoon/CommingSoon";
+// import CommingSoon from "../../../UI/ComingSoon/ComingSoon";
 import { useDispatch, useSelector } from "react-redux";
-import { setComingSoon } from "../../../store/CommingSoonSlice";
+import { setComingSoon } from "../../../store/ComingSoonSlice";
 import NavbarForMobile from "./HeaderComponents/NavbarForMobile/NavbarForMobile";
 import { navElementsForMobileData } from "../../../data/NavData";
 
@@ -24,7 +24,7 @@ const Header = ({ links, buttons, dropdownLinks, JoinUsBarData }) => {
   //   };
   // })
 
-  const isComingSoon = useSelector((state) => state.commingSoon.isComingSoon);
+  const isComingSoon = useSelector((state) => state.comingSoon.isComingSoon);
 
   const [width, setWidth] = useState(window.innerWidth);
   const breakpoint = 700;

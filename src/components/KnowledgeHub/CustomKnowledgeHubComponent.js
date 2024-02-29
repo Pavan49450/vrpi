@@ -5,7 +5,7 @@ import Section from "../../UI/Sections/Section";
 import { useEffect, useState } from "react";
 import HighlightCapsWords from "../../UI/HighlightWords/HighlightCapsWords";
 import { useDispatch } from "react-redux";
-import { setComingSoon } from "../../store/CommingSoonSlice";
+import { setComingSoon } from "../../store/ComingSoonSlice";
 import InternshipCard from "./InternshipCard/InternshipCard";
 import CourseCard from "./CourseCard/CourseCard";
 import OurPartners from "../OurPartners/OurPartners";

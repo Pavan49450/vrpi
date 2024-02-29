@@ -7,11 +7,15 @@ const Instructor = ({ instructorData }) => {
         <div className={style.bar1}></div>
         <div className={style.bar2}></div>
         <div className={style.content}>
-          <img
-            src={require("../../../assets/courses/Instructor2.png")}
-            alt=""
-          />
-          <div>
+          <div className={style.imageContainer}>
+            <img
+              src={require("../../../assets/courses/Instructor2.png")}
+              alt=""
+            />
+          </div>
+          <div className={style.description}>
+            <h2>Hii!!</h2>
+            <h2>I’m {instructorData.name} Your Instructor for this Course</h2>
             {console.log("data->", instructorData)}
             {instructorData.description.map((x) => (
               <p>{x}</p>

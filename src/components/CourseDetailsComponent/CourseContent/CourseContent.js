@@ -3,7 +3,7 @@ import styles from "./CourseContent.module.css"; // Import your modular CSS file
 import Section from "../../../UI/Sections/Section";
 import Button from "../../../UI/Button/Button";
 import { useDispatch } from "react-redux";
-import { setComingSoon } from "../../../store/CommingSoonSlice";
+import { setComingSoon } from "../../../store/ComingSoonSlice";
 
 const CourseContent = ({ courseContent }) => {
   const [openChapters, setOpenChapters] = useState([]);

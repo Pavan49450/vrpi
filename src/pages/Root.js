@@ -12,11 +12,11 @@ import {
 } from "../data/NavData";
 import Footer from "../components/Layout/Footer/Footer";
 import JoinUs from "../components/JoinUs/JoinUs";
-import CommingSoon from "../UI/CommingSoon/CommingSoon";
+import ComingSoon from "../UI/ComingSoon/ComingSoon";
 
-const hideHeaderRoutes = ["/register"];
+const hideHeaderRoutes = ["/login", "/signup"];
 
-const buttons = [{ name: "Sign up", link: "register", active: false }];
+const buttons = [{ name: "Login", link: "/login", active: true }];
 
 const RootLayout = () => {
   const location = useLocation();
@@ -34,7 +34,7 @@ const RootLayout = () => {
 
   return (
     <div className={style.root}>
-      <CommingSoon />
+      <ComingSoon />
       {!isHeaderHidden && (
         <Header
           links={headerLinks}
@@ -46,14 +46,16 @@ const RootLayout = () => {
       <main className={style.main}>
         <Outlet />
       </main>
-      <JoinUs />
+      {!isHeaderHidden && <JoinUs />}
 
-      <Footer
-        links={footerLinks}
-        quickLinks={quickLinks}
-        ContactUs={ContactUs}
-        JoinUsBarData={JoinUsBarData}
-      />
+      {!isHeaderHidden && (
+        <Footer
+          links={footerLinks}
+          quickLinks={quickLinks}
+          ContactUs={ContactUs}
+          JoinUsBarData={JoinUsBarData}
+        />
+      )}
     </div>
   );
 };

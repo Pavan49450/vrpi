@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import style from "./CommingSoon.module.css";
+import style from "./ComingSoon.module.css";
 import BackgroundOverlay from "../Backlay/Backlay";
-import { setComingSoon } from "../../store/CommingSoonSlice";
+import { setComingSoon } from "../../store/ComingSoonSlice";
 
-const CommingSoon = () => {
+const ComingSoon = () => {
   const dispatch = useDispatch();
-  const isComingSoon = useSelector((state) => state.commingSoon.isComingSoon);
+  const isComingSoon = useSelector((state) => state.comingSoon.isComingSoon);
 
   const handleCloseOverlay = () => {
     dispatch(setComingSoon(false));
@@ -54,4 +54,4 @@ const CommingSoon = () => {
   );
 };
 
-export default CommingSoon;
+export default ComingSoon;

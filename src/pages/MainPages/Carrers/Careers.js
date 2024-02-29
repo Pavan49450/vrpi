@@ -1,4 +1,4 @@
-import CommingSoon from "../../../UI/CommingSoon/CommingSoon";
+import CommingSoon from "../../../UI/ComingSoon/ComingSoon";
 
 export default function Careers() {
   return <CommingSoon show={true} />;

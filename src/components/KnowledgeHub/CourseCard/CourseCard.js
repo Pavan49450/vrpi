@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import style from "./CourseCard.module.css";
 import { useDispatch } from "react-redux";
-import { setComingSoon } from "../../../store/CommingSoonSlice";
+import { setComingSoon } from "../../../store/ComingSoonSlice";
 import Button from "../../../UI/Button/Button";
 
 const CourseCard = ({ key, CardDetails }) => {
@@ -20,12 +20,12 @@ const CourseCard = ({ key, CardDetails }) => {
         ></img>
         <div className={style.cardContent}>
           <Link
-            to={`/edutech/${CardDetails.id}`}
+            // to={`/edutech/${CardDetails.id}`}
             className={style.link}
             onClick={handleClick}
           >
             <Button
-              // onClick={() => dispatch(setComingSoon(true))}
+              onClick={() => dispatch(setComingSoon(true))}
               className={style.btn}
             >
               Learn More

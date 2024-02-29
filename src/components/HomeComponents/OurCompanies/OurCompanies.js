@@ -6,7 +6,7 @@ import CirclarText from "../../../UI/CircularText/CircularText";
 import { useNavigate } from "react-router-dom";
 import Button from "../../../UI/Button/Button";
 import { useDispatch } from "react-redux";
-import { setComingSoon } from "../../../store/CommingSoonSlice";
+import { setComingSoon } from "../../../store/ComingSoonSlice";
 const OurCompanies = () => {
   const [selectedCompany, setSelectedCompany] = useState(Companies[0]);
 

@@ -90,7 +90,18 @@
 
 .viewBtn {
   font-size: 1.2rem;
-  /* font-weight: 500; */
-  width: 180px;
+  min-width: 180px;
   padding: 0.8rem 0;
+}
+
+@media (max-width: 600px) {
+  .realProject {
+    flex-direction: column;
+  }
+  .viewBtn {
+    font-size: 1rem;
+  }
+  .realProject h2 {
+    font-size: 1rem;
+  }
 }

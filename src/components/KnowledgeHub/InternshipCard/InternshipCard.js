@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import style from "./InternshipCard.module.css";
 import { useDispatch } from "react-redux";
-import { setComingSoon } from "../../../store/CommingSoonSlice";
+import { setComingSoon } from "../../../store/ComingSoonSlice";
 
 const InternshipCard = ({ key, CardDetails }) => {
   const dispatch = useDispatch();

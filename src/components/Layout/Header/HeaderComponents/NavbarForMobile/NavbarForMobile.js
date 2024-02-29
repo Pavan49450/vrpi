@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import style from "./NavbarForMobile.module.css";
 import { useDispatch } from "react-redux";
-import { setComingSoon } from "../../../../../store/CommingSoonSlice";
+import { setComingSoon } from "../../../../../store/ComingSoonSlice";
 
 function NavbarForMobile({ navElements }) {
   const { pathname } = useLocation();
