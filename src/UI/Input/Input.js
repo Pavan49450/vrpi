@@ -11,6 +11,8 @@ const CustomInput = ({
   className,
   ref,
   style,
+  onBlur,
+  onFocus,
   // isInvalid,
 }) => {
   const combinedClassName = `${styles.input} ${className}`;
@@ -31,6 +33,8 @@ const CustomInput = ({
       isFocus={isFocus}
       isBlur={isBlur}
       style={{ style }}
+      onFocus={onFocus}
+      onBlur={onBlur}
     />
   );
 };

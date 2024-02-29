@@ -20,10 +20,31 @@
   border: 1px solid var(--darkInvalidColor);
 }
 
-.passwordValidation {
+.invalidText {
+  font-size: 0.9rem;
+  color: var(--darkInvalidColor);
+  margin-left: 0.5rem;
+  margin-top: 0.5rem;
+}
+.passwordValidationContainer {
   position: absolute;
-  bottom: -42px;
+  top: 42px;
   background-color: var(--white);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  box-shadow: 0px 0px 3px var(--primary);
+  padding: 0.5rem;
+}
+.passwordValidation {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.passwordValidation p {
+  font-size: 0.9rem;
 }
 
 .submitBtn {
@@ -38,6 +59,7 @@
   text-decoration: none;
   padding: 0.5rem 0;
   border: 1px solid var(--primary);
+  margin-top: 1rem;
 }
 
 .submitBtn:hover {
@@ -71,6 +93,12 @@
   right: 0;
   padding: 0.5rem;
   cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.checkPassword:hover {
+  transform: rotate(360deg);
+  transition: all 0.1s ease;
 }
 
 .checkPassword:active {
@@ -113,7 +141,7 @@
 
 .checkboxContainer {
   display: flex;
-  align-items: flex-start;
+  /* align-items: flex-start; */
 }
 
 .checkboxContainer label {
@@ -128,6 +156,11 @@
   /* font-family: "Libre Baskerville", serif; */
 }
 
+.forgotPasswordLink:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--primary);
+}
+
 .forgotPasswordLink a {
   text-decoration: none;
   color: var(--primary);
@@ -136,12 +169,19 @@
 .Club {
   display: flex;
   width: 100%;
+  flex-direction: column;
+}
+
+.checkBoxes {
+  display: flex;
+  width: 100%;
   justify-content: space-between;
+  flex-direction: column;
   gap: 1rem;
 }
 
 @media (max-width: 800px) {
   .card {
-    width: 90%;
+    width: 100%;
   }
 }
