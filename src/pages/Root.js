@@ -43,7 +43,10 @@ const RootLayout = () => {
           JoinUsBarData={JoinUsBarData}
         />
       )}
-      <main className={style.main}>
+      <main
+        className={style.main}
+        style={{ marginTop: isHeaderHidden && "0px" }}
+      >
         <Outlet />
       </main>
       {!isHeaderHidden && <JoinUs />}

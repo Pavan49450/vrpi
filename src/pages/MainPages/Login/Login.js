@@ -1,3 +1,4 @@
+import LoginForm from "../../../components/Login/LoginForm/LoginForm";
 import SignUpOrLoginContainer from "../../../components/SignUpOrLoginContainer/SignUpOrLoginConatainer";
 import style from "./Login.module.css";
 
@@ -11,7 +12,7 @@ const loginScreenData = {
 const Login = () => {
   return (
     <SignUpOrLoginContainer screenData={loginScreenData}>
-      Hey
+      <LoginForm />
     </SignUpOrLoginContainer>
   );
 };

@@ -1,0 +1,147 @@
+.card {
+  max-width: 500px;
+  background: linear-gradient(to bottom right, #ffffff5e, #ffffff2d);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  gap: 1rem;
+  padding-top: 2rem;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.invalid {
+  border: 1px solid var(--darkInvalidColor);
+}
+
+.passwordValidation {
+  position: absolute;
+  bottom: -42px;
+  background-color: var(--white);
+}
+
+.submitBtn {
+  background-color: var(--primary);
+  width: 70%;
+  border: none;
+  color: white;
+  border-radius: 4px;
+  font-size: 1.2rem;
+  transition: all 0.5s ease;
+  text-align: center;
+  text-decoration: none;
+  padding: 0.5rem 0;
+  border: 1px solid var(--primary);
+}
+
+.submitBtn:hover {
+  background: transparent;
+  color: var(--primary);
+}
+
+.signUpBtn {
+  background-color: transparent;
+  width: 70%;
+  border: none;
+  color: var(--primary);
+  border-radius: 4px;
+  font-size: 1.2rem;
+  /* font-family: "Libre Baskerville", serif; */
+  /* margin-right: 15px; */
+  transition: all 0.5s ease;
+  text-align: center;
+  text-decoration: none;
+  padding: 0.5rem 0;
+  border: 1px solid var(--primary);
+}
+
+.signUpBtn:hover {
+  background-color: transparent;
+  color: var(--primary);
+}
+
+.checkPassword {
+  position: absolute;
+  right: 0;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+.checkPassword:active {
+  opacity: 0.4;
+  transition: opacity 0.1s ease;
+}
+
+/* .submitBtn */
+
+.socialIconBtn {
+  background-color: transparent;
+  width: 100%;
+  border: 1px solid var(--primary);
+  color: white;
+  border-radius: 20px;
+  font-size: 1rem;
+  /* font-family: "Libre Baskerville", serif; */
+  margin-right: 15px;
+  transition: all 0.5s ease;
+  text-align: center;
+  text-decoration: none;
+  padding: 0.5rem 0;
+  margin: 0.5rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.socialIconBtn:hover {
+  background-color: var(--primary);
+}
+
+.socialLoginButtons {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+  justify-content: space-around;
+}
+
+.checkboxContainer {
+  display: flex;
+  align-items: flex-start;
+}
+
+.checkboxContainer label {
+  font-size: 0.8rem;
+  /* font-family: "Libre Baskerville", serif; */
+  color: black;
+}
+
+.forgotPasswordLink,
+.line {
+  font-size: 0.8rem;
+  /* font-family: "Libre Baskerville", serif; */
+}
+
+.forgotPasswordLink a {
+  text-decoration: none;
+  color: var(--primary);
+}
+
+.Club {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+@media (max-width: 800px) {
+  .card {
+    width: 90%;
+  }
+}
