@@ -73,3 +73,9 @@
     font-size: 1rem;
   }
 } */
+
+@media (min-width: 799px) {
+  .commingSoon {
+    transform: translate(-50%, 25%);
+  }
+}
