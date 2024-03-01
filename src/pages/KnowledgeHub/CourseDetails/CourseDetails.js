@@ -40,7 +40,10 @@ const CourseDetails = () => {
   return (
     <div className={style.container}>
       {content && <CourseDetailsComponent content={content} />}
-      <AllCardsSection data={internshipId ? InternshipsData : EduTechData} />
+      <AllCardsSection
+        data={internshipId ? InternshipsData : EduTechData}
+        ifCourseDetails={true}
+      />
       <Section title="Get In Touch with us">
         <ContactUsForm />
       </Section>

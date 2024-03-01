@@ -3,5 +3,11 @@
   display: grid;
   gap: 20px;
   grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-  /* justify-items: center; */
+  justify-items: center;
+}
+
+.forDetailsPage {
+  /* margin: 0;
+   */
+  justify-items: start;
 }

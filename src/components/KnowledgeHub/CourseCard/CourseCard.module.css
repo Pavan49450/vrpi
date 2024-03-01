@@ -84,6 +84,7 @@
   }
   .card {
     width: 90vw;
+    /* margin: auto; */
   }
   .link {
     justify-content: center;

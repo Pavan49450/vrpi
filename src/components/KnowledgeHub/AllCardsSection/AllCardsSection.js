@@ -3,7 +3,7 @@ import CourseCard from "../CourseCard/CourseCard";
 import InternshipCard from "../InternshipCard/InternshipCard";
 import style from "./AllCardSection.module.css";
 
-const AllCardsSection = ({ data }) => {
+const AllCardsSection = ({ data, ifCourseDetails }) => {
   const onlineCourses =
     data.Courses && data.Courses.filter((course) => course.type === "online");
 
@@ -64,7 +64,12 @@ const AllCardsSection = ({ data }) => {
                     highlightWord={courseSection.highlightWord}
                     viewAll={courseSection.courses.length >= 5}
                   >
-                    <div className={style.cardStack}>
+                    {console.log("ifCourseDetails", ifCourseDetails)}
+                    <div
+                      className={`${style.cardStack} ${
+                        ifCourseDetails === true && style.forDetailsPage
+                      } `}
+                    >
                       {courseSection.courses.map((CardDetails) => {
                         return <CourseCard CardDetails={CardDetails} />;
                       })}
