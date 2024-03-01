@@ -6,8 +6,7 @@ const CustomInput = ({
   value,
   onChange,
   type = "text",
-  isBlur,
-  isFocus,
+
   className,
   ref,
   style,
@@ -30,8 +29,6 @@ const CustomInput = ({
       value={value}
       onChange={onChange}
       ref={ref}
-      isFocus={isFocus}
-      isBlur={isBlur}
       style={{ style }}
       onFocus={onFocus}
       onBlur={onBlur}

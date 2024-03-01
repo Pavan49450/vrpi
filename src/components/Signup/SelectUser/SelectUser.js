@@ -1,6 +1,8 @@
 import { useState } from "react";
-import Button from "../../UI/Button/Button";
+import Button from "../../../UI/Button/Button";
 import style from "./SelectUser.module.css";
+import { useDispatch } from "react-redux";
+import { setUser } from "../../../store/UserSlice";
 
 const users = [
   {
@@ -21,6 +23,7 @@ const users = [
 
 const SelectUser = () => {
   const [selectedRole, setSelectedRole] = useState("");
+  const dispatch = useDispatch();
 
   return (
     <div className={style.container}>
@@ -32,28 +35,28 @@ const SelectUser = () => {
         </p>
       </div>
       <div className={style.users}>
-        {users.map((user) => (
+        {users.map((user, index) => (
           <div
             className={`${style.user} ${
               user.userRole === selectedRole && style.selected
             }`}
+            key={index}
             onClick={() => setSelectedRole(user.userRole)}
             // style={{}}
           >
             <img
-              src={require(`../../assets/SelectUser/${user.image}`)}
+              src={require(`../../../assets/SelectUser/${user.image}`)}
               alt="student welcome pic"
             />
             <h2>I'm a {user.userName}</h2>
             <p>{user.description}</p>
-            {/* <Button onClick={() => {}} className={style.signUpBtn}>
-              Sign-up
-            </Button> */}
           </div>
         ))}
       </div>
       <Button
-        onClick={() => {}}
+        onClick={() => {
+          dispatch(setUser({ role: selectedRole, step: 1 }));
+        }}
         className={`${style.continueBtn} ${
           selectedRole !== "" && style.btnActive
         }`}

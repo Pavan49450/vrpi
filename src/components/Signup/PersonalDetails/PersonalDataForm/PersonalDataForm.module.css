@@ -1,0 +1,13 @@
+@import url(../../../Login/LoginForm/LoginForm.module.css);
+
+.form {
+  width: 100%;
+}
+
+.note {
+  margin: 1.5rem;
+}
+
+.important {
+  color: red;
+}

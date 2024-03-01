@@ -1,22 +1,39 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SignUpOrLoginContainer from "../../../components/SignUpOrLoginContainer/SignUpOrLoginConatainer";
-import SelectUser from "../../../components/Signup/SelectUser";
+import SelectUser from "../../../components/Signup/SelectUser/SelectUser";
+import { useSelector } from "react-redux";
+import PersonalDetails from "../../../components/Signup/PersonalDetails/PersonalDetails";
 
-const signUpScreenData = {
+const welcomePageScreenData = {
   title: "Welcome!!",
   description:
     "Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur.",
   image: "welcomePageImage.svg",
 };
+const personalPageScreenData = {
+  title: "Create Account",
+  description:
+    "Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur.",
+  image: "personalDetailsPageImage.svg",
+};
 
 const SignUp = () => {
-  const [user, setUser] = useState(null);
+  const userState = useSelector((state) => state.user);
+
+  useEffect(() => {
+    console.log("userState->", userState);
+  }, [userState]);
+
   return (
     <>
-      {console.log(user)}
-      {user == null && (
-        <SignUpOrLoginContainer screenData={signUpScreenData}>
+      {userState.role === null && userState.step === null && (
+        <SignUpOrLoginContainer screenData={welcomePageScreenData}>
           <SelectUser />
+        </SignUpOrLoginContainer>
+      )}
+      {userState.role === "student" && userState.step === 1 && (
+        <SignUpOrLoginContainer screenData={personalPageScreenData}>
+          <PersonalDetails />
         </SignUpOrLoginContainer>
       )}
     </>
