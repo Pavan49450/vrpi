@@ -138,7 +138,12 @@ const LoginForm = () => {
         Login
       </Button>
       <div className={style.line}>Don’t have an Account?</div>
-      <Button onClick={() => {}} className={style.signUpBtn}>
+      <Button
+        onClick={() => {
+          navigate("/signup");
+        }}
+        className={style.signUpBtn}
+      >
         Sign-up
       </Button>
     </div>
@@ -220,7 +225,7 @@ const CheckboxSection = ({ setRememberMe, setTermsAccepted }) => (
           }}
         >
           Privacy Policy
-        </NavLink>{" "}
+        </NavLink>
       </label>
     </div>
   </div>

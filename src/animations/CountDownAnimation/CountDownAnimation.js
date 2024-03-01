@@ -8,7 +8,6 @@ const CountDownAnimation = ({ endNumber, time }) => {
   useEffect(() => {
     const intervalTime = (time / endNumber) * 1000;
     if (count >= endNumber) {
-      console.log("here", endNumber);
       setReachedEnd(true);
     }
     const interval = setInterval(() => {

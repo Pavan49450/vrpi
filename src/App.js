@@ -14,9 +14,9 @@ import Internships from "./pages/KnowledgeHub/Internships";
 import EduTech from "./pages/KnowledgeHub/EduTech";
 import ContactUs from "./pages/MainPages/ContactUs/ContactUs";
 import CourseDetails from "./pages/KnowledgeHub/CourseDetails/CourseDetails";
-import SignUp from "./pages/MainPages/SignUp/SignUp";
+import SignUp from "./pages/Login&Signup/SignUp/SignUp";
 
-import Login from "./pages/MainPages/Login/Login";
+import Login from "./pages/Login&Signup/Login/Login";
 
 function App() {
   const router = createBrowserRouter([

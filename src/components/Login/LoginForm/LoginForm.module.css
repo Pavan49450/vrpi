@@ -96,10 +96,10 @@
   transition: all 0.3s ease;
 }
 
-.checkPassword:hover {
+/* .checkPassword:hover {
   transform: rotate(360deg);
   transition: all 0.1s ease;
-}
+} */
 
 .checkPassword:active {
   opacity: 0.4;
