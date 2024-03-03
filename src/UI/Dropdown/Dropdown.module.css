@@ -1,12 +1,18 @@
 .customDropdown {
   position: relative;
-  width: 200px;
+  max-width: 400px;
 }
 
 .selectedOption {
-  padding: 10px;
-  border: 1px solid #ccc;
+  color: #a7a7a7;
+  border: 1px solid var(--primary);
   cursor: pointer;
+  border-radius: 5px;
+  padding: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 42px;
 }
 
 .arrow {
@@ -32,18 +38,20 @@
   left: 0;
   width: 100%;
   background-color: var(--white);
-  border: 1px solid #ccc;
+  border: 1px solid var(--primary);
   border-top: none;
   list-style-type: none;
   padding: 0;
   margin: 0;
   opacity: 0;
-  transform: translateY(-10px);
+  z-index: -10;
+  transform: translateY(-50px);
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-.options.active {
+.optionsActive {
   opacity: 1;
+  z-index: 1;
   transform: translateY(0);
 }
 

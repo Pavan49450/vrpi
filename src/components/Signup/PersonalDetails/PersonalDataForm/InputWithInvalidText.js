@@ -18,7 +18,7 @@ const InputWithInvalidText = ({ ErrorMessage, inputFields, className }) => {
         <p
           className={style.invalidText}
           style={{
-            display: inputFields.isInvalid ? "block" : "none",
+            opacity: inputFields.isInvalid ? "1" : "0",
           }}
         >
           {ErrorMessage}

@@ -1,5 +1,13 @@
 import useInput from "../../../../hooks/use-Input";
-import { nameValidation } from "./InputValidations";
+import {
+  nameValidation,
+  mobileNumberValidation,
+  emailValidation,
+  aadhaarValidation,
+  passwordValidation,
+  confirmPasswordValidation,
+  addressValidation,
+} from "./InputValidations";
 // import InputWithInvalidText from "./InputWithInvalidText";
 import style from "./PersonalDataForm.module.css";
 import Dropdown from "../../../../UI/Dropdown/Dropdown";
@@ -8,6 +16,7 @@ import CustomDropDown from "../../../../UI/CustomDropDown/CustomDropDown";
 import CustomInput from "../../../../UI/Input/Input";
 import InputWithInvalidText from "./InputWithInvalidText";
 import Button from "../../../../UI/Button/Button";
+import CustomFileUploader from "../../../../UI/FileUploader/FileUploader";
 
 // import CustomDropDown from "../../../../UI/CustomDropDown/CustomDropDown";
 const Genders = [
@@ -16,23 +25,94 @@ const Genders = [
   { value: "others", label: "Others" },
 ];
 
+const Occupations = [
+  { value: "student", label: "Student" },
+  { value: "working professional", label: "Working Professional" },
+  { value: "entrepreneur", label: "Entrepreneur" },
+];
+
 const PersonalDataForm = () => {
   const firstNameInput = useInput({ validateValue: nameValidation });
   const lastNameInput = useInput({ validateValue: nameValidation });
 
   const fatherNameInput = useInput({ validateValue: nameValidation });
-  const mobileNumberInput = useInput({ validateValue: nameValidation });
+  const mobileNumberInput = useInput({ validateValue: mobileNumberValidation });
   const DOBInput = useInput({ validateValue: nameValidation });
 
-  const permanentInput = useInput({ validateValue: nameValidation });
+  const permanentInput = useInput({ validateValue: addressValidation });
 
-  const emailInput = useInput({ validateValue: nameValidation });
-  const passwordInput = useInput({ validateValue: nameValidation });
-  const confirmPasswordInput = useInput({ validateValue: nameValidation });
-  const aadhaarInput = useInput({ validateValue: nameValidation });
+  const emailInput = useInput({ validateValue: emailValidation });
+  const passwordInput = useInput({ validateValue: passwordValidation });
+  const confirmPasswordInput = useInput({
+    validateValue: confirmPasswordValidation,
+  });
+  const aadhaarInput = useInput({ validateValue: aadhaarValidation });
 
   const [gender, setGender] = useState();
+  const [occupation, setOccupation] = useState();
 
+  const [aadhaarCardFile, setAadhaarCardFile] = useState(null);
+  const [passportFile, setPassportFile] = useState(null);
+
+  const [formIsValid, setFormIsValid] = useState(false);
+
+  const handleAadhaarCardChange = (file) => {
+    setAadhaarCardFile(file);
+  };
+
+  const handlePassportChange = (file) => {
+    setPassportFile(file);
+  };
+
+  useEffect(() => {
+    // Check if all input fields are valid
+    const isFormValid =
+      firstNameInput.isValid &&
+      lastNameInput.isValid &&
+      fatherNameInput.isValid &&
+      mobileNumberInput.isValid &&
+      DOBInput.isValid &&
+      permanentInput.isValid &&
+      emailInput.isValid &&
+      passwordInput.isValid &&
+      confirmPasswordInput.isValid &&
+      aadhaarInput.isValid;
+
+    // Update formIsValid state
+    setFormIsValid(isFormValid);
+  }, [
+    firstNameInput.isValid,
+    lastNameInput.isValid,
+    fatherNameInput.isValid,
+    mobileNumberInput.isValid,
+    DOBInput.isValid,
+    permanentInput.isValid,
+    emailInput.isValid,
+    passwordInput.isValid,
+    confirmPasswordInput.isValid,
+    aadhaarInput.isValid,
+  ]);
+
+  const handleSubmit = () => {
+    // Perform validation or other actions here
+    const formData = {
+      firstName: firstNameInput.value,
+      lastName: lastNameInput.value,
+      fatherName: fatherNameInput.value,
+      mobileNumber: mobileNumberInput.value,
+      gender,
+      DOB: DOBInput.value,
+      permanentAddress: permanentInput.value,
+      email: emailInput.value,
+      password: passwordInput.value,
+      confirmPassword: confirmPasswordInput.value,
+      occupation,
+      aadhaarNumber: aadhaarInput.value,
+      aadhaarCardFile,
+      passportFile,
+    };
+    console.log(formData);
+  };
   const Line1 = (
     <div className={style.line1}>
       <InputWithInvalidText
@@ -79,26 +159,14 @@ const PersonalDataForm = () => {
           type: "text",
         }}
       />
-      {/* {console.log("gender", gender)}
-          <CustomDropDown
-            options={Genders}
-            onSelect={(gender) => setGender(gender)}
-            placeholder="Gender"
-          /> */}
-
-      <InputWithInvalidText
-        ErrorMessage={"Invalid Last Name"}
-        className={`${style.Input} ${style.date}`}
-        inputFields={{
-          placeholder: "Mobile Number",
-          value: mobileNumberInput.value,
-          isInvalid: mobileNumberInput.hasError,
-          onBlurHandler: mobileNumberInput.validateValueHandler,
-          onFocusHandler: mobileNumberInput.focusHandler,
-          onChange: mobileNumberInput.valueChangeHandler,
-          type: "text",
-        }}
+      {console.log("gender", gender)}
+      <Dropdown
+        options={Genders}
+        onSelect={(gender) => setGender(gender)}
+        placeholder="Gender"
+        style={{ marginBottom: "21.6px" }}
       />
+
       <InputWithInvalidText
         ErrorMessage={"Invalid Last Name"}
         className={style.Input}
@@ -116,7 +184,7 @@ const PersonalDataForm = () => {
   );
 
   const Line3 = (
-    <div>
+    <div className={style.line3}>
       <InputWithInvalidText
         ErrorMessage={"Invalid Last Name"}
         className={`${style.Input} ${style.date}`}
@@ -197,18 +265,11 @@ const PersonalDataForm = () => {
 
   const Line6 = (
     <div className={style.line6}>
-      <InputWithInvalidText
-        ErrorMessage={"Invalid Aadhaar Card Number"}
-        className={`${style.Input} `}
-        inputFields={{
-          placeholder: "Aadhaar Card Number",
-          value: aadhaarInput.value,
-          isInvalid: aadhaarInput.hasError,
-          onBlurHandler: aadhaarInput.validateValueHandler,
-          onFocusHandler: aadhaarInput.focusHandler,
-          onChange: aadhaarInput.valueChangeHandler,
-          type: "text",
-        }}
+      <Dropdown
+        options={Occupations}
+        onSelect={(selectedOccupation) => setOccupation(selectedOccupation)}
+        placeholder="Occupation"
+        style={{ marginBottom: "21.6px" }}
       />
       <InputWithInvalidText
         ErrorMessage={"Invalid Aadhaar Card Number"}
@@ -226,6 +287,34 @@ const PersonalDataForm = () => {
     </div>
   );
 
+  const Line7 = (
+    <div className={style.line7}>
+      <div>
+        <CustomFileUploader
+          onChange={handleAadhaarCardChange}
+          buttonText="Upload Aadhaar Card"
+          acceptedFileType={["image/jpeg", "image/png", "image/pdf"]}
+        />
+        <ul>
+          <li>Should contain Front & Back</li>
+          <li>Can be png. pdf. jpeg</li>
+          <li>File size should be 5MB</li>
+        </ul>
+      </div>
+      <div>
+        <CustomFileUploader
+          onChange={handlePassportChange}
+          buttonText="Upload Passport"
+          acceptedFileType={["image/jpeg", "image/png"]}
+        />
+        <ul>
+          <li>Can be png. pdf. jpeg</li>
+          <li>File size must should be 5MB</li>
+        </ul>
+      </div>
+    </div>
+  );
+
   return (
     <div className={style.form}>
       <p className={style.note}>
@@ -239,8 +328,17 @@ const PersonalDataForm = () => {
         {Line4}
         {Line5}
         {Line6}
+        {Line7}
       </div>
-      <Button onClick={() => {}}>Save & Submit</Button>
+      <div className={style.buttonContainer}>
+        <Button
+          onClick={handleSubmit}
+          className={style.submitBtn}
+          disabled={formIsValid}
+        >
+          Save & Submit
+        </Button>
+      </div>
     </div>
   );
 };
