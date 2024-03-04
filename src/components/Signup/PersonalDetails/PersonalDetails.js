@@ -4,7 +4,7 @@ import PersonalDataForm from "./PersonalDataForm/PersonalDataForm";
 import style from "./PersonalDetails.module.css";
 
 const PersonalDetails = () => {
-  const userState = useSelector(selectUser);
+  // const userState = useSelector(selectUser);
   const dispatch = useDispatch();
   return (
     <div className={style.container}>

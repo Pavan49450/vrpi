@@ -4,7 +4,6 @@
 }
 
 .selectedOption {
-  color: #a7a7a7;
   border: 1px solid var(--primary);
   cursor: pointer;
   border-radius: 5px;

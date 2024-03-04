@@ -17,7 +17,11 @@ const Dropdown = ({ options, onSelect, placeholder, className, style }) => {
 
   return (
     <div className={`${styles.customDropdown} ${className}`} style={style}>
-      <div className={styles.selectedOption} onClick={toggleDropdown}>
+      <div
+        className={styles.selectedOption}
+        onClick={toggleDropdown}
+        style={{ color: selectedOption ? "#000" : "#a7a7a7" }}
+      >
         {selectedOption ? selectedOption.label : placeholder}
         {/* <span className={`${styles.arrow} ${isOpen ? styles.open : ""}`}></span> */}
         <img

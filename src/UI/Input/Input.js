@@ -13,26 +13,32 @@ const CustomInput = ({
   onBlur,
   onFocus,
   // isInvalid,
+  mandatory, // Add a prop to indicate if the input is mandatory
 }) => {
+  // Combine the provided className with the CSS module className
   const combinedClassName = `${styles.input} ${className}`;
 
-  // Define the dynamic style for borderBottom
-  // const dynamicStyle = {
-  //   borderBottom: isInvalid ? "2px solid red" : "2px solid #ccc",
-  // };
+  // Add the mandatorySign class conditionally
+  const inputClasses = mandatory
+    ? `${combinedClassName} ${styles.mandatorySign}`
+    : combinedClassName;
 
   return (
-    <input
-      className={combinedClassName}
-      type={type}
-      placeholder={placeholder}
-      value={value}
-      onChange={onChange}
-      ref={ref}
-      style={{ style }}
-      onFocus={onFocus}
-      onBlur={onBlur}
-    />
+    // <div className={styles.inputContainer}>
+    <>
+      <input
+        className={inputClasses}
+        type={type}
+        placeholder={`${placeholder} ${mandatory === "true" ? "*" : ""}`}
+        value={value}
+        onChange={onChange}
+        ref={ref}
+        style={style} // Don't wrap style in another object
+        onFocus={onFocus}
+        onBlur={onBlur}
+      />
+      {/* <span className={styles.mandatorySign}>*</span> */}
+    </>
   );
 };
 

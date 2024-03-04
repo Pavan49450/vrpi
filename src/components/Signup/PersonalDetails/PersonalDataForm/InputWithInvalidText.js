@@ -1,6 +1,11 @@
 import CustomInput from "../../../../UI/Input/Input";
 import style from "./PersonalDataForm.module.css";
-const InputWithInvalidText = ({ ErrorMessage, inputFields, className }) => {
+const InputWithInvalidText = ({
+  ErrorMessage,
+  inputFields,
+  className,
+  mandatory,
+}) => {
   return (
     <div className={`${style.InputContainer}  ${className}`}>
       <CustomInput
@@ -13,6 +18,7 @@ const InputWithInvalidText = ({ ErrorMessage, inputFields, className }) => {
         onBlur={inputFields.onBlurHandler}
         onChange={inputFields.onChange}
         type={inputFields.type}
+        mandatory={mandatory}
       />
       {
         <p

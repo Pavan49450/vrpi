@@ -17,6 +17,7 @@ import CustomInput from "../../../../UI/Input/Input";
 import InputWithInvalidText from "./InputWithInvalidText";
 import Button from "../../../../UI/Button/Button";
 import CustomFileUploader from "../../../../UI/FileUploader/FileUploader";
+import CustomDatePicker from "../../../../UI/DatePIcker/DatePIcker";
 
 // import CustomDropDown from "../../../../UI/CustomDropDown/CustomDropDown";
 const Genders = [
@@ -37,7 +38,9 @@ const PersonalDataForm = () => {
 
   const fatherNameInput = useInput({ validateValue: nameValidation });
   const mobileNumberInput = useInput({ validateValue: mobileNumberValidation });
-  const DOBInput = useInput({ validateValue: nameValidation });
+  // const DOBInput = useInput({ validateValue: nameValidation });
+
+  const [DOB, setDOB] = useState();
 
   const permanentInput = useInput({ validateValue: addressValidation });
 
@@ -71,7 +74,7 @@ const PersonalDataForm = () => {
       lastNameInput.isValid &&
       fatherNameInput.isValid &&
       mobileNumberInput.isValid &&
-      DOBInput.isValid &&
+      // DOBInput.isValid &&
       permanentInput.isValid &&
       emailInput.isValid &&
       passwordInput.isValid &&
@@ -85,7 +88,7 @@ const PersonalDataForm = () => {
     lastNameInput.isValid,
     fatherNameInput.isValid,
     mobileNumberInput.isValid,
-    DOBInput.isValid,
+    // DOBInput.isValid,
     permanentInput.isValid,
     emailInput.isValid,
     passwordInput.isValid,
@@ -101,7 +104,7 @@ const PersonalDataForm = () => {
       fatherName: fatherNameInput.value,
       mobileNumber: mobileNumberInput.value,
       gender,
-      DOB: DOBInput.value,
+      DOB: DOB,
       permanentAddress: permanentInput.value,
       email: emailInput.value,
       password: passwordInput.value,
@@ -127,6 +130,7 @@ const PersonalDataForm = () => {
           onChange: firstNameInput.valueChangeHandler,
           type: "text",
         }}
+        mandatory="true"
       />
       <InputWithInvalidText
         ErrorMessage={"Invalid Last Name"}
@@ -140,6 +144,7 @@ const PersonalDataForm = () => {
           onChange: lastNameInput.valueChangeHandler,
           type: "text",
         }}
+        mandatory="true"
       />
     </div>
   );
@@ -158,16 +163,11 @@ const PersonalDataForm = () => {
           onChange: fatherNameInput.valueChangeHandler,
           type: "text",
         }}
+        mandatory="true"
       />
       {console.log("gender", gender)}
-      <Dropdown
-        options={Genders}
-        onSelect={(gender) => setGender(gender)}
-        placeholder="Gender"
-        style={{ marginBottom: "21.6px" }}
-      />
 
-      <InputWithInvalidText
+      {/* <InputWithInvalidText
         ErrorMessage={"Invalid Last Name"}
         className={style.Input}
         inputFields={{
@@ -179,15 +179,17 @@ const PersonalDataForm = () => {
           onChange: DOBInput.valueChangeHandler,
           type: "date",
         }}
-      />
-    </div>
-  );
+      /> */}
 
-  const Line3 = (
-    <div className={style.line3}>
+      <Dropdown
+        options={Genders}
+        onSelect={(gender) => setGender(gender)}
+        placeholder="Gender *"
+        style={{ marginBottom: "21.6px" }}
+      />
       <InputWithInvalidText
         ErrorMessage={"Invalid Last Name"}
-        className={`${style.Input} ${style.date}`}
+        className={`${style.Input} `}
         inputFields={{
           placeholder: "Mobile Number",
           value: mobileNumberInput.value,
@@ -197,6 +199,18 @@ const PersonalDataForm = () => {
           onChange: mobileNumberInput.valueChangeHandler,
           type: "text",
         }}
+        mandatory="true"
+      />
+    </div>
+  );
+
+  const Line3 = (
+    <div className={style.line3}>
+      <CustomDatePicker
+        selectedDate={DOB}
+        onChange={(date) => setDOB(date)}
+        className={`${style.Input} ${style.date}`}
+        placeholderText="Date of Birth *"
       />
     </div>
   );
@@ -215,6 +229,7 @@ const PersonalDataForm = () => {
           onChange: permanentInput.valueChangeHandler,
           type: "text",
         }}
+        mandatory="true"
       />
     </div>
   );
@@ -233,6 +248,7 @@ const PersonalDataForm = () => {
           onChange: emailInput.valueChangeHandler,
           type: "email",
         }}
+        mandatory="true"
       />
       <InputWithInvalidText
         ErrorMessage={"Invalid Password"}
@@ -246,6 +262,7 @@ const PersonalDataForm = () => {
           onChange: passwordInput.valueChangeHandler,
           type: "password",
         }}
+        mandatory="true"
       />
       <InputWithInvalidText
         ErrorMessage={"Invalid Confirm Password"}
@@ -259,6 +276,7 @@ const PersonalDataForm = () => {
           onChange: confirmPasswordInput.valueChangeHandler,
           type: "password",
         }}
+        mandatory="true"
       />
     </div>
   );
@@ -268,7 +286,7 @@ const PersonalDataForm = () => {
       <Dropdown
         options={Occupations}
         onSelect={(selectedOccupation) => setOccupation(selectedOccupation)}
-        placeholder="Occupation"
+        placeholder="Occupation *"
         style={{ marginBottom: "21.6px" }}
       />
       <InputWithInvalidText
@@ -292,26 +310,41 @@ const PersonalDataForm = () => {
       <div>
         <CustomFileUploader
           onChange={handleAadhaarCardChange}
-          buttonText="Upload Aadhaar Card"
+          buttonText="Upload Aadhaar Card(Front)"
           acceptedFileType={["image/jpeg", "image/png", "image/pdf"]}
         />
         <ul>
-          <li>Should contain Front & Back</li>
+          {/* <li>Should contain Front & Back</li> */}
           <li>Can be png. pdf. jpeg</li>
           <li>File size should be 5MB</li>
         </ul>
       </div>
       <div>
         <CustomFileUploader
-          onChange={handlePassportChange}
-          buttonText="Upload Passport"
-          acceptedFileType={["image/jpeg", "image/png"]}
+          onChange={handleAadhaarCardChange}
+          buttonText="Upload Aadhaar Card(Back)"
+          acceptedFileType={["image/jpeg", "image/png", "image/pdf"]}
         />
         <ul>
+          {/* <li>Should contain Front & Back</li> */}
           <li>Can be png. pdf. jpeg</li>
-          <li>File size must should be 5MB</li>
+          <li>File size should be 5MB</li>
         </ul>
       </div>
+    </div>
+  );
+
+  const Line8 = (
+    <div className={style.line8}>
+      <CustomFileUploader
+        onChange={handlePassportChange}
+        buttonText="Upload Passport"
+        acceptedFileType={["image/jpeg", "image/png"]}
+      />
+      <ul>
+        <li>Can be png. pdf. jpeg</li>
+        <li>File size must should be 5MB</li>
+      </ul>
     </div>
   );
 
@@ -329,6 +362,7 @@ const PersonalDataForm = () => {
         {Line5}
         {Line6}
         {Line7}
+        {Line8}
       </div>
       <div className={style.buttonContainer}>
         <Button
