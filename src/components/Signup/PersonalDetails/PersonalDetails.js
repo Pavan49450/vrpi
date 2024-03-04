@@ -3,7 +3,7 @@ import { selectUser, setUser } from "../../../store/UserSlice";
 import PersonalDataForm from "./PersonalDataForm/PersonalDataForm";
 import style from "./PersonalDetails.module.css";
 
-const PersonalDetails = () => {
+const PersonalDetails = ({ role }) => {
   // const userState = useSelector(selectUser);
   const dispatch = useDispatch();
   return (
@@ -21,7 +21,7 @@ const PersonalDetails = () => {
           </div>
           <h1 className={style.heading}> 1. Personal Details</h1>
         </div>
-        <PersonalDataForm />
+        <PersonalDataForm role={role} />
       </div>
     </div>
   );

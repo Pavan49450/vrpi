@@ -34,6 +34,11 @@ const addressValidation = (value) => {
   return value.trim() !== ""; // Example: Address must not be empty
 };
 
+const DOBValidation = (value) => {
+  console.log("DOb", value);
+  return value.toString().trim() !== "";
+};
+
 // Add more validation functions as needed
 
 export {
@@ -44,4 +49,5 @@ export {
   passwordValidation,
   confirmPasswordValidation,
   addressValidation,
+  DOBValidation,
 };

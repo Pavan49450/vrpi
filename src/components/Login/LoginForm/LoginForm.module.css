@@ -7,7 +7,7 @@
   flex-direction: column;
   align-items: center;
   padding: 1rem;
-  gap: 1rem;
+  gap: 2rem;
   padding-top: 2rem;
 }
 
@@ -24,8 +24,7 @@
 .invalidText {
   font-size: 0.9rem;
   color: var(--darkInvalidColor);
-  margin-left: 0.5rem;
-  margin-top: 0.5rem;
+  margin: 0.5rem;
 }
 .passwordValidationContainer {
   position: absolute;

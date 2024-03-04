@@ -3,6 +3,7 @@ import SignUpOrLoginContainer from "../../../components/SignUpOrLoginContainer/S
 import SelectUser from "../../../components/Signup/SelectUser/SelectUser";
 import { useSelector } from "react-redux";
 import PersonalDetails from "../../../components/Signup/PersonalDetails/PersonalDetails";
+import ThankyouScreen from "../../../components/Signup/ThankyouScreen/ThankyouScreen";
 
 const welcomePageScreenData = {
   title: "Welcome!!",
@@ -21,7 +22,7 @@ const SignUp = () => {
   const userState = useSelector((state) => state.user);
 
   useEffect(() => {
-    console.log("userState->", userState);
+    // console.log("userState->", userState);
   }, [userState]);
 
   return (
@@ -33,9 +34,11 @@ const SignUp = () => {
       )}
       {userState.role === "student" && userState.step === 1 && (
         <SignUpOrLoginContainer screenData={personalPageScreenData}>
-          <PersonalDetails />
+          <PersonalDetails role="student" />
         </SignUpOrLoginContainer>
       )}
+      {/* {console.log("userState", userState)} */}
+      {userState.step === 2 && <ThankyouScreen />}
     </>
   );
 };

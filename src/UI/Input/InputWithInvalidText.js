@@ -1,5 +1,5 @@
-import CustomInput from "../../../../UI/Input/Input";
-import style from "./PersonalDataForm.module.css";
+import CustomInput from "./Input";
+import style from "./CustomInput.module.css";
 const InputWithInvalidText = ({
   ErrorMessage,
   inputFields,

@@ -7,19 +7,18 @@ import {
   passwordValidation,
   confirmPasswordValidation,
   addressValidation,
+  DOBValidation,
 } from "./InputValidations";
-// import InputWithInvalidText from "./InputWithInvalidText";
 import style from "./PersonalDataForm.module.css";
 import Dropdown from "../../../../UI/Dropdown/Dropdown";
 import { useEffect, useState } from "react";
-import CustomDropDown from "../../../../UI/CustomDropDown/CustomDropDown";
-import CustomInput from "../../../../UI/Input/Input";
-import InputWithInvalidText from "./InputWithInvalidText";
+import InputWithInvalidText from "../../../../UI/Input/InputWithInvalidText";
 import Button from "../../../../UI/Button/Button";
 import CustomFileUploader from "../../../../UI/FileUploader/FileUploader";
 import CustomDatePicker from "../../../../UI/DatePIcker/DatePIcker";
+import { useDispatch } from "react-redux";
+import { setUser } from "../../../../store/UserSlice";
 
-// import CustomDropDown from "../../../../UI/CustomDropDown/CustomDropDown";
 const Genders = [
   { value: "female", label: "Female" },
   { value: "male", label: "Male" },
@@ -32,7 +31,7 @@ const Occupations = [
   { value: "entrepreneur", label: "Entrepreneur" },
 ];
 
-const PersonalDataForm = () => {
+const PersonalDataForm = ({ role }) => {
   const firstNameInput = useInput({ validateValue: nameValidation });
   const lastNameInput = useInput({ validateValue: nameValidation });
 
@@ -47,7 +46,8 @@ const PersonalDataForm = () => {
   const emailInput = useInput({ validateValue: emailValidation });
   const passwordInput = useInput({ validateValue: passwordValidation });
   const confirmPasswordInput = useInput({
-    validateValue: confirmPasswordValidation,
+    validateValue: (value) =>
+      confirmPasswordValidation(value, passwordInput.value),
   });
   const aadhaarInput = useInput({ validateValue: aadhaarValidation });
 
@@ -67,54 +67,60 @@ const PersonalDataForm = () => {
     setPassportFile(file);
   };
 
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    // Check if all input fields are valid
     const isFormValid =
       firstNameInput.isValid &&
       lastNameInput.isValid &&
       fatherNameInput.isValid &&
       mobileNumberInput.isValid &&
-      // DOBInput.isValid &&
+      DOBValidation(DOB) &&
       permanentInput.isValid &&
       emailInput.isValid &&
       passwordInput.isValid &&
       confirmPasswordInput.isValid &&
       aadhaarInput.isValid;
 
-    // Update formIsValid state
     setFormIsValid(isFormValid);
   }, [
+    formIsValid,
     firstNameInput.isValid,
     lastNameInput.isValid,
     fatherNameInput.isValid,
     mobileNumberInput.isValid,
-    // DOBInput.isValid,
     permanentInput.isValid,
     emailInput.isValid,
     passwordInput.isValid,
     confirmPasswordInput.isValid,
     aadhaarInput.isValid,
+    DOB,
   ]);
 
   const handleSubmit = () => {
-    // Perform validation or other actions here
-    const formData = {
-      firstName: firstNameInput.value,
-      lastName: lastNameInput.value,
-      fatherName: fatherNameInput.value,
-      mobileNumber: mobileNumberInput.value,
-      gender,
-      DOB: DOB,
-      permanentAddress: permanentInput.value,
-      email: emailInput.value,
-      password: passwordInput.value,
-      confirmPassword: confirmPasswordInput.value,
-      occupation,
-      aadhaarNumber: aadhaarInput.value,
-      aadhaarCardFile,
-      passportFile,
-    };
-    console.log(formData);
+    if (formIsValid) {
+      const formData = {
+        firstName: firstNameInput.value,
+        lastName: lastNameInput.value,
+        fatherName: fatherNameInput.value,
+        mobileNumber: mobileNumberInput.value,
+        gender,
+        DOB: DOB,
+        permanentAddress: permanentInput.value,
+        email: emailInput.value,
+        password: passwordInput.value,
+        confirmPassword: confirmPasswordInput.value,
+        occupation,
+        aadhaarNumber: aadhaarInput.value,
+        aadhaarCardFile,
+        passportFile,
+      };
+      // console.log(formData);
+
+      dispatch(setUser({ role: role, step: 2 }));
+    } else {
+      alert("invalid fields");
+    }
   };
   const Line1 = (
     <div className={style.line1}>
@@ -165,7 +171,7 @@ const PersonalDataForm = () => {
         }}
         mandatory="true"
       />
-      {console.log("gender", gender)}
+      {/* {console.log("gender", gender)} */}
 
       {/* <InputWithInvalidText
         ErrorMessage={"Invalid Last Name"}
@@ -188,7 +194,7 @@ const PersonalDataForm = () => {
         style={{ marginBottom: "21.6px" }}
       />
       <InputWithInvalidText
-        ErrorMessage={"Invalid Last Name"}
+        ErrorMessage={"Invalid Mobile Number"}
         className={`${style.Input} `}
         inputFields={{
           placeholder: "Mobile Number",
@@ -368,7 +374,8 @@ const PersonalDataForm = () => {
         <Button
           onClick={handleSubmit}
           className={style.submitBtn}
-          disabled={formIsValid}
+          disabled={!formIsValid}
+          style={{ backgroundColor: !formIsValid && "#ccc" }}
         >
           Save & Submit
         </Button>

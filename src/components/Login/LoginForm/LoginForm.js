@@ -78,53 +78,56 @@ const LoginForm = () => {
         />
       )}
       <h1 className={style.title}>Login</h1>
-      <div className={style.Club}>
-        <CustomInput
-          className={`${style.checkoutFormControl} ${
-            emailIsInvalid && style.invalid
-          }`}
-          type="email"
-          placeholder="Enter your Mail Address"
-          value={email}
-          onBlur={validateEmailHandler}
-          onFocus={emailFocusHandler}
-          onChange={emailChangeHandler}
-        />
-        {
-          <p
-            className={style.invalidText}
-            style={{
-              display: emailIsInvalid ? "block" : "none",
-            }}
-          >
-            Invalid Email
-          </p>
-        }
+      <div style={{ width: "100%" }}>
+        <div className={style.Club}>
+          <CustomInput
+            className={`${style.checkoutFormControl} ${
+              emailIsInvalid && style.invalid
+            }`}
+            type="email"
+            placeholder="Enter your Mail Address"
+            value={email}
+            onBlur={validateEmailHandler}
+            onFocus={emailFocusHandler}
+            onChange={emailChangeHandler}
+          />
+          {
+            <p
+              className={style.invalidText}
+              style={{
+                opacity: emailIsInvalid ? "1" : "0",
+              }}
+            >
+              Invalid Email
+            </p>
+          }
+        </div>
+        <div className={style.Club} style={{ position: "relative" }}>
+          <CustomInput
+            className={`${style.checkoutFormControl} ${
+              passwordIsInvalid && style.invalid
+            }`}
+            type={checkPassword ? "text" : "password"}
+            placeholder="Enter your Password"
+            value={enteredPassword}
+            onBlur={validatePasswordHandler}
+            onFocus={passwordFocusHandler}
+            onChange={passwordChangeHandler}
+          />
+          <img
+            src={require(`../../../assets/login-signup/${
+              checkPassword ? "show.png" : "hide.png"
+            }`)}
+            alt=""
+            className={style.checkPassword}
+            onClick={() => setCheckPassword(!checkPassword)}
+          />
+          {passwordIsFocused && passwordIsInvalid && (
+            <PasswordValidationBox enteredPassword={enteredPassword} />
+          )}
+        </div>
       </div>
-      <div className={style.Club} style={{ position: "relative" }}>
-        <CustomInput
-          className={`${style.checkoutFormControl} ${
-            passwordIsInvalid && style.invalid
-          }`}
-          type={checkPassword ? "text" : "password"}
-          placeholder="Enter your Password"
-          value={enteredPassword}
-          onBlur={validatePasswordHandler}
-          onFocus={passwordFocusHandler}
-          onChange={passwordChangeHandler}
-        />
-        <img
-          src={require(`../../../assets/login-signup/${
-            checkPassword ? "show.png" : "hide.png"
-          }`)}
-          alt=""
-          className={style.checkPassword}
-          onClick={() => setCheckPassword(!checkPassword)}
-        />
-        {passwordIsFocused && passwordIsInvalid && (
-          <PasswordValidationBox enteredPassword={enteredPassword} />
-        )}
-      </div>
+
       <CheckboxSection
         setRememberMe={setRememberMe}
         setTermsAccepted={setTermsAccepted}
