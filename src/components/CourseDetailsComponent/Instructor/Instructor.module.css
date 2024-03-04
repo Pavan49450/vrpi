@@ -49,6 +49,10 @@
   gap: 1rem;
 }
 
+.description p {
+  color: white;
+}
+
 .description h2 {
   color: var(--white);
 }

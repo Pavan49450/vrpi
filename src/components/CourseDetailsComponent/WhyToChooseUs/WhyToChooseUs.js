@@ -31,7 +31,7 @@ const WhyToChooseUs = () => {
           <div className={style.point}>
             <span className={style.pointNumber}>0{index + 1}</span>
             <h2>{point.title}</h2>
-            <p>{point.description}</p>
+            <p className={style.description}>{point.description}</p>
           </div>
         ))}
       </div>

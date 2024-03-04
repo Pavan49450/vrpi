@@ -9,7 +9,7 @@ const Instructor = ({ instructorData }) => {
         <div className={style.content}>
           <div className={style.imageContainer}>
             <img
-              src={require("../../../assets/courses/Instructor2.png")}
+              src={require(`../../../assets/courses/${instructorData.image}`)}
               alt=""
             />
           </div>

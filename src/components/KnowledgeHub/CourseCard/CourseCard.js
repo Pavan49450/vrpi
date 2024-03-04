@@ -19,18 +19,33 @@ const CourseCard = ({ key, CardDetails }) => {
           className={style.courseImage}
         ></img>
         <div className={style.cardContent}>
-          <Link
-            // to={`/edutech/${CardDetails.id}`}
-            className={style.link}
-            onClick={handleClick}
-          >
-            <Button
-              onClick={() => dispatch(setComingSoon(true))}
-              className={style.btn}
+          {CardDetails.active ? (
+            <Link
+              to={`/edutech/${CardDetails.id}`}
+              className={style.link}
+              onClick={handleClick}
             >
-              Learn More
-            </Button>
-          </Link>
+              <Button
+                // onClick={() => dispatch(setComingSoon(true))}
+                className={style.btn}
+              >
+                Learn More
+              </Button>
+            </Link>
+          ) : (
+            <Link
+              // to={`/edutech/${CardDetails.id}`}
+              className={style.link}
+              onClick={handleClick}
+            >
+              <Button
+                onClick={() => dispatch(setComingSoon(true))}
+                className={style.btn}
+              >
+                Learn More
+              </Button>
+            </Link>
+          )}
           <h2 className={style.cardHeading}>{CardDetails.name}</h2>
           <div
             style={{ display: "flex", gap: "0.3rem", flexDirection: "column" }}
