@@ -11,6 +11,24 @@
   padding-top: 2rem;
 }
 
+.placeholder {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  margin-left: 0.5rem;
+  top: 0.75rem;
+  cursor: text;
+}
+
+.transition {
+  position: absolute;
+  display: flex;
+  margin-left: 0.5rem;
+  top: 0;
+  transition: all 0.3s ease;
+  font-size: 0.7rem;
+}
+
 .title {
   font-size: 2rem;
   font-weight: 600;
@@ -90,10 +108,11 @@
 
 .checkPassword {
   position: absolute;
-  right: 0;
-  padding: 0.5rem;
+  right: 0.5rem;
+  padding: 0px;
   cursor: pointer;
   transition: all 0.3s ease;
+  top: 0.8rem;
 }
 
 /* .checkPassword:hover {
@@ -170,6 +189,7 @@
   display: flex;
   width: 100%;
   flex-direction: column;
+  position: relative;
 }
 
 .checkBoxes {

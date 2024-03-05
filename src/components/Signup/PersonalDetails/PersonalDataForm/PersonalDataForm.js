@@ -39,7 +39,7 @@ const PersonalDataForm = ({ role }) => {
   const mobileNumberInput = useInput({ validateValue: mobileNumberValidation });
   // const DOBInput = useInput({ validateValue: nameValidation });
 
-  const [DOB, setDOB] = useState();
+  const [DOB, setDOB] = useState(Date);
 
   const permanentInput = useInput({ validateValue: addressValidation });
 
@@ -135,6 +135,7 @@ const PersonalDataForm = ({ role }) => {
           onFocusHandler: firstNameInput.focusHandler,
           onChange: firstNameInput.valueChangeHandler,
           type: "text",
+          isTouched: firstNameInput.isFocused,
         }}
         mandatory="true"
       />
@@ -149,6 +150,7 @@ const PersonalDataForm = ({ role }) => {
           onFocusHandler: lastNameInput.focusHandler,
           onChange: lastNameInput.valueChangeHandler,
           type: "text",
+          isTouched: lastNameInput.isFocused,
         }}
         mandatory="true"
       />
@@ -168,6 +170,7 @@ const PersonalDataForm = ({ role }) => {
           onFocusHandler: fatherNameInput.focusHandler,
           onChange: fatherNameInput.valueChangeHandler,
           type: "text",
+          isTouched: fatherNameInput.isFocused,
         }}
         mandatory="true"
       />
@@ -190,8 +193,9 @@ const PersonalDataForm = ({ role }) => {
       <Dropdown
         options={Genders}
         onSelect={(gender) => setGender(gender)}
-        placeholder="Gender *"
+        placeholder="Gender"
         style={{ marginBottom: "21.6px" }}
+        mandatory
       />
       <InputWithInvalidText
         ErrorMessage={"Invalid Mobile Number"}
@@ -204,6 +208,7 @@ const PersonalDataForm = ({ role }) => {
           onFocusHandler: mobileNumberInput.focusHandler,
           onChange: mobileNumberInput.valueChangeHandler,
           type: "text",
+          isTouched: mobileNumberInput.isFocused,
         }}
         mandatory="true"
       />
@@ -234,6 +239,7 @@ const PersonalDataForm = ({ role }) => {
           onFocusHandler: permanentInput.focusHandler,
           onChange: permanentInput.valueChangeHandler,
           type: "text",
+          isTouched: permanentInput.isFocused,
         }}
         mandatory="true"
       />
@@ -253,6 +259,7 @@ const PersonalDataForm = ({ role }) => {
           onFocusHandler: emailInput.focusHandler,
           onChange: emailInput.valueChangeHandler,
           type: "email",
+          isTouched: emailInput.isFocused,
         }}
         mandatory="true"
       />
@@ -267,6 +274,7 @@ const PersonalDataForm = ({ role }) => {
           onFocusHandler: passwordInput.focusHandler,
           onChange: passwordInput.valueChangeHandler,
           type: "password",
+          isTouched: passwordInput.isFocused,
         }}
         mandatory="true"
       />
@@ -281,6 +289,7 @@ const PersonalDataForm = ({ role }) => {
           onFocusHandler: confirmPasswordInput.focusHandler,
           onChange: confirmPasswordInput.valueChangeHandler,
           type: "password",
+          isTouched: confirmPasswordInput.isFocused,
         }}
         mandatory="true"
       />
@@ -292,8 +301,9 @@ const PersonalDataForm = ({ role }) => {
       <Dropdown
         options={Occupations}
         onSelect={(selectedOccupation) => setOccupation(selectedOccupation)}
-        placeholder="Occupation *"
+        placeholder="Occupation"
         style={{ marginBottom: "21.6px" }}
+        mandatory
       />
       <InputWithInvalidText
         ErrorMessage={"Invalid Aadhaar Card Number"}
@@ -306,6 +316,7 @@ const PersonalDataForm = ({ role }) => {
           onFocusHandler: aadhaarInput.focusHandler,
           onChange: aadhaarInput.valueChangeHandler,
           type: "text",
+          isTouched: aadhaarInput.isFocused,
         }}
       />
     </div>

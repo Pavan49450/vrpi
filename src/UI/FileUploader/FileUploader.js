@@ -1,7 +1,12 @@
 import React, { useRef, useState } from "react";
 import style from "./FileUploader.module.css"; // Assuming you have a CSS module for styling
 
-const CustomFileUploader = ({ onChange, buttonText, acceptedFileType }) => {
+const CustomFileUploader = ({
+  onChange,
+  buttonText,
+  acceptedFileType,
+  mandatory,
+}) => {
   const inputRef = useRef(null);
   const [fileName, setFileName] = useState(null);
 
@@ -30,12 +35,17 @@ const CustomFileUploader = ({ onChange, buttonText, acceptedFileType }) => {
         accept={acceptedFileType.join(",")}
       />
       <button className={style.uploadButton} onClick={handleButtonClick}>
+        <span className={`${fileName ? style.transition : style.placeholder}`}>
+          {buttonText}
+          <span style={{ color: "red" }}>{mandatory && " *"}</span>
+        </span>
         <span style={{ color: fileName ? "#000" : "#a7a7a7" }}>
-          {fileName ? fileName : buttonText}
+          {fileName && fileName}
         </span>
         <img
           src={require(`../../assets/login-signup/uploadIcon.png`)}
           alt="Upload Icon"
+          className={style.uploadIcon}
         />
       </button>
     </div>

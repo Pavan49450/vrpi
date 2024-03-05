@@ -13,6 +13,7 @@
 .input {
   width: 100%;
   padding: 0.5rem;
+  padding-top: 1rem;
   border: 1px solid var(--primary);
   border-radius: 4px;
   font-size: 1rem;
@@ -21,30 +22,6 @@
 .input:focus-visible {
   outline: none;
 }
-
-/* .mandatorySign::after {
-  content: " *";
-  color: red;
-} */
-
-/* .mandatorySign {
-  padding: 2px;
-  height: 30px;
-  width: 200px;
-  background-image: url("http://www.fileformat.info/info/unicode/char/002a/asterisk.png");
-  background-position: 160px -10px;
-  background-repeat: no-repeat;
-  background-size: 30%;
-} */
-
-/* .mandatorySign::placeholder:after {
-  position: absolute;
-  margin-left: 0.5rem;
-  content: " *";
-  color: red;
-  top: 0;
-  font-size: 2rem;
-} */
 
 .invalid {
   border: 1px solid var(--darkInvalidColor);
@@ -61,4 +38,23 @@
   display: flex;
   flex-direction: column;
   width: 100%;
+  position: relative;
+}
+
+.placeholder {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  margin-left: 0.5rem;
+  top: 0.75rem;
+  cursor: text;
+}
+
+.transition {
+  position: absolute;
+  display: flex;
+  margin-left: 0.5rem;
+  top: 0;
+  transition: all 0.3s ease;
+  font-size: 0.7rem;
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import useInput from "../../../hooks/use-Input";
 import Message from "../../../UI/Popup/Message";
@@ -52,6 +52,17 @@ const LoginForm = () => {
     );
   }, [emailIsValid, passwordIsValid, termsAccepted, rememberMe]);
 
+  const emailInputRef = useRef(null);
+
+  const handleEmailLabelClick = () => {
+    emailInputRef.current.focus();
+  };
+  const passwordInputRef = useRef(null);
+
+  const handlePasswordLabelClick = () => {
+    passwordInputRef.current.focus();
+  };
+
   const submitHandler = (event) => {
     event.preventDefault();
     if (formIsValid) {
@@ -85,12 +96,21 @@ const LoginForm = () => {
               emailIsInvalid && style.invalid
             }`}
             type="email"
-            placeholder="Enter your Mail Address"
+            // placeholder="Enter your Mail Address"
             value={email}
             onBlur={validateEmailHandler}
             onFocus={emailFocusHandler}
             onChange={emailChangeHandler}
+            ref={emailInputRef}
           />
+          <label
+            onClick={handleEmailLabelClick}
+            className={`${
+              emailIsFocused ? style.transition : style.placeholder
+            }`}
+          >
+            {"Enter your Mail Address"}
+          </label>
           {
             <p
               className={style.invalidText}
@@ -108,11 +128,11 @@ const LoginForm = () => {
               passwordIsInvalid && style.invalid
             }`}
             type={checkPassword ? "text" : "password"}
-            placeholder="Enter your Password"
             value={enteredPassword}
             onBlur={validatePasswordHandler}
             onFocus={passwordFocusHandler}
             onChange={passwordChangeHandler}
+            ref={passwordInputRef}
           />
           <img
             src={require(`../../../assets/login-signup/${
@@ -122,6 +142,14 @@ const LoginForm = () => {
             className={style.checkPassword}
             onClick={() => setCheckPassword(!checkPassword)}
           />
+          <label
+            onClick={handlePasswordLabelClick}
+            className={`${
+              passwordIsFocused ? style.transition : style.placeholder
+            }`}
+          >
+            {"Enter your Password"}
+          </label>
           {passwordIsFocused && passwordIsInvalid && (
             <PasswordValidationBox enteredPassword={enteredPassword} />
           )}

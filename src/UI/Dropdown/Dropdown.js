@@ -1,7 +1,14 @@
 import React, { useState } from "react";
 import styles from "./Dropdown.module.css";
 
-const Dropdown = ({ options, onSelect, placeholder, className, style }) => {
+const Dropdown = ({
+  options,
+  onSelect,
+  placeholder,
+  className,
+  style,
+  mandatory,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
 
@@ -17,18 +24,23 @@ const Dropdown = ({ options, onSelect, placeholder, className, style }) => {
 
   return (
     <div className={`${styles.customDropdown} ${className}`} style={style}>
-      <div
-        className={styles.selectedOption}
-        onClick={toggleDropdown}
-        style={{ color: selectedOption ? "#000" : "#a7a7a7" }}
-      >
-        {selectedOption ? selectedOption.label : placeholder}
-        {/* <span className={`${styles.arrow} ${isOpen ? styles.open : ""}`}></span> */}
+      <div className={styles.selectedOption} onClick={toggleDropdown}>
+        <span
+          className={`${
+            selectedOption ? styles.transition : styles.placeholder
+          }`}
+        >
+          {placeholder}
+          <span style={{ color: "red" }}>{mandatory && " *"}</span>
+        </span>
+        {selectedOption && selectedOption.label}
+
         <img
           src={require(`../../assets/${
             isOpen ? "arrowUpPrimary.png" : "arrowDownPrimary.png"
           }`)}
-          style={{ width: "2rem" }}
+          // style={{ width: "2rem" }}
+          className={`${styles.arrow} `}
           alt=""
         />
       </div>
