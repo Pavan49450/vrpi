@@ -79,6 +79,74 @@ const LoginForm = () => {
     }
   };
 
+  const PasswordComponent = (
+    <div className={style.Club} style={{ position: "relative" }}>
+      <CustomInput
+        className={`${style.checkoutFormControl} ${
+          passwordIsInvalid && style.invalid
+        }`}
+        type={checkPassword ? "text" : "password"}
+        value={enteredPassword}
+        onBlur={validatePasswordHandler}
+        onFocus={passwordFocusHandler}
+        onChange={passwordChangeHandler}
+        ref={passwordInputRef}
+      />
+      <img
+        src={require(`../../../assets/login-signup/${
+          checkPassword ? "show.png" : "hide.png"
+        }`)}
+        alt=""
+        className={style.checkPassword}
+        onClick={() => setCheckPassword(!checkPassword)}
+      />
+      <label
+        onClick={handlePasswordLabelClick}
+        className={`${
+          passwordIsFocused ? style.transition : style.placeholder
+        }`}
+      >
+        {"Enter your Password"}
+      </label>
+      {passwordIsFocused && passwordIsInvalid && (
+        <PasswordValidationBox enteredPassword={enteredPassword} />
+      )}
+    </div>
+  );
+
+  const EmailComponent = (
+    <div className={style.Club}>
+      <CustomInput
+        className={`${style.checkoutFormControl} ${
+          emailIsInvalid && style.invalid
+        }`}
+        type="email"
+        // placeholder="Enter your Mail Address"
+        value={email}
+        onBlur={validateEmailHandler}
+        onFocus={emailFocusHandler}
+        onChange={emailChangeHandler}
+        ref={emailInputRef}
+      />
+      <label
+        onClick={handleEmailLabelClick}
+        className={`${emailIsFocused ? style.transition : style.placeholder}`}
+      >
+        {"Enter your Mail Address"}
+      </label>
+      {
+        <p
+          className={style.invalidText}
+          style={{
+            opacity: emailIsInvalid ? "1" : "0",
+          }}
+        >
+          Invalid Email
+        </p>
+      }
+    </div>
+  );
+
   return (
     <div className={`${style.card} ${style.signIn}`}>
       {errorMessage && (
@@ -90,70 +158,8 @@ const LoginForm = () => {
       )}
       <h1 className={style.title}>Login</h1>
       <div style={{ width: "100%" }}>
-        <div className={style.Club}>
-          <CustomInput
-            className={`${style.checkoutFormControl} ${
-              emailIsInvalid && style.invalid
-            }`}
-            type="email"
-            // placeholder="Enter your Mail Address"
-            value={email}
-            onBlur={validateEmailHandler}
-            onFocus={emailFocusHandler}
-            onChange={emailChangeHandler}
-            ref={emailInputRef}
-          />
-          <label
-            onClick={handleEmailLabelClick}
-            className={`${
-              emailIsFocused ? style.transition : style.placeholder
-            }`}
-          >
-            {"Enter your Mail Address"}
-          </label>
-          {
-            <p
-              className={style.invalidText}
-              style={{
-                opacity: emailIsInvalid ? "1" : "0",
-              }}
-            >
-              Invalid Email
-            </p>
-          }
-        </div>
-        <div className={style.Club} style={{ position: "relative" }}>
-          <CustomInput
-            className={`${style.checkoutFormControl} ${
-              passwordIsInvalid && style.invalid
-            }`}
-            type={checkPassword ? "text" : "password"}
-            value={enteredPassword}
-            onBlur={validatePasswordHandler}
-            onFocus={passwordFocusHandler}
-            onChange={passwordChangeHandler}
-            ref={passwordInputRef}
-          />
-          <img
-            src={require(`../../../assets/login-signup/${
-              checkPassword ? "show.png" : "hide.png"
-            }`)}
-            alt=""
-            className={style.checkPassword}
-            onClick={() => setCheckPassword(!checkPassword)}
-          />
-          <label
-            onClick={handlePasswordLabelClick}
-            className={`${
-              passwordIsFocused ? style.transition : style.placeholder
-            }`}
-          >
-            {"Enter your Password"}
-          </label>
-          {passwordIsFocused && passwordIsInvalid && (
-            <PasswordValidationBox enteredPassword={enteredPassword} />
-          )}
-        </div>
+        {EmailComponent}
+        {PasswordComponent}
       </div>
 
       <CheckboxSection

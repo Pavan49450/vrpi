@@ -15,6 +15,7 @@ const Syllabus = ({ syllabus }) => {
           <img
             src={require("../../../assets/courses/syllabusImage.png")}
             alt=""
+            style={{ margin: "auto" }}
           />
           <div
             style={{

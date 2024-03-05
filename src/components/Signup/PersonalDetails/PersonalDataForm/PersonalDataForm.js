@@ -8,7 +8,7 @@ import {
   confirmPasswordValidation,
   addressValidation,
   DOBValidation,
-} from "./InputValidations";
+} from "../../../InputValidations/InputValidations";
 import style from "./PersonalDataForm.module.css";
 import Dropdown from "../../../../UI/Dropdown/Dropdown";
 import { useEffect, useState } from "react";
@@ -70,20 +70,37 @@ const PersonalDataForm = ({ role }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const isFormValid =
-      firstNameInput.isValid &&
-      lastNameInput.isValid &&
-      fatherNameInput.isValid &&
-      mobileNumberInput.isValid &&
-      DOBValidation(DOB) &&
-      permanentInput.isValid &&
-      emailInput.isValid &&
-      passwordInput.isValid &&
-      confirmPasswordInput.isValid &&
-      aadhaarInput.isValid;
+    let isFormValid = false;
+    if (role === "student") {
+      isFormValid =
+        firstNameInput.isValid &&
+        lastNameInput.isValid &&
+        fatherNameInput.isValid &&
+        mobileNumberInput.isValid &&
+        DOBValidation(DOB) &&
+        permanentInput.isValid &&
+        emailInput.isValid &&
+        passwordInput.isValid &&
+        confirmPasswordInput.isValid &&
+        aadhaarInput.isValid &&
+        gender &&
+        occupation;
+    } else if (role === "client") {
+      isFormValid =
+        firstNameInput.isValid &&
+        lastNameInput.isValid &&
+        mobileNumberInput.isValid &&
+        emailInput.isValid &&
+        passwordInput.isValid &&
+        confirmPasswordInput.isValid &&
+        gender;
+    }
 
     setFormIsValid(isFormValid);
   }, [
+    occupation,
+    gender,
+    role,
     formIsValid,
     firstNameInput.isValid,
     lastNameInput.isValid,
@@ -99,24 +116,36 @@ const PersonalDataForm = ({ role }) => {
 
   const handleSubmit = () => {
     if (formIsValid) {
-      const formData = {
-        firstName: firstNameInput.value,
-        lastName: lastNameInput.value,
-        fatherName: fatherNameInput.value,
-        mobileNumber: mobileNumberInput.value,
-        gender,
-        DOB: DOB,
-        permanentAddress: permanentInput.value,
-        email: emailInput.value,
-        password: passwordInput.value,
-        confirmPassword: confirmPasswordInput.value,
-        occupation,
-        aadhaarNumber: aadhaarInput.value,
-        aadhaarCardFile,
-        passportFile,
-      };
-      // console.log(formData);
-
+      if (role === "student") {
+        const formData = {
+          firstName: firstNameInput.value,
+          lastName: lastNameInput.value,
+          fatherName: fatherNameInput.value,
+          mobileNumber: mobileNumberInput.value,
+          gender,
+          DOB: DOB,
+          permanentAddress: permanentInput.value,
+          email: emailInput.value,
+          password: passwordInput.value,
+          confirmPassword: confirmPasswordInput.value,
+          occupation,
+          aadhaarNumber: aadhaarInput.value,
+          aadhaarCardFile,
+          passportFile,
+        };
+        console.log(formData);
+      } else if (role === "client") {
+        const formData = {
+          firstName: firstNameInput.value,
+          lastName: lastNameInput.value,
+          mobileNumber: mobileNumberInput.value,
+          gender,
+          email: emailInput.value,
+          password: passwordInput.value,
+          confirmPassword: confirmPasswordInput.value,
+        };
+        console.log(formData);
+      }
       dispatch(setUser({ role: role, step: 2 }));
     } else {
       alert("invalid fields");
@@ -159,42 +188,28 @@ const PersonalDataForm = ({ role }) => {
 
   const Line2 = (
     <div className={style.line2}>
-      <InputWithInvalidText
-        ErrorMessage={"Invalid Father's Name"}
-        className={style.Input}
-        inputFields={{
-          placeholder: "Father's Name",
-          value: fatherNameInput.value,
-          isInvalid: fatherNameInput.hasError,
-          onBlurHandler: fatherNameInput.validateValueHandler,
-          onFocusHandler: fatherNameInput.focusHandler,
-          onChange: fatherNameInput.valueChangeHandler,
-          type: "text",
-          isTouched: fatherNameInput.isFocused,
-        }}
-        mandatory="true"
-      />
-      {/* {console.log("gender", gender)} */}
-
-      {/* <InputWithInvalidText
-        ErrorMessage={"Invalid Last Name"}
-        className={style.Input}
-        inputFields={{
-          placeholder: "Last Name",
-          value: DOBInput.value,
-          isInvalid: DOBInput.hasError,
-          onBlurHandler: DOBInput.validateValueHandler,
-          onFocusHandler: DOBInput.focusHandler,
-          onChange: DOBInput.valueChangeHandler,
-          type: "date",
-        }}
-      /> */}
-
+      {role === "student" && (
+        <InputWithInvalidText
+          ErrorMessage={"Invalid Father's Name"}
+          className={style.Input}
+          inputFields={{
+            placeholder: "Father's Name",
+            value: fatherNameInput.value,
+            isInvalid: fatherNameInput.hasError,
+            onBlurHandler: fatherNameInput.validateValueHandler,
+            onFocusHandler: fatherNameInput.focusHandler,
+            onChange: fatherNameInput.valueChangeHandler,
+            type: "text",
+            isTouched: fatherNameInput.isFocused,
+          }}
+          mandatory="true"
+        />
+      )}
       <Dropdown
         options={Genders}
         onSelect={(gender) => setGender(gender)}
         placeholder="Gender"
-        style={{ marginBottom: "21.6px" }}
+        style={{ marginBottom: "21.6px", width: "100%" }}
         mandatory
       />
       <InputWithInvalidText
@@ -216,14 +231,18 @@ const PersonalDataForm = ({ role }) => {
   );
 
   const Line3 = (
-    <div className={style.line3}>
-      <CustomDatePicker
-        selectedDate={DOB}
-        onChange={(date) => setDOB(date)}
-        className={`${style.Input} ${style.date}`}
-        placeholderText="Date of Birth *"
-      />
-    </div>
+    <>
+      {role === "student" && (
+        <div className={style.line3}>
+          <CustomDatePicker
+            selectedDate={DOB}
+            onChange={(date) => setDOB(date)}
+            className={`${style.Input} ${style.date}`}
+            placeholderText="Date of Birth *"
+          />
+        </div>
+      )}
+    </>
   );
 
   const Line4 = (
@@ -377,9 +396,9 @@ const PersonalDataForm = ({ role }) => {
         {Line3}
         {Line4}
         {Line5}
-        {Line6}
-        {Line7}
-        {Line8}
+        {role === "student" && Line6}
+        {role === "student" && Line7}
+        {role === "student" && Line8}
       </div>
       <div className={style.buttonContainer}>
         <Button

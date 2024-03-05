@@ -22,7 +22,7 @@ const users = [
 ];
 
 const SelectUser = () => {
-  const [selectedRole, setSelectedRole] = useState("");
+  const [selectedRole, setSelectedRole] = useState("student");
   const dispatch = useDispatch();
 
   return (
@@ -54,6 +54,7 @@ const SelectUser = () => {
         ))}
       </div>
       <Button
+        disabled={!selectedRole}
         onClick={() => {
           dispatch(setUser({ role: selectedRole, step: 1 }));
         }}
