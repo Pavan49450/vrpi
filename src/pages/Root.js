@@ -23,7 +23,7 @@ const hideHeaderRoutes = [
   "/companydetails",
 ];
 
-const buttons = [{ name: "Login", link: "/login", active: true }];
+const buttons = [{ name: "Login", link: "/login", active: false }];
 
 const RootLayout = () => {
   const location = useLocation();
