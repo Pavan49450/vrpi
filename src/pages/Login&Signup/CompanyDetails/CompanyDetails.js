@@ -1,5 +1,5 @@
 import SignUpOrLoginContainer from "../../../components/SignUpOrLoginContainer/SignUpOrLoginConatainer";
-
+import CompanyDetailsComponent from "../../../components/Signup/CompanyDetailsComponent/CompanyDetailsComponent";
 const CompanyDetailsScreenData = {
   title: "Educational Details",
   description:
@@ -8,9 +8,9 @@ const CompanyDetailsScreenData = {
 };
 const CompanyDetails = () => {
   return (
-    <SignUpOrLoginContainer
-      screenData={CompanyDetailsScreenData}
-    ></SignUpOrLoginContainer>
+    <SignUpOrLoginContainer screenData={CompanyDetailsScreenData}>
+      <CompanyDetailsComponent />
+    </SignUpOrLoginContainer>
   );
 };
 

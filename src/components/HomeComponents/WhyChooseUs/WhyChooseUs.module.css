@@ -44,3 +44,9 @@
     border-left: 0px solid;
   }
 } */
+
+@media (max-width: 401px) {
+  .WhyChooseUsPoints {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  }
+}

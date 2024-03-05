@@ -39,6 +39,35 @@ const DOBValidation = (value) => {
   return value.toString().trim() !== "";
 };
 
+export const yearValidation = (value) => {
+  const currentYear = new Date().getFullYear();
+  const regex = /^(17\d{2}|18\d{2}|19\d{2}|20\d{2}|21\d{2})$/;
+  return (
+    regex.test(value) &&
+    parseInt(value) >= 1700 &&
+    parseInt(value) <= currentYear
+  );
+};
+
+export const endYearValidation = (value, startYear) => {
+  const currentYear = new Date().getFullYear();
+  const regex = /^(17\d{2}|18\d{2}|19\d{2}|20\d{2}|21\d{2})$/;
+  const isValidYear =
+    regex.test(value) &&
+    parseInt(value) >= 1700 &&
+    parseInt(value) <= currentYear;
+
+  if (!isValidYear) return false;
+
+  const difference = parseInt(value) - parseInt(startYear);
+  return difference <= 10 && difference >= 0;
+};
+
+export const percentageValidation = (value) => {
+  const regex = /^\d+(\.\d+)?$/;
+  return regex.test(value);
+};
+
 // Add more validation functions as needed
 
 export {

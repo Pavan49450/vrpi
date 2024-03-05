@@ -37,6 +37,11 @@ const SignUp = () => {
           <PersonalDetails role="student" />
         </SignUpOrLoginContainer>
       )}
+      {userState.role === "client" && userState.step === 1 && (
+        <SignUpOrLoginContainer screenData={personalPageScreenData}>
+          <PersonalDetails role="client" />
+        </SignUpOrLoginContainer>
+      )}
       {/* {console.log("userState", userState)} */}
       {userState.step === 2 && <ThankyouScreen />}
     </>
