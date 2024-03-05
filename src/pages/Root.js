@@ -1,4 +1,4 @@
-import { Outlet, useLocation } from "react-router-dom";
+import { Outlet, useLocation, useParams } from "react-router-dom";
 import Header from "../components/Layout/Header/Header";
 import style from "./Root.module.css";
 import {
@@ -14,13 +14,23 @@ import Footer from "../components/Layout/Footer/Footer";
 import JoinUs from "../components/JoinUs/JoinUs";
 import ComingSoon from "../UI/ComingSoon/ComingSoon";
 
-const hideHeaderRoutes = ["/login", "/signup"];
+const hideHeaderRoutes = [
+  "/login",
+  "/signup",
+  "/educationaldetails",
+  "/educationalDetails,",
+  "/companyDetails",
+  "/companydetails",
+];
 
 const buttons = [{ name: "Login", link: "/login", active: false }];
 
 const RootLayout = () => {
   const location = useLocation();
+  const { email, otp } = useParams();
+
   const isHeaderHidden = hideHeaderRoutes.includes(location.pathname);
+  const shouldRenderHeader = email === undefined || otp === undefined;
 
   const headerLinks =
     location.pathname === "/edutech" || location.pathname === "/internships"
@@ -35,7 +45,8 @@ const RootLayout = () => {
   return (
     <div className={style.root}>
       <ComingSoon />
-      {!isHeaderHidden && (
+
+      {shouldRenderHeader && !isHeaderHidden && (
         <Header
           links={headerLinks}
           buttons={buttons}
@@ -43,12 +54,15 @@ const RootLayout = () => {
           JoinUsBarData={JoinUsBarData}
         />
       )}
-      <main className={style.main}>
+      <main
+        className={`${style.main} ${isHeaderHidden && style.noMargin} ${
+          !shouldRenderHeader && style.noMargin
+        }`}
+      >
         <Outlet />
       </main>
-      {!isHeaderHidden && <JoinUs />}
-
-      {!isHeaderHidden && (
+      {shouldRenderHeader && !isHeaderHidden && <JoinUs />}
+      {shouldRenderHeader && !isHeaderHidden && (
         <Footer
           links={footerLinks}
           quickLinks={quickLinks}

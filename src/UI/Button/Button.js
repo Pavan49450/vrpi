@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./Button.module.css";
 
-const Button = ({ children, onClick, className, style }) => {
+const Button = ({ children, onClick, className, style, disabled }) => {
   const combinedClassName = `${styles.customButton} ${className}`;
 
   const handleClick = () => {
@@ -11,6 +11,7 @@ const Button = ({ children, onClick, className, style }) => {
   return (
     <button
       className={combinedClassName}
+      disabled={disabled}
       onClick={(event) => {
         handleClick();
         if (onClick) onClick(event);

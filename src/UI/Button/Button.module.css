@@ -11,7 +11,7 @@
 }
 
 .customButton:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
   transition: all 0.3s ease;
   /* animation: borderPass 0.2s ease infinite;
   

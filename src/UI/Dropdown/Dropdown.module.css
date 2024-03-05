@@ -1,15 +1,45 @@
 .customDropdown {
   position: relative;
-  width: 200px;
+  max-width: 400px;
 }
 
 .selectedOption {
-  padding: 10px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--primary);
   cursor: pointer;
+  border-radius: 5px;
+  padding: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 50px;
+  padding-top: 1rem;
+  position: relative;
+}
+
+.placeholder {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  top: 0.75rem;
+  cursor: text;
+}
+
+.transition {
+  position: absolute;
+  display: flex;
+  transition: all 0.3s ease;
+  font-size: 0.7rem;
+  top: 0;
 }
 
 .arrow {
+  width: 2rem;
+  position: absolute;
+  right: 0;
+  bottom: 0.5rem;
+}
+
+/* .arrow {
   position: absolute;
   top: 50%;
   right: 10px;
@@ -22,9 +52,19 @@
   transition: transform 0.3s ease;
 }
 
-.arrow.open {
+.arrowOpen {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 5px solid #555;
+  transition: transform 0.3s ease;
   transform: translateY(-50%) rotate(180deg);
-}
+} */
 
 .options {
   position: absolute;
@@ -32,18 +72,20 @@
   left: 0;
   width: 100%;
   background-color: var(--white);
-  border: 1px solid #ccc;
+  border: 1px solid var(--primary);
   border-top: none;
   list-style-type: none;
   padding: 0;
   margin: 0;
   opacity: 0;
-  transform: translateY(-10px);
+  z-index: -10;
+  transform: translateY(-50px);
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
-.options.active {
+.optionsActive {
   opacity: 1;
+  z-index: 1;
   transform: translateY(0);
 }
 

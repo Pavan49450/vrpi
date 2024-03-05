@@ -14,9 +14,12 @@ import Internships from "./pages/KnowledgeHub/Internships";
 import EduTech from "./pages/KnowledgeHub/EduTech";
 import ContactUs from "./pages/MainPages/ContactUs/ContactUs";
 import CourseDetails from "./pages/KnowledgeHub/CourseDetails/CourseDetails";
-import SignUp from "./pages/MainPages/SignUp/SignUp";
+import SignUp from "./pages/Login&Signup/SignUp/SignUp";
 
-import Login from "./pages/MainPages/Login/Login";
+import Login from "./pages/Login&Signup/Login/Login";
+import VerificationPage from "./pages/MainPages/VerificationPage/VerificationPage";
+import CompanyDetails from "./pages/Login&Signup/CompanyDetails/CompanyDetails";
+import EducationalDetails from "./pages/Login&Signup/EducationalDetails/EducationalDetails";
 
 function App() {
   const router = createBrowserRouter([
@@ -102,6 +105,22 @@ function App() {
         {
           path: "/internships",
           element: <Internships />,
+          errorElement: <ErrorPage />,
+        },
+        {
+          path: "/vrpi-user/verify-account/:email/:otp",
+          element: <VerificationPage />,
+          errorElement: <ErrorPage />,
+        },
+
+        {
+          path: "/educationalDetails",
+          element: <EducationalDetails />,
+          errorElement: <ErrorPage />,
+        },
+        {
+          path: "/companyDetails",
+          element: <CompanyDetails />,
           errorElement: <ErrorPage />,
         },
         // {

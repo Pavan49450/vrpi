@@ -1,38 +1,45 @@
 import React from "react";
 import styles from "./CustomInput.module.css"; // Import the CSS Module
 
-const CustomInput = ({
-  placeholder,
-  value,
-  onChange,
-  type = "text",
-  isBlur,
-  isFocus,
-  className,
-  ref,
-  style,
-  // isInvalid,
-}) => {
-  const combinedClassName = `${styles.input} ${className}`;
+const CustomInput = React.forwardRef(
+  (
+    {
+      placeholder,
+      value,
+      onChange,
+      type = "text",
+      className,
+      style,
+      onBlur,
+      onFocus,
+      mandatory, // Add a prop to indicate if the input is mandatory
+    },
+    ref
+  ) => {
+    // Combine the provided className with the CSS module className
+    const combinedClassName = `${styles.input} ${className}`;
 
-  // Define the dynamic style for borderBottom
-  // const dynamicStyle = {
-  //   borderBottom: isInvalid ? "2px solid red" : "2px solid #ccc",
-  // };
+    // Add the mandatorySign class conditionally
+    const inputClasses = mandatory
+      ? `${combinedClassName} ${styles.mandatorySign}`
+      : combinedClassName;
 
-  return (
-    <input
-      className={combinedClassName}
-      type={type}
-      placeholder={placeholder}
-      value={value}
-      onChange={onChange}
-      ref={ref}
-      isFocus={isFocus}
-      isBlur={isBlur}
-      style={{ style }}
-    />
-  );
-};
+    return (
+      <>
+        <input
+          ref={ref}
+          className={inputClasses}
+          type={type}
+          // placeholder={placeholder}
+          value={value}
+          onChange={onChange}
+          style={style} // Don't wrap style in another object
+          onFocus={onFocus}
+          onBlur={onBlur}
+        />
+      </>
+    );
+  }
+);
 
 export default CustomInput;
