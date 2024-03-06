@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import style from "./DatePIcker.module.css";
@@ -9,15 +9,38 @@ const CustomDatePicker = ({
   onChange,
   className,
   placeholderText,
+  mandatory,
 }) => {
+  const [isFocused, setIsFocused] = useState(false);
+
+  const handleLabelClick = () => {
+    setIsFocused(true);
+  };
+
+  const handleDatePickerBlur = () => {
+    setIsFocused(false);
+  };
+
   return (
-    <DatePicker
-      selected={selectedDate}
-      onChange={onChange}
-      dateFormat="dd/MM/yyyy"
-      placeholderText={placeholderText}
-      className={`${className} ${style.date}`}
-    />
+    <div className={style.container}>
+      <DatePicker
+        selected={selectedDate}
+        onChange={onChange}
+        dateFormat="dd/MM/yyyy"
+        className={`${className} ${style.date}`}
+        onFocus={handleLabelClick}
+        onBlur={handleDatePickerBlur}
+      />
+      <label
+        className={`${
+          isFocused || selectedDate ? style.transition : style.placeholder
+        }`}
+        onClick={() => setIsFocused(true)}
+      >
+        {placeholderText}{" "}
+        {mandatory && <span style={{ color: "red" }}>&nbsp;*</span>}
+      </label>
+    </div>
   );
 };
 

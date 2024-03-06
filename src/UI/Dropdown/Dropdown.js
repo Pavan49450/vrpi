@@ -31,7 +31,7 @@ const Dropdown = ({
           }`}
         >
           {placeholder}
-          <span style={{ color: "red" }}>{mandatory && " *"}</span>
+          <span style={{ color: "red" }}>&nbsp;{mandatory && "*"}</span>
         </span>
         {selectedOption && selectedOption.label}
 

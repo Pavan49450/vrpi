@@ -39,7 +39,7 @@ const PersonalDataForm = ({ role }) => {
   const mobileNumberInput = useInput({ validateValue: mobileNumberValidation });
   // const DOBInput = useInput({ validateValue: nameValidation });
 
-  const [DOB, setDOB] = useState(Date);
+  const [DOB, setDOB] = useState("");
 
   const permanentInput = useInput({ validateValue: addressValidation });
 
@@ -82,7 +82,7 @@ const PersonalDataForm = ({ role }) => {
         emailInput.isValid &&
         passwordInput.isValid &&
         confirmPasswordInput.isValid &&
-        aadhaarInput.isValid &&
+        // aadhaarInput.isValid &&
         gender &&
         occupation;
     } else if (role === "client") {
@@ -110,7 +110,7 @@ const PersonalDataForm = ({ role }) => {
     emailInput.isValid,
     passwordInput.isValid,
     confirmPasswordInput.isValid,
-    aadhaarInput.isValid,
+    // aadhaarInput.isValid,
     DOB,
   ]);
 
@@ -129,9 +129,9 @@ const PersonalDataForm = ({ role }) => {
           password: passwordInput.value,
           confirmPassword: confirmPasswordInput.value,
           occupation,
-          aadhaarNumber: aadhaarInput.value,
-          aadhaarCardFile,
-          passportFile,
+          // aadhaarNumber: aadhaarInput.value,
+          // aadhaarCardFile,
+          // passportFile,
         };
         console.log(formData);
       } else if (role === "client") {
@@ -236,9 +236,10 @@ const PersonalDataForm = ({ role }) => {
         <div className={style.line3}>
           <CustomDatePicker
             selectedDate={DOB}
-            onChange={(date) => setDOB(date)}
+            onChange={(date) => setDOB(date.toString())}
             className={`${style.Input} ${style.date}`}
-            placeholderText="Date of Birth *"
+            placeholderText="Date of Birth"
+            mandatory
           />
         </div>
       )}
