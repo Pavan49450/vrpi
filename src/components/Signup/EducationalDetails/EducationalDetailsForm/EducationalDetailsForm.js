@@ -31,46 +31,12 @@ const EducationalDetailsForm = () => {
   const [formIsValid, setFormIsValid] = useState(false);
 
   useEffect(() => {
-    // let degreeIsValid = false;
-    // let educationLevelIsValid = false;
-    // if (educationLevel?.value === "other") {
-    //   setEducationLevel(educationLevelInput?.value);
-    //   setDegree(degreeInput?.value);
-    //   degreeIsValid = degreeInput?.value;
-    //   educationLevelIsValid = educationLevelInput?.value;
-    // } else {
-    //   degreeIsValid = degree?.value;
-    //   educationLevelIsValid = educationLevel?.value;
-    // }
-
-    console.log("this", degreeInput.isValid);
-    console.log(
-      (educationLevel?.value !== "other" && degree?.value !== undefined) ||
-        (educationLevel?.value === "other" &&
-          educationLevelInput.isValid &&
-          degree?.value !== undefined &&
-          degreeInput.isValid)
-    );
-    console.log(
-      "1->",
-      educationLevel?.value !== "other",
-      degree?.value !== undefined
-    );
-    console.log(
-      "2->",
-      educationLevel?.value === "other",
-      educationLevelInput.isValid,
-      degree?.value !== undefined,
-      degreeInput.isValid
-    );
-
     const dropdownIsValid =
       (educationLevel?.value !== "other" &&
         degree?.value !== undefined &&
         degree?.value !== "other") ||
       (educationLevel?.value === "other" &&
         educationLevelInput.isValid &&
-        degree?.value !== undefined &&
         degreeInput.isValid) ||
       (educationLevel?.value !== "other" &&
         degree?.value !== undefined &&
@@ -99,9 +65,18 @@ const EducationalDetailsForm = () => {
   ]);
 
   const submitHandler = () => {
+    const educationLevelFinal =
+      educationLevel?.value !== "other"
+        ? educationLevel.value
+        : educationLevelInput.value;
+    const degreeFinal =
+      degree?.value === "other" || educationLevel?.value === "other"
+        ? degreeInput.value
+        : degree.value;
+
     const formData = {
-      educationLevel,
-      degree,
+      educationLevelFinal,
+      degreeFinal,
       instituteNameInput,
       instituteLocationInput,
       startYearInput,
