@@ -26,6 +26,7 @@ import MyDashboard from "./pages/Dashboard/MyDashboard/MyDashboard";
 import HelpAndSupport from "./pages/Dashboard/HelpAndSupport/HelpAndSupport";
 import DashboardCourses from "./pages/Dashboard/DashboardCourses/DashboardCourses";
 import DashboardInternships from "./pages/Dashboard/DashboardInternships/DashboardInternships";
+import ProfileSettings from "./pages/Dashboard/ProfileSettings/ProfileSettings";
 
 function App() {
   const router = createBrowserRouter([
@@ -148,6 +149,11 @@ function App() {
             {
               path: "internships",
               element: <DashboardInternships />,
+              errorElement: <ErrorPage />,
+            },
+            {
+              path: "settings",
+              element: <ProfileSettings />,
               errorElement: <ErrorPage />,
             },
             {
