@@ -4,11 +4,9 @@
 }
 
 .main {
-  /* min-height: calc(100vh + 90px); */
   display: flex;
   justify-content: center;
   margin-top: 140px;
-  /* margin-bottom: 2rem; */
 }
 
 .noMargin {
