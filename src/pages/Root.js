@@ -18,10 +18,12 @@ const hideHeaderRoutes = [
   "/login",
   "/signup",
   "/educationaldetails",
-  "/educationalDetails,",
-  "/companyDetails",
   "/companydetails",
-];
+  "/dashboard",
+  "/dashboard/courses",
+  "/dashboard/internships",
+  "/dashboard/helpAndSupport",
+].map((route) => route.replace(/\/+$/, ""));
 
 const buttons = [{ name: "Login", link: "/login", active: false }];
 
@@ -29,7 +31,11 @@ const RootLayout = () => {
   const location = useLocation();
   const { email, otp } = useParams();
 
-  const isHeaderHidden = hideHeaderRoutes.includes(location.pathname);
+  const isHeaderHidden = hideHeaderRoutes.some((route) => {
+    const normalizedPath = location.pathname.replace(/\/+$/, ""); // Remove trailing slashes from the current path
+    return normalizedPath.endsWith(route);
+  });
+
   const shouldRenderHeader = email === undefined || otp === undefined;
 
   const headerLinks =

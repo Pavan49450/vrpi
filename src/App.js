@@ -20,6 +20,12 @@ import Login from "./pages/Login&Signup/Login/Login";
 import VerificationPage from "./pages/MainPages/VerificationPage/VerificationPage";
 import CompanyDetails from "./pages/Login&Signup/CompanyDetails/CompanyDetails";
 import EducationalDetails from "./pages/Login&Signup/EducationalDetails/EducationalDetails";
+import DashboardRoot from "./pages/Dashboard/DashboardRoot";
+import MyDashboard from "./pages/Dashboard/MyDashboard/MyDashboard";
+
+import HelpAndSupport from "./pages/Dashboard/HelpAndSupport/HelpAndSupport";
+import DashboardCourses from "./pages/Dashboard/DashboardCourses/DashboardCourses";
+import DashboardInternships from "./pages/Dashboard/DashboardInternships/DashboardInternships";
 
 function App() {
   const router = createBrowserRouter([
@@ -33,6 +39,7 @@ function App() {
           element: <HomePage />,
           errorElement: <ErrorPage />,
         },
+
         {
           path: "/about",
           element: <AboutUs />,
@@ -123,6 +130,34 @@ function App() {
           element: <CompanyDetails />,
           errorElement: <ErrorPage />,
         },
+        {
+          path: "/dashboard",
+          element: <DashboardRoot />,
+          errorElement: <ErrorPage />,
+          children: [
+            {
+              index: true,
+              element: <MyDashboard />,
+              errorElement: <ErrorPage />,
+            },
+            {
+              path: "courses",
+              element: <DashboardCourses />,
+              errorElement: <ErrorPage />,
+            },
+            {
+              path: "internships",
+              element: <DashboardInternships />,
+              errorElement: <ErrorPage />,
+            },
+            {
+              path: "helpAndSupport",
+              element: <HelpAndSupport />,
+              errorElement: <ErrorPage />,
+            },
+          ],
+        },
+
         // {
         //   path: "/internships/:internshipId",
         //   element: <CIDetails />,
