@@ -1,0 +1,10 @@
+.container {
+}
+
+.mainContainer {
+  width: 60%;
+}
+
+.courseClass {
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+}

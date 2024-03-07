@@ -55,7 +55,6 @@ const DashboardHeader = () => {
         <ul className={style.nav}>
           {DashboardLinks.map((link) => (
             <li key={link.title} className={style.link}>
-              {console.log(link)}
               {link.link ? (
                 <NavLink
                   to={link.link}
