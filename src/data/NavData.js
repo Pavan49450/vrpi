@@ -148,37 +148,38 @@ export const JoinUsBarData = {
     {
       src: "WhatsApp.png",
       alt: "whatsapp",
-      address: "#",
+      address: "https://wa.link/lj2wfw",
     },
-    {
-      src: "TwitterX.png",
-      alt: "twitter x",
-      address: "#",
-    },
-    {
-      src: "YouTube.png",
-      alt: "Youtube",
-      address: "#",
-    },
-    {
-      src: "Email.png",
-      alt: "Email",
-      address: "#",
-    },
-    {
-      src: "Facebook.png",
-      alt: "Facebook",
-      address: "#",
-    },
+    // {
+    //   src: "TwitterX.png",
+    //   alt: "twitter x",
+    //   address: "",
+    // },
+    // {
+    //   src: "YouTube.png",
+    //   alt: "Youtube",
+    //   address: "#",
+    // },
+    // {
+    //   src: "Email.png",
+    //   alt: "Email",
+    //   address: "#",
+    // },
+    // {
+    //   src: "Facebook.png",
+    //   alt: "Facebook",
+    //   address: "#",
+    // },
     {
       src: "LinkedIn.png",
       alt: "Linkedin",
-      address: "#",
+      address:
+        "https://www.linkedin.com/company/vr-pi-tech-solutions-llp-in/?viewAsMember=true",
     },
     {
       src: "Instagram.png",
       alt: "Instagram",
-      address: "#",
+      address: "https://msng.link/o?vrpigroup=ig",
     },
   ],
 };
