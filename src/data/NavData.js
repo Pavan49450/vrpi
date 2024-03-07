@@ -185,21 +185,21 @@ export const JoinUsBarData = {
 };
 
 export const footerLinks = [
-  { name: "Home", address: "/" },
-  { name: "About Us", address: "/about" },
-  { name: "Campanies", address: "/companies" },
-  { name: "Services", address: "/services" },
-  { name: "Careers", address: "/careers" },
+  { name: "Home", address: "/", active: true },
+  { name: "About Us", address: "/about", active: true },
+  { name: "Campanies", address: "/companies", active: false },
+  { name: "Services", address: "/services", active: false },
+  { name: "Careers", address: "/careers", active: false },
 ];
 
 export const quickLinks = [
-  { name: "Home", address: "/" },
-  { name: "About Us", address: "/about" },
-  { name: "Campanies", address: "/companies" },
-  { name: "Services", address: "/services" },
-  { name: "Careers", address: "/careers" },
-  { name: "Edutech", address: "/edutech" },
-  { name: "Internships", address: "/internships" },
+  { name: "Home", address: "/", active: true },
+  { name: "About Us", address: "/about", active: true },
+  { name: "Campanies", address: "/companies", active: false },
+  // { name: "Services", address: "/services" , active:false},
+  { name: "Careers", address: "/careers", active: false },
+  { name: "Edutech", address: "/edutech", active: true },
+  { name: "Internships", address: "/internships", active: true },
 ];
 
 export const ContactUs = {
