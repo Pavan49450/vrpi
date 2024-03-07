@@ -27,6 +27,8 @@ import HelpAndSupport from "./pages/Dashboard/HelpAndSupport/HelpAndSupport";
 import DashboardCourses from "./pages/Dashboard/DashboardCourses/DashboardCourses";
 import DashboardInternships from "./pages/Dashboard/DashboardInternships/DashboardInternships";
 import ProfileSettings from "./pages/Dashboard/ProfileSettings/ProfileSettings";
+import ForgetPassword from "./pages/Login&Signup/Login/ForgetPassword/ForgetPassword";
+import CreateNewPassword from "./pages/Login&Signup/Login/CreateNewPassword/CreateNewPassword";
 
 function App() {
   const router = createBrowserRouter([
@@ -94,6 +96,7 @@ function App() {
           element: <Login />,
           errorElement: <ErrorPage />,
         },
+
         {
           path: "/knowledgeHub",
           element: <KnowledgeHub />,
@@ -115,11 +118,6 @@ function App() {
           element: <Internships />,
           errorElement: <ErrorPage />,
         },
-        {
-          path: "/vrpi-user/verify-account/:email/:otp",
-          element: <VerificationPage />,
-          errorElement: <ErrorPage />,
-        },
 
         {
           path: "/educationalDetails",
@@ -131,38 +129,6 @@ function App() {
           element: <CompanyDetails />,
           errorElement: <ErrorPage />,
         },
-        {
-          path: "/dashboard",
-          element: <DashboardRoot />,
-          errorElement: <ErrorPage />,
-          children: [
-            {
-              index: true,
-              element: <MyDashboard />,
-              errorElement: <ErrorPage />,
-            },
-            {
-              path: "courses",
-              element: <DashboardCourses />,
-              errorElement: <ErrorPage />,
-            },
-            {
-              path: "internships",
-              element: <DashboardInternships />,
-              errorElement: <ErrorPage />,
-            },
-            {
-              path: "settings",
-              element: <ProfileSettings />,
-              errorElement: <ErrorPage />,
-            },
-            {
-              path: "helpAndSupport",
-              element: <HelpAndSupport />,
-              errorElement: <ErrorPage />,
-            },
-          ],
-        },
 
         // {
         //   path: "/internships/:internshipId",
@@ -170,6 +136,53 @@ function App() {
         //   errorElement: <ErrorPage />,
         // },
       ],
+    },
+    {
+      path: "/dashboard",
+      element: <DashboardRoot />,
+      errorElement: <ErrorPage />,
+      children: [
+        {
+          index: true,
+          element: <MyDashboard />,
+          errorElement: <ErrorPage />,
+        },
+        {
+          path: "courses",
+          element: <DashboardCourses />,
+          errorElement: <ErrorPage />,
+        },
+        {
+          path: "internships",
+          element: <DashboardInternships />,
+          errorElement: <ErrorPage />,
+        },
+        {
+          path: "settings",
+          element: <ProfileSettings />,
+          errorElement: <ErrorPage />,
+        },
+        {
+          path: "helpAndSupport",
+          element: <HelpAndSupport />,
+          errorElement: <ErrorPage />,
+        },
+      ],
+    },
+    {
+      path: "/resetPassword/:email/:password",
+      element: <CreateNewPassword />,
+      errorElement: <ErrorPage />,
+    },
+    {
+      path: "/forgetPassword",
+      element: <ForgetPassword />,
+      errorElement: <ErrorPage />,
+    },
+    {
+      path: "/vrpi-user/verify-account/:email/:otp",
+      element: <VerificationPage />,
+      errorElement: <ErrorPage />,
     },
   ]);
 
