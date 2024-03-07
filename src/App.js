@@ -143,7 +143,8 @@ function App() {
       errorElement: <ErrorPage />,
       children: [
         {
-          index: true,
+          // index: true,
+          path: "/dashboard/myDashboard",
           element: <MyDashboard />,
           errorElement: <ErrorPage />,
         },

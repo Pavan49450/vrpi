@@ -2,6 +2,8 @@ import { NavLink } from "react-router-dom";
 import Logo from "../../Logo/Logo";
 import style from "./Footer.module.css";
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { setComingSoon } from "../../../store/ComingSoonSlice";
 
 const Footer = ({ links, quickLinks, ContactUs, JoinUsBarData }) => {
   const [width, setWidth] = useState(window.innerWidth);
@@ -11,12 +13,22 @@ const Footer = ({ links, quickLinks, ContactUs, JoinUsBarData }) => {
     setWidth(window.innerWidth);
   };
 
+  const dispatch = useDispatch();
+
   useEffect(() => {
     window.addEventListener("resize", handleResize);
     return () => {
       window.removeEventListener("resize", handleResize);
     };
   }, []);
+
+  const handleScrollToTop = () => {
+    window.scrollTo(0, 0); // Scroll to the top of the page
+  };
+
+  // const handleClickingInActiveLink=()=>{
+  //   dispatch(setComingSoon(true)
+  // }
 
   const navElements = (
     <div className={style.navElements}>
@@ -43,18 +55,35 @@ const Footer = ({ links, quickLinks, ContactUs, JoinUsBarData }) => {
       <p className={style.head}>Quick Links</p>
       {quickLinks.map((link, index) => (
         <li key={index} className={style.element}>
-          <NavLink
-            to={link.address}
-            title={`Link to ${link.name}`}
-            className={({ isActive }) =>
-              isActive
-                ? `${style.active} ${style.mainNavLink}`
-                : style.mainNavLink
-            }
-            style={{ marginLeft: "1rem" }}
-          >
-            {link.name}
-          </NavLink>
+          {link.active ? (
+            <NavLink
+              to={link.address}
+              onClick={handleScrollToTop}
+              title={`Link to ${link.name}`}
+              className={({ isActive }) =>
+                isActive
+                  ? `${style.active} ${style.mainNavLink}`
+                  : style.mainNavLink
+              }
+              style={{ marginLeft: "1rem" }}
+            >
+              {link.name}
+            </NavLink>
+          ) : (
+            <NavLink
+              // to={link.address}
+              onClick={() => dispatch(setComingSoon(true))}
+              title={`Link to ${link.name}`}
+              className={({ isActive }) =>
+                isActive
+                  ? `${style.active} ${style.mainNavLink}`
+                  : style.mainNavLink
+              }
+              style={{ marginLeft: "1rem" }}
+            >
+              {link.name}
+            </NavLink>
+          )}
         </li>
       ))}
     </div>

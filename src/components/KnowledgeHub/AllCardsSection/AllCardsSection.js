@@ -3,7 +3,7 @@ import CourseCard from "../CourseCard/CourseCard";
 import InternshipCard from "../InternshipCard/InternshipCard";
 import style from "./AllCardSection.module.css";
 
-const AllCardsSection = ({ data, ifCourseDetails }) => {
+const AllCardsSection = ({ data, ifCourseDetails, className }) => {
   const onlineCourses =
     data.Courses && data.Courses.filter((course) => course.type === "online");
 
@@ -68,7 +68,7 @@ const AllCardsSection = ({ data, ifCourseDetails }) => {
                     <div
                       className={`${style.cardStack} ${
                         ifCourseDetails === true && style.forDetailsPage
-                      } `}
+                      } ${className} `}
                     >
                       {courseSection.courses.map((CardDetails) => {
                         return <CourseCard CardDetails={CardDetails} />;

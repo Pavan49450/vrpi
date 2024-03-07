@@ -10,9 +10,9 @@ const Home = () => {
   return (
     <div style={{ width: "100%" }}>
       <MainScreen />
+      <OurCompanies />
       <AboutUsSection />
       <WhyChooseUs />
-      <OurCompanies />
       {/* <OurServices /> */}
       <KnowledgeHub />
       <OurPartners />
