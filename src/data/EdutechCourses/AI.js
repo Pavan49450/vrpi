@@ -11,7 +11,7 @@ export const AI = {
     "Virtual Classes",
     "Live Practical Training ",
   ],
-  price: "1799",
+  price: "85000",
   image: "aiCourse2.webp",
   buttonContent: "Enroll Now",
   language: "English",
