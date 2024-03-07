@@ -49,11 +49,15 @@ const Courses = ({ data, ifCourseDetails, className }) => {
 
   return (
     <>
+      {console.log("allCourses", allCourses)}
       {allCourses.map((courseSection) => {
         return (
           <>
             {courseSection.courses.length !== 0 && (
               <div className={style.cardSection}>
+                <h2 className={style.cardSectionTitle}>
+                  {courseSection.title}
+                </h2>
                 <div
                   className={`${style.cardStack} ${
                     ifCourseDetails === true && style.forDetailsPage
