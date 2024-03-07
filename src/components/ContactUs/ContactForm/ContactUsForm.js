@@ -4,6 +4,12 @@ import useInput from "../../../hooks/use-Input";
 import CustomInput from "../../../UI/Input/Input";
 import Button from "../../../UI/Button/Button";
 import Message from "../../../UI/Popup/Message";
+import InputWithInvalidText from "../../../UI/Input/InputWithInvalidText";
+import {
+  emailValidation,
+  mobileNumberValidation,
+  nameValidation,
+} from "../../InputValidations/InputValidations";
 
 const validateName = (input) => {
   return input.length >= 3;
@@ -67,19 +73,19 @@ const ContactUsForm = () => {
 
   const nameInput = useInput({
     initialValue: "",
-    validateValue: validateName,
+    validateValue: nameValidation,
   });
   const emailInput = useInput({
     initialValue: "",
-    validateValue: validateEmail,
+    validateValue: emailValidation,
   });
   const mobileInput = useInput({
     initialValue: "",
-    validateValue: validateMobile,
+    validateValue: mobileNumberValidation,
   });
   const descriptionInput = useInput({
     initialValue: "",
-    validateValue: validateDescription,
+    validateValue: nameValidation,
   });
 
   const handleSubmit = (event) => {
@@ -108,45 +114,53 @@ const ContactUsForm = () => {
         {/* <div className={style.form_input}> */}
         {/* <label htmlFor="name">Name</label> */}
         {console.log(nameInput.hasError)}
-        <CustomInput
-          id="name"
-          placeholder="Name"
-          value={nameInput.value}
-          onChange={nameInput.valueChangeHandler}
-          // isInvalid={nameInput.hasError}
-          onBlur={nameInput.validateValueHandler}
-          onFocus={nameInput.focusHandler}
-          className={
-            nameInput.hasError ? ` ${style.invalid} ` : `${style.InputFields}`
-          }
-          style={{ borderBottom: nameInput.hasError && `4px solid red` }}
+        <InputWithInvalidText
+          ErrorMessage={"Invalid Name"}
+          className={`${style.Input} `}
+          inputFields={{
+            placeholder: "Enter your full name",
+            value: nameInput.value,
+            isInvalid: nameInput.hasError,
+            onBlurHandler: nameInput.validateValueHandler,
+            onFocusHandler: nameInput.focusHandler,
+            onChange: nameInput.valueChangeHandler,
+            type: "text",
+            isTouched: nameInput.isFocused,
+          }}
+          mandatory="true"
         />
-        <CustomInput
-          id="Email"
-          placeholder="Email-ID"
-          value={emailInput.value}
-          onChange={emailInput.valueChangeHandler}
-          // isInvalid={nameInput.hasError}
-          onBlur={emailInput.validateValueHandler}
-          onFocus={emailInput.focusHandler}
-          className={
-            emailInput.hasError ? ` ${style.invalid} ` : `${style.InputFields}`
-          }
+        <InputWithInvalidText
+          ErrorMessage={"Invalid Email"}
+          className={`${style.Input} `}
+          inputFields={{
+            placeholder: "Enter email address",
+            value: emailInput.value,
+            isInvalid: emailInput.hasError,
+            onBlurHandler: emailInput.validateValueHandler,
+            onFocusHandler: emailInput.focusHandler,
+            onChange: emailInput.valueChangeHandler,
+            type: "email",
+            isTouched: emailInput.isFocused,
+          }}
+          mandatory="true"
         />
         {/* </div> */}
         {/* <div className={style.form_input}> */}
         {/* <label htmlFor="mobile">Mobile</label> */}
-        <CustomInput
-          id="mobile"
-          placeholder="Mobile number"
-          value={mobileInput.value}
-          onChange={mobileInput.valueChangeHandler}
-          isInvalid={!mobileInput.isValid}
-          onBlur={mobileInput.validateValueHandler}
-          onFocus={mobileInput.focusHandler}
-          className={
-            mobileInput.hasError ? ` ${style.invalid} ` : `${style.InputFields}`
-          }
+        <InputWithInvalidText
+          ErrorMessage={"Invalid Mobile number"}
+          className={`${style.Input} `}
+          inputFields={{
+            placeholder: "Enter your Mobile Number",
+            value: mobileInput.value,
+            isInvalid: mobileInput.hasError,
+            onBlurHandler: mobileInput.validateValueHandler,
+            onFocusHandler: mobileInput.focusHandler,
+            onChange: mobileInput.valueChangeHandler,
+            type: "text",
+            isTouched: mobileInput.isFocused,
+          }}
+          mandatory="true"
         />
         {/* </div> */}
         {/* <div className={style.form_input}> */}

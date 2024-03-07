@@ -68,6 +68,10 @@ export const percentageValidation = (value) => {
   return regex.test(value);
 };
 
+// export const descriptionValidation = (value)=>{
+
+// }
+
 // Add more validation functions as needed
 
 export {
