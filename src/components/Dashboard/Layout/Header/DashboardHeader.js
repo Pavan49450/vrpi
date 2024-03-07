@@ -1,12 +1,13 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import Logo from "../../../Logo/Logo";
 import style from "./DashboardHeader.module.css";
 
 const DashboardHeader = () => {
+  const navigate = useNavigate();
   const DashboardLinks = [
     {
       title: "My Dashboard",
-      link: "/dashboard",
+      link: "/dashboard/myDashboard",
       iconActive: "myDashboard-p.png",
       iconInActive: "myDashboard-w.png",
     },
@@ -28,7 +29,15 @@ const DashboardHeader = () => {
       iconActive: "settings-p.png",
       iconInActive: "settings-w.png",
     },
-    { title: "Logout", link: false, icon: "logoutIcon.png", action: () => {} },
+    {
+      title: "Logout",
+      link: false,
+      iconActive: "logout-p.png",
+      iconInActive: "logout-w.png",
+      action: () => {
+        navigate("/login");
+      },
+    },
     {
       title: "Help & Support",
       link: "/dashboard/helpAndSupport",
@@ -37,29 +46,34 @@ const DashboardHeader = () => {
     },
   ];
 
+  const { pathname } = useLocation();
+
   return (
     <header className={style.Header}>
-      <Logo />
+      <Logo className={style.logo} />
       <nav className={style.navbar}>
         <ul className={style.nav}>
           {DashboardLinks.map((link) => (
-            <li key={link.title}>
-              {link ? (
-                <NavLink to={link.link} className={style.navLink}>
-                  <img
-                    src={require(`../../../../assets/dashboard/${link.iconActive}`)}
-                    alt=""
-                  />
-                  <span>{link.title}</span>
+            <li key={link.title} className={style.link}>
+              {console.log(link)}
+              {link.link ? (
+                <NavLink
+                  to={link.link}
+                  className={({ isActive }) =>
+                    isActive
+                      ? `${style.active} ${style.navLink}`
+                      : style.navLink
+                  }
+                  exact
+                >
+                  <LinksContents link={link} pathname={pathname} />
                 </NavLink>
               ) : (
-                <button onClick={link.action}>
-                  {" "}
-                  <img
-                    src={require(`../../../../assets/dashboard/${link.iconActive}`)}
-                    alt=""
-                  />
-                  <span>{link.title}</span>
+                <button
+                  onClick={link.action}
+                  className={`${style.navLink} ${style.logoutBtn}`}
+                >
+                  <LinksContents link={link} />
                 </button>
               )}
             </li>
@@ -71,3 +85,22 @@ const DashboardHeader = () => {
 };
 
 export default DashboardHeader;
+
+const LinksContents = ({ link, pathname }) => {
+  return (
+    <>
+      {pathname === link.link ? (
+        <img
+          src={require(`../../../../assets/dashboard/${link.iconActive}`)}
+          alt=""
+        />
+      ) : (
+        <img
+          src={require(`../../../../assets/dashboard/${link.iconInActive}`)}
+          alt=""
+        />
+      )}
+      <span className={style.linkTitle}>{link.title}</span>
+    </>
+  );
+};

@@ -131,44 +131,45 @@ function App() {
           element: <CompanyDetails />,
           errorElement: <ErrorPage />,
         },
-        {
-          path: "/dashboard",
-          element: <DashboardRoot />,
-          errorElement: <ErrorPage />,
-          children: [
-            {
-              index: true,
-              element: <MyDashboard />,
-              errorElement: <ErrorPage />,
-            },
-            {
-              path: "courses",
-              element: <DashboardCourses />,
-              errorElement: <ErrorPage />,
-            },
-            {
-              path: "internships",
-              element: <DashboardInternships />,
-              errorElement: <ErrorPage />,
-            },
-            {
-              path: "settings",
-              element: <ProfileSettings />,
-              errorElement: <ErrorPage />,
-            },
-            {
-              path: "helpAndSupport",
-              element: <HelpAndSupport />,
-              errorElement: <ErrorPage />,
-            },
-          ],
-        },
 
         // {
         //   path: "/internships/:internshipId",
         //   element: <CIDetails />,
         //   errorElement: <ErrorPage />,
         // },
+      ],
+    },
+    {
+      path: "/dashboard",
+      element: <DashboardRoot />,
+      errorElement: <ErrorPage />,
+      children: [
+        {
+          // index: true,
+          path: "myDashboard",
+          element: <MyDashboard />,
+          errorElement: <ErrorPage />,
+        },
+        {
+          path: "courses",
+          element: <DashboardCourses />,
+          errorElement: <ErrorPage />,
+        },
+        {
+          path: "internships",
+          element: <DashboardInternships />,
+          errorElement: <ErrorPage />,
+        },
+        {
+          path: "settings",
+          element: <ProfileSettings />,
+          errorElement: <ErrorPage />,
+        },
+        {
+          path: "helpAndSupport",
+          element: <HelpAndSupport />,
+          errorElement: <ErrorPage />,
+        },
       ],
     },
   ]);
