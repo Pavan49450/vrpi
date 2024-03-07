@@ -7,30 +7,33 @@ const DashboardHeader = () => {
     {
       title: "My Dashboard",
       link: "/dashboard",
-      iconActive: "myDashboard-w.png",
-      iconInActive: "edutechIcon.png",
+      iconActive: "myDashboard-p.png",
+      iconInActive: "myDashboard-w.png",
     },
     {
       title: "Edu-Tech Courses",
       link: "/dashboard/courses",
-      iconActive: "edutechIcon.png",
-      iconInActive: "edutechIcon.png",
+      iconActive: "edutech-p.png",
+      iconInActive: "edutech-w.png",
     },
     {
       title: "Internship",
       link: "/dashboard/internships",
-      icon: "internshipIcon.png",
+      iconActive: "internship-p.png",
+      iconInActive: "internship-w.png",
     },
     {
       title: "Settings",
       link: "/dashboard/settings",
-      icon: "settingsIcon.png",
+      iconActive: "settings-p.png",
+      iconInActive: "settings-w.png",
     },
     { title: "Logout", link: false, icon: "logoutIcon.png", action: () => {} },
     {
       title: "Help & Support",
       link: "/dashboard/helpAndSupport",
-      icon: "supportIcon.png",
+      iconActive: "support-p.png",
+      iconInActive: "support-w.png",
     },
   ];
 
@@ -44,7 +47,7 @@ const DashboardHeader = () => {
               {link ? (
                 <NavLink to={link.link} className={style.navLink}>
                   <img
-                    src={require(`../../../../assets/dashboard/${link.icon}`)}
+                    src={require(`../../../../assets/dashboard/${link.iconActive}`)}
                     alt=""
                   />
                   <span>{link.title}</span>
@@ -53,7 +56,7 @@ const DashboardHeader = () => {
                 <button onClick={link.action}>
                   {" "}
                   <img
-                    src={require(`../../../../assets/dashboard/${link.icon}`)}
+                    src={require(`../../../../assets/dashboard/${link.iconActive}`)}
                     alt=""
                   />
                   <span>{link.title}</span>

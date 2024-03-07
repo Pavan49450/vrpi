@@ -188,23 +188,23 @@ const PersonalDataForm = ({ role }) => {
 
   const Line2 = (
     <div className={style.line2}>
-      {role === "student" && (
-        <InputWithInvalidText
-          ErrorMessage={"Invalid Father's Name"}
-          className={style.Input}
-          inputFields={{
-            placeholder: "Father's Name",
-            value: fatherNameInput.value,
-            isInvalid: fatherNameInput.hasError,
-            onBlurHandler: fatherNameInput.validateValueHandler,
-            onFocusHandler: fatherNameInput.focusHandler,
-            onChange: fatherNameInput.valueChangeHandler,
-            type: "text",
-            isTouched: fatherNameInput.isFocused,
-          }}
-          mandatory="true"
-        />
-      )}
+      {/* {role === "student" && ( */}
+      <InputWithInvalidText
+        ErrorMessage={"Invalid Father's Name"}
+        className={style.Input}
+        inputFields={{
+          placeholder: "Father's Name",
+          value: fatherNameInput.value,
+          isInvalid: fatherNameInput.hasError,
+          onBlurHandler: fatherNameInput.validateValueHandler,
+          onFocusHandler: fatherNameInput.focusHandler,
+          onChange: fatherNameInput.valueChangeHandler,
+          type: "text",
+          isTouched: fatherNameInput.isFocused,
+        }}
+        mandatory="true"
+      />
+      {/* )} */}
       <Dropdown
         options={Genders}
         onSelect={(gender) => setGender(gender)}
