@@ -31,7 +31,7 @@ const Dropdown = ({
           }`}
         >
           {placeholder}
-          <span style={{ color: "red" }}>{mandatory && " *"}</span>
+          <span style={{ color: "red" }}>&nbsp;{mandatory && "*"}</span>
         </span>
         {selectedOption && selectedOption.label}
 
@@ -44,15 +44,16 @@ const Dropdown = ({
           alt=""
         />
       </div>
-      {/* {isOpen && ( */}
-      <ul className={`${styles.options} ${isOpen && styles.optionsActive}`}>
-        {options.map((option) => (
-          <li key={option.value} onClick={() => handleOptionClick(option)}>
-            {option.label}
-          </li>
-        ))}
-      </ul>
-      {/* )} */}
+
+      {options && options.length > 0 && (
+        <ul className={`${styles.options} ${isOpen && styles.optionsActive}`}>
+          {options.map((option) => (
+            <li key={option.value} onClick={() => handleOptionClick(option)}>
+              {option.label}
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 };

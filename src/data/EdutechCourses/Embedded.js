@@ -11,7 +11,7 @@ export const Embedded = {
     "Virtual Classes",
     "Live Practical Training ",
   ],
-  price: "1799",
+  price: "85000",
   image: "embeddedCourse2.webp",
 
   buttonContent: "Enroll Now",

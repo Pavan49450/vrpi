@@ -10,22 +10,7 @@ import {
 } from "../../../InputValidations/InputValidations";
 import style from "./EducationalDetailsForm.module.css";
 import Button from "../../../../UI/Button/Button";
-
-const EducationLevelData = [
-  { label: "High School", value: "High School" },
-  { label: "Secondary Level/ Diploma", value: "Secondary Level/ Diploma" },
-  { label: "Under Graduation", value: "Under Graduation" },
-  { label: "Post Graduation", value: "Post Graduation" },
-  { label: "Other", value: "Other" },
-];
-
-const DegreeData = [
-  { label: "High School", value: "High School" },
-  { label: "Secondary Level/ Diploma", value: "Secondary Level/ Diploma" },
-  { label: "Under Graduation", value: "Under Graduation" },
-  { label: "Post Graduation", value: "Post Graduation" },
-  { label: "Other", value: "Other" },
-];
+import { DegreeData, EducationLevelData } from "../../../../data/EducationData";
 
 const EducationalDetailsForm = () => {
   const instituteNameInput = useInput({ validateValue: nameValidation });
@@ -37,22 +22,38 @@ const EducationalDetailsForm = () => {
   });
   const percentageInput = useInput({ validateValue: percentageValidation });
 
+  const educationLevelInput = useInput({ validateValue: nameValidation });
+  const degreeInput = useInput({ validateValue: nameValidation });
+
   const [educationLevel, setEducationLevel] = useState();
   const [degree, setDegree] = useState();
 
   const [formIsValid, setFormIsValid] = useState(false);
 
   useEffect(() => {
+    const dropdownIsValid =
+      (educationLevel?.value !== "other" &&
+        degree?.value !== undefined &&
+        degree?.value !== "other") ||
+      (educationLevel?.value === "other" &&
+        educationLevelInput.isValid &&
+        degreeInput.isValid) ||
+      (educationLevel?.value !== "other" &&
+        degree?.value !== undefined &&
+        degree?.value === "other" &&
+        degreeInput.isValid);
+
     const isFormValid =
-      educationLevel &&
-      degree &&
       instituteNameInput.isValid &&
       instituteLocationInput.isValid &&
       startYearInput.isValid &&
       endYearInput.isValid &&
-      percentageInput.isValid;
+      percentageInput.isValid &&
+      dropdownIsValid;
     setFormIsValid(isFormValid);
   }, [
+    educationLevelInput,
+    degreeInput,
     formIsValid,
     degree,
     educationLevel,
@@ -64,9 +65,18 @@ const EducationalDetailsForm = () => {
   ]);
 
   const submitHandler = () => {
+    const educationLevelFinal =
+      educationLevel?.value !== "other"
+        ? educationLevel.value
+        : educationLevelInput.value;
+    const degreeFinal =
+      degree?.value === "other" || educationLevel?.value === "other"
+        ? degreeInput.value
+        : degree.value;
+
     const formData = {
-      educationLevel,
-      degree,
+      educationLevelFinal,
+      degreeFinal,
       instituteNameInput,
       instituteLocationInput,
       startYearInput,
@@ -90,13 +100,53 @@ const EducationalDetailsForm = () => {
         style={{ marginBottom: "21.6px", width: "100%" }}
         mandatory
       />
-      <Dropdown
-        options={DegreeData}
-        onSelect={(level) => setDegree(level)}
-        placeholder="Degree"
-        style={{ marginBottom: "21.6px", width: "100%" }}
-        mandatory
-      />
+      {educationLevel?.value === "other" && (
+        <InputWithInvalidText
+          ErrorMessage={"Invalid Educations Level"}
+          className={style.Input}
+          inputFields={{
+            placeholder: "Education Level",
+            value: educationLevelInput.value,
+            isInvalid: educationLevelInput.hasError,
+            onBlurHandler: educationLevelInput.validateValueHandler,
+            onFocusHandler: educationLevelInput.focusHandler,
+            onChange: educationLevelInput.valueChangeHandler,
+            type: "text",
+            isTouched: educationLevelInput.isFocused,
+          }}
+          mandatory="true"
+        />
+      )}
+      {educationLevel?.value !== "other" && (
+        <Dropdown
+          options={
+            educationLevel
+              ? DegreeData[educationLevel?.value]
+              : [{ label: "Other", value: "other" }]
+          }
+          onSelect={(level) => setDegree(level)}
+          placeholder="Degree"
+          style={{ marginBottom: "21.6px", width: "100%" }}
+          mandatory
+        />
+      )}
+      {(educationLevel?.value === "other" || degree?.value === "other") && (
+        <InputWithInvalidText
+          ErrorMessage={"Invalid Degree"}
+          className={style.Input}
+          inputFields={{
+            placeholder: "Degree",
+            value: degreeInput.value,
+            isInvalid: degreeInput.hasError,
+            onBlurHandler: degreeInput.validateValueHandler,
+            onFocusHandler: degreeInput.focusHandler,
+            onChange: degreeInput.valueChangeHandler,
+            type: "text",
+            isTouched: degreeInput.isFocused,
+          }}
+          mandatory="true"
+        />
+      )}
     </div>
   );
 

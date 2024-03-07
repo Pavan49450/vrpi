@@ -19,11 +19,13 @@ const hideHeaderRoutes = [
   "/signup",
   "/educationaldetails",
   "/companydetails",
-  "/dashboard",
-  "/dashboard/courses",
-  "/dashboard/internships",
-  "/dashboard/helpAndSupport",
-  "/dashboard/settings",
+  // "/dashboard",
+  // "/dashboard/courses",
+  // "/dashboard/internships",
+  // "/dashboard/helpAndSupport",
+  // "/dashboard/settings",
+  // "/forgetPassword",
+  // "/resetPassword",
 ].map((route) => route.replace(/\/+$/, ""));
 
 const buttons = [{ name: "Login", link: "/login", active: false }];

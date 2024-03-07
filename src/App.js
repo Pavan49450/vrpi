@@ -27,6 +27,8 @@ import HelpAndSupport from "./pages/Dashboard/HelpAndSupport/HelpAndSupport";
 import DashboardCourses from "./pages/Dashboard/DashboardCourses/DashboardCourses";
 import DashboardInternships from "./pages/Dashboard/DashboardInternships/DashboardInternships";
 import ProfileSettings from "./pages/Dashboard/ProfileSettings/ProfileSettings";
+import ForgetPassword from "./pages/Login&Signup/Login/ForgetPassword/ForgetPassword";
+import CreateNewPassword from "./pages/Login&Signup/Login/CreateNewPassword/CreateNewPassword";
 
 function App() {
   const router = createBrowserRouter([
@@ -94,6 +96,7 @@ function App() {
           element: <Login />,
           errorElement: <ErrorPage />,
         },
+
         {
           path: "/knowledgeHub",
           element: <KnowledgeHub />,
@@ -113,11 +116,6 @@ function App() {
         {
           path: "/internships",
           element: <Internships />,
-          errorElement: <ErrorPage />,
-        },
-        {
-          path: "/vrpi-user/verify-account/:email/:otp",
-          element: <VerificationPage />,
           errorElement: <ErrorPage />,
         },
 
@@ -145,8 +143,7 @@ function App() {
       errorElement: <ErrorPage />,
       children: [
         {
-          // index: true,
-          path: "myDashboard",
+          index: true,
           element: <MyDashboard />,
           errorElement: <ErrorPage />,
         },
@@ -171,6 +168,21 @@ function App() {
           errorElement: <ErrorPage />,
         },
       ],
+    },
+    {
+      path: "/resetPassword/:email/:password",
+      element: <CreateNewPassword />,
+      errorElement: <ErrorPage />,
+    },
+    {
+      path: "/forgetPassword",
+      element: <ForgetPassword />,
+      errorElement: <ErrorPage />,
+    },
+    {
+      path: "/vrpi-user/verify-account/:email/:otp",
+      element: <VerificationPage />,
+      errorElement: <ErrorPage />,
     },
   ]);
 

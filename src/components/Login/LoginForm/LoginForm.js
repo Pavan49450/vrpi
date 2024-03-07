@@ -232,7 +232,7 @@ const CheckboxSection = ({ setRememberMe, setTermsAccepted }) => (
         <label htmlFor="rememberMe">Remember Me</label>
       </div>
       <div className={style.forgotPasswordLink}>
-        <NavLink to="">Forgot password?</NavLink>
+        <NavLink to="/forgetPassword">Forgot password?</NavLink>
       </div>
     </div>
     <div className={style.checkboxContainer} style={{ width: "100%" }}>
