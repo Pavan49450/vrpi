@@ -1,75 +1,43 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import useInput from "../../../hooks/use-Input";
 import Message from "../../../UI/Popup/Message";
-import CustomInput from "../../../UI/Input/Input";
 import CustomCheckbox from "../../../UI/Checkbox/Checkbox";
 import Button from "../../../UI/Button/Button";
 import style from "./LoginForm.module.css";
-
-const emailValidation = (value) =>
-  typeof value === "string" && value.trim().length >= 3 && value.includes("@");
-
-const passwordValidation = (value) =>
-  /^(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*(),.?":{}|<>]).{8,}$/.test(value);
+import InputWithInvalidText from "../../../UI/Input/InputWithInvalidText";
+import {
+  emailValidation,
+  passwordValidation,
+} from "../../InputValidations/InputValidations";
+import PasswordValidationBox from "../PasswordValidationBox/PasswordValidationBox";
 
 const LoginForm = () => {
   const [formIsValid, setFormIsValid] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
   const [termsAccepted, setTermsAccepted] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const [checkPassword, setCheckPassword] = useState(false);
 
   const handleErrorClose = () => setErrorMessage("");
 
   const navigate = useNavigate();
 
-  const {
-    value: email,
-    isValid: emailIsValid,
-    hasError: emailIsInvalid,
-    valueChangeHandler: emailChangeHandler,
-    validateValueHandler: validateEmailHandler,
-    focusHandler: emailFocusHandler,
-    isFocused: emailIsFocused,
-    reset: emailReset,
-  } = useInput({ validateValue: emailValidation });
-
-  const {
-    value: enteredPassword,
-    isValid: passwordIsValid,
-    hasError: passwordIsInvalid,
-    valueChangeHandler: passwordChangeHandler,
-    validateValueHandler: validatePasswordHandler,
-    focusHandler: passwordFocusHandler,
-    isFocused: passwordIsFocused,
-    reset: passwordReset,
-  } = useInput({ validateValue: passwordValidation });
+  const emailInput = useInput({ validateValue: emailValidation });
+  const passwordInput = useInput({ validateValue: passwordValidation });
 
   useEffect(() => {
     setFormIsValid(
-      emailIsValid && passwordIsValid && termsAccepted && rememberMe
+      emailInput.isValid && passwordInput.isValid && termsAccepted && rememberMe
     );
-  }, [emailIsValid, passwordIsValid, termsAccepted, rememberMe]);
-
-  const emailInputRef = useRef(null);
-
-  const handleEmailLabelClick = () => {
-    emailInputRef.current.focus();
-  };
-  const passwordInputRef = useRef(null);
-
-  const handlePasswordLabelClick = () => {
-    passwordInputRef.current.focus();
-  };
+  }, [emailInput.isValid, passwordInput.isValid, termsAccepted, rememberMe]);
 
   const submitHandler = (event) => {
     event.preventDefault();
     if (formIsValid) {
       console.log("Sign up Successful");
-      console.log("login details", email, enteredPassword);
-      emailReset();
-      passwordReset();
+      console.log("login details", emailInput.value, passwordInput.value);
+      emailInput.reset();
+      passwordInput.reset();
       navigate("/");
     } else {
       setErrorMessage(
@@ -81,70 +49,43 @@ const LoginForm = () => {
 
   const PasswordComponent = (
     <div className={style.Club} style={{ position: "relative" }}>
-      <CustomInput
-        className={`${style.checkoutFormControl} ${
-          passwordIsInvalid && style.invalid
-        }`}
-        type={checkPassword ? "text" : "password"}
-        value={enteredPassword}
-        onBlur={validatePasswordHandler}
-        onFocus={passwordFocusHandler}
-        onChange={passwordChangeHandler}
-        ref={passwordInputRef}
+      <InputWithInvalidText
+        ErrorMessage={"Invalid Password"}
+        className={`${style.Input} `}
+        inputFields={{
+          placeholder: "Enter your Password",
+          value: passwordInput.value,
+          isInvalid: passwordInput.hasError,
+          onBlurHandler: passwordInput.validateValueHandler,
+          onFocusHandler: passwordInput.focusHandler,
+          onChange: passwordInput.valueChangeHandler,
+          type: "password",
+          isTouched: passwordInput.isFocused,
+        }}
+        // mandatory="true"
       />
-      <img
-        src={require(`../../../assets/login-signup/${
-          checkPassword ? "show.png" : "hide.png"
-        }`)}
-        alt=""
-        className={style.checkPassword}
-        onClick={() => setCheckPassword(!checkPassword)}
-      />
-      <label
-        onClick={handlePasswordLabelClick}
-        className={`${
-          passwordIsFocused ? style.transition : style.placeholder
-        }`}
-      >
-        {"Enter your Password"}
-      </label>
-      {passwordIsFocused && passwordIsInvalid && (
-        <PasswordValidationBox enteredPassword={enteredPassword} />
+      {passwordInput.isFocused && passwordInput.hasError && (
+        <PasswordValidationBox enteredPassword={passwordInput.value} />
       )}
     </div>
   );
 
   const EmailComponent = (
-    <div className={style.Club}>
-      <CustomInput
-        className={`${style.checkoutFormControl} ${
-          emailIsInvalid && style.invalid
-        }`}
-        type="email"
-        // placeholder="Enter your Mail Address"
-        value={email}
-        onBlur={validateEmailHandler}
-        onFocus={emailFocusHandler}
-        onChange={emailChangeHandler}
-        ref={emailInputRef}
-      />
-      <label
-        onClick={handleEmailLabelClick}
-        className={`${emailIsFocused ? style.transition : style.placeholder}`}
-      >
-        {"Enter your Mail Address"}
-      </label>
-      {
-        <p
-          className={style.invalidText}
-          style={{
-            opacity: emailIsInvalid ? "1" : "0",
-          }}
-        >
-          Invalid Email
-        </p>
-      }
-    </div>
+    <InputWithInvalidText
+      ErrorMessage={"Invalid Email"}
+      className={`${style.Input} `}
+      inputFields={{
+        placeholder: "Enter your Username",
+        value: emailInput.value,
+        isInvalid: emailInput.hasError,
+        onBlurHandler: emailInput.validateValueHandler,
+        onFocusHandler: emailInput.focusHandler,
+        onChange: emailInput.valueChangeHandler,
+        type: "email",
+        isTouched: emailInput.isFocused,
+      }}
+      // mandatory="true"
+    />
   );
 
   return (
@@ -167,14 +108,17 @@ const LoginForm = () => {
         setTermsAccepted={setTermsAccepted}
       />
       <Button
-        className={
-          formIsValid ? style.submitBtn : `${style.submitBtn} ${style.disabled}`
-        }
+        className={formIsValid ? style.submitBtn : `${style.disabled}`}
+        disabled={!formIsValid}
+        // style={{ backgroundColor: !formIsValid && "#ccc" }}
         onClick={submitHandler}
       >
         Login
       </Button>
-      <div className={style.line}>Don’t have an Account?</div>
+      <div className={style.line}>
+        <div className={style.lineOn}></div>
+        <span className={style.or}>Don’t have an Account?</span>
+      </div>
       <Button
         onClick={() => {
           navigate("/signup");
@@ -186,34 +130,6 @@ const LoginForm = () => {
     </div>
   );
 };
-
-const PasswordValidationBox = ({ enteredPassword }) => (
-  <div className={style.passwordValidationContainer}>
-    {[
-      {
-        condition: enteredPassword.length >= 8,
-        message: "Password must be 8 Characters long",
-      },
-      {
-        condition: /[A-Z]/.test(enteredPassword),
-        message: "Should contain at least one Capital letter",
-      },
-      {
-        condition: /[!@#$%^&*(),.?":{}|<>]/.test(enteredPassword),
-        message: "Should contain one Special character",
-      },
-      {
-        condition: /\d/.test(enteredPassword),
-        message: "Should contain one Numeric digit",
-      },
-    ].map((item, index) => (
-      <div key={index} className={style.passwordValidation}>
-        <ValidatePasswordFunction validate={item.condition} />
-        <p>{item.message}</p>
-      </div>
-    ))}
-  </div>
-);
 
 const CheckboxSection = ({ setRememberMe, setTermsAccepted }) => (
   <div className={style.checkBoxes}>
@@ -266,15 +182,6 @@ const CheckboxSection = ({ setRememberMe, setTermsAccepted }) => (
       </label>
     </div>
   </div>
-);
-
-const ValidatePasswordFunction = ({ validate }) => (
-  <img
-    src={require(`../../../assets/login-signup/${
-      validate ? "correct.png" : "wrong.png"
-    }`)}
-    alt=""
-  />
 );
 
 export default LoginForm;

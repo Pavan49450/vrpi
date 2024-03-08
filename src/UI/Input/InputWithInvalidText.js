@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import CustomInput from "./Input";
 import style from "./CustomInput.module.css";
 
@@ -9,6 +9,8 @@ const InputWithInvalidText = ({
   mandatory,
 }) => {
   const inputRef = useRef(null);
+
+  const [checkPassword, setCheckPassword] = useState(false);
 
   const handleLabelClick = () => {
     inputRef.current.focus();
@@ -26,13 +28,27 @@ const InputWithInvalidText = ({
         onFocus={inputFields.onFocusHandler}
         onBlur={inputFields.onBlurHandler}
         onChange={inputFields.onChange}
-        type={inputFields.type}
+        type={`${
+          inputFields.type === "password" && checkPassword
+            ? "text"
+            : inputFields.type
+        }`}
       />
+      {inputFields.type === "password" && (
+        <img
+          src={require(`../../assets/login-signup/${
+            checkPassword ? "showPassword.png" : "hidePassword.png"
+          }`)}
+          alt=""
+          className={style.checkPassword}
+          onClick={() => setCheckPassword(!checkPassword)}
+        />
+      )}
       <label
         className={` ${
           inputFields.isTouched ? style.transition : style.placeholder
         }`}
-        onClick={handleLabelClick} // Added onClick event handler
+        onClick={handleLabelClick}
       >
         {inputFields.placeholder}{" "}
         {mandatory && <span style={{ color: "red" }}>&nbsp;*</span>}

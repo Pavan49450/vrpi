@@ -29,6 +29,7 @@ import DashboardInternships from "./pages/Dashboard/DashboardInternships/Dashboa
 import ProfileSettings from "./pages/Dashboard/ProfileSettings/ProfileSettings";
 import ForgetPassword from "./pages/Login&Signup/Login/ForgetPassword/ForgetPassword";
 import CreateNewPassword from "./pages/Login&Signup/Login/CreateNewPassword/CreateNewPassword";
+import MandatoryCertificates from "./pages/Login&Signup/MandatoryCertificates/MandatoryCertificates";
 
 function App() {
   const router = createBrowserRouter([
@@ -183,6 +184,11 @@ function App() {
     {
       path: "/vrpi-user/verify-account/:email/:otp",
       element: <VerificationPage />,
+      errorElement: <ErrorPage />,
+    },
+    {
+      path: "/mandatoryCertificates",
+      element: <MandatoryCertificates />,
       errorElement: <ErrorPage />,
     },
   ]);

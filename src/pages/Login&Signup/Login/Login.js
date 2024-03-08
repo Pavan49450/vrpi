@@ -11,7 +11,10 @@ const loginScreenData = {
 
 const Login = () => {
   return (
-    <SignUpOrLoginContainer screenData={loginScreenData}>
+    <SignUpOrLoginContainer
+      screenData={loginScreenData}
+      classForMainContent={style.mainContent}
+    >
       <LoginForm />
     </SignUpOrLoginContainer>
   );

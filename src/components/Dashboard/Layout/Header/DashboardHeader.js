@@ -1,9 +1,27 @@
+import { useState } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import Logo from "../../../Logo/Logo";
 import style from "./DashboardHeader.module.css";
+import ConfirmationModal from "../../../../UI/ConfirmModel/ConfirmationModal";
 
 const DashboardHeader = () => {
   const navigate = useNavigate();
+  const { pathname } = useLocation();
+
+  const handleLogout = () => {
+    setLogoutModalOpen(true);
+  };
+
+  const handleLogoutConfirm = () => {
+    navigate("/login");
+  };
+
+  const [logoutModalOpen, setLogoutModalOpen] = useState(false);
+
+  const closeLogoutModal = () => {
+    setLogoutModalOpen(false);
+  };
+
   const DashboardLinks = [
     {
       title: "My Dashboard",
@@ -34,9 +52,7 @@ const DashboardHeader = () => {
       link: false,
       iconActive: "logout-p.png",
       iconInActive: "logout-w.png",
-      action: () => {
-        navigate("/login");
-      },
+      action: handleLogout,
     },
     {
       title: "Help & Support",
@@ -45,8 +61,6 @@ const DashboardHeader = () => {
       iconInActive: "support-w.png",
     },
   ];
-
-  const { pathname } = useLocation();
 
   return (
     <header className={style.Header}>
@@ -79,6 +93,14 @@ const DashboardHeader = () => {
           ))}
         </ul>
       </nav>
+      <ConfirmationModal
+        isOpen={logoutModalOpen}
+        onRequestClose={closeLogoutModal}
+        title="Confirm Logout"
+        message="Are you sure you want to logout?"
+        onConfirm={handleLogoutConfirm}
+        onCancel={closeLogoutModal}
+      />
     </header>
   );
 };

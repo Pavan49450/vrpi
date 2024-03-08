@@ -21,7 +21,29 @@ const aadhaarValidation = (value) => {
 
 const passwordValidation = (value) => {
   // Add your validation logic for password here
-  return value.length >= 8; // Example: Password must be at least 8 characters long
+
+  // Check if the password contains at least one uppercase letter
+  if (!/[A-Z]/.test(value)) {
+    return false;
+  }
+
+  // Check if the password contains at least one special character
+  if (!/[!@#$%^&*(),.?":{}|<>]/.test(value)) {
+    return false;
+  }
+
+  // Check if the password contains at least one digit
+  if (!/\d/.test(value)) {
+    return false;
+  }
+
+  // Check if the password length is at least 8 characters
+  if (value.length < 8) {
+    return false;
+  }
+
+  // If all conditions pass, return true indicating that the password is valid
+  return true;
 };
 
 const confirmPasswordValidation = (value, passwordValue) => {
@@ -68,11 +90,17 @@ export const percentageValidation = (value) => {
   return regex.test(value);
 };
 
-// export const descriptionValidation = (value)=>{
+export const annualIncomeValidator = (value) => {
+  if (!value || value.trim() === "") {
+    return false;
+  }
 
-// }
+  if (isNaN(Number(value))) {
+    return false;
+  }
 
-// Add more validation functions as needed
+  return true;
+};
 
 export {
   nameValidation,

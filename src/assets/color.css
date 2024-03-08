@@ -9,11 +9,15 @@
   --dilutedPrimary: #ff650163;
   --lightPrimary: #fbd4ba;
   --dilutedBlack: #808080a3;
+  --darkBlue: #002966;
+  --skyBlue: #e5f1ff;
+  --darkBackground: #262626;
 
   --white: #fff;
   --black: #000000;
   --darkInvalidColor: #cb0000;
   --successColor: #4caf50;
+  --lightBlack: #3f3f3f;
 
   --gold: #ffa500;
   --yellow: #ffd700;

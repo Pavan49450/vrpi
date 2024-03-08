@@ -20,7 +20,10 @@ const ForgetPassword = () => {
 
   return (
     <div className={style.screen}>
-      <SignUpOrLoginContainer screenData={loginScreenData}>
+      <SignUpOrLoginContainer
+        screenData={loginScreenData}
+        classForMainContent={style.mainContent}
+      >
         <div className={style.container}>
           <h1>Forget Password</h1>
           <InputWithInvalidText

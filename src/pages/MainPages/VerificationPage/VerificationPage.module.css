@@ -9,3 +9,7 @@
 .container p {
   margin: 1rem 0;
 }
+
+.mainContent {
+  align-items: center !important;
+}

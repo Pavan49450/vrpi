@@ -1,7 +1,11 @@
 import CustomImage from "../../UI/Image/Image";
 import style from "./SignUpOrLoginContainer.module.css";
 
-const SignUpOrLoginContainer = ({ screenData, children }) => {
+const SignUpOrLoginContainer = ({
+  screenData,
+  children,
+  classForMainContent,
+}) => {
   return (
     <div className={style.container}>
       <div className={style.frame}>
@@ -15,7 +19,9 @@ const SignUpOrLoginContainer = ({ screenData, children }) => {
           classForDiv={style.screenImage}
         />
       </div>
-      <div className={style.mainContent}>{children}</div>
+      <div className={`${style.mainContent} ${classForMainContent}`}>
+        {children}
+      </div>
     </div>
   );
 };

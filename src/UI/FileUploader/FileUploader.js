@@ -37,7 +37,7 @@ const CustomFileUploader = ({
       <button className={style.uploadButton} onClick={handleButtonClick}>
         <span className={`${fileName ? style.transition : style.placeholder}`}>
           {buttonText}
-          <span style={{ color: "red" }}>{mandatory && " *"}</span>
+          <span style={{ color: "red" }}>&nbsp;{mandatory && "*"}</span>
         </span>
         <span style={{ color: fileName ? "#000" : "#a7a7a7" }}>
           {fileName && fileName}

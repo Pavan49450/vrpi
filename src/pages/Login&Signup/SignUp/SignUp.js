@@ -4,6 +4,7 @@ import SelectUser from "../../../components/Signup/SelectUser/SelectUser";
 import { useSelector } from "react-redux";
 import PersonalDetails from "../../../components/Signup/PersonalDetails/PersonalDetails";
 import ThankyouScreen from "../../../components/Signup/ThankyouScreen/ThankyouScreen";
+import style from "./SignUp.module.css";
 
 const welcomePageScreenData = {
   title: "Welcome!!",
@@ -28,7 +29,10 @@ const SignUp = () => {
   return (
     <>
       {userState.role === null && userState.step === null && (
-        <SignUpOrLoginContainer screenData={welcomePageScreenData}>
+        <SignUpOrLoginContainer
+          screenData={welcomePageScreenData}
+          classForMainContent={style.mainContent}
+        >
           <SelectUser />
         </SignUpOrLoginContainer>
       )}
