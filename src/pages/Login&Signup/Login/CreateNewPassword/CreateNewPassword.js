@@ -42,7 +42,10 @@ const CreateNewPassword = () => {
 
   return (
     <div className={style.screen}>
-      <SignUpOrLoginContainer screenData={loginScreenData}>
+      <SignUpOrLoginContainer
+        screenData={loginScreenData}
+        classForMainContent={style.mainContent}
+      >
         <div className={style.container}>
           <h1>Reset Password</h1>
           <InputWithInvalidText

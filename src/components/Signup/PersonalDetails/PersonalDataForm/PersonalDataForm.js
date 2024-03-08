@@ -54,13 +54,17 @@ const PersonalDataForm = ({ role }) => {
   const [gender, setGender] = useState();
   const [occupation, setOccupation] = useState();
 
-  const [aadhaarCardFile, setAadhaarCardFile] = useState(null);
+  const [aadhaarCardFrontFile, setAadhaarCardFrontFile] = useState(null);
+  const [aadhaarCardBackFile, setAadhaarCardBackFile] = useState(null);
   const [passportFile, setPassportFile] = useState(null);
 
   const [formIsValid, setFormIsValid] = useState(false);
 
-  const handleAadhaarCardChange = (file) => {
-    setAadhaarCardFile(file);
+  const handleAadhaarCardFrontChange = (file) => {
+    setAadhaarCardFrontFile(file);
+  };
+  const handleAadhaarCardBackChange = (file) => {
+    setAadhaarCardBackFile(file);
   };
 
   const handlePassportChange = (file) => {
@@ -129,9 +133,10 @@ const PersonalDataForm = ({ role }) => {
           password: passwordInput.value,
           confirmPassword: confirmPasswordInput.value,
           occupation,
-          // aadhaarNumber: aadhaarInput.value,
-          // aadhaarCardFile,
-          // passportFile,
+          aadhaarNumber: aadhaarInput?.value,
+          aadhaarCardFront: aadhaarCardFrontFile,
+          aadhaarCardBack: aadhaarCardBackFile,
+          passport: passportFile,
         };
         console.log(formData);
       } else if (role === "client") {
@@ -346,7 +351,7 @@ const PersonalDataForm = ({ role }) => {
     <div className={style.line7}>
       <div>
         <CustomFileUploader
-          onChange={handleAadhaarCardChange}
+          onChange={handleAadhaarCardFrontChange}
           buttonText="Upload Aadhaar Card(Front)"
           acceptedFileType={["image/jpeg", "image/png", "image/pdf"]}
         />
@@ -358,7 +363,7 @@ const PersonalDataForm = ({ role }) => {
       </div>
       <div>
         <CustomFileUploader
-          onChange={handleAadhaarCardChange}
+          onChange={handleAadhaarCardBackChange}
           buttonText="Upload Aadhaar Card(Back)"
           acceptedFileType={["image/jpeg", "image/png", "image/pdf"]}
         />

@@ -12,24 +12,29 @@ const verificationPageScreenData = {
 const VerificationPage = () => {
   const navigate = useNavigate();
   return (
-    <SignUpOrLoginContainer screenData={verificationPageScreenData}>
-      <div className={style.container}>
-        <img
-          src={require(`../../../assets/login-signup/verificationIcon.png`)}
-          alt=""
-        ></img>
-        <div>
-          <p>
-            Thank you, your email has been verified. Your account is now active.
-            Please click the button below to Login to your Account
-          </p>
-          <p>Thank you for choosing VR PI Group of Companies</p>
+    <div style={{ display: "flex" }}>
+      <SignUpOrLoginContainer
+        screenData={verificationPageScreenData}
+        classForMainContent={style.mainContent}
+      >
+        <div className={style.container}>
+          <img
+            src={require(`../../../assets/login-signup/verificationIcon.png`)}
+            alt=""
+          ></img>
+          <div>
+            <p>
+              Thank you, your email has been verified. Your account is now
+              active. Please click the button below to Login to your Account
+            </p>
+            <p>Thank you for choosing VR PI Group of Companies</p>
+          </div>
+          <Button onClick={() => navigate("/login")}>
+            Login to your Account
+          </Button>
         </div>
-        <Button onClick={() => navigate("/login")}>
-          Login to your Account
-        </Button>
-      </div>
-    </SignUpOrLoginContainer>
+      </SignUpOrLoginContainer>
+    </div>
   );
 };
 

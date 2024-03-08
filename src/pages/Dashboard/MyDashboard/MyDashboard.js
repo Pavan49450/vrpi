@@ -10,9 +10,13 @@ const MyDashboard = () => {
   return (
     <div className={style.container}>
       <WelcomeScreen user={user} />
-      <div className={style.mainContainer}>
-        <Courses data={EduTechData} />
-        {/* <RightSideContents /> */}
+      <div className={style.containers}>
+        <div className={style.mainContainer}>
+          <Courses data={EduTechData} />
+        </div>
+        <div className={style.sideContainer}>
+          <RightSideContents />
+        </div>
       </div>
     </div>
   );

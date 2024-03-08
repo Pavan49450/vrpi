@@ -1,4 +1,6 @@
+import { useNavigate } from "react-router-dom";
 import style from "./Courses.module.css";
+import Button from "../../../../UI/Button/Button";
 
 const Courses = ({ data, ifCourseDetails, className }) => {
   const onlineCourses =
@@ -14,17 +16,21 @@ const Courses = ({ data, ifCourseDetails, className }) => {
       title: "Edu-Tech Online Courses",
       highlightWord: "Edu-Tech",
       courses: onlineCourses,
+      description:
+        "To take these courses undergo a Free Test and win a Scholarship for each Online Courses of VR PI Group of Companies",
     },
     {
       title: "Edu-Tech Offline Courses",
       highlightWord: "Edu-Tech",
       courses: offlineCourses,
+      description:
+        "To take these courses undergo a Free Test and win a Scholarship for each Online Courses of VR PI Group of Companies",
     },
-    {
-      title: "Upcoming Courses",
-      highlightWord: "Upcoming",
-      courses: upcomingCourses,
-    },
+    // {
+    //   title: "Upcoming Courses",
+    //   highlightWord: "Upcoming",
+    //   courses: upcomingCourses,
+    // },
   ];
 
   const liveInternships =
@@ -48,45 +54,56 @@ const Courses = ({ data, ifCourseDetails, className }) => {
   ];
 
   return (
-    <>
+    <div className={style.allCourses}>
       {console.log("allCourses", allCourses)}
       {allCourses.map((courseSection) => {
         return (
-          <>
+          <div>
             {courseSection.courses.length !== 0 && (
               <div className={style.cardSection}>
                 <h2 className={style.cardSectionTitle}>
                   {courseSection.title}
                 </h2>
-                <div
-                  className={`${style.cardStack} ${
-                    ifCourseDetails === true && style.forDetailsPage
-                  } ${className} `}
-                >
+                <p>{courseSection.description}</p>
+                <div className={`${style.cardStack} ${className} `}>
                   {courseSection.courses.map((CardDetails) => {
                     return <CourseCard CardDetails={CardDetails} />;
                   })}
                 </div>
               </div>
             )}
-          </>
+          </div>
         );
       })}
-    </>
+    </div>
   );
 };
 
 export default Courses;
 
 const CourseCard = ({ CardDetails }) => {
+  const navigate = useNavigate();
+
   return (
-    <div className={style.cardStack}>
-      <div className={style.card}>
-        <div className={style.cardContent}>
-          <h3 className={style.cardTitle}>{CardDetails.title}</h3>
-          <p className={style.cardDescription}>{CardDetails.description}</p>
-        </div>
+    <div className={style.card}>
+      <div className={style.cardContent}>
+        <h3 className={style.cardTitle}>{CardDetails.name}</h3>
+        <img
+          src={require(`../../../../assets/dashboard/webLink.png`)}
+          alt=""
+          onClick={() => {
+            navigate(`/edutech/${CardDetails.id}`);
+          }}
+          className={style.courseLink}
+        />
       </div>
+      <Button
+        onClick={() => {
+          navigate(`/edutech/${CardDetails.id}`);
+        }}
+      >
+        Check Details
+      </Button>
     </div>
   );
 };

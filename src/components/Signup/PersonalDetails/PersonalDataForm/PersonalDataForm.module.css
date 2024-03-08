@@ -9,6 +9,10 @@
   margin: 1.5rem;
 }
 
+.important {
+  color: red;
+}
+
 .invalid {
   border: 1px solid var(--darkInvalidColor);
 }

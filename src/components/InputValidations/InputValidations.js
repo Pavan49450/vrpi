@@ -68,11 +68,17 @@ export const percentageValidation = (value) => {
   return regex.test(value);
 };
 
-// export const descriptionValidation = (value)=>{
+export const annualIncomeValidator = (value) => {
+  if (!value || value.trim() === "") {
+    return false;
+  }
 
-// }
+  if (isNaN(Number(value))) {
+    return false;
+  }
 
-// Add more validation functions as needed
+  return true;
+};
 
 export {
   nameValidation,
