@@ -45,7 +45,7 @@
   background: transparent;
   font-size: 1rem;
   /* border-bottom: 2px solid grey; */
-  border: 2px solid var(--primary);
+  border: 1px solid var(--primary);
   width: 100%;
   padding: 10px;
   border-radius: 5px;
@@ -53,14 +53,14 @@
 }
 
 .descriptionInvalid {
-  border: 2px solid var(--darkInvalidColor);
+  border: 1px solid var(--darkInvalidColor);
 }
 
 .description:focus-visible {
   background: transparent;
   font-size: 1rem;
   /* border-bottom: 2px solid grey; */
-  border: 2px solid var(--primary);
+  border: 1px solid var(--primary);
   width: 100%;
   padding: 10px;
   border-radius: 5px;

@@ -1,4 +1,5 @@
 import style from "./PasswordValidationBox.module.css";
+
 const PasswordValidationBox = ({ enteredPassword }) => {
   return (
     <div className={style.passwordValidationContainer}>

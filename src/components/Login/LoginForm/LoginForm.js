@@ -108,9 +108,9 @@ const LoginForm = () => {
         setTermsAccepted={setTermsAccepted}
       />
       <Button
-        className={
-          formIsValid ? style.submitBtn : `${style.submitBtn} ${style.disabled}`
-        }
+        className={formIsValid ? style.submitBtn : `${style.disabled}`}
+        disabled={!formIsValid}
+        // style={{ backgroundColor: !formIsValid && "#ccc" }}
         onClick={submitHandler}
       >
         Login
