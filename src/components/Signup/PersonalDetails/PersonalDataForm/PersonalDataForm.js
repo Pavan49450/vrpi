@@ -18,6 +18,8 @@ import CustomFileUploader from "../../../../UI/FileUploader/FileUploader";
 import CustomDatePicker from "../../../../UI/DatePIcker/DatePIcker";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../../../store/UserSlice";
+import useHttpsAxios from "../../../../hooks/use-httpsAxios";
+import { url } from "../../../../constants";
 
 const Genders = [
   { value: "female", label: "Female" },
@@ -74,6 +76,7 @@ const PersonalDataForm = ({ role }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    console.log("DOB->", DOB);
     let isFormValid = false;
     if (role === "student") {
       isFormValid =
@@ -118,40 +121,62 @@ const PersonalDataForm = ({ role }) => {
     DOB,
   ]);
 
+  const { sendRequest, isLoading, error, statusCode } = useHttpsAxios();
+
+  const fetchData = (response) => {
+    console.log(response);
+  };
+
   const handleSubmit = () => {
+    let formData;
     if (formIsValid) {
       if (role === "student") {
-        const formData = {
+        formData = {
           firstName: firstNameInput.value,
           lastName: lastNameInput.value,
           fatherName: fatherNameInput.value,
-          mobileNumber: mobileNumberInput.value,
-          gender,
-          DOB: DOB,
-          permanentAddress: permanentInput.value,
+          gender: gender.value,
+          phoneNumber: mobileNumberInput.value,
+          dateOfBirth: DOB,
+          address: permanentInput.value,
           email: emailInput.value,
-          password: passwordInput.value,
-          confirmPassword: confirmPasswordInput.value,
-          occupation,
-          aadhaarNumber: aadhaarInput?.value,
-          aadhaarCardFront: aadhaarCardFrontFile,
-          aadhaarCardBack: aadhaarCardBackFile,
-          passport: passportFile,
+          // password: passwordInput.value,
+          createPassword: confirmPasswordInput.value,
+          occupation: occupation.value,
+          aadharCardNumber: aadhaarInput?.value,
+          aadharFront: aadhaarCardFrontFile,
+          aadharBack: aadhaarCardBackFile,
+          profilePic: passportFile,
+          roles: role,
         };
         console.log(formData);
       } else if (role === "client") {
-        const formData = {
+        formData = {
           firstName: firstNameInput.value,
           lastName: lastNameInput.value,
-          mobileNumber: mobileNumberInput.value,
-          gender,
+          phoneNumber: mobileNumberInput.value,
+          gender: gender,
           email: emailInput.value,
-          password: passwordInput.value,
-          confirmPassword: confirmPasswordInput.value,
+          // password: passwordInput.value,
+          createPassword: confirmPasswordInput.value,
+          roles: role,
         };
         console.log(formData);
       }
-      dispatch(setUser({ role: role, step: 2 }));
+
+      sendRequest(
+        {
+          url: `${url.backendBaseUrl}/vrpi-user/create`,
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: formData,
+        },
+        fetchData
+      );
+
+      // dispatch(setUser({ role: role, step: 2 }));
     } else {
       alert("invalid fields");
     }

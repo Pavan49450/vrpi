@@ -11,6 +11,9 @@ import {
   passwordValidation,
 } from "../../InputValidations/InputValidations";
 import PasswordValidationBox from "../PasswordValidationBox/PasswordValidationBox";
+import useHttps from "../../../hooks/use-https";
+import { url } from "../../../constants";
+import useHttpsAxios from "../../../hooks/use-httpsAxios";
 
 const LoginForm = () => {
   const [formIsValid, setFormIsValid] = useState(false);
@@ -31,14 +34,46 @@ const LoginForm = () => {
     );
   }, [emailInput.isValid, passwordInput.isValid, termsAccepted, rememberMe]);
 
+  const { sendRequest, isLoading, error, statusCode } = useHttpsAxios();
+  const [user, setUser] = useState();
+
+  const fetchData = (response) => {
+    console.log("response", response);
+    setUser(response);
+  };
+
   const submitHandler = (event) => {
     event.preventDefault();
     if (formIsValid) {
-      console.log("Sign up Successful");
-      console.log("login details", emailInput.value, passwordInput.value);
-      emailInput.reset();
-      passwordInput.reset();
-      navigate("/");
+      // console.log("Sign up Successful");
+      // console.log("login details", emailInput.value, passwordInput.value);
+      sendRequest(
+        {
+          url: `${url.backendBaseUrl}/vrpi-user/login`,
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: {
+            email: emailInput.value,
+            password: passwordInput.value,
+          },
+        },
+        fetchData
+      );
+
+      if (statusCode === 200) {
+        console.log(user);
+      } else {
+        if (error) {
+          console.log(error.response.data.statusMessage);
+          setErrorMessage(error.response.data.statusMessage);
+        }
+      }
+
+      // emailInput.reset();
+      // passwordInput.reset();
+      // navigate("/");
     } else {
       setErrorMessage(
         "Please complete all fields and accept the terms and conditions."
@@ -113,7 +148,7 @@ const LoginForm = () => {
         // style={{ backgroundColor: !formIsValid && "#ccc" }}
         onClick={submitHandler}
       >
-        Login
+        {isLoading ? "loading..." : "Login"}
       </Button>
       <div className={style.line}>
         <div className={style.lineOn}></div>
