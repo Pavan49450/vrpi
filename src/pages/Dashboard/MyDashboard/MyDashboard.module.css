@@ -16,3 +16,16 @@
   min-width: 350px;
   margin-top: 1rem;
 }
+
+.rightSideContents {
+  display: none;
+}
+
+@media (max-width: 1050px) {
+  .sideContainer {
+    display: none;
+  }
+  .rightSideContents {
+    display: block;
+  }
+}

@@ -1,4 +1,5 @@
 import Courses from "../../../components/Dashboard/MyDashboardComponent/Courses/Courses";
+import ProfileDetails from "../../../components/Dashboard/MyDashboardComponent/ProfileDetails/ProfileDetails";
 import EdutechBenefits from "../../../components/Dashboard/RightSideContents/EdutechBenefits/EdutechBenefits";
 import RightSideContents from "../../../components/Dashboard/RightSideContents/RightSideContents";
 import WelcomeScreen from "../../../components/Dashboard/WelcomeScreen/WelcomeScreen";
@@ -13,7 +14,11 @@ const MyDashboard = () => {
       <WelcomeScreen user={user} />
       <div className={style.containers}>
         <div className={style.mainContainer}>
+          <ProfileDetails user={user} />
           <Courses data={EduTechData} />
+          <div className={style.rightSideContents}>
+            <RightSideContents />
+          </div>
         </div>
         <div className={style.sideContainer}>
           <RightSideContents />
