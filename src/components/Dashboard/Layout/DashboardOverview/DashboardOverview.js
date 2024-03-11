@@ -1,8 +1,19 @@
 import style from "./DashboardOverview.module.css";
-const DashboardOverview = ({ userDetails, children }) => {
+const DashboardOverview = ({ userDetails, children, toggleMenuBar }) => {
   return (
     <div className={style.mainContainer}>
       <div className={style.overviewContainer}>
+        {
+          <div
+            className={`${style.menuIcon} 
+            }`}
+            onClick={toggleMenuBar}
+          >
+            <div className={style.bar1}></div>
+            <div className={style.bar2}></div>
+            <div className={style.bar3}></div>
+          </div>
+        }
         <h2>Overview</h2>
         <div className={style.overviewContents}>
           <img

@@ -1,5 +1,9 @@
 import "./App.css";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import {
+  RouterProvider,
+  createBrowserRouter,
+  // useNavigate,
+} from "react-router-dom";
 import RootLayout from "./pages/Root";
 import HomePage from "./pages/MainPages/Home/Home";
 import ErrorPage from "./pages/Error";
@@ -30,8 +34,11 @@ import ProfileSettings from "./pages/Dashboard/ProfileSettings/ProfileSettings";
 import ForgetPassword from "./pages/Login&Signup/Login/ForgetPassword/ForgetPassword";
 import CreateNewPassword from "./pages/Login&Signup/Login/CreateNewPassword/CreateNewPassword";
 import MandatoryCertificates from "./pages/Login&Signup/MandatoryCertificates/MandatoryCertificates";
+import PurchaseHistory from "./pages/Dashboard/PurchaseHistory/PurchaseHistory";
 
 function App() {
+  // const navigate = useNavigate();
+
   const router = createBrowserRouter([
     {
       path: "/",
@@ -143,9 +150,10 @@ function App() {
       element: <DashboardRoot />,
       errorElement: <ErrorPage />,
       children: [
+        // { index: true, element: () => navigate("/dashboard/myDashboard") },
         {
           // index: true,
-          path: "/dashboard/myDashboard",
+          path: "/dashboard",
           element: <MyDashboard />,
           errorElement: <ErrorPage />,
         },
@@ -159,9 +167,14 @@ function App() {
           element: <DashboardInternships />,
           errorElement: <ErrorPage />,
         },
+        // {
+        //   path: "settings",
+        //   element: <ProfileSettings />,
+        //   errorElement: <ErrorPage />,
+        // },
         {
-          path: "settings",
-          element: <ProfileSettings />,
+          path: "purchaseHistory",
+          element: <PurchaseHistory />,
           errorElement: <ErrorPage />,
         },
         {
