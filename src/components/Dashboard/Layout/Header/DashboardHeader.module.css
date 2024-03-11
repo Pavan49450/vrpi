@@ -13,6 +13,10 @@
   height: 130px;
 }
 
+.logo img {
+  margin: auto;
+}
+
 .nav {
   display: flex;
   padding: 1rem;
@@ -70,5 +74,44 @@
     margin: 0;
     padding: 0.5rem;
     padding-top: 0;
+  }
+}
+@media (max-width: 650px) {
+  .linkTitle {
+    display: block;
+  }
+  .Header {
+    margin: 0;
+    padding: 0.5rem;
+    padding-top: 0;
+    position: absolute;
+    z-index: 10;
+    overflow: hidden;
+    left: -100%;
+    transition: left 0.3s ease;
+  }
+
+  .logo img {
+    max-width: 100% !important;
+  }
+  .show {
+    left: 0 !important;
+  }
+  .closeBtn {
+    position: absolute;
+    cursor: pointer;
+    top: 1rem;
+    right: 1rem;
+    font-size: 2rem;
+    padding: 0.5rem;
+    background-color: #ccc;
+    border-radius: 50%;
+    line-height: 2rem;
+    width: 3rem;
+    text-align: center;
+  }
+  .closeBtn:hover {
+    transform: scale(1.1);
+    transition: transform 0.3s ease;
   }
 }
