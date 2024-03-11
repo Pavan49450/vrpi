@@ -1,3 +1,4 @@
+import EnrolledCourseComponent from "../../../components/Dashboard/EnrolledCourseComponent/EnrolledCourseComponent";
 import Courses from "../../../components/Dashboard/MyDashboardComponent/Courses/Courses";
 import ProfileDetails from "../../../components/Dashboard/MyDashboardComponent/ProfileDetails/ProfileDetails";
 import RightSideContents from "../../../components/Dashboard/RightSideContents/RightSideContents";
@@ -13,15 +14,23 @@ const MyDashboard = () => {
       <WelcomeScreen user={user} />
       <div className={style.containers}>
         <div className={style.mainContainer}>
-          <ProfileDetails user={user} />
+          {user.educationalDetails === undefined ? (
+            <ProfileDetails user={user} />
+          ) : (
+            <EnrolledCourseComponent enrolledCourses={user.enrolledCourses} />
+          )}
           <Courses data={EduTechData} />
-          <div className={style.rightSideContents}>
+          {user.enrolledCourses.length === 0 && (
+            <div className={style.rightSideContents}>
+              <RightSideContents />
+            </div>
+          )}
+        </div>
+        {user.enrolledCourses.length === 0 && (
+          <div className={style.sideContainer}>
             <RightSideContents />
           </div>
-        </div>
-        <div className={style.sideContainer}>
-          <RightSideContents />
-        </div>
+        )}
       </div>
     </div>
   );

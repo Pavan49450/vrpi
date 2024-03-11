@@ -10,6 +10,28 @@ export const JavaFullStackCourse = {
   buttonContent: "Enroll Now",
   image: "javaCourse2.jpg",
   language: "English",
+  live: {
+    onLive: true,
+    meetingLink: "",
+  },
+  recordedVideos: [
+    {
+      videoTitle: "Introduction to Java Programming",
+      videoDescription: "",
+      videoLink: "",
+    },
+    { videoTitle: "Setting up the JDE", videoDescription: "", videoLink: "" },
+    {
+      videoTitle: "Introduction to Java Programming",
+      videoDescription: "",
+      videoLink: "",
+    },
+    {
+      videoTitle: "Introduction to Java Programming",
+      videoDescription: "",
+      videoLink: "",
+    },
+  ],
   instructor: {
     name: "Amol Jangid",
     description: [

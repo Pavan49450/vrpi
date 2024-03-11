@@ -7,6 +7,28 @@ export const Devops = {
   active: false,
 
   content: [" Scholarship on course fee", "Virtual Classes"],
+  live: {
+    onLive: false,
+    meetingLink: "",
+  },
+  recordedVideos: [
+    {
+      videoTitle: "Introduction to Java Programming",
+      videoDescription: "",
+      videoLink: "",
+    },
+    { videoTitle: "Setting up the JDE", videoDescription: "", videoLink: "" },
+    {
+      videoTitle: "Introduction to Java Programming",
+      videoDescription: "",
+      videoLink: "",
+    },
+    {
+      videoTitle: "Introduction to Java Programming",
+      videoDescription: "",
+      videoLink: "",
+    },
+  ],
 
   price: "24999",
   buttonContent: "Enroll Now",
