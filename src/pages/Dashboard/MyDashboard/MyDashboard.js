@@ -1,4 +1,5 @@
 import Courses from "../../../components/Dashboard/MyDashboardComponent/Courses/Courses";
+import EdutechBenefits from "../../../components/Dashboard/RightSideContents/EdutechBenefits/EdutechBenefits";
 import RightSideContents from "../../../components/Dashboard/RightSideContents/RightSideContents";
 import WelcomeScreen from "../../../components/Dashboard/WelcomeScreen/WelcomeScreen";
 import AllCardsSection from "../../../components/KnowledgeHub/AllCardsSection/AllCardsSection";
