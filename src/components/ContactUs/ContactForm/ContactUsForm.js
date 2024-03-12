@@ -5,10 +5,14 @@ import Button from "../../../UI/Button/Button";
 import Message from "../../../UI/Popup/Message";
 import InputWithInvalidText from "../../../UI/Input/InputWithInvalidText";
 import {
+  descriptionValidation,
   emailValidation,
+  fullNameValidation,
   mobileNumberValidation,
   nameValidation,
 } from "../../InputValidations/InputValidations";
+import useHttpsAxios from "../../../hooks/use-httpsAxios";
+import { url } from "../../../constants";
 
 const ContactUsForm = () => {
   const [errorMessage, setErrorMessage] = useState("");
@@ -17,13 +21,9 @@ const ContactUsForm = () => {
     setErrorMessage("");
   };
 
-  useEffect(() => {
-    console.log("Err->", errorMessage);
-  });
-
   const nameInput = useInput({
     initialValue: "",
-    validateValue: nameValidation,
+    validateValue: fullNameValidation,
   });
   const emailInput = useInput({
     initialValue: "",
@@ -35,7 +35,7 @@ const ContactUsForm = () => {
   });
   const descriptionInput = useInput({
     initialValue: "",
-    validateValue: nameValidation,
+    validateValue: descriptionValidation,
   });
 
   const [formIsValid, setFormIsValid] = useState("false");
@@ -54,6 +54,29 @@ const ContactUsForm = () => {
     descriptionInput.isValid,
   ]);
 
+  const { sendRequest, error, statusCode, responseData, isLoading } =
+    useHttpsAxios();
+
+  useEffect(() => {
+    const Validation = () => {
+      if (responseData) {
+        if (statusCode === 200 || statusCode === 201) {
+          setErrorMessage("");
+          nameInput.reset();
+          mobileInput.reset();
+          descriptionInput.reset();
+          emailInput.reset();
+          console.log("data->", responseData);
+        } else {
+          console.log("error->", error);
+          setErrorMessage(responseData.response.data.statusMessage);
+        }
+      }
+    };
+
+    Validation();
+  }, [error, responseData]);
+
   const handleSubmit = (event) => {
     event.preventDefault();
     if (formIsValid) {
@@ -71,9 +94,18 @@ const ContactUsForm = () => {
       const formData = {
         name: nameInput.value,
         email: emailInput.value,
-        mobile: mobileInput.value,
+        phone: mobileInput.value,
         description: descriptionInput.value,
       };
+
+      sendRequest({
+        url: `${url.backendBaseUrl}/vrpi-user/contact-us`,
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: formData,
+      });
     } else {
       setErrorMessage("Please fill out all fields correctly");
       console.log("Please fill out all fields correctly");
@@ -84,7 +116,7 @@ const ContactUsForm = () => {
     <div className={style.form}>
       <img src={require(`../../../assets/contactUs1.png`)} alt="" />
       <form onSubmit={handleSubmit} className={style.Form}>
-        {console.log(nameInput.hasError)}
+        {/* {console.log(nameInput.hasError)} */}
         <InputWithInvalidText
           ErrorMessage={"Invalid Name"}
           className={`${style.Input} `}
@@ -148,7 +180,7 @@ const ContactUsForm = () => {
           className={style.submitBtn}
           style={{ backgroundColor: !formIsValid && "#ccc" }}
         >
-          Contact Us
+          {isLoading ? "Loading..." : "Contact Us"}
         </Button>
         {errorMessage && (
           <Message
