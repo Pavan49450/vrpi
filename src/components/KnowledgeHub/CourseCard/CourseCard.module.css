@@ -86,7 +86,9 @@
     flex-direction: column;
   }
   .card {
-    width: 90vw;
+    width: calc(100vw - 2rem);
+    /* margin-left: 2rem; */
+    /* width: 90vw; */
     /* margin: auto; */
   }
   .link {
