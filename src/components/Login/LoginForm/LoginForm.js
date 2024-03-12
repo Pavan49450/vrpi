@@ -11,9 +11,11 @@ import {
   passwordValidation,
 } from "../../InputValidations/InputValidations";
 import PasswordValidationBox from "../PasswordValidationBox/PasswordValidationBox";
-import useHttps from "../../../hooks/use-https";
+
 import { url } from "../../../constants";
 import useHttpsAxios from "../../../hooks/use-httpsAxios";
+import { useDispatch } from "react-redux";
+import { login } from "../../../store/LoginStateActions";
 
 const LoginForm = () => {
   const [formIsValid, setFormIsValid] = useState(false);
@@ -34,46 +36,46 @@ const LoginForm = () => {
     );
   }, [emailInput.isValid, passwordInput.isValid, termsAccepted, rememberMe]);
 
-  const { sendRequest, isLoading, error, statusCode } = useHttpsAxios();
-  const [user, setUser] = useState();
+  const { sendRequest, isLoading, error, statusCode, responseData } =
+    useHttpsAxios();
 
-  const fetchData = (response) => {
-    console.log("response", response);
-    setUser(response);
-  };
+  useEffect(() => {
+    const Validation = () => {
+      if (responseData) {
+        if (statusCode === 200 || statusCode === 201) {
+          setErrorMessage("");
+          console.log("data->", responseData);
+          dispatch(login("18"));
+          emailInput.reset();
+          passwordInput.reset();
+          navigate("/dashboard");
+        } else {
+          console.log("error->", error);
+          setErrorMessage(responseData.response.data.statusMessage);
+        }
+      }
+    };
+
+    Validation();
+  }, [error, responseData]);
+
+  const dispatch = useDispatch();
 
   const submitHandler = (event) => {
     event.preventDefault();
     if (formIsValid) {
-      // console.log("Sign up Successful");
-      // console.log("login details", emailInput.value, passwordInput.value);
-      sendRequest(
-        {
-          url: `${url.backendBaseUrl}/vrpi-user/login`,
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: {
-            email: emailInput.value,
-            password: passwordInput.value,
-          },
+      setErrorMessage("");
+      sendRequest({
+        url: `${url.backendBaseUrl}/vrpi-user/login`,
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-        fetchData
-      );
-
-      if (statusCode === 200) {
-        console.log(user);
-      } else {
-        if (error) {
-          console.log(error.response.data.statusMessage);
-          setErrorMessage(error.response.data.statusMessage);
-        }
-      }
-
-      // emailInput.reset();
-      // passwordInput.reset();
-      // navigate("/");
+        body: {
+          email: emailInput.value,
+          password: passwordInput.value,
+        },
+      });
     } else {
       setErrorMessage(
         "Please complete all fields and accept the terms and conditions."

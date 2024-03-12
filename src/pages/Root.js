@@ -13,6 +13,8 @@ import {
 import Footer from "../components/Layout/Footer/Footer";
 import JoinUs from "../components/JoinUs/JoinUs";
 import ComingSoon from "../UI/ComingSoon/ComingSoon";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
 
 const hideHeaderRoutes = [
   "/login",
@@ -28,11 +30,18 @@ const hideHeaderRoutes = [
   // "/resetPassword",
 ].map((route) => route.replace(/\/+$/, ""));
 
-const buttons = [{ name: "Login", link: "/login", active: false }];
+const buttons = [{ name: "Login", link: "/login", active: true }];
 
 const RootLayout = () => {
   const location = useLocation();
   const { email, otp } = useParams();
+  const { isLoggedIn, userId } = useSelector((state) => state.login);
+
+  useEffect(() => {
+    if (isLoggedIn && userId) {
+      console.log(isLoggedIn);
+    }
+  }, [isLoggedIn, userId]);
 
   const isHeaderHidden = hideHeaderRoutes.some((route) => {
     const normalizedPath = location.pathname.replace(/\/+$/, ""); // Remove trailing slashes from the current path
@@ -58,7 +67,7 @@ const RootLayout = () => {
       {shouldRenderHeader && !isHeaderHidden && (
         <Header
           links={headerLinks}
-          buttons={buttons}
+          buttons={!isLoggedIn ? buttons : []}
           dropdownLinks={dropdownLinks}
           JoinUsBarData={JoinUsBarData}
         />

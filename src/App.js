@@ -1,9 +1,5 @@
 import "./App.css";
-import {
-  RouterProvider,
-  createBrowserRouter,
-  // useNavigate,
-} from "react-router-dom";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import RootLayout from "./pages/Root";
 import HomePage from "./pages/MainPages/Home/Home";
 import ErrorPage from "./pages/Error";
@@ -11,7 +7,6 @@ import AboutUs from "./pages/MainPages/AboutUs/AboutUs";
 import Companies from "./pages/MainPages/Companies/Companies";
 import Services from "./pages/MainPages/Services/Services";
 import Careers from "./pages/MainPages/Carrers/Careers";
-// import RegisterPage from "./pages/MainPages/Register/Register";
 import Construction from "./pages/MainPages/Construction/Contruction";
 import KnowledgeHub from "./pages/KnowledgeHub/KnowledgeHub";
 import Internships from "./pages/KnowledgeHub/Internships";
@@ -30,14 +25,16 @@ import MyDashboard from "./pages/Dashboard/MyDashboard/MyDashboard";
 import HelpAndSupport from "./pages/Dashboard/HelpAndSupport/HelpAndSupport";
 import DashboardCourses from "./pages/Dashboard/DashboardCourses/DashboardCourses";
 import DashboardInternships from "./pages/Dashboard/DashboardInternships/DashboardInternships";
-import ProfileSettings from "./pages/Dashboard/ProfileSettings/ProfileSettings";
 import ForgetPassword from "./pages/Login&Signup/Login/ForgetPassword/ForgetPassword";
 import CreateNewPassword from "./pages/Login&Signup/Login/CreateNewPassword/CreateNewPassword";
 import MandatoryCertificates from "./pages/Login&Signup/MandatoryCertificates/MandatoryCertificates";
 import PurchaseHistory from "./pages/Dashboard/PurchaseHistory/PurchaseHistory";
+import { useSelector } from "react-redux";
 
 function App() {
   // const navigate = useNavigate();
+
+  const isLoggedIn = useSelector((state) => state.login.isLoggedIn);
 
   const router = createBrowserRouter([
     {
@@ -96,12 +93,12 @@ function App() {
 
         {
           path: "/signup",
-          element: <SignUp />,
+          element: isLoggedIn ? <ErrorPage /> : <SignUp />,
           errorElement: <ErrorPage />,
         },
         {
           path: "/login",
-          element: <Login />,
+          element: isLoggedIn ? <ErrorPage /> : <Login />,
           errorElement: <ErrorPage />,
         },
 
@@ -147,12 +144,10 @@ function App() {
     },
     {
       path: "/dashboard",
-      element: <DashboardRoot />,
+      element: isLoggedIn ? <DashboardRoot /> : <ErrorPage />,
       errorElement: <ErrorPage />,
       children: [
-        // { index: true, element: () => navigate("/dashboard/myDashboard") },
         {
-          // index: true,
           path: "/dashboard",
           element: <MyDashboard />,
           errorElement: <ErrorPage />,

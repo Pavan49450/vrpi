@@ -5,8 +5,9 @@ const useHttpsAxios = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [statusCode, setStatusCode] = useState(null);
+  const [responseData, setResponseData] = useState(null);
 
-  const sendRequest = useCallback(async (requestConfig, applyData) => {
+  const sendRequest = useCallback(async (requestConfig) => {
     setIsLoading(true);
     setError(null);
     setStatusCode(null);
@@ -19,18 +20,19 @@ const useHttpsAxios = () => {
         data: requestConfig.body || null,
       });
 
-      setStatusCode(response.status);
+      setStatusCode(await response.status);
+      setResponseData(await response.data);
 
       if (!response.status.toString().startsWith("2")) {
         setError(`Request failed with status ${response.status}`);
-        // throw new Error(`Request failed with status ${response.status}`);
       }
 
-      console.log(response);
-      applyData(response.data);
+      // console.log(await response);
     } catch (err) {
-      console.error(err);
+      // console.error(err);
+      setStatusCode(err.response.status);
       setError(err);
+      setResponseData(err);
     }
     setIsLoading(false);
   }, []);
@@ -40,6 +42,7 @@ const useHttpsAxios = () => {
     sendRequest,
     error,
     statusCode,
+    responseData,
   };
 };
 

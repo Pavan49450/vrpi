@@ -20,6 +20,8 @@ import { useDispatch } from "react-redux";
 import { setUser } from "../../../../store/UserSlice";
 import useHttpsAxios from "../../../../hooks/use-httpsAxios";
 import { url } from "../../../../constants";
+import useFormatDate from "../../../../hooks/use-formatDate";
+import Message from "../../../../UI/Popup/Message";
 
 const Genders = [
   { value: "female", label: "Female" },
@@ -62,6 +64,10 @@ const PersonalDataForm = ({ role }) => {
 
   const [formIsValid, setFormIsValid] = useState(false);
 
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const handleErrorClose = () => setErrorMessage("");
+
   const handleAadhaarCardFrontChange = (file) => {
     setAadhaarCardFrontFile(file);
   };
@@ -74,9 +80,10 @@ const PersonalDataForm = ({ role }) => {
   };
 
   const dispatch = useDispatch();
+  const formattedDOB = useFormatDate(DOB);
 
   useEffect(() => {
-    console.log("DOB->", DOB);
+    console.log("DOB->", formattedDOB);
     let isFormValid = false;
     if (role === "student") {
       isFormValid =
@@ -105,6 +112,7 @@ const PersonalDataForm = ({ role }) => {
 
     setFormIsValid(isFormValid);
   }, [
+    formattedDOB,
     occupation,
     gender,
     role,
@@ -121,13 +129,25 @@ const PersonalDataForm = ({ role }) => {
     DOB,
   ]);
 
-  const { sendRequest, isLoading, error, statusCode } = useHttpsAxios();
+  const { sendRequest, isLoading, error, statusCode, responseData } =
+    useHttpsAxios();
 
-  const fetchData = (response) => {
-    console.log(response);
-  };
+  useEffect(() => {
+    const Validation = () => {
+      if (responseData) {
+        if (statusCode === 200 || statusCode === 201) {
+          console.log("Created user successfully");
+          dispatch(setUser({ role: role, step: 2 }));
+        } else {
+          setErrorMessage(responseData.response.data.errorMessage);
+        }
+      }
+    };
 
-  const handleSubmit = () => {
+    Validation();
+  }, [error, responseData]);
+
+  const handleSubmit = async () => {
     let formData;
     if (formIsValid) {
       if (role === "student") {
@@ -137,10 +157,10 @@ const PersonalDataForm = ({ role }) => {
           fatherName: fatherNameInput.value,
           gender: gender.value,
           phoneNumber: mobileNumberInput.value,
-          dateOfBirth: DOB,
+          dateOfBirth: formattedDOB,
           address: permanentInput.value,
           email: emailInput.value,
-          // password: passwordInput.value,
+
           createPassword: confirmPasswordInput.value,
           occupation: occupation.value,
           aadharCardNumber: aadhaarInput?.value,
@@ -157,28 +177,23 @@ const PersonalDataForm = ({ role }) => {
           phoneNumber: mobileNumberInput.value,
           gender: gender,
           email: emailInput.value,
-          // password: passwordInput.value,
+
           createPassword: confirmPasswordInput.value,
           roles: role,
         };
         console.log(formData);
       }
 
-      sendRequest(
-        {
-          url: `${url.backendBaseUrl}/vrpi-user/create`,
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: formData,
+      sendRequest({
+        url: `${url.backendBaseUrl}/vrpi-user/create`,
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-        fetchData
-      );
-
-      // dispatch(setUser({ role: role, step: 2 }));
+        body: formData,
+      });
     } else {
-      alert("invalid fields");
+      setErrorMessage("invalid fields");
     }
   };
   const Line1 = (
@@ -416,32 +431,46 @@ const PersonalDataForm = ({ role }) => {
   );
 
   return (
-    <div className={style.form}>
-      <p className={style.note}>
-        Note : All <span className={style.important}>*</span> fields are
-        Mandatory
-      </p>
-      <div className={style.formFields}>
-        {Line1}
-        {Line2}
-        {Line3}
-        {Line4}
-        {Line5}
-        {role === "student" && Line6}
-        {role === "student" && Line7}
-        {role === "student" && Line8}
-      </div>
-      <div className={style.buttonContainer}>
-        <Button
-          onClick={handleSubmit}
-          className={style.submitBtn}
-          disabled={!formIsValid}
-          style={{ backgroundColor: !formIsValid && "#ccc" }}
-        >
-          Save & Submit
-        </Button>
-      </div>
-    </div>
+    <>
+      {isLoading ? (
+        <p>loading...</p>
+      ) : (
+        <div className={style.form}>
+          {errorMessage && (
+            <Message
+              message={errorMessage}
+              type="error"
+              onClose={handleErrorClose}
+            />
+          )}
+          <p className={style.note}>
+            Note : All <span className={style.important}>*</span> fields are
+            Mandatory
+          </p>
+          <div className={style.formFields}>
+            {Line1}
+            {Line2}
+            {Line3}
+            {Line4}
+            {Line5}
+            {role === "student" && Line6}
+            {role === "student" && Line7}
+            {role === "student" && Line8}
+          </div>
+          <div className={style.buttonContainer}>
+            <Button
+              onClick={handleSubmit}
+              className={style.submitBtn}
+              disabled={!formIsValid}
+              style={{ backgroundColor: !formIsValid && "#ccc" }}
+            >
+              {/* {isLoading ? "Loading..." : "Save & Submit"} */}
+              Save & Submit
+            </Button>
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 

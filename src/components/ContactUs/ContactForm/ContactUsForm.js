@@ -67,6 +67,13 @@ const ContactUsForm = () => {
       nameInput.reset();
       mobileInput.reset();
       descriptionInput.reset();
+
+      const formData = {
+        name: nameInput.value,
+        email: emailInput.value,
+        mobile: mobileInput.value,
+        description: descriptionInput.value,
+      };
     } else {
       setErrorMessage("Please fill out all fields correctly");
       console.log("Please fill out all fields correctly");
