@@ -4,6 +4,14 @@ const nameValidation = (value) => {
   return value.trim() !== "" && /^[a-zA-Z]+$/.test(value); // Example: Not empty and contains only alphabets
 };
 
+export const fullNameValidation = (value) => {
+  return value.trim() !== "" && /^[a-zA-Z\s]+$/.test(value); // Not empty and contains only alphabets and spaces
+};
+
+export const descriptionValidation = (value) => {
+  return value.trim().length >= 5 && value.trim().length <= 200;
+};
+
 const mobileNumberValidation = (value) => {
   // Add your validation logic for mobile number here
   return value.trim() !== "" && /^\d{10}$/.test(value); // Example: Not empty and exactly 10 digits

@@ -12,6 +12,11 @@ import {
 } from "../../InputValidations/InputValidations";
 import PasswordValidationBox from "../PasswordValidationBox/PasswordValidationBox";
 
+import { url } from "../../../constants";
+import useHttpsAxios from "../../../hooks/use-httpsAxios";
+import { useDispatch } from "react-redux";
+import { login } from "../../../store/LoginStateActions";
+
 const LoginForm = () => {
   const [formIsValid, setFormIsValid] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
@@ -31,14 +36,46 @@ const LoginForm = () => {
     );
   }, [emailInput.isValid, passwordInput.isValid, termsAccepted, rememberMe]);
 
+  const { sendRequest, isLoading, error, statusCode, responseData } =
+    useHttpsAxios();
+
+  useEffect(() => {
+    const Validation = () => {
+      if (responseData) {
+        if (statusCode === 200 || statusCode === 201) {
+          setErrorMessage("");
+          console.log("data->", responseData);
+          dispatch(login("18"));
+          emailInput.reset();
+          passwordInput.reset();
+          navigate("/dashboard");
+        } else {
+          console.log("error->", error);
+          setErrorMessage(responseData.response.data.statusMessage);
+        }
+      }
+    };
+
+    Validation();
+  }, [error, responseData]);
+
+  const dispatch = useDispatch();
+
   const submitHandler = (event) => {
     event.preventDefault();
     if (formIsValid) {
-      console.log("Sign up Successful");
-      console.log("login details", emailInput.value, passwordInput.value);
-      emailInput.reset();
-      passwordInput.reset();
-      navigate("/");
+      setErrorMessage("");
+      sendRequest({
+        url: `${url.backendBaseUrl}/vrpi-user/login`,
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: {
+          email: emailInput.value,
+          password: passwordInput.value,
+        },
+      });
     } else {
       setErrorMessage(
         "Please complete all fields and accept the terms and conditions."
@@ -113,7 +150,7 @@ const LoginForm = () => {
         // style={{ backgroundColor: !formIsValid && "#ccc" }}
         onClick={submitHandler}
       >
-        Login
+        {isLoading ? "loading..." : "Login"}
       </Button>
       <div className={style.line}>
         <div className={style.lineOn}></div>

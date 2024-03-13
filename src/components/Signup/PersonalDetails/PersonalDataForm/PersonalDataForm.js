@@ -18,6 +18,10 @@ import CustomFileUploader from "../../../../UI/FileUploader/FileUploader";
 import CustomDatePicker from "../../../../UI/DatePIcker/DatePIcker";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../../../store/UserSlice";
+import useHttpsAxios from "../../../../hooks/use-httpsAxios";
+import { url } from "../../../../constants";
+import useFormatDate from "../../../../hooks/use-formatDate";
+import Message from "../../../../UI/Popup/Message";
 
 const Genders = [
   { value: "female", label: "Female" },
@@ -60,6 +64,10 @@ const PersonalDataForm = ({ role }) => {
 
   const [formIsValid, setFormIsValid] = useState(false);
 
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const handleErrorClose = () => setErrorMessage("");
+
   const handleAadhaarCardFrontChange = (file) => {
     setAadhaarCardFrontFile(file);
   };
@@ -72,8 +80,10 @@ const PersonalDataForm = ({ role }) => {
   };
 
   const dispatch = useDispatch();
+  const formattedDOB = useFormatDate(DOB);
 
   useEffect(() => {
+    console.log("DOB->", formattedDOB);
     let isFormValid = false;
     if (role === "student") {
       isFormValid =
@@ -102,6 +112,7 @@ const PersonalDataForm = ({ role }) => {
 
     setFormIsValid(isFormValid);
   }, [
+    formattedDOB,
     occupation,
     gender,
     role,
@@ -118,42 +129,71 @@ const PersonalDataForm = ({ role }) => {
     DOB,
   ]);
 
-  const handleSubmit = () => {
+  const { sendRequest, isLoading, error, statusCode, responseData } =
+    useHttpsAxios();
+
+  useEffect(() => {
+    const Validation = () => {
+      if (responseData) {
+        if (statusCode === 200 || statusCode === 201) {
+          console.log("Created user successfully");
+          dispatch(setUser({ role: role, step: 2 }));
+        } else {
+          setErrorMessage(responseData.response.data.errorMessage);
+        }
+      }
+    };
+
+    Validation();
+  }, [error, responseData]);
+
+  const handleSubmit = async () => {
+    let formData;
     if (formIsValid) {
       if (role === "student") {
-        const formData = {
+        formData = {
           firstName: firstNameInput.value,
           lastName: lastNameInput.value,
           fatherName: fatherNameInput.value,
-          mobileNumber: mobileNumberInput.value,
-          gender,
-          DOB: DOB,
-          permanentAddress: permanentInput.value,
+          gender: gender.value,
+          phoneNumber: mobileNumberInput.value,
+          dateOfBirth: formattedDOB,
+          address: permanentInput.value,
           email: emailInput.value,
-          password: passwordInput.value,
-          confirmPassword: confirmPasswordInput.value,
-          occupation,
-          aadhaarNumber: aadhaarInput?.value,
-          aadhaarCardFront: aadhaarCardFrontFile,
-          aadhaarCardBack: aadhaarCardBackFile,
-          passport: passportFile,
+
+          createPassword: confirmPasswordInput.value,
+          occupation: occupation.value,
+          aadharCardNumber: aadhaarInput?.value,
+          aadharFront: aadhaarCardFrontFile,
+          aadharBack: aadhaarCardBackFile,
+          profilePic: passportFile,
+          roles: role,
         };
         console.log(formData);
       } else if (role === "client") {
-        const formData = {
+        formData = {
           firstName: firstNameInput.value,
           lastName: lastNameInput.value,
-          mobileNumber: mobileNumberInput.value,
-          gender,
+          phoneNumber: mobileNumberInput.value,
+          gender: gender,
           email: emailInput.value,
-          password: passwordInput.value,
-          confirmPassword: confirmPasswordInput.value,
+
+          createPassword: confirmPasswordInput.value,
+          roles: role,
         };
         console.log(formData);
       }
-      dispatch(setUser({ role: role, step: 2 }));
+
+      sendRequest({
+        url: `${url.backendBaseUrl}/vrpi-user/create`,
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: formData,
+      });
     } else {
-      alert("invalid fields");
+      setErrorMessage("invalid fields");
     }
   };
   const Line1 = (
@@ -391,32 +431,46 @@ const PersonalDataForm = ({ role }) => {
   );
 
   return (
-    <div className={style.form}>
-      <p className={style.note}>
-        Note : All <span className={style.important}>*</span> fields are
-        Mandatory
-      </p>
-      <div className={style.formFields}>
-        {Line1}
-        {Line2}
-        {Line3}
-        {Line4}
-        {Line5}
-        {role === "student" && Line6}
-        {role === "student" && Line7}
-        {role === "student" && Line8}
-      </div>
-      <div className={style.buttonContainer}>
-        <Button
-          onClick={handleSubmit}
-          className={style.submitBtn}
-          disabled={!formIsValid}
-          style={{ backgroundColor: !formIsValid && "#ccc" }}
-        >
-          Save & Submit
-        </Button>
-      </div>
-    </div>
+    <>
+      {isLoading ? (
+        <p>loading...</p>
+      ) : (
+        <div className={style.form}>
+          {errorMessage && (
+            <Message
+              message={errorMessage}
+              type="error"
+              onClose={handleErrorClose}
+            />
+          )}
+          <p className={style.note}>
+            Note : All <span className={style.important}>*</span> fields are
+            Mandatory
+          </p>
+          <div className={style.formFields}>
+            {Line1}
+            {Line2}
+            {Line3}
+            {Line4}
+            {Line5}
+            {role === "student" && Line6}
+            {role === "student" && Line7}
+            {role === "student" && Line8}
+          </div>
+          <div className={style.buttonContainer}>
+            <Button
+              onClick={handleSubmit}
+              className={style.submitBtn}
+              disabled={!formIsValid}
+              style={{ backgroundColor: !formIsValid && "#ccc" }}
+            >
+              {/* {isLoading ? "Loading..." : "Save & Submit"} */}
+              Save & Submit
+            </Button>
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 

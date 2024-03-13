@@ -3,16 +3,21 @@ import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import Logo from "../../../Logo/Logo";
 import style from "./DashboardHeader.module.css";
 import ConfirmationModal from "../../../../UI/ConfirmModel/ConfirmationModal";
+import { useDispatch } from "react-redux";
+import { logout } from "../../../../store/LoginStateActions";
 
 const DashboardHeader = ({ showMenuBar, toggleMenuBar }) => {
   const navigate = useNavigate();
   const { pathname } = useLocation();
+
+  const dispatch = useDispatch();
 
   const handleLogout = () => {
     setLogoutModalOpen(true);
   };
 
   const handleLogoutConfirm = () => {
+    dispatch(logout());
     navigate("/login");
   };
 

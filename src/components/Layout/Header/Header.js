@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import style from "./HeaderNew.module.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import HeaderDropdown from "./HeaderComponents/HeaderDropDown";
 import Logo from "../../Logo/Logo";
 // import CommingSoon from "../../../UI/ComingSoon/ComingSoon";
@@ -9,7 +9,13 @@ import { setComingSoon } from "../../../store/ComingSoonSlice";
 import NavbarForMobile from "./HeaderComponents/NavbarForMobile/NavbarForMobile";
 import { navElementsForMobileData } from "../../../data/NavData";
 
-const Header = ({ links, buttons, dropdownLinks, JoinUsBarData }) => {
+const Header = ({
+  links,
+  buttons,
+  dropdownLinks,
+  JoinUsBarData,
+  dashboard,
+}) => {
   const sideNavbarRef = useRef(null);
   const mobileMenuIconRef = useRef(null);
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -48,6 +54,7 @@ const Header = ({ links, buttons, dropdownLinks, JoinUsBarData }) => {
   }, []);
 
   useEffect(() => {
+    console.log("dashboard", dashboard);
     const handleOutsideClick = (event) => {
       if (
         sideNavbarRef.current &&
@@ -182,6 +189,8 @@ const Header = ({ links, buttons, dropdownLinks, JoinUsBarData }) => {
     </div>
   );
 
+  const navigate = useNavigate();
+
   return (
     <>
       {width > breakpoint ? (
@@ -190,9 +199,16 @@ const Header = ({ links, buttons, dropdownLinks, JoinUsBarData }) => {
           <div className={style.navbar}>
             {JoinUsBar}
             <div className={style.navBackground}>
-              <div className={style.triangle}></div>
-
               <div className={style.nav}>{navElements}</div>
+              {dashboard.active && (
+                <img
+                  src={require(`../../../assets/dashboard/myDashboard-w.png`)}
+                  alt={dashboard.name}
+                  onClick={() => navigate(dashboard.link)}
+                  title={dashboard.name}
+                  className={style.dashboardIcon}
+                />
+              )}
             </div>
             {dropdownLinks && (
               <div className={style.lowerBar}>

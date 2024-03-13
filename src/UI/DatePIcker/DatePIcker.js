@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
+
 import "react-datepicker/dist/react-datepicker.css";
 import style from "./DatePIcker.module.css";
 import "./DatePickerMain.css";
@@ -21,15 +22,18 @@ const CustomDatePicker = ({
     setIsFocused(false);
   };
 
+  // Function to format the date as "yyyy-MM-dd"
+
   return (
     <div className={style.container}>
       <DatePicker
         selected={selectedDate}
         onChange={onChange}
-        dateFormat="dd/MM/yyyy"
+        dateFormat="yyyy-MM-dd"
         className={`${className} ${style.date}`}
         onFocus={handleLabelClick}
         onBlur={handleDatePickerBlur}
+        customInput={<input />}
       />
       <label
         className={`${
