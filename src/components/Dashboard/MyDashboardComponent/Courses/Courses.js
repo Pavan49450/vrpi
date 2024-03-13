@@ -55,7 +55,7 @@ const Courses = ({ data, ifCourseDetails, className }) => {
 
   return (
     <div className={style.allCourses}>
-      {console.log("allCourses", allCourses)}
+      {/* {console.log("allCourses", allCourses)} */}
       {allCourses.map((courseSection) => {
         return (
           <div>

@@ -68,7 +68,7 @@ const AllCardsSection = ({ data, ifCourseDetails, className }) => {
                     <div
                       className={`${style.cardStack} ${
                         ifCourseDetails === true && style.forDetailsPage
-                      } ${className} `}
+                      } ${className} ${style.CourseCards} `}
                     >
                       {courseSection.courses.map((CardDetails) => {
                         return <CourseCard CardDetails={CardDetails} />;
@@ -92,7 +92,9 @@ const AllCardsSection = ({ data, ifCourseDetails, className }) => {
                   highlightWord={internships.highlightWord}
                   viewAll="true"
                 >
-                  <div className={style.cardStack}>
+                  <div
+                    className={`${style.cardStack} ${style.internshipsCards}`}
+                  >
                     {internships.internships.map((CardDetails) => {
                       return <InternshipCard CardDetails={CardDetails} />;
                     })}

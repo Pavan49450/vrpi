@@ -227,7 +227,10 @@ const Header = ({
             {navButtons}
           </div>
           {/* {navElementsForMobile} */}
-          <NavbarForMobile navElements={navElementsForMobileData} />
+          <NavbarForMobile
+            navElements={navElementsForMobileData}
+            dashboard={dashboard}
+          />
         </nav>
       )}
     </>

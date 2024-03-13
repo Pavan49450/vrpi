@@ -75,3 +75,16 @@
     left: calc(130px + 0.5rem);
   }
 }
+
+@media (max-width: 600px) {
+  .details {
+    flex-direction: column;
+  }
+
+  .detailsData {
+    flex-direction: row;
+  }
+  .profile {
+    font-size: 1.5rem;
+  }
+}

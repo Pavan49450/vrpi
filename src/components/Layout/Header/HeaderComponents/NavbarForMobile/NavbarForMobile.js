@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import style from "./NavbarForMobile.module.css";
 import { useDispatch } from "react-redux";
 import { setComingSoon } from "../../../../../store/ComingSoonSlice";
 
-function NavbarForMobile({ navElements }) {
+function NavbarForMobile({ navElements, dashboard }) {
   const { pathname } = useLocation();
 
   // Initialize state to track dropdown states
@@ -81,17 +81,30 @@ function NavbarForMobile({ navElements }) {
     );
   };
 
+  const navigate = useNavigate();
+
   return (
     <nav className={style.navbar}>
-      <div
-        className={`${style.menuIcon} ${
-          menuIconClicked && style.menuIconChange
-        }`}
-        onClick={toggleMenuIcon}
-      >
-        <div className={style.bar1}></div>
-        <div className={style.bar2}></div>
-        <div className={style.bar3}></div>
+      <div className={style.navHead}>
+        <div
+          className={`${style.menuIcon} ${
+            menuIconClicked && style.menuIconChange
+          }`}
+          onClick={toggleMenuIcon}
+        >
+          <div className={style.bar1}></div>
+          <div className={style.bar2}></div>
+          <div className={style.bar3}></div>
+        </div>
+        {dashboard.active && (
+          <img
+            src={require(`../../../../../assets/dashboard/myDashboard-w.png`)}
+            alt={dashboard.name}
+            onClick={() => navigate(dashboard.link)}
+            title={dashboard.name}
+            className={style.dashboardIcon}
+          />
+        )}
       </div>
 
       <ul
@@ -112,13 +125,13 @@ function NavbarForMobile({ navElements }) {
                     {navItem.name}
                     {dropdownStates[navItem.name] ? (
                       <img
-                        src={require(`../../../../../assets/navBarForMobile/arrowDown.png`)}
-                        alt="arrow down icon"
+                        src={require(`../../../../../assets/navBarForMobile/arrowUp.png`)}
+                        alt="arrow up icon"
                       />
                     ) : (
                       <img
-                        src={require(`../../../../../assets/navBarForMobile/arrowUp.png`)}
-                        alt="arrow up icon"
+                        src={require(`../../../../../assets/navBarForMobile/arrowDown.png`)}
+                        alt="arrow down icon"
                       />
                     )}
                   </button>
