@@ -30,7 +30,7 @@ const hideHeaderRoutes = [
   // "/resetPassword",
 ].map((route) => route.replace(/\/+$/, ""));
 
-const buttons = [{ name: "Login", link: "/login", active: true }];
+const buttons = [{ name: "Login", link: "/login", active: false }];
 
 const RootLayout = () => {
   const location = useLocation();
