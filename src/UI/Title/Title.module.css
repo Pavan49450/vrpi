@@ -48,7 +48,7 @@
 }
 
 @media (max-width: 350px) {
-  .titleContainer {
+  /* .titleContainer {
     justify-content: center;
-  }
+  } */
 }
