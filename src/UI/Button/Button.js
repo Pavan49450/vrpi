@@ -1,10 +1,20 @@
 import React from "react";
 import styles from "./Button.module.css";
 
-const Button = ({ children, onClick, className, style, disabled }) => {
-  const combinedClassName = `${styles.customButton} ${className}`;
+const Button = ({
+  children,
+  onClick,
+  className,
+  style,
+  disabled,
+  doNotScrollToTop,
+}) => {
+  const combinedClassName = `${
+    !disabled ? styles.customButton : styles.disabledBtn
+  } ${className}`;
 
   const handleClick = () => {
+    if (doNotScrollToTop) return;
     window.scrollTo(0, 0); // Scroll to the top of the page
   };
 

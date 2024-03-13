@@ -22,6 +22,7 @@ import useHttpsAxios from "../../../../hooks/use-httpsAxios";
 import { url } from "../../../../constants";
 import useFormatDate from "../../../../hooks/use-formatDate";
 import Message from "../../../../UI/Popup/Message";
+import { CircularProgress } from "@material-ui/core";
 
 const Genders = [
   { value: "female", label: "Female" },
@@ -432,44 +433,48 @@ const PersonalDataForm = ({ role }) => {
 
   return (
     <>
-      {isLoading ? (
+      {/* {isLoading ? (
         <p>loading...</p>
-      ) : (
-        <div className={style.form}>
-          {errorMessage && (
-            <Message
-              message={errorMessage}
-              type="error"
-              onClose={handleErrorClose}
-            />
-          )}
-          <p className={style.note}>
-            Note : All <span className={style.important}>*</span> fields are
-            Mandatory
-          </p>
-          <div className={style.formFields}>
-            {Line1}
-            {Line2}
-            {Line3}
-            {Line4}
-            {Line5}
-            {role === "student" && Line6}
-            {role === "student" && Line7}
-            {role === "student" && Line8}
-          </div>
-          <div className={style.buttonContainer}>
-            <Button
-              onClick={handleSubmit}
-              className={style.submitBtn}
-              disabled={!formIsValid}
-              style={{ backgroundColor: !formIsValid && "#ccc" }}
-            >
-              {/* {isLoading ? "Loading..." : "Save & Submit"} */}
-              Save & Submit
-            </Button>
-          </div>
+      ) : ( */}
+      <div className={style.form}>
+        {errorMessage && (
+          <Message
+            message={errorMessage}
+            type="error"
+            onClose={handleErrorClose}
+          />
+        )}
+        <p className={style.note}>
+          Note : All <span className={style.important}>*</span> fields are
+          Mandatory
+        </p>
+        <div className={style.formFields}>
+          {Line1}
+          {Line2}
+          {Line3}
+          {Line4}
+          {Line5}
+          {role === "student" && Line6}
+          {role === "student" && Line7}
+          {role === "student" && Line8}
         </div>
-      )}
+        <div className={style.buttonContainer}>
+          <Button
+            onClick={handleSubmit}
+            className={style.submitBtn}
+            disabled={!formIsValid}
+            style={{
+              backgroundColor: !formIsValid && "#ccc",
+              padding: isLoading && "0",
+            }}
+            doNotScrollToTop={true}
+          >
+            {isLoading ? <CircularProgress color="white" /> : "Save & Submit"}
+            {/* Save & Submit */}
+          </Button>
+        </div>
+      </div>
+      {/* )} */}
     </>
   );
 };

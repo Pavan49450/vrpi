@@ -28,7 +28,7 @@ const UserDataComponent = () => {
     });
     console.log("response", responseData);
     console.log("status", statusCode);
-  }, [userId, sendRequest, responseData]);
+  }, [userId, sendRequest]);
 
   // You might want to handle loading, error, and other states here
 

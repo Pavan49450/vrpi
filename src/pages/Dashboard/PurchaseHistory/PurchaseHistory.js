@@ -1,7 +1,8 @@
+import PurchaseHistoryComponent from "../../../components/Dashboard/PurchaseHistoryComponent/PurchaseHistoryComponent";
 import style from "./PurchaseHistory.module.css";
 
 const PurchaseHistory = () => {
-  return <div>PurchaseHistory</div>;
+  return <PurchaseHistoryComponent />;
 };
 
 export default PurchaseHistory;

@@ -8,7 +8,7 @@ const Message = ({ message, type, onClose }) => {
     const timer = setTimeout(() => {
       setShow(false);
       onClose();
-    }, 3000);
+    }, 4000);
 
     return () => clearTimeout(timer);
   }, [onClose]);

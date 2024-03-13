@@ -1,0 +1,66 @@
+import React from "react";
+import styles from "./PurchaseHistoryComponent.module.css";
+import CustomImage from "../../../UI/Image/Image";
+
+// Example purchases data
+const examplePurchases = [
+  // {
+  //   course: "React Fundamentals",
+  //   joinedOn: "2024-03-10",
+  //   duration: "2 months",
+  //   amountPaid: "3000",
+  // },
+  // {
+  //   course: "JavaScript for Beginners",
+  //   joinedOn: "2024-03-05",
+  //   duration: "1 month",
+  //   amountPaid: "1600",
+  // },
+];
+
+// Purchase item component
+const PurchaseItem = ({ purchase }) => {
+  return (
+    <div className={`${styles.purchaseItem} ${styles.data1}`}>
+      <span>
+        Course: <span className={styles.span1}>{purchase.course}</span>
+      </span>
+      <span>
+        Joined on: <span className={styles.span1}>{purchase.joinedOn}</span>
+      </span>
+      <span>
+        Duration: <span className={styles.span1}>{purchase.duration}</span>
+      </span>
+      <span>
+        Amount paid: <span className={styles.span1}>{purchase.amountPaid}</span>
+      </span>
+    </div>
+  );
+};
+
+function PurchaseHistoryComponent() {
+  return (
+    <>
+      {examplePurchases.length !== 0 ? (
+        <div>
+          <h1 className={styles.heading}>My Purchases</h1>
+          <div className={styles.data}>
+            {examplePurchases.map((purchase, index) => (
+              <PurchaseItem key={index} purchase={purchase} />
+            ))}
+          </div>
+        </div>
+      ) : (
+        <div className={styles.noData}>
+          <CustomImage
+            src={require("../../../assets/dashboard/NoDataImage.png")}
+            alt=""
+          />
+          <p>No Payments history</p>
+        </div>
+      )}
+    </>
+  );
+}
+
+export default PurchaseHistoryComponent;

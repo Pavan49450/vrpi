@@ -1,5 +1,8 @@
+import HelpAndSupportComponent from "../../../components/Dashboard/HelpAndSupportComponent/HelpAndSupportComponent";
+import style from "./HelpAndSupport.module.css";
+
 const HelpAndSupport = () => {
-  return <div>HelpAndSupport</div>;
+  return <HelpAndSupportComponent />;
 };
 
 export default HelpAndSupport;

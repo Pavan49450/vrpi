@@ -16,6 +16,7 @@ import { url } from "../../../constants";
 import useHttpsAxios from "../../../hooks/use-httpsAxios";
 import { useDispatch } from "react-redux";
 import { login } from "../../../store/LoginStateActions";
+import { CircularProgress } from "@material-ui/core";
 
 const LoginForm = () => {
   const [formIsValid, setFormIsValid] = useState(false);
@@ -150,7 +151,7 @@ const LoginForm = () => {
         // style={{ backgroundColor: !formIsValid && "#ccc" }}
         onClick={submitHandler}
       >
-        {isLoading ? "loading..." : "Login"}
+        {isLoading ? <CircularProgress color="red" /> : "Login"}
       </Button>
       <div className={style.line}>
         <div className={style.lineOn}></div>

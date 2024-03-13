@@ -9,6 +9,7 @@
   padding: 1rem;
   gap: 1rem;
   padding-top: 2rem;
+  position: relative;
   /* box-shadow: 0px 0px 7px #ff650157;
   margin: 1rem; */
 }
@@ -60,6 +61,7 @@
   padding: 0.5rem 0;
   border: 1px solid var(--primary);
   margin-top: 1rem;
+  height: 50px;
 }
 
 .disabled {
@@ -75,6 +77,7 @@
   text-decoration: none;
   padding: 0.5rem 0;
   margin-top: 1rem;
+  height: 50px;
 }
 
 .submitBtn:hover {

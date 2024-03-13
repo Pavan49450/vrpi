@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setComingSoon } from "../../../store/ComingSoonSlice";
 import NavbarForMobile from "./HeaderComponents/NavbarForMobile/NavbarForMobile";
 import { navElementsForMobileData } from "../../../data/NavData";
+import Button from "../../../UI/Button/Button";
 
 const Header = ({
   links,
@@ -155,18 +156,23 @@ const Header = ({
   const navButtons = buttons.map((button, index) => (
     <>
       {button.active ? (
-        <NavLink key={index} className={style.signUpBtn} to={button.link}>
+        <Button
+          key={index}
+          className={style.signUpBtn}
+          // to={button.link}
+          onClick={() => navigate(button.link)}
+        >
           {button.name}
-        </NavLink>
+        </Button>
       ) : (
-        <button
+        <Button
           key={index}
           className={style.signUpBtn}
           onClick={() => dispatch(setComingSoon(true))}
         >
           {" "}
           {button.name}
-        </button>
+        </Button>
       )}
     </>
   ));

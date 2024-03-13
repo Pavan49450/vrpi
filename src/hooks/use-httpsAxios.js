@@ -30,7 +30,7 @@ const useHttpsAxios = () => {
       // console.log(await response);
     } catch (err) {
       // console.error(err);
-      setStatusCode(err.response.status);
+      setStatusCode(err.response?.status);
       setError(err);
       setResponseData(err);
     }

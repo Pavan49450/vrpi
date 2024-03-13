@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
@@ -14,8 +14,11 @@ const CustomDatePicker = ({
 }) => {
   const [isFocused, setIsFocused] = useState(false);
 
+  const datePickerRef = useRef(null);
+
   const handleLabelClick = () => {
     setIsFocused(true);
+    datePickerRef.current.input.focus();
   };
 
   const handleDatePickerBlur = () => {
@@ -34,6 +37,7 @@ const CustomDatePicker = ({
         onFocus={handleLabelClick}
         onBlur={handleDatePickerBlur}
         customInput={<input />}
+        ref={datePickerRef}
       />
       <label
         className={`${

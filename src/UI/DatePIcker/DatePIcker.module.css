@@ -1,11 +1,12 @@
 .date {
   padding-left: 0.5rem;
   width: 100%;
+  padding-top: 1rem;
 }
 
 .container {
   width: 100%;
-  padding-top: 1rem;
+  /* padding-top: 1rem; */
   border: 1px solid var(--primary);
   border-radius: 4px;
   font-size: 1rem;
