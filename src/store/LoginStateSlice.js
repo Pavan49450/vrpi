@@ -3,26 +3,26 @@
 import { LOGIN, LOGOUT } from "./LoginStateActions";
 
 const initialState = {
-  isLoggedIn: localStorage.getItem("isLoggedIn") === "true",
+  isVRPIUserLoggedIn: localStorage.getItem("isVRPIUserLoggedIn") === "true",
   userId: localStorage.getItem("userId"),
 };
 
 const LoginReducer = (state = initialState, action) => {
   switch (action.type) {
     case LOGIN:
-      localStorage.setItem("isLoggedIn", "true");
+      localStorage.setItem("isVRPIUserLoggedIn", "true");
       localStorage.setItem("userId", action.payload.userId);
       return {
         ...state,
-        isLoggedIn: true,
+        isVRPIUserLoggedIn: true,
         userId: action.payload.userId,
       };
     case LOGOUT:
-      localStorage.setItem("isLoggedIn", "false");
+      localStorage.setItem("isVRPIUserLoggedIn", "false");
       localStorage.removeItem("userId");
       return {
         ...state,
-        isLoggedIn: false,
+        isVRPIUserLoggedIn: false,
         userId: null,
       };
     default:

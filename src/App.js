@@ -34,7 +34,9 @@ import { useSelector } from "react-redux";
 function App() {
   // const navigate = useNavigate();
 
-  const isLoggedIn = useSelector((state) => state.login.isLoggedIn);
+  const isVRPIUserLoggedIn = useSelector(
+    (state) => state.login.isVRPIUserLoggedIn
+  );
 
   const router = createBrowserRouter([
     {
@@ -93,12 +95,12 @@ function App() {
 
         {
           path: "/signup",
-          element: isLoggedIn ? <ErrorPage /> : <SignUp />,
+          element: isVRPIUserLoggedIn ? <ErrorPage /> : <SignUp />,
           errorElement: <ErrorPage />,
         },
         {
           path: "/login",
-          element: isLoggedIn ? <ErrorPage /> : <Login />,
+          element: isVRPIUserLoggedIn ? <ErrorPage /> : <Login />,
           errorElement: <ErrorPage />,
         },
 
@@ -144,7 +146,7 @@ function App() {
     },
     {
       path: "/dashboard",
-      element: isLoggedIn ? <DashboardRoot /> : <ErrorPage />,
+      element: isVRPIUserLoggedIn ? <DashboardRoot /> : <ErrorPage />,
       errorElement: <ErrorPage />,
       children: [
         {

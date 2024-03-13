@@ -35,13 +35,18 @@ const buttons = [{ name: "Login", link: "/login", active: true }];
 const RootLayout = () => {
   const location = useLocation();
   const { email, otp } = useParams();
-  const { isLoggedIn, userId } = useSelector((state) => state.login);
+  const { isVRPIUserLoggedIn, userId } = useSelector((state) => state.login);
 
+  const dashboardLink = {
+    name: "Dashboard",
+    link: "/dashboard",
+    active: isVRPIUserLoggedIn,
+  };
   useEffect(() => {
-    if (isLoggedIn && userId) {
-      console.log(isLoggedIn);
+    if (isVRPIUserLoggedIn && userId) {
+      console.log(isVRPIUserLoggedIn);
     }
-  }, [isLoggedIn, userId]);
+  }, [isVRPIUserLoggedIn, userId]);
 
   const isHeaderHidden = hideHeaderRoutes.some((route) => {
     const normalizedPath = location.pathname.replace(/\/+$/, ""); // Remove trailing slashes from the current path
@@ -67,7 +72,8 @@ const RootLayout = () => {
       {shouldRenderHeader && !isHeaderHidden && (
         <Header
           links={headerLinks}
-          buttons={!isLoggedIn ? buttons : []}
+          dashboard={dashboardLink}
+          buttons={!isVRPIUserLoggedIn ? buttons : []}
           dropdownLinks={dropdownLinks}
           JoinUsBarData={JoinUsBarData}
         />

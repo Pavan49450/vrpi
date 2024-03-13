@@ -23,8 +23,11 @@ const VerificationPage = () => {
       try {
         const response = await sendRequest({
           url: `${url.backendBaseUrl}/vrpi-user/verify-account/${email}/${otp}`,
+          // url: `${url.backendBaseUrl}/vrpi-user/all`,
         });
 
+        console.log(responseData);
+        console.log(statusCode);
         if (response && (statusCode === 200 || statusCode === 201)) {
           console.log("Verified");
         }
