@@ -9,6 +9,7 @@ import {
   footerLinks,
   quickLinks,
   ContactUs,
+  buttonsLinks,
 } from "../data/NavData";
 import Footer from "../components/Layout/Footer/Footer";
 import JoinUs from "../components/JoinUs/JoinUs";
@@ -29,8 +30,6 @@ const hideHeaderRoutes = [
   // "/forgetPassword",
   // "/resetPassword",
 ].map((route) => route.replace(/\/+$/, ""));
-
-const buttons = [{ name: "Login", link: "/login", active: false }];
 
 const RootLayout = () => {
   const location = useLocation();
@@ -73,7 +72,7 @@ const RootLayout = () => {
         <Header
           links={headerLinks}
           dashboard={dashboardLink}
-          buttons={!isVRPIUserLoggedIn ? buttons : []}
+          buttons={!isVRPIUserLoggedIn ? buttonsLinks : []}
           dropdownLinks={dropdownLinks}
           JoinUsBarData={JoinUsBarData}
         />

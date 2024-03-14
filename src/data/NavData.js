@@ -5,17 +5,48 @@ export const MainHeaderLinks = [
   // { name: "Campanies", address: "/companies" },
   // { name: "Careers", address: "/careers", active: false },
   // { name: "KnowledgeHub", address: "/knowledgeHub" },
-  { name: "Contact Us", address: "/contact", active: false },
+  // { name: "Contact Us", address: "/contact", active: false },
 ];
 
 export const KnowledgeHubHeaderLinks = [
   { name: "Edu-tech", address: "/edutech", active: true },
   { name: "Interships", address: "/internships", active: true },
 
-  { name: "Contact Us", address: "/contact", active: false },
+  // { name: "Contact Us", address: "/contact", active: false },
+];
+
+export const buttonsLinks = [
+  // { name: "Login", link: "/login", active: false }
 ];
 
 export const MainDropdownLinks = [
+  {
+    name: "Knowledge Hub",
+    address: "/edutech",
+    active: true,
+    content: [
+      {
+        label: "Edu-Tech",
+        description: {
+          descriptionHead: "What is Edutech?",
+          descriptionContent:
+            "EduTech integrates education and technology, employing digital tools such as online platforms, educational apps, and virtual reality to enrich learning. Its objectives include personalized education, enhanced teaching efficacy, and broader access to quality learning. EduTech's ultimate goal is to equip learners with vital skills for thriving in the digital era.",
+          link: "edutech",
+          active: true,
+        },
+      },
+      {
+        label: "Internship",
+        description: {
+          descriptionHead: "Why an Internship?",
+          descriptionContent:
+            "Internships offer hands-on experience, linking classroom knowledge with practical skills. They allow for networking, skill development, and personal growth. Interns gain insights into their desired fields, enhancing their resumes and paving the way for future career success.",
+          link: "internships",
+          active: true,
+        },
+      },
+    ],
+  },
   {
     name: "Companies and Services",
     address: "/",
@@ -83,64 +114,38 @@ export const MainDropdownLinks = [
       },
     ],
   },
-  {
-    name: "Knowledge Hub",
-    address: "/edutech",
-    active: true,
-    content: [
-      {
-        label: "Edu-Tech",
-        description: {
-          descriptionHead: "What is Edutech?",
-          descriptionContent:
-            "EduTech integrates education and technology, employing digital tools such as online platforms, educational apps, and virtual reality to enrich learning. Its objectives include personalized education, enhanced teaching efficacy, and broader access to quality learning. EduTech's ultimate goal is to equip learners with vital skills for thriving in the digital era.",
-          link: "edutech",
-          active: true,
-        },
-      },
-      {
-        label: "Internship",
-        description: {
-          descriptionHead: "Why an Internship?",
-          descriptionContent:
-            "Internships offer hands-on experience, linking classroom knowledge with practical skills. They allow for networking, skill development, and personal growth. Interns gain insights into their desired fields, enhancing their resumes and paving the way for future career success.",
-          link: "internships",
-          active: true,
-        },
-      },
-    ],
-  },
-  { name: "Careers", address: "/careers", active: false },
 
-  {
-    name: "Trust and Welfare",
-    address: "trust",
-    active: false,
-    content: [
-      {
-        label: "Women Welfare Organization",
-        description: {
-          descriptionHead:
-            "Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur. 1",
-          descriptionContent:
-            "Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur. ",
-          link: "trust",
-          active: false,
-        },
-      },
-      {
-        label: "Farmer Welfare Organization",
-        description: {
-          descriptionHead:
-            "Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur. 2",
-          descriptionContent:
-            "Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur. ",
-          link: "trust",
-          active: false,
-        },
-      },
-    ],
-  },
+  // { name: "Careers", address: "/careers", active: false },
+
+  // {
+  //   name: "Trust and Welfare",
+  //   address: "trust",
+  //   active: false,
+  //   content: [
+  //     {
+  //       label: "Women Welfare Organization",
+  //       description: {
+  //         descriptionHead:
+  //           "Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur. 1",
+  //         descriptionContent:
+  //           "Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur. ",
+  //         link: "trust",
+  //         active: false,
+  //       },
+  //     },
+  //     {
+  //       label: "Farmer Welfare Organization",
+  //       description: {
+  //         descriptionHead:
+  //           "Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur. 2",
+  //         descriptionContent:
+  //           "Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur. ",
+  //         link: "trust",
+  //         active: false,
+  //       },
+  //     },
+  //   ],
+  // },
 ];
 
 export const JoinUsBarData = {
@@ -197,7 +202,7 @@ export const quickLinks = [
   { name: "About Us", address: "/about", active: true },
   { name: "Campanies", address: "/companies", active: false },
   // { name: "Services", address: "/services" , active:false},
-  { name: "Careers", address: "/careers", active: false },
+  // { name: "Careers", address: "/careers", active: false },
   { name: "Edutech", address: "/edutech", active: true },
   { name: "Internships", address: "/internships", active: true },
 ];
@@ -224,6 +229,14 @@ export const navElementsForMobileData = [
     active: true,
   },
   {
+    name: "Knowledge Hub",
+    dropdownElement: true,
+    links: [
+      { name: "Edu-Tech", link: "edutech", active: true },
+      { name: "Internship", link: "internships", active: true },
+    ],
+  },
+  {
     name: "Companies & Services",
     dropdownElement: true,
     links: [
@@ -235,24 +248,17 @@ export const navElementsForMobileData = [
       { name: "Tech Solutions", link: "", active: false },
     ],
   },
-  {
-    name: "Knowledge Hub",
-    dropdownElement: true,
-    links: [
-      { name: "Edu-Tech", link: "edutech", active: true },
-      { name: "Internship", link: "internships", active: true },
-    ],
-  },
-  {
-    name: "Trust & Welfare",
-    // link: "/",
-    dropdownElement: true,
-    links: [
-      { name: "Women Welfare Organization", link: "", active: false },
-      { name: "Farmer Welfare Organization", link: "", active: false },
-    ],
-    active: false,
-  },
-  { name: "Careers", link: "/", dropdownElement: false, active: false },
-  { name: "Contact Us", link: "/", dropdownElement: false, active: false },
+
+  // {
+  //   name: "Trust & Welfare",
+  //   // link: "/",
+  //   dropdownElement: true,
+  //   links: [
+  //     { name: "Women Welfare Organization", link: "", active: false },
+  //     { name: "Farmer Welfare Organization", link: "", active: false },
+  //   ],
+  //   active: false,
+  // },
+  // { name: "Careers", link: "/", dropdownElement: false, active: false },
+  // { name: "Contact Us", link: "/", dropdownElement: false, active: false },
 ];

@@ -1,13 +1,13 @@
 export const UIUX = {
   id: "3",
-  type: "online",
+  type: "upcoming",
 
   name: "UI/UX Designing",
   courseLink: "/",
   active: false,
 
   content: [" Scholarship on course fee", "Virtual Classes"],
-  price: "34999",
+  // price: "34999",
   buttonContent: "Enroll Now",
   image: "UIUXCourse2.webp",
   language: "English",

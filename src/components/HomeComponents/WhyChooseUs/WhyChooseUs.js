@@ -58,7 +58,7 @@ const WhyChooseUsPoints = ({ heading, content }) => {
   return (
     <div className={style.pointContainer}>
       <div className={style.WhyChooseUsPoint}>
-        <h1 style={{ width: "90%" }}>{heading}</h1>
+        <h2 style={{ width: "90%" }}>{heading}</h2>
         <p style={{ width: "90%" }}>{content}</p>
       </div>
     </div>
