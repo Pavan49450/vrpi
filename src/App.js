@@ -30,6 +30,7 @@ import CreateNewPassword from "./pages/Login&Signup/Login/CreateNewPassword/Crea
 import MandatoryCertificates from "./pages/Login&Signup/MandatoryCertificates/MandatoryCertificates";
 import PurchaseHistory from "./pages/Dashboard/PurchaseHistory/PurchaseHistory";
 import { useSelector } from "react-redux";
+import ProfilePage from "./pages/Dashboard/ProfilePage/ProfilePage";
 
 function App() {
   // const navigate = useNavigate();
@@ -179,8 +180,14 @@ function App() {
           element: <HelpAndSupport />,
           errorElement: <ErrorPage />,
         },
+        {
+          path: "studentProfile",
+          element: isVRPIUserLoggedIn ? <ProfilePage /> : <ErrorPage />,
+          errorElement: <ErrorPage />,
+        },
       ],
     },
+
     {
       path: "/resetPassword/:email/:password",
       element: <CreateNewPassword />,

@@ -68,8 +68,9 @@
   font-size: 0.8rem;
 }
 
-.mainContainer img {
+.profilePic img {
   cursor: pointer;
+  border-radius: 50%;
 }
 
 .contents {

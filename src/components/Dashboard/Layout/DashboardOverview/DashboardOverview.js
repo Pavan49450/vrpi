@@ -13,6 +13,7 @@ const DashboardOverview = ({ userDetails, children, toggleMenuBar }) => {
   const dispatch = useDispatch();
 
   const handleLogout = () => {
+    setShowProfileDropDown(!showProfileDropDown);
     setLogoutModalOpen(true);
   };
 
@@ -46,6 +47,7 @@ const DashboardOverview = ({ userDetails, children, toggleMenuBar }) => {
           <CustomImage
             src={require(`../../../../assets/dashboard/notificationIcon.png`)}
             alt=""
+            style={{ cursor: "pointer" }}
           />
           <div className={style.profilePic}>
             <CustomImage
@@ -71,7 +73,10 @@ const DashboardOverview = ({ userDetails, children, toggleMenuBar }) => {
         >
           <div
             className={style.options}
-            onClick={() => navigate("/studentProfile")}
+            onClick={() => {
+              setShowProfileDropDown(!showProfileDropDown);
+              navigate("/dashboard/studentProfile");
+            }}
           >
             Profile
           </div>
