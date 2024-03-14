@@ -11,6 +11,8 @@ const CustomImage = ({
   style,
   onClick,
   classForDiv,
+  onMouseLeave,
+  onMouseEnter,
 }) => {
   const [loading, setLoading] = useState(true);
 
@@ -29,6 +31,8 @@ const CustomImage = ({
         style={style}
         onClick={onClick}
         title={title}
+        onMouseEnter={onMouseEnter}
+        onMouseLeave={onMouseLeave}
       />
     </div>
   );

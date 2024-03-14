@@ -1,12 +1,21 @@
 import { useState } from "react";
 import CustomImage from "../../../../UI/Image/Image";
 import style from "./DashboardOverview.module.css";
-import { useNavigate } from "react-router";
+
 import { useDispatch } from "react-redux";
 import { logout } from "../../../../store/LoginStateActions";
 import ConfirmationModal from "../../../../UI/ConfirmModel/ConfirmationModal";
-const DashboardOverview = ({ userDetails, children, toggleMenuBar }) => {
+import { useLocation, useNavigate } from "react-router-dom";
+
+const DashboardOverview = ({
+  userDetails,
+  children,
+  toggleMenuBar,
+  DashboardLinks,
+}) => {
   const [showProfileDropDown, setShowProfileDropDown] = useState(false);
+
+  const { pathname } = useLocation();
 
   const navigate = useNavigate();
 
@@ -42,8 +51,17 @@ const DashboardOverview = ({ userDetails, children, toggleMenuBar }) => {
             <div className={style.bar3}></div>
           </div>
         }
-        <h2>Overview</h2>
+        <h2 className={style.barTitle}>
+          {DashboardLinks.map((link) => {
+            return link.link === pathname && link.title;
+          })}
+        </h2>
+
         <div className={style.overviewContents}>
+          <div className={style.userDetails}>
+            <span className={style.userName}>{userDetails.name}</span>
+            <span className={style.userId}>#{userDetails.id}</span>
+          </div>
           <CustomImage
             src={require(`../../../../assets/dashboard/notificationIcon.png`)}
             alt=""
@@ -53,12 +71,10 @@ const DashboardOverview = ({ userDetails, children, toggleMenuBar }) => {
             <CustomImage
               src={require(`../../../../assets/dashboard/${userDetails.image}`)}
               alt=""
-              onClick={() => setShowProfileDropDown(!showProfileDropDown)}
+              // onClick={() => setShowProfileDropDown(!showProfileDropDown)}
+              onMouseEnter={() => setShowProfileDropDown(true)}
+              onMouseLeave={() => setShowProfileDropDown(false)}
             />
-          </div>
-          <div className={style.userDetails}>
-            <span>{userDetails.name}</span>
-            <span className={style.userId}>#{userDetails.id}</span>
           </div>
           {/* <img
             src={require(`../../../assets/dashboard/arrowDownPrimary.png`)}
@@ -67,6 +83,8 @@ const DashboardOverview = ({ userDetails, children, toggleMenuBar }) => {
           /> */}
         </div>
         <div
+          onMouseEnter={() => setShowProfileDropDown(true)}
+          onMouseLeave={() => setShowProfileDropDown(false)}
           className={`${style.dropdown} ${
             showProfileDropDown && style.showDropdown
           }`}
@@ -78,6 +96,7 @@ const DashboardOverview = ({ userDetails, children, toggleMenuBar }) => {
               navigate("/dashboard/studentProfile");
             }}
           >
+            {/* <CustomImage src={re} */}
             Profile
           </div>
           <div className={style.options} onClick={handleLogout}>

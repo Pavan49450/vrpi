@@ -32,10 +32,11 @@
 
 .content {
   text-align: center;
+  margin: 2rem 0;
 }
 
 .content div {
-  margin-top: 20px;
+  /* margin-top: 20px; */
 }
 
 /* Add any additional styling as needed */

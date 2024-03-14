@@ -6,72 +6,27 @@ import ConfirmationModal from "../../../../UI/ConfirmModel/ConfirmationModal";
 import { useDispatch } from "react-redux";
 import { logout } from "../../../../store/LoginStateActions";
 
-const DashboardHeader = ({ showMenuBar, toggleMenuBar }) => {
-  const navigate = useNavigate();
+const DashboardHeader = ({ showMenuBar, toggleMenuBar, DashboardLinks }) => {
   const { pathname } = useLocation();
 
-  const dispatch = useDispatch();
+  // const navigate = useNavigate();
 
-  const handleLogout = () => {
-    setLogoutModalOpen(true);
-  };
+  // const dispatch = useDispatch();
 
-  const handleLogoutConfirm = () => {
-    dispatch(logout());
-    navigate("/login");
-  };
+  // const handleLogout = () => {
+  //   setLogoutModalOpen(true);
+  // };
 
-  const [logoutModalOpen, setLogoutModalOpen] = useState(false);
+  // const handleLogoutConfirm = () => {
+  //   dispatch(logout());
+  //   navigate("/login");
+  // };
 
-  const closeLogoutModal = () => {
-    setLogoutModalOpen(false);
-  };
+  // const [logoutModalOpen, setLogoutModalOpen] = useState(false);
 
-  const DashboardLinks = [
-    {
-      title: "My Dashboard",
-      link: "/dashboard",
-      iconActive: "myDashboard-p.png",
-      iconInActive: "myDashboard-w.png",
-    },
-    {
-      title: "Edu-Tech Courses",
-      link: "/dashboard/courses",
-      iconActive: "edutech-p.png",
-      iconInActive: "edutech-w.png",
-    },
-    // {
-    //   title: "Internship",
-    //   link: "/dashboard/internships",
-    //   iconActive: "internship-p.png",
-    //   iconInActive: "internship-w.png",
-    // },
-    {
-      title: "Purchase History",
-      link: "/dashboard/purchaseHistory",
-      iconActive: "purchaseHistory-p.png",
-      iconInActive: "purchaseHistory-w.png",
-    },
-    // {
-    //   title: "Settings",
-    //   link: "/dashboard/settings",
-    //   iconActive: "settings-p.png",
-    //   iconInActive: "settings-w.png",
-    // },
-    {
-      title: "Logout",
-      link: false,
-      iconActive: "logout-p.png",
-      iconInActive: "logout-w.png",
-      action: handleLogout,
-    },
-    {
-      title: "Help & Support",
-      link: "/dashboard/helpAndSupport",
-      iconActive: "support-p.png",
-      iconInActive: "support-w.png",
-    },
-  ];
+  // const closeLogoutModal = () => {
+  //   setLogoutModalOpen(false);
+  // };
 
   return (
     <>
@@ -112,14 +67,14 @@ const DashboardHeader = ({ showMenuBar, toggleMenuBar }) => {
                 ))}
               </ul>
             </nav>
-            <ConfirmationModal
+            {/* <ConfirmationModal
               isOpen={logoutModalOpen}
               onRequestClose={closeLogoutModal}
               title="Confirm Logout"
               message="Are you sure you want to logout?"
               onConfirm={handleLogoutConfirm}
               onCancel={closeLogoutModal}
-            />
+            /> */}
           </header>
         </>
       }

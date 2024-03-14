@@ -49,6 +49,12 @@ export const user = {
   DOB: "2000-09-02",
   mobileNumber: "8945612378",
   enrolledCourses: [JavaFullStackCourse, Devops],
+  joinedDate: "2024-03-12",
+  active: true,
+  incomeCertificate: "true",
+  aadharCardFront: "true",
+  address: "12-13/1 , Shiv bhag colony , Hyderabad, Telangana, 500090",
+  // aadharCardFront:'true',
   educationalDetails: {
     DegreeIn: "Bachelor’s of Engineering",
     InstituteName: "Stanley college of Engineering & Technology for Women",

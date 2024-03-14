@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import styles from "./ProfileDetailsSection.module.css"; // Import CSS module
+import StudentDetails from "./StudentDetails/StudentDetails";
+import MandatoryCertificates from "./MandatoryCertificates/MandatoryCertificates";
 
 const ProfileDetailsSection = ({ user }) => {
   const [selectedOption, setSelectedOption] = useState("details");
@@ -25,17 +27,9 @@ const ProfileDetailsSection = ({ user }) => {
         </button>
       </div>
       <div className={styles.content}>
-        {selectedOption === "details" && (
-          <div>
-            <h2>My Details</h2>
-            {/* Content related to details */}
-          </div>
-        )}
+        {selectedOption === "details" && <StudentDetails user={user} />}
         {selectedOption === "documents" && (
-          <div>
-            <h2>My Documents</h2>
-            {/* Content related to documents */}
-          </div>
+          <MandatoryCertificates user={user} />
         )}
       </div>
     </div>
@@ -43,87 +37,3 @@ const ProfileDetailsSection = ({ user }) => {
 };
 
 export default ProfileDetailsSection;
-
-const Details = ({ user }) => {
-  const PersonalDetails = {
-    title: "Personal Details",
-    content: [
-      {
-        title: "Name",
-        content: user.name,
-      },
-      {
-        title: "Date of Birth",
-        content: user.DOB,
-      },
-      {
-        title: "Gender",
-        content: user.gender,
-      },
-      {
-        title: "Occupation",
-        content: user.occupation,
-      },
-    ],
-  };
-
-  const EducationalDetails = {
-    title: "Education details",
-    content: [
-      {
-        title: "Degree in",
-        content: user.educationalDetails.degreeIn,
-      },
-      {
-        title: "Institute Name",
-        content: user.educationalDetails.InstituteName,
-      },
-      {
-        title: "Institute Location",
-        content: user.educationalDetails.InstituteLocation,
-      },
-      {
-        title: "Start Year",
-        content: user.educationalDetails.startYear,
-      },
-      {
-        title: "End Year",
-        content: user.educationalDetails.endYear,
-      },
-      {
-        title: "Percentage/ CGPA",
-        content: user.educationalDetails.grade,
-      },
-    ],
-  };
-  //   const PersonalDetails = {
-  //     title: "Personal Details",
-  //     content: [
-  //       {
-  //         title: "Name",
-  //         content: user.name,
-  //       },
-  //       {
-  //         title: "Date of Birth",
-  //         content: user.DOB,
-  //       },
-  //       {
-  //         title: "Gender",
-  //         content: user.gender,
-  //       },
-  //       {
-  //         title: "Occupation",
-  //         content: user.occupation,
-  //       },
-  //     ],
-  //   };
-
-  const AllDetails = [PersonalDetails];
-
-  return (
-    <div>
-      <h2>My Details</h2>
-      {/* Content related to details */}
-    </div>
-  );
-};
