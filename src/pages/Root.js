@@ -20,6 +20,7 @@ import { useSelector } from "react-redux";
 const hideHeaderRoutes = [
   "/login",
   "/signup",
+  "/educationalDetails",
   "/educationaldetails",
   "/companydetails",
   // "/dashboard",
@@ -41,11 +42,11 @@ const RootLayout = () => {
     link: "/dashboard",
     active: isVRPIUserLoggedIn,
   };
-  useEffect(() => {
-    if (isVRPIUserLoggedIn && userId) {
-      console.log(isVRPIUserLoggedIn);
-    }
-  }, [isVRPIUserLoggedIn, userId]);
+  // useEffect(() => {
+  //   if (isVRPIUserLoggedIn && userId) {
+  //     console.log(isVRPIUserLoggedIn);
+  //   }
+  // }, [isVRPIUserLoggedIn, userId]);
 
   const isHeaderHidden = hideHeaderRoutes.some((route) => {
     const normalizedPath = location.pathname.replace(/\/+$/, ""); // Remove trailing slashes from the current path

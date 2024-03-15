@@ -51,7 +51,6 @@ const DashboardHeader = ({ showMenuBar, toggleMenuBar, DashboardLinks }) => {
                             ? `${style.active} ${style.navLink}`
                             : style.navLink
                         }
-                        exact
                       >
                         <LinksContents link={link} pathname={pathname} />
                       </NavLink>

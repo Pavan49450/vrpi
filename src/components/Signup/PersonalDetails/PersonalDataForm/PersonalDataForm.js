@@ -84,7 +84,6 @@ const PersonalDataForm = ({ role }) => {
   const formattedDOB = useFormatDate(DOB);
 
   useEffect(() => {
-    console.log("DOB->", formattedDOB);
     let isFormValid = false;
     if (role === "student") {
       isFormValid =
@@ -170,7 +169,6 @@ const PersonalDataForm = ({ role }) => {
           profilePic: passportFile,
           roles: role,
         };
-        console.log(formData);
       } else if (role === "client") {
         formData = {
           firstName: firstNameInput.value,
@@ -182,7 +180,6 @@ const PersonalDataForm = ({ role }) => {
           createPassword: confirmPasswordInput.value,
           roles: role,
         };
-        console.log(formData);
       }
 
       sendRequest({

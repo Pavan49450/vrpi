@@ -1,12 +1,17 @@
 import EnrolledCourseComponent from "../../../components/Dashboard/EnrolledCourseComponent/EnrolledCourseComponent";
 import Courses from "../../../components/Dashboard/MyDashboardComponent/Courses/Courses";
 import { EduTechData } from "../../../data/EduTechData";
-import { user } from "../../../data/user";
+import UserDataComponent from "../../../data/user";
 
 const DashboardCourses = () => {
+  const user = UserDataComponent();
+
+  // Check if user data and necessary properties are defined
+  const userExists = user && user.educationalDetails && user.enrolledCourses;
+
   return (
     <div>
-      {user.educationalDetails !== undefined && (
+      {userExists && (
         <EnrolledCourseComponent enrolledCourses={user.enrolledCourses} />
       )}
       <Courses data={EduTechData} />

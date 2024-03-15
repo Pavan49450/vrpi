@@ -66,7 +66,7 @@ export default function SignIn() {
     if (formIsValid) {
       console.log("Sign up Successful");
 
-      console.log("login details", email, enteredPassword);
+      // console.log("login details", email, enteredPassword);
       emailReset();
       passwordReset();
       navigate("/");

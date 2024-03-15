@@ -80,13 +80,13 @@ export default function SignUp() {
     event.preventDefault();
     if (formIsValid) {
       console.log("Sign up Successful");
-      console.log(
-        "User Details",
-        enteredName,
-        email,
-        enteredPassword,
-        mobileNumber
-      );
+      // console.log(
+      //   "User Details",
+      //   enteredName,
+      //   email,
+      //   enteredPassword,
+      //   mobileNumber
+      // );
       emailReset();
       nameReset();
       passwordReset();

@@ -84,7 +84,7 @@ const EducationalDetailsForm = () => {
       percentageInput,
     };
     if (formIsValid) {
-      console.log(formData);
+      // console.log(formData);
       console.log("Form submitted successfully!");
     } else {
       console.log("Form submission failed. Please check the fields.");

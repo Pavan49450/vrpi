@@ -43,27 +43,33 @@ const LoginForm = () => {
   useEffect(() => {
     const Validation = () => {
       if (responseData) {
+        // console.log(statusCode);
         if (statusCode === 200 || statusCode === 201) {
           setErrorMessage("");
-          console.log("data->", responseData);
-          dispatch(login("18"));
+          // console.log("data->", responseData);
+          dispatch(login("11"));
           emailInput.reset();
           passwordInput.reset();
           navigate("/dashboard");
         } else {
-          console.log("error->", error);
-          setErrorMessage(responseData.response.data.statusMessage);
+          // console.log("error->", error);
+          if (error !== null || error !== undefined) {
+            setErrorMessage(responseData.response.data.statusMessage);
+          }
         }
       }
     };
 
-    Validation();
+    if (responseData || error) {
+      Validation();
+    }
   }, [error, responseData]);
 
   const dispatch = useDispatch();
 
   const submitHandler = (event) => {
     event.preventDefault();
+    setErrorMessage("");
     if (formIsValid) {
       setErrorMessage("");
       sendRequest({

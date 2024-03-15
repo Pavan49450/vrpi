@@ -109,6 +109,7 @@
     line-height: 2rem;
     width: 3rem;
     text-align: center;
+    z-index: 10;
   }
   .closeBtn:hover {
     transform: scale(1.1);

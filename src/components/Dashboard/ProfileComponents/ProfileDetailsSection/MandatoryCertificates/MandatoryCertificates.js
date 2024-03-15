@@ -5,54 +5,56 @@ import Button from "../../../../../UI/Button/Button";
 import CustomImage from "../../../../../UI/Image/Image";
 
 const MandatoryCertificates = ({ user }) => {
-  const MandatoryCertificatesData = [
-    {
-      title: "Income Certificate",
-      note: "Note: Upload Income Certificate which is valid for a period of 1 year from the date of issue.",
-      uploadedAreNot: user.incomeCertificate,
-    },
-    {
-      title: "Aadhaar Card (Front)",
-      note: "Note: Make sure address of yours should be visible clearly, and can be of png.,jpeg., pdf of size 5MB. ",
-      uploadedAreNot: user.aadharCardFront,
-    },
-    {
-      title: "Aadhaar Card (Back)",
-      note: "Note: Make sure address of yours should be visible clearly, and can be of png.,jpeg., pdf of size 5MB. ",
-      uploadedAreNot: user.aadharCardBack,
-    },
-    {
-      title: "Passport Size photo",
-      note: "Note: Upload your Passport size Photo of size 5MB and can be of png.,jpeg., pdf.",
-      uploadedAreNot: user.ProfilePic,
-    },
-  ];
+  // const MandatoryCertificatesData = [
+  //   {
+  //     title: "Income Certificate",
+  //     note: "Note: Upload Income Certificate which is valid for a period of 1 year from the date of issue.",
+  //     uploadedAreNot: user.incomeCertificate,
+  //   },
+  //   {
+  //     title: "Aadhaar Card (Front)",
+  //     note: "Note: Make sure address of yours should be visible clearly, and can be of png.,jpeg., pdf of size 5MB. ",
+  //     uploadedAreNot: user.aadharCardFront,
+  //   },
+  //   {
+  //     title: "Aadhaar Card (Back)",
+  //     note: "Note: Make sure address of yours should be visible clearly, and can be of png.,jpeg., pdf of size 5MB. ",
+  //     uploadedAreNot: user.aadharCardBack,
+  //   },
+  //   {
+  //     title: "Passport Size photo",
+  //     note: "Note: Upload your Passport size Photo of size 5MB and can be of png.,jpeg., pdf.",
+  //     uploadedAreNot: user.ProfilePic,
+  //   },
+  // ];
 
   const navigate = useNavigate();
 
-  // Calculate number of uploaded certificates
-  const uploadedCertificates = MandatoryCertificatesData.filter(
-    (certificate) => certificate.uploadedAreNot
-  ).length;
+  // // Calculate number of uploaded certificates
+  // const uploadedCertificates = MandatoryCertificatesData.filter(
+  //   (certificate) => certificate.uploadedAreNot
+  // ).length;
 
-  // Calculate number of certificates needed to upload
-  const certificatesToUpload =
-    MandatoryCertificatesData.length - uploadedCertificates;
+  // // Calculate number of certificates needed to upload
+  // const certificatesToUpload =
+  //   MandatoryCertificatesData.length - uploadedCertificates;
 
   return (
     <div className={style.container}>
       <div className={style.cardHead}>
         <h2 className={style.containerTitle}>Upload Documents</h2>
         <div>
-          <span>{uploadedCertificates}</span>
-          <span>/{MandatoryCertificatesData.length} documents uploaded</span>
+          <span>{user.uploadedCertificates}</span>
+          <span>
+            /{user.MandatoryCertificatesData.length} documents uploaded
+          </span>
         </div>
       </div>
       <p className={style.containerDescription}>
         Thank you for submitting your documents
       </p>
       <div className={style.certificateCards}>
-        {MandatoryCertificatesData.map((x, i) => (
+        {user.MandatoryCertificatesData.map((x, i) => (
           <div className={style.card} key={i}>
             <div>
               <h3 className={style.cardTitle}>{x.title}</h3>
@@ -80,7 +82,7 @@ const MandatoryCertificates = ({ user }) => {
           }}
           className={style.uploadBtn}
         >
-          Upload Certificates ({certificatesToUpload} remaining)
+          Upload Certificates ({user.certificatesToUpload} remaining)
         </Button>
       </div>
     </div>

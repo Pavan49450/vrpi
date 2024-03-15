@@ -1,7 +1,6 @@
 import { useState } from "react";
 import CustomImage from "../../../../UI/Image/Image";
 import style from "./DashboardOverview.module.css";
-
 import { useDispatch } from "react-redux";
 import { logout } from "../../../../store/LoginStateActions";
 import ConfirmationModal from "../../../../UI/ConfirmModel/ConfirmationModal";
@@ -14,11 +13,9 @@ const DashboardOverview = ({
   DashboardLinks,
 }) => {
   const [showProfileDropDown, setShowProfileDropDown] = useState(false);
-
+  const [logoutModalOpen, setLogoutModalOpen] = useState(false);
   const { pathname } = useLocation();
-
   const navigate = useNavigate();
-
   const dispatch = useDispatch();
 
   const handleLogout = () => {
@@ -31,8 +28,6 @@ const DashboardOverview = ({
     navigate("/login");
   };
 
-  const [logoutModalOpen, setLogoutModalOpen] = useState(false);
-
   const closeLogoutModal = () => {
     setLogoutModalOpen(false);
   };
@@ -40,47 +35,41 @@ const DashboardOverview = ({
   return (
     <div className={style.mainContainer}>
       <div className={style.overviewContainer}>
-        {
-          <div
-            className={`${style.menuIcon} 
-            }`}
-            onClick={toggleMenuBar}
-          >
-            <div className={style.bar1}></div>
-            <div className={style.bar2}></div>
-            <div className={style.bar3}></div>
-          </div>
-        }
+        <div className={style.menuIcon} onClick={toggleMenuBar}>
+          <div className={style.bar1}></div>
+          <div className={style.bar2}></div>
+          <div className={style.bar3}></div>
+        </div>
         <h2 className={style.barTitle}>
-          {DashboardLinks.map((link) => {
-            return link.link === pathname && link.title;
-          })}
+          {DashboardLinks.find((link) => link.link === pathname)?.title}
         </h2>
 
         <div className={style.overviewContents}>
-          <div className={style.userDetails}>
-            <span className={style.userName}>{userDetails.name}</span>
-            <span className={style.userId}>#{userDetails.id}</span>
-          </div>
+          {userDetails && (
+            <div className={style.userDetails}>
+              <span className={style.userName}>
+                {userDetails.firstName} {userDetails.lastName}
+              </span>
+              <span className={style.userId}>#{userDetails.id}</span>
+            </div>
+          )}
           <CustomImage
-            src={require(`../../../../assets/dashboard/notificationIcon.png`)}
+            src={require("../../../../assets/dashboard/notificationIcon.png")}
             alt=""
             style={{ cursor: "pointer" }}
           />
-          <div className={style.profilePic}>
-            <CustomImage
-              src={require(`../../../../assets/dashboard/${userDetails.image}`)}
-              alt=""
-              // onClick={() => setShowProfileDropDown(!showProfileDropDown)}
-              onMouseEnter={() => setShowProfileDropDown(true)}
-              onMouseLeave={() => setShowProfileDropDown(false)}
-            />
-          </div>
-          {/* <img
-            src={require(`../../../assets/dashboard/arrowDownPrimary.png`)}
-            alt=""
-            className={style.arrowDown}
-          /> */}
+          {userDetails && (
+            <div className={style.profilePic}>
+              <CustomImage
+                src={require(`../../../../assets/dashboard/${
+                  userDetails.profilePic || "profilePic.png"
+                }`)}
+                alt=""
+                onMouseEnter={() => setShowProfileDropDown(true)}
+                onMouseLeave={() => setShowProfileDropDown(false)}
+              />
+            </div>
+          )}
         </div>
         <div
           onMouseEnter={() => setShowProfileDropDown(true)}
@@ -96,7 +85,6 @@ const DashboardOverview = ({
               navigate("/dashboard/studentProfile");
             }}
           >
-            {/* <CustomImage src={re} */}
             Profile
           </div>
           <div className={style.options} onClick={handleLogout}>
@@ -117,4 +105,5 @@ const DashboardOverview = ({
     </div>
   );
 };
+
 export default DashboardOverview;

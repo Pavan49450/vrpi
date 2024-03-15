@@ -23,16 +23,64 @@ const UserDataComponent = () => {
 
   useEffect(() => {
     sendRequest({
-      url: `${url.backendBaseUrl}/${userId}`,
+      url: `${url.backendBaseUrl}/vrpi-user/${userId}`,
       headers: { "Content-Type": "application/json", Accept: "*/*" },
     });
-    console.log("response", responseData);
-    console.log("status", statusCode);
   }, [userId, sendRequest]);
+
+  // useEffect(() => {
+  //   console.log("response", responseData);
+  //   console.log("status", statusCode);
+  // }, [responseData, statusCode]);
 
   // You might want to handle loading, error, and other states here
 
-  return responseData;
+  const MandatoryCertificatesData = [
+    {
+      title: "Income Certificate",
+      note: "Note: Upload Income Certificate which is valid for a period of 1 year from the date of issue.",
+      uploadedAreNot: responseData?.incomeCertificate || false,
+    },
+    {
+      title: "Aadhaar Card (Front)",
+      note: "Note: Make sure address of yours should be visible clearly, and can be of png.,jpeg., pdf of size 5MB. ",
+      uploadedAreNot: responseData?.aadharFront || false,
+    },
+    {
+      title: "Aadhaar Card (Back)",
+      note: "Note: Make sure address of yours should be visible clearly, and can be of png.,jpeg., pdf of size 5MB. ",
+      uploadedAreNot: responseData?.aadharBack || false,
+    },
+    {
+      title: "Passport Size photo",
+      note: "Note: Upload your Passport size Photo of size 5MB and can be of png.,jpeg., pdf.",
+      uploadedAreNot: responseData?.profilePic || false,
+    },
+  ];
+
+  // Calculate number of uploaded certificates
+  const uploadedCertificates = MandatoryCertificatesData.filter(
+    (certificate) => certificate.uploadedAreNot
+  ).length;
+
+  // Calculate number of certificates needed to upload
+  const certificatesToUpload =
+    MandatoryCertificatesData.length - uploadedCertificates;
+
+  return {
+    user: responseData,
+    MandatoryCertificatesData,
+    uploadedCertificates,
+    certificatesToUpload,
+    enrolledCourses:
+      responseData && responseData.enrolledCourses
+        ? responseData.enrolledCourses
+        : [],
+    educationalDetails:
+      responseData && responseData.educationalDetails
+        ? responseData.educationalDetails
+        : null,
+  };
 };
 
 // export const UserData = GetUserById();

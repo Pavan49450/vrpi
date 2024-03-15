@@ -19,6 +19,9 @@ const VerificationPage = () => {
     useHttpsAxios();
 
   useEffect(() => {
+    // console.log("email->", email);
+    // console.log("otp->", otp);
+
     const validation = async () => {
       try {
         const response = await sendRequest({
@@ -26,8 +29,6 @@ const VerificationPage = () => {
           // url: `${url.backendBaseUrl}/vrpi-user/all`,
         });
 
-        console.log(responseData);
-        console.log(statusCode);
         if (response && (statusCode === 200 || statusCode === 201)) {
           console.log("Verified");
         }
@@ -38,6 +39,11 @@ const VerificationPage = () => {
 
     validation();
   }, [sendRequest]);
+
+  useEffect(() => {
+    console.log(responseData);
+    console.log(statusCode);
+  });
 
   const navigate = useNavigate();
   return (

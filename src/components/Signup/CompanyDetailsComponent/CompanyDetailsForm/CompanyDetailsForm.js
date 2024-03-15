@@ -29,14 +29,6 @@ const CompanyDetailsForm = () => {
   const [formIsValid, setFormIsValid] = useState(false);
 
   useEffect(() => {
-    console.log(
-      lookingFor,
-      companyNameInput.isValid,
-      companySectorInput.isValid,
-      establishedYearInput.isValid,
-      locationInput.isValid
-    );
-
     const isFormValid =
       lookingFor &&
       companyNameInput.isValid &&
@@ -63,7 +55,7 @@ const CompanyDetailsForm = () => {
       locationInput,
     };
     if (formIsValid) {
-      console.log(formData);
+      // console.log(formData);
       console.log("Form submitted successfully!");
     } else {
       console.log("Form submission failed. Please check the fields.");

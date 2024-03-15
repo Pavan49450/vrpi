@@ -64,7 +64,6 @@ const AllCardsSection = ({ data, ifCourseDetails, className }) => {
                     highlightWord={courseSection.highlightWord}
                     viewAll={courseSection.courses.length >= 5}
                   >
-                    {console.log("ifCourseDetails", ifCourseDetails)}
                     <div
                       className={`${style.cardStack} ${
                         ifCourseDetails === true && style.forDetailsPage
@@ -84,7 +83,6 @@ const AllCardsSection = ({ data, ifCourseDetails, className }) => {
         <>
           {allInternships.map((internships) => (
             <>
-              {console.log("length->", internships.internships.length)}
               {internships.internships.length !== 0 && (
                 <Section
                   className={style.cardSection}

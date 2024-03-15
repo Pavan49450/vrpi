@@ -19,7 +19,6 @@ const useHttps = () => {
         throw new Error(`Request failed with status ${response.status}`);
       }
 
-      console.log(response);
       const data = await response.json();
       applyData(data);
     } catch (err) {

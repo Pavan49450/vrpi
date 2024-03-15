@@ -26,10 +26,7 @@ const useHttpsAxios = () => {
       if (!response.status.toString().startsWith("2")) {
         setError(`Request failed with status ${response.status}`);
       }
-
-      // console.log(await response);
     } catch (err) {
-      // console.error(err);
       setStatusCode(err.response?.status);
       setError(err);
       setResponseData(err);

@@ -16,7 +16,6 @@ const CourseDetails = () => {
 
   useEffect(() => {
     if (courseId) {
-      console.log("Course id", courseId);
       const Course = EduTechData.Courses.find(
         (course) => course.id === courseId
       );
@@ -26,7 +25,6 @@ const CourseDetails = () => {
 
   useEffect(() => {
     if (internshipId) {
-      console.log("internship id", internshipId);
       const Internship = InternshipsData.Internships.find(
         (internship) => internship.id === internshipId
       );
@@ -34,7 +32,7 @@ const CourseDetails = () => {
     }
   }, [internshipId]);
 
-  console.log("content", content);
+  // console.log("content", content);
   // console.log("internship", internship);
 
   return (

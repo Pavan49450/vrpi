@@ -65,7 +65,6 @@ const addressValidation = (value) => {
 };
 
 const DOBValidation = (value) => {
-  console.log("DOb", value);
   return value.toString().trim() !== "";
 };
 

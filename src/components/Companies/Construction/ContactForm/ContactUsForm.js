@@ -75,12 +75,12 @@ const ContactUsForm = () => {
     event.preventDefault();
     if (nameInput.isValid && mobileInput.isValid && descriptionInput.isValid) {
       console.log("Form submitted successfully");
-      console.log(
-        "Info->",
-        nameInput.value,
-        mobileInput.value,
-        descriptionInput.value
-      );
+      // console.log(
+      //   "Info->",
+      //   nameInput.value,
+      //   mobileInput.value,
+      //   descriptionInput.value
+      // );
       nameInput.reset();
       mobileInput.reset();
       descriptionInput.reset();
@@ -93,7 +93,7 @@ const ContactUsForm = () => {
     <form onSubmit={handleSubmit} className={style.Form}>
       {/* <div className={style.form_input}> */}
       {/* <label htmlFor="name">Name</label> */}
-      {console.log(nameInput.hasError)}
+      {/* {console.log(nameInput.hasError)} */}
       <CustomInput
         id="name"
         placeholder="Name"

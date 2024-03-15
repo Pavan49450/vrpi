@@ -22,52 +22,60 @@ const ProfileBar = ({ user }) => {
   const navigate = useNavigate();
 
   return (
-    <div className={style.profileImageContainer}>
-      <div className={style.profileImage}>
-        <img
-          src={require(`../../../../assets/dashboard/${user.image}`)}
-          alt="banner"
-        ></img>
-      </div>
-      <div className={style.details}>
-        <div className={style.headContainer}>
-          <div className={style.mainDetails}>
-            <span className={style.StudentName}>{user.name}</span>
-            <span className={style.userId}>Student | {user.gender}</span>
+    <>
+      {user && (
+        <div className={style.profileImageContainer}>
+          <div className={style.profileImage}>
+            <img
+              src={require(`../../../../assets/dashboard/${
+                user.profilePic || "profilePic.png"
+              }`)}
+              alt="banner"
+            ></img>
           </div>
-          <div>
-            <Button
-              onClick={() => navigate("/")}
-              style={{ padding: "0.2rem 2rem" }}
-            >
-              Edit
-            </Button>
+          <div className={style.details}>
+            <div className={style.headContainer}>
+              <div className={style.mainDetails}>
+                <span className={style.StudentName}>
+                  {user.firstName} {user.lastName}
+                </span>
+                <span className={style.userId}>Student | {user.gender}</span>
+              </div>
+              <div>
+                <Button
+                  onClick={() => navigate("/")}
+                  style={{ padding: "0.2rem 2rem" }}
+                >
+                  Edit
+                </Button>
+              </div>
+            </div>
+            <div className={style.contactDetails}>
+              <div className={style.contactCard}>
+                <img
+                  src={require(`../../../../assets/dashboard/Call.png`)}
+                  alt=""
+                />
+                <span>+91 {user.phoneNumber}</span>
+              </div>
+              <div className={style.contactCard}>
+                <img
+                  src={require(`../../../../assets/dashboard/Email.png`)}
+                  alt=""
+                />
+                <span>{user.email}</span>
+              </div>
+              <div className={style.contactCard}>
+                <img
+                  src={require(`../../../../assets/dashboard/HomeWork.png`)}
+                  alt=""
+                />
+                <span>{user.address}</span>
+              </div>
+            </div>
           </div>
         </div>
-        <div className={style.contactDetails}>
-          <div className={style.contactCard}>
-            <img
-              src={require(`../../../../assets/dashboard/Call.png`)}
-              alt=""
-            />
-            <span>+91 {user.mobileNumber}</span>
-          </div>
-          <div className={style.contactCard}>
-            <img
-              src={require(`../../../../assets/dashboard/Email.png`)}
-              alt=""
-            />
-            <span>{user.email}</span>
-          </div>
-          <div className={style.contactCard}>
-            <img
-              src={require(`../../../../assets/dashboard/HomeWork.png`)}
-              alt=""
-            />
-            <span>{user.address}</span>
-          </div>
-        </div>
-      </div>
-    </div>
+      )}
+    </>
   );
 };

@@ -7,7 +7,9 @@ const ProfileDetails = ({ user }) => {
         <div>
           <div className={style.userImage}>
             <img
-              src={require(`../../../../assets/dashboard/${user.image}`)}
+              src={require(`../../../../assets/dashboard/${
+                user.image ? user.image : "profilePic.png"
+              }`)}
               alt=""
             />
           </div>
@@ -39,7 +41,7 @@ const ProfileDetails = ({ user }) => {
             src={require(`../../../../assets/dashboard/phoneIcon.png`)}
             alt=""
           />
-          <span>+91 {user.mobileNumber}</span>
+          <span>+91 {user.phoneNumber}</span>
         </div>
         <div className={style.detailsData}>
           <img

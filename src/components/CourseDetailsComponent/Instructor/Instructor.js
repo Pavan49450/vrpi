@@ -16,7 +16,6 @@ const Instructor = ({ instructorData }) => {
           <div className={style.description}>
             <h2>Hii!!</h2>
             <h2>I’m {instructorData.name} Your Instructor for this Course</h2>
-            {console.log("data->", instructorData)}
             {instructorData.description.map((x) => (
               <p>{x}</p>
             ))}

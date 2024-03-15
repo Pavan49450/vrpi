@@ -1,100 +1,108 @@
 import styles from "./StudentDetails.module.css";
+
 const StudentDetails = ({ user }) => {
-  const PersonalDetails = {
+  // Define default values for each section if user data is undefined
+  const defaultPersonalDetails = {
     title: "Personal Details",
     content: [
       {
         title: "Name",
-        content: user?.name,
+        content: `${user?.firstName || ""} ${user?.lastName || ""}`,
       },
       {
         title: "Date of Birth",
-        content: user.DOB,
+        content: user?.dateOfBirth || "",
       },
       {
         title: "Gender",
-        content: user.gender,
+        content: user?.gender || "",
       },
       {
         title: "Occupation",
-        content: user.occupation,
+        content: user?.occupation || "",
       },
     ],
   };
 
-  const EducationalDetails = {
+  const defaultEducationalDetails = {
     title: "Education details",
-    content: [
-      {
-        title: "Degree in",
-        content: user.educationalDetails.DegreeIn,
-      },
-      {
-        title: "Institute Name",
-        content: user.educationalDetails.InstituteName,
-      },
-      {
-        title: "Institute Location",
-        content: user.educationalDetails.InstituteLocation,
-      },
-      {
-        title: "Start Year",
-        content: user.educationalDetails.startYear,
-      },
-      {
-        title: "End Year",
-        content: user.educationalDetails.endYear,
-      },
-      {
-        title: "Percentage/ CGPA",
-        content: user.educationalDetails.grade,
-      },
-    ],
+    content: user?.educationalDetails
+      ? [
+          {
+            title: "Degree in",
+            content: user.educationalDetails.DegreeIn || "No data",
+          },
+          {
+            title: "Institute Name",
+            content: user.educationalDetails.InstituteName || "No data",
+          },
+          {
+            title: "Institute Location",
+            content: user.educationalDetails.InstituteLocation || "No data",
+          },
+          {
+            title: "Start Year",
+            content: user.educationalDetails.startYear || "No data",
+          },
+          {
+            title: "End Year",
+            content: user.educationalDetails.endYear || "No data",
+          },
+          {
+            title: "Percentage/ CGPA",
+            content: user.educationalDetails.grade || "No data",
+          },
+        ]
+      : [
+          {
+            title: "",
+            content: "No educational data available",
+            type: "onData",
+          },
+        ],
   };
-  const AccountDetails = {
+
+  const defaultAccountDetails = {
     title: "Account Details",
     content: [
       {
         title: "Profile ID",
-        content: user.id,
+        content: user?.id || "",
       },
       {
         title: "Date Joined",
-        content: user.joinedDate,
+        content: user?.joinedDate || "",
       },
       {
         title: "Email",
-        content: user.email,
+        content: user?.email || "",
       },
-      //   {
-      //     title: "Email Status",
-      //     content: user.active,
-      //   },
     ],
   };
 
-  const AllDetails = [PersonalDetails, EducationalDetails, AccountDetails];
+  // Combine default values with user-provided values
+  const AllDetails = [
+    defaultPersonalDetails,
+    defaultEducationalDetails,
+    defaultAccountDetails,
+  ];
 
   return (
     <div className={styles.detailsContainer}>
-      {AllDetails.map((details, index) => {
-        return (
-          <div key={index} className={styles.detailsCard}>
-            <h2>{details.title}</h2>
-            {details.content.map((detail, index) => {
-              return (
-                <div key={index} className={styles.eachContent}>
-                  <p className={styles.contentTitle}>
-                    {detail.title}
-                    :&nbsp;
-                  </p>
-                  <p className={styles.contentData}>{detail.content}</p>
-                </div>
-              );
-            })}
-          </div>
-        );
-      })}
+      {AllDetails.map((details, index) => (
+        <div key={index} className={styles.detailsCard}>
+          <h2>{details.title}</h2>
+          {details.content.map((detail, index) => (
+            <div key={index} className={styles.eachContent}>
+              <p className={styles.contentTitle}>
+                {detail.title}
+                {detail.type ? "" : ":"}&nbsp;
+              </p>
+              <p className={styles.contentData}>{detail.content}</p>
+            </div>
+          ))}
+        </div>
+      ))}
     </div>
   );
 };

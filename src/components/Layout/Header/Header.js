@@ -55,7 +55,6 @@ const Header = ({
   }, []);
 
   useEffect(() => {
-    console.log("dashboard", dashboard);
     const handleOutsideClick = (event) => {
       if (
         sideNavbarRef.current &&
@@ -208,7 +207,7 @@ const Header = ({
               <div className={style.nav}>{navElements}</div>
               {dashboard.active && (
                 <img
-                  src={require(`../../../assets/dashboard/myDashboard-w.png`)}
+                  src={require(`../../../assets/dashboard/profilePic.png`)}
                   alt={dashboard.name}
                   onClick={() => navigate(dashboard.link)}
                   title={dashboard.name}

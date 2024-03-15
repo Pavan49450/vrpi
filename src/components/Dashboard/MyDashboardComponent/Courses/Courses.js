@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import style from "./Courses.module.css";
 import Button from "../../../../UI/Button/Button";
+import CourseCard from "./CourseCard/CourseCard";
 
 const Courses = ({ data, ifCourseDetails, className }) => {
   const onlineCourses =
@@ -55,10 +56,9 @@ const Courses = ({ data, ifCourseDetails, className }) => {
 
   return (
     <div className={style.allCourses}>
-      {/* {console.log("allCourses", allCourses)} */}
-      {allCourses.map((courseSection) => {
+      {allCourses.map((courseSection, index) => {
         return (
-          <div>
+          <div key={index}>
             {courseSection.courses.length !== 0 && (
               <div className={style.cardSection}>
                 <h2 className={style.cardSectionTitle}>
@@ -66,8 +66,13 @@ const Courses = ({ data, ifCourseDetails, className }) => {
                 </h2>
                 <p>{courseSection.description}</p>
                 <div className={`${style.cardStack} ${className} `}>
-                  {courseSection.courses.map((CardDetails) => {
-                    return <CourseCard CardDetails={CardDetails} />;
+                  {courseSection.courses.map((CardDetails, index) => {
+                    return (
+                      <CourseCard
+                        key={CardDetails.id || index}
+                        CardDetails={CardDetails}
+                      />
+                    );
                   })}
                 </div>
               </div>
@@ -80,30 +85,3 @@ const Courses = ({ data, ifCourseDetails, className }) => {
 };
 
 export default Courses;
-
-const CourseCard = ({ CardDetails }) => {
-  const navigate = useNavigate();
-
-  return (
-    <div className={style.card}>
-      <div className={style.cardContent}>
-        <h3 className={style.cardTitle}>{CardDetails.name}</h3>
-        <img
-          src={require(`../../../../assets/dashboard/webLink.png`)}
-          alt=""
-          onClick={() => {
-            navigate(`/edutech/${CardDetails.id}`);
-          }}
-          className={style.courseLink}
-        />
-      </div>
-      <Button
-        onClick={() => {
-          navigate(`/edutech/${CardDetails.id}`);
-        }}
-      >
-        Check Details
-      </Button>
-    </div>
-  );
-};

@@ -66,9 +66,9 @@ const ContactUsForm = () => {
           mobileInput.reset();
           descriptionInput.reset();
           emailInput.reset();
-          console.log("data->", responseData);
+          // console.log("data->", responseData);
         } else {
-          console.log("error->", error);
+          // console.log("error->", error);
           setErrorMessage(responseData.response.data.statusMessage);
         }
       }
@@ -81,12 +81,12 @@ const ContactUsForm = () => {
     event.preventDefault();
     if (formIsValid) {
       console.log("Form submitted successfully");
-      console.log(
-        "Info->",
-        nameInput.value,
-        mobileInput.value,
-        descriptionInput.value
-      );
+      // console.log(
+      //   "Info->",
+      //   nameInput.value,
+      //   mobileInput.value,
+      //   descriptionInput.value
+      // );
       nameInput.reset();
       mobileInput.reset();
       descriptionInput.reset();

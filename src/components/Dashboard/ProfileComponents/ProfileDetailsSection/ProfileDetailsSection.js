@@ -11,28 +11,34 @@ const ProfileDetailsSection = ({ user }) => {
   };
 
   return (
-    <div>
-      <div className={styles.optionBar}>
-        <button
-          onClick={() => handleOptionChange("details")}
-          className={selectedOption === "details" ? styles.active : ""}
-        >
-          My Details
-        </button>
-        <button
-          onClick={() => handleOptionChange("documents")}
-          className={selectedOption === "documents" ? styles.active : ""}
-        >
-          My Documents
-        </button>
-      </div>
-      <div className={styles.content}>
-        {selectedOption === "details" && <StudentDetails user={user} />}
-        {selectedOption === "documents" && (
-          <MandatoryCertificates user={user} />
-        )}
-      </div>
-    </div>
+    <>
+      {user && (
+        <div>
+          <div className={styles.optionBar}>
+            <button
+              onClick={() => handleOptionChange("details")}
+              className={selectedOption === "details" ? styles.active : ""}
+            >
+              My Details
+            </button>
+            <button
+              onClick={() => handleOptionChange("documents")}
+              className={selectedOption === "documents" ? styles.active : ""}
+            >
+              My Documents
+            </button>
+          </div>
+          <div className={styles.content}>
+            {selectedOption === "details" && (
+              <StudentDetails user={user.user} />
+            )}
+            {selectedOption === "documents" && (
+              <MandatoryCertificates user={user} />
+            )}
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 

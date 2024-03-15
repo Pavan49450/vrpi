@@ -59,7 +59,7 @@ const MandatoryCertificatesForm = () => {
         aadhaarCardBack: aadhaarCardBackFile,
         passport: passportFile,
       };
-      console.log(formData);
+      // console.log(formData);
     }
   };
 

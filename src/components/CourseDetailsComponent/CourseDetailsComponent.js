@@ -17,7 +17,6 @@ const CourseDetails = ({ content }) => {
       <ToolsRequired toolsRequired={content.toolsAndTechnologyUsed} />
       <CourseEligibility />
       <WhyToChooseUs />
-      {console.log("content", content)}
       <Instructor instructorData={content.instructor} />
     </div>
   );

@@ -2,7 +2,7 @@ import style from "./JoinUs.module.css";
 
 const JoinUs = () => {
   const emailInputHandle = (e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
   };
   return (
     <div>

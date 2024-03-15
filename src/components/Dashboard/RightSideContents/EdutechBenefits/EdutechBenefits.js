@@ -17,8 +17,8 @@ const EdutechBenefits = () => {
         </span>
       </div>
       <div className={style.benefits}>
-        {courseBenefits.map((benefit) => (
-          <div className={style.benefit}>
+        {courseBenefits.map((benefit, index) => (
+          <div className={style.benefit} key={index}>
             <img
               src={require(`../../../../assets/dashboard/correct-w.png`)}
               alt=""

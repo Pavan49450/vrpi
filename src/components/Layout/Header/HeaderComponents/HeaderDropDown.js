@@ -11,7 +11,6 @@ const HeaderDropdown = ({ data, onMouseEnter, onMouseLeave, style }) => {
   const dispatch = useDispatch();
 
   const handleItemHover = (item) => {
-    console.log(selectedItem);
     setSelectedItem(item);
   };
 

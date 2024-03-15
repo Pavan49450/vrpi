@@ -33,9 +33,9 @@ const CreateNewPassword = () => {
   }, [passwordInput.isValid, confirmPasswordInput.isValid]);
 
   const handleSubmit = () => {
-    console.log(formIsValid);
+    // console.log(formIsValid);
     if (formIsValid) {
-      console.log(confirmPasswordValidation.value);
+      // console.log(confirmPasswordValidation.value);
       navigate("/login");
     }
   };

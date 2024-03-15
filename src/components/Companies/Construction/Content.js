@@ -3,7 +3,7 @@ import style from "./Content.module.css";
 
 const Content = () => {
   const emailInputHandle = (e) => {
-    console.log(e.target.value);
+    // console.log(e.target.value);
   };
   return (
     <>

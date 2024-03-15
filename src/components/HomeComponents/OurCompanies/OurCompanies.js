@@ -57,11 +57,8 @@ const Company = ({ company, handleCompanyClick }) => {
 
   const handleLinks = () => {
     if (company.active) {
-      console.log("active");
       naviagte(company.link);
     } else {
-      console.log("not active");
-
       dispatch(setComingSoon(true));
     }
   };

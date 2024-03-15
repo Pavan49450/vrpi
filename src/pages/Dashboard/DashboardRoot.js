@@ -3,7 +3,7 @@ import { Outlet, useNavigate } from "react-router-dom";
 import style from "./DashboardRoot.module.css";
 import DashboardHeader from "../../components/Dashboard/Layout/Header/DashboardHeader";
 import DashboardOverview from "../../components/Dashboard/Layout/DashboardOverview/DashboardOverview";
-import { user } from "../../data/user";
+import UserDataComponent from "../../data/user";
 import { logout } from "../../store/LoginStateActions";
 import { useDispatch } from "react-redux";
 import ConfirmationModal from "../../UI/ConfirmModel/ConfirmationModal";
@@ -21,6 +21,8 @@ const DashboardRoot = () => {
     dispatch(logout());
     navigate("/login");
   };
+
+  const userData = UserDataComponent();
 
   const [logoutModalOpen, setLogoutModalOpen] = useState(false);
 
@@ -118,7 +120,7 @@ const DashboardRoot = () => {
         DashboardLinks={DashboardLinks}
       />
       <DashboardOverview
-        userDetails={user}
+        userDetails={userData.user}
         toggleMenuBar={toggleMenuBar}
         DashboardLinks={DashboardLinks}
       >
