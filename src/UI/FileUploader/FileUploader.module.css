@@ -12,6 +12,13 @@
   height: 50px;
 }
 
+.InputContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  position: relative;
+}
+
 .placeholder {
   position: absolute;
   display: flex;

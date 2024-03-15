@@ -109,6 +109,10 @@ export const annualIncomeValidator = (value) => {
   return true;
 };
 
+// export const fileValidations = (file)=>{
+//   {validateValue:(file) => profilePicInput.setValue(file)}
+// }
+
 export {
   nameValidation,
   mobileNumberValidation,

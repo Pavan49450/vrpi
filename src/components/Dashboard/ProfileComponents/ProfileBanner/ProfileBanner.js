@@ -43,7 +43,7 @@ const ProfileBar = ({ user }) => {
               </div>
               <div>
                 <Button
-                  onClick={() => navigate("/")}
+                  onClick={() => navigate("/editProfileDetails")}
                   style={{ padding: "0.2rem 2rem" }}
                 >
                   Edit

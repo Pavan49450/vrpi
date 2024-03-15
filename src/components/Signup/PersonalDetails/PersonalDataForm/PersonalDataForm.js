@@ -59,15 +59,15 @@ const PersonalDataForm = ({ role }) => {
   const [gender, setGender] = useState();
   const [occupation, setOccupation] = useState();
 
-  const [aadhaarCardFrontFile, setAadhaarCardFrontFile] = useState(null);
-  const [aadhaarCardBackFile, setAadhaarCardBackFile] = useState(null);
-  const [passportFile, setPassportFile] = useState(null);
-
   const [formIsValid, setFormIsValid] = useState(false);
 
   const [errorMessage, setErrorMessage] = useState("");
 
   const handleErrorClose = () => setErrorMessage("");
+
+  const [aadhaarCardFrontFile, setAadhaarCardFrontFile] = useState(null);
+  const [aadhaarCardBackFile, setAadhaarCardBackFile] = useState(null);
+  const [passportFile, setPassportFile] = useState(null);
 
   const handleAadhaarCardFrontChange = (file) => {
     setAadhaarCardFrontFile(file);

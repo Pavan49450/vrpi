@@ -26,7 +26,7 @@ const CustomFileUploader = ({
   };
 
   return (
-    <div className={`${style.inputContainer} `}>
+    <div className={`${style.inputContainer} `} style={{ width: "100%" }}>
       <input
         type="file"
         ref={inputRef}

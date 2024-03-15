@@ -31,6 +31,7 @@ import MandatoryCertificates from "./pages/Login&Signup/MandatoryCertificates/Ma
 import PurchaseHistory from "./pages/Dashboard/PurchaseHistory/PurchaseHistory";
 import { useSelector } from "react-redux";
 import ProfilePage from "./pages/Dashboard/ProfilePage/ProfilePage";
+import UpdateUserDetails from "./pages/MainPages/UpdateUserDetails/UpdateUserDetails";
 
 function App() {
   // const navigate = useNavigate();
@@ -144,6 +145,11 @@ function App() {
         //   errorElement: <ErrorPage />,
         // },
       ],
+    },
+    {
+      path: "/editProfileDetails",
+      element: isVRPIUserLoggedIn ? <UpdateUserDetails /> : <ErrorPage />,
+      errorElement: <ErrorPage />,
     },
     {
       path: "/dashboard",
