@@ -6,10 +6,18 @@
   border: 1px solid var(--primary);
   font-size: 1rem;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   position: relative;
   padding-top: 1rem;
   height: 50px;
+}
+
+.fileNameAndSize {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 90%;
+  text-align: start;
 }
 
 .InputContainer {
@@ -39,4 +47,12 @@
   position: absolute;
   right: 0.5rem;
   bottom: 0.75rem;
+}
+
+.removeFile {
+  position: relative;
+  z-index: 10;
+  cursor: pointer;
+  padding: 1rem;
+  background-color: #ccc;
 }

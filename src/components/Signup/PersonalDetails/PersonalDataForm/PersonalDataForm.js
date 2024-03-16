@@ -139,10 +139,17 @@ const PersonalDataForm = ({ role }) => {
           console.log("Created user successfully");
           dispatch(setUser({ role: role, step: 2 }));
         } else {
+          console.log(statusCode);
+          console.error("error: " + error);
           setErrorMessage(responseData.response.data.errorMessage);
         }
       }
     };
+    if (error) {
+      // console.log("error: " + error);
+      setErrorMessage(error);
+      console.log(errorMessage);
+    }
 
     Validation();
   }, [error, responseData]);
@@ -154,7 +161,7 @@ const PersonalDataForm = ({ role }) => {
         formData = {
           firstName: firstNameInput.value,
           lastName: lastNameInput.value,
-          fatherName: fatherNameInput.value,
+          fathersName: fatherNameInput.value,
           gender: gender.value,
           phoneNumber: mobileNumberInput.value,
           dateOfBirth: formattedDOB,
@@ -164,9 +171,9 @@ const PersonalDataForm = ({ role }) => {
           createPassword: confirmPasswordInput.value,
           occupation: occupation.value,
           aadharCardNumber: aadhaarInput?.value,
-          aadharFront: aadhaarCardFrontFile,
-          aadharBack: aadhaarCardBackFile,
-          profilePic: passportFile,
+          aadharFront: JSON.stringify(aadhaarCardFrontFile),
+          aadharBack: JSON.stringify(aadhaarCardBackFile),
+          profilePic: JSON.stringify(passportFile),
           roles: role,
         };
       } else if (role === "client") {
@@ -181,7 +188,7 @@ const PersonalDataForm = ({ role }) => {
           roles: role,
         };
       }
-
+      console.log(formData);
       sendRequest({
         url: `${url.backendBaseUrl}/vrpi-user/create`,
         method: "POST",
@@ -466,7 +473,7 @@ const PersonalDataForm = ({ role }) => {
             }}
             doNotScrollToTop={true}
           >
-            {isLoading ? <CircularProgress color="white" /> : "Save & Submit"}
+            {isLoading ? <CircularProgress color="primary" /> : "Save & Submit"}
             {/* Save & Submit */}
           </Button>
         </div>

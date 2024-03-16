@@ -1,12 +1,19 @@
 // actions.js
 
-export const LOGIN = "LOGIN";
+export const LOGIN = "LOGINID";
+export const LOGINDA = "LOGINDA";
 export const LOGOUT = "LOGOUT";
 
-export const login = (userId) => ({
+export const loginWithUserId = (userId) => ({
   type: LOGIN,
   payload: {
     userId,
+  },
+});
+export const loginWithUserData = (userData) => ({
+  type: LOGINDA,
+  payload: {
+    userData,
   },
 });
 

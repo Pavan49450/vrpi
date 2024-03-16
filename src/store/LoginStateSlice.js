@@ -1,13 +1,17 @@
 // reducer.js
 
-import { LOGIN, LOGOUT } from "./LoginStateActions";
+import { LOGIN, LOGINDA, LOGOUT } from "./LoginStateActions";
 
-const initialState = {
+const initialUserState = {
   isVRPIUserLoggedIn: localStorage.getItem("isVRPIUserLoggedIn") === "true",
   userId: localStorage.getItem("userId"),
 };
 
-const LoginReducer = (state = initialState, action) => {
+const initialUserDataState = {
+  userData: JSON.parse(localStorage.getItem("userData")), // Add userData field to store user details
+};
+
+const UserStateReducer = (state = initialUserState, action) => {
   switch (action.type) {
     case LOGIN:
       localStorage.setItem("isVRPIUserLoggedIn", "true");
@@ -30,4 +34,23 @@ const LoginReducer = (state = initialState, action) => {
   }
 };
 
-export default LoginReducer;
+const UserDataStateReducer = (state = initialUserDataState, action) => {
+  switch (action.type) {
+    case LOGINDA:
+      localStorage.setItem("userData", JSON.stringify(action.payload.userData));
+      return {
+        ...state,
+        userData: action.payload.userData,
+      };
+    case LOGOUT:
+      localStorage.removeItem("userData");
+      return {
+        ...state,
+        userData: null,
+      };
+    default:
+      return state;
+  }
+};
+
+export { UserStateReducer, UserDataStateReducer };

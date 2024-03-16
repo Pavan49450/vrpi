@@ -7,16 +7,21 @@ import WelcomeScreen from "../../../components/Dashboard/WelcomeScreen/WelcomeSc
 import { EduTechData } from "../../../data/EduTechData";
 import UserDataComponent from "../../../data/user";
 import style from "./MyDashboard.module.css";
+import { useSelector } from "react-redux";
 
 const MyDashboard = () => {
   const [hideWelcome, setHideWelcome] = useState(false);
   // const [userData, setUserData] = useState(null);
 
-  const userData = UserDataComponent();
+  // const userData = UserDataComponent();
+
+  const userData = useSelector((state) => state.userData.userData);
   useEffect(() => {
     // const fetchData = async () => {
     //   setUserData(userDataResponse);
     // };
+
+    console.log(userData);
 
     setTimeout(() => {
       setHideWelcome(true);
@@ -26,14 +31,16 @@ const MyDashboard = () => {
 
   return (
     <div className={style.container}>
-      {!hideWelcome && userData.user && <WelcomeScreen user={userData.user} />}
+      {!hideWelcome && userData && <WelcomeScreen user={userData.user} />}
       <div className={style.containers}>
         <div className={style.mainContainer}>
-          {userData.user && userData.user.educationalDetails !== null ? (
+          {userData &&
+          userData.user &&
+          userData.user.educationalDetails !== null ? (
             <ProfileDetails user={userData.user} />
           ) : (
             <EnrolledCourseComponent
-              enrolledCourses={userData.user?.enrolledCourses || []}
+              enrolledCourses={userData?.enrolledCourses || []}
             />
           )}
           <Courses data={EduTechData} />
@@ -43,7 +50,7 @@ const MyDashboard = () => {
           )} */}
           {/* {userData.user && !userData.user.enrolledCourses && ( */}
           {/* userData.user.enrolledCourses.length === 0 && */}
-          {userData.enrolledCourses && (
+          {userData?.enrolledCourses && (
             <div className={style.rightSideContents}>
               <RightSideContents />
             </div>
@@ -51,7 +58,7 @@ const MyDashboard = () => {
         </div>
         {/* {userData.user && !userData.user.enrolledCourses && ( */}
         {/* userData.enrolledCourses.length === 0 */}
-        {userData.enrolledCourses && (
+        {userData?.enrolledCourses && (
           <div className={style.sideContainer}>
             <RightSideContents />
           </div>

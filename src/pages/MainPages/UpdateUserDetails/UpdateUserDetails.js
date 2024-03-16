@@ -12,6 +12,9 @@ import {
   nameValidation,
 } from "../../../components/InputValidations/InputValidations";
 import UserDataComponent from "../../../data/user";
+import { useSelector } from "react-redux";
+import useHttpsAxios from "../../../hooks/use-httpsAxios";
+import { url } from "../../../constants";
 
 const UpdateUserDetails = () => {
   const loginScreenData = {
@@ -21,23 +24,42 @@ const UpdateUserDetails = () => {
     image: "loginPageImage.svg",
   };
 
-  const userData = UserDataComponent();
-
-  const [formIsValid, setFormIsValid] = useState(false);
+  const [formIsValid, setFormIsValid] = useState();
 
   const navigate = useNavigate();
+  const userData = useSelector((state) => state.userData.userData);
+
+  // useEffect(() => {
+  //   console.log(
+  //     userData.user.firstName,
+  //     userData.user.lastName,
+  //     userData.user.phoneNumber,
+  //     userData.user.address,
+  //     userData.user.aadharFront,
+  //     userData.user.aadharBack,
+  //     userData.user.passportFile,
+  //     userData.user.incomeCertificate
+  //   );
+  // }, []);
 
   const firstNameInput = useInput({
-    initialValue: (userData.user && userData.user.firstName) || "",
+    initialValue: userData.user.firstName,
+    // initialValue: "Hey",
     validateValue: nameValidation,
   });
   const lastNameInput = useInput({
+    initialValue: userData.user.lastName,
+
     validateValue: nameValidation,
   });
   const mobileNumberInput = useInput({
+    initialValue: userData.user.phoneNumber,
+
     validateValue: mobileNumberValidation,
   });
   const addressInput = useInput({
+    initialValue: userData.user.address,
+
     validateValue: addressValidation,
   });
   // const profilePicInput = useInput({ validateValue: () => {} });
@@ -45,10 +67,16 @@ const UpdateUserDetails = () => {
   // const aadharCardBackInput = useInput({ validateValue: () => {} });
   // const incomeCertificateInput = useInput({ validateValue: () => {} });
 
-  const [aadhaarCardFrontFile, setAadhaarCardFrontFile] = useState(null);
-  const [aadhaarCardBackFile, setAadhaarCardBackFile] = useState(null);
-  const [passportFile, setPassportFile] = useState(null);
-  const [incomeCertificateFile, setIncomeCertificateFile] = useState(null);
+  const [aadhaarCardFrontFile, setAadhaarCardFrontFile] = useState(
+    userData.user.aadharFront
+  );
+  const [aadhaarCardBackFile, setAadhaarCardBackFile] = useState(
+    userData.user.aadharBack
+  );
+  const [passportFile, setPassportFile] = useState(userData.user.passportFile);
+  const [incomeCertificateFile, setIncomeCertificateFile] = useState(
+    userData.user.incomeCertificate
+  );
 
   const handleAadhaarCardFrontChange = (file) => {
     setAadhaarCardFrontFile(file);
@@ -88,6 +116,9 @@ const UpdateUserDetails = () => {
     incomeCertificateFile,
   ]);
 
+  const { sendRequest, isLoading, error, responseData, statusCode } =
+    useHttpsAxios();
+
   const handleSubmit = () => {
     // Add your form submission logic here
     if (formIsValid) {
@@ -96,13 +127,37 @@ const UpdateUserDetails = () => {
         lastName: lastNameInput.value,
         phoneNumber: mobileNumberInput.value,
         address: addressInput.value,
-        profilePic: passportFile,
-        aadharFront: aadhaarCardFrontFile,
-        aadharBack: aadhaarCardBackFile,
-        incomeCertificate: incomeCertificateFile,
+
+        fathersName: userData.user.fatherName,
+        gender: userData.user.gender,
+        dateOfBirth: userData.user.dateOfBirth,
+        email: userData.user.email,
+
+        occupation: userData.user.occupation,
+        aadharCardNumber: userData.user.aadharCardNumber,
+        // "aadharFront": "YWFkaGFyX2Zyb250MTAuanBn",
+        // "aadharBack": "YWFkaGFyX2JhY2sxMC5qcGc=",
+        // "profilePic": "cHJvZmlsZTEwLmpwZw==",
+        // "incomeCert": null,
+        // profilePic: passportFile,
+        // aadharFront: aadhaarCardFrontFile,
+        // aadharBack: aadhaarCardBackFile,
+        // incomeCertificate: incomeCertificateFile,
       };
       console.log("Form data", formData);
       console.log("User data", userData.user);
+
+      sendRequest({
+        url: `${url.backendBaseUrl}/vrpi-user/update-user/${userData.user.id}`,
+        method: "PUT",
+        body: formData,
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      if (statusCode === 200 || statusCode === 201) {
+        console.log(responseData);
+      }
       // navigate("/login");
     }
   };

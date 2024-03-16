@@ -1,10 +1,11 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Devops } from "./EdutechCourses/Devops";
 import { JavaFullStackCourse } from "./EdutechCourses/JavaFullStack";
 import { useEffect } from "react";
 import axios from "axios";
 import { url } from "../constants";
 import useHttpsAxios from "../hooks/use-httpsAxios";
+import { loginWithUserData } from "../store/LoginStateActions";
 
 // export const user = {
 //   id: 1,
@@ -18,22 +19,19 @@ import useHttpsAxios from "../hooks/use-httpsAxios";
 // };
 
 const UserDataComponent = () => {
-  const { userId } = useSelector((state) => state.login);
+  const userId = useSelector((state) => state.login.userId);
   const { sendRequest, responseData, statusCode } = useHttpsAxios();
 
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    sendRequest({
-      url: `${url.backendBaseUrl}/vrpi-user/${userId}`,
-      headers: { "Content-Type": "application/json", Accept: "*/*" },
-    });
+    if (userId && userId !== null) {
+      sendRequest({
+        url: `${url.backendBaseUrl}/vrpi-user/${userId}`,
+        headers: { "Content-Type": "application/json", Accept: "*/*" },
+      });
+    }
   }, [userId, sendRequest]);
-
-  // useEffect(() => {
-  //   console.log("response", responseData);
-  //   console.log("status", statusCode);
-  // }, [responseData, statusCode]);
-
-  // You might want to handle loading, error, and other states here
 
   const MandatoryCertificatesData = [
     {
@@ -67,7 +65,7 @@ const UserDataComponent = () => {
   const certificatesToUpload =
     MandatoryCertificatesData.length - uploadedCertificates;
 
-  return {
+  const userData = {
     user: responseData,
     MandatoryCertificatesData,
     uploadedCertificates,
@@ -81,7 +79,22 @@ const UserDataComponent = () => {
         ? responseData.educationalDetails
         : null,
   };
+
+  useEffect(() => {
+    if (userId && userId !== null) {
+      if (statusCode === 200) {
+        dispatch(loginWithUserData(userData));
+      }
+    }
+  }, [statusCode, userId, userData]);
+
+  return userData;
 };
+
+// export const SaveUserDataInRedux = () => {
+//   const userData = UserDataComponent();
+//   console.log(userData);
+// };
 
 // export const UserData = GetUserById();
 

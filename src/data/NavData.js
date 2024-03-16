@@ -5,19 +5,17 @@ export const MainHeaderLinks = [
   // { name: "Campanies", address: "/companies" },
   // { name: "Careers", address: "/careers", active: false },
   // { name: "KnowledgeHub", address: "/knowledgeHub" },
-  // { name: "Contact Us", address: "/contact", active: false },
+  { name: "Contact Us", address: "/contact", active: false },
 ];
 
 export const KnowledgeHubHeaderLinks = [
   { name: "Edu-tech", address: "/edutech", active: true },
   { name: "Interships", address: "/internships", active: true },
 
-  // { name: "Contact Us", address: "/contact", active: false },
+  { name: "Contact Us", address: "/contact", active: false },
 ];
 
-export const buttonsLinks = [
-  // { name: "Login", link: "/login", active: false }
-];
+export const buttonsLinks = [{ name: "Login", link: "/login", active: true }];
 
 export const MainDropdownLinks = [
   {

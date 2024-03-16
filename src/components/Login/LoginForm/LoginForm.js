@@ -15,8 +15,8 @@ import PasswordValidationBox from "../PasswordValidationBox/PasswordValidationBo
 import { url } from "../../../constants";
 import useHttpsAxios from "../../../hooks/use-httpsAxios";
 import { useDispatch } from "react-redux";
-import { login } from "../../../store/LoginStateActions";
 import { CircularProgress } from "@material-ui/core";
+import { loginWithUserId } from "../../../store/LoginStateActions";
 
 const LoginForm = () => {
   const [formIsValid, setFormIsValid] = useState(false);
@@ -47,7 +47,7 @@ const LoginForm = () => {
         if (statusCode === 200 || statusCode === 201) {
           setErrorMessage("");
           // console.log("data->", responseData);
-          dispatch(login("11"));
+          dispatch(loginWithUserId(responseData.userId));
           emailInput.reset();
           passwordInput.reset();
           navigate("/dashboard");

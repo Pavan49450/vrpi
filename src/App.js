@@ -32,6 +32,8 @@ import PurchaseHistory from "./pages/Dashboard/PurchaseHistory/PurchaseHistory";
 import { useSelector } from "react-redux";
 import ProfilePage from "./pages/Dashboard/ProfilePage/ProfilePage";
 import UpdateUserDetails from "./pages/MainPages/UpdateUserDetails/UpdateUserDetails";
+import { useEffect } from "react";
+import { SaveUserDataInRedux } from "./data/user";
 
 function App() {
   // const navigate = useNavigate();
@@ -39,6 +41,10 @@ function App() {
   const isVRPIUserLoggedIn = useSelector(
     (state) => state.login.isVRPIUserLoggedIn
   );
+
+  // useEffect(() => {
+  //   SaveUserDataInRedux();
+  // });
 
   const router = createBrowserRouter([
     {

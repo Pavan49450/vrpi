@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import CustomInput from "./Input";
 import style from "./CustomInput.module.css";
 
@@ -15,6 +15,12 @@ const InputWithInvalidText = ({
   const handleLabelClick = () => {
     inputRef.current.focus();
   };
+
+  useEffect(() => {
+    if (inputFields.value) {
+      inputFields.onFocusHandler();
+    }
+  });
 
   return (
     <div className={`${style.InputContainer}  ${className}`}>
