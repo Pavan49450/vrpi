@@ -1,5 +1,9 @@
 import "./App.css";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import {
+  RouterProvider,
+  createBrowserRouter,
+  useNavigate,
+} from "react-router-dom";
 import RootLayout from "./pages/Root";
 import HomePage from "./pages/MainPages/Home/Home";
 import ErrorPage from "./pages/Error";
@@ -46,54 +50,78 @@ function App() {
   //   SaveUserDataInRedux();
   // });
 
+  const GeneralErrorData = {
+    title: "Oh no, Something went wrong",
+    message: "The issue may be Temporary. Please go back and try again",
+    image: "commonErrorPage.png",
+    // button: {
+    //   title: "Go Back",
+    //   actions: () => {
+    //     navigate(-1);
+    //   },
+    // },
+  };
+  const PageNotFoundErrorData = {
+    title: "You’re at the wrong place!",
+    message:
+      "Please click on the below button, where it redirects to previous page.",
+    image: "pageNotFound.png",
+    // button: {
+    //   title: "Go Back",
+    //   actions: () => {
+    //     navigate(-1);
+    //   },
+    // },
+  };
+
   const router = createBrowserRouter([
     {
       path: "/",
       element: <RootLayout />,
-      errorElement: <ErrorPage />,
+      errorElement: <ErrorPage errorData={GeneralErrorData} />,
       children: [
         {
           index: true,
           element: <HomePage />,
-          errorElement: <ErrorPage />,
+          errorElement: <ErrorPage errorData={GeneralErrorData} />,
         },
 
         {
           path: "/about",
           element: <AboutUs />,
-          errorElement: <ErrorPage />,
+          errorElement: <ErrorPage errorData={GeneralErrorData} />,
         },
         {
           path: "/companies",
           element: <Companies />,
-          errorElement: <ErrorPage />,
+          errorElement: <ErrorPage errorData={GeneralErrorData} />,
           children: [
             {
               path: "construction",
               element: <Construction />,
-              errorElement: <ErrorPage />,
+              errorElement: <ErrorPage errorData={GeneralErrorData} />,
             },
           ],
         },
         {
           path: "/construction",
           element: <Construction />,
-          errorElement: <ErrorPage />,
+          errorElement: <ErrorPage errorData={GeneralErrorData} />,
         },
         {
           path: "/services",
           element: <Services />,
-          errorElement: <ErrorPage />,
+          errorElement: <ErrorPage errorData={GeneralErrorData} />,
         },
         {
           path: "/careers",
           element: <Careers />,
-          errorElement: <ErrorPage />,
+          errorElement: <ErrorPage errorData={GeneralErrorData} />,
         },
         {
           path: "/contact",
           element: <ContactUs />,
-          errorElement: <ErrorPage />,
+          errorElement: <ErrorPage errorData={GeneralErrorData} />,
         },
         // {
         //   path: "/register",
@@ -103,46 +131,54 @@ function App() {
 
         {
           path: "/signup",
-          element: isVRPIUserLoggedIn ? <ErrorPage /> : <SignUp />,
-          errorElement: <ErrorPage />,
+          element: isVRPIUserLoggedIn ? (
+            <ErrorPage errorData={PageNotFoundErrorData} />
+          ) : (
+            <SignUp />
+          ),
+          errorElement: <ErrorPage errorData={GeneralErrorData} />,
         },
         {
           path: "/login",
-          element: isVRPIUserLoggedIn ? <ErrorPage /> : <Login />,
-          errorElement: <ErrorPage />,
+          element: isVRPIUserLoggedIn ? (
+            <ErrorPage errorData={PageNotFoundErrorData} />
+          ) : (
+            <Login />
+          ),
+          errorElement: <ErrorPage errorData={GeneralErrorData} />,
         },
 
         {
           path: "/knowledgeHub",
           element: <KnowledgeHub />,
-          errorElement: <ErrorPage />,
+          errorElement: <ErrorPage errorData={GeneralErrorData} />,
         },
         {
           path: "/edutech",
           // index: true,
           element: <EduTech />,
-          errorElement: <ErrorPage />,
+          errorElement: <ErrorPage errorData={GeneralErrorData} />,
         },
         {
           path: "/edutech/:courseId",
           element: <CourseDetails />,
-          errorElement: <ErrorPage />,
+          errorElement: <ErrorPage errorData={GeneralErrorData} />,
         },
         {
           path: "/internships",
           element: <Internships />,
-          errorElement: <ErrorPage />,
+          errorElement: <ErrorPage errorData={GeneralErrorData} />,
         },
 
         {
           path: "/educationalDetails",
           element: <EducationalDetails />,
-          errorElement: <ErrorPage />,
+          errorElement: <ErrorPage errorData={GeneralErrorData} />,
         },
         {
           path: "/companyDetails",
           element: <CompanyDetails />,
-          errorElement: <ErrorPage />,
+          errorElement: <ErrorPage errorData={GeneralErrorData} />,
         },
 
         // {
@@ -155,27 +191,31 @@ function App() {
     {
       path: "/editProfileDetails",
       element: isVRPIUserLoggedIn ? <UpdateUserDetails /> : <ErrorPage />,
-      errorElement: <ErrorPage />,
+      errorElement: <ErrorPage errorData={GeneralErrorData} />,
     },
     {
       path: "/dashboard",
-      element: isVRPIUserLoggedIn ? <DashboardRoot /> : <ErrorPage />,
-      errorElement: <ErrorPage />,
+      element: isVRPIUserLoggedIn ? (
+        <DashboardRoot />
+      ) : (
+        <ErrorPage errorData={GeneralErrorData} />
+      ),
+      errorElement: <ErrorPage errorData={GeneralErrorData} />,
       children: [
         {
           path: "/dashboard",
           element: <MyDashboard />,
-          errorElement: <ErrorPage />,
+          errorElement: <ErrorPage errorData={PageNotFoundErrorData} />,
         },
         {
           path: "courses",
           element: <DashboardCourses />,
-          errorElement: <ErrorPage />,
+          errorElement: <ErrorPage errorData={GeneralErrorData} />,
         },
         {
           path: "internships",
           element: <DashboardInternships />,
-          errorElement: <ErrorPage />,
+          errorElement: <ErrorPage errorData={GeneralErrorData} />,
         },
         // {
         //   path: "settings",
@@ -185,17 +225,21 @@ function App() {
         {
           path: "purchaseHistory",
           element: <PurchaseHistory />,
-          errorElement: <ErrorPage />,
+          errorElement: <ErrorPage errorData={GeneralErrorData} />,
         },
         {
           path: "helpAndSupport",
           element: <HelpAndSupport />,
-          errorElement: <ErrorPage />,
+          errorElement: <ErrorPage errorData={GeneralErrorData} />,
         },
         {
           path: "studentProfile",
-          element: isVRPIUserLoggedIn ? <ProfilePage /> : <ErrorPage />,
-          errorElement: <ErrorPage />,
+          element: isVRPIUserLoggedIn ? (
+            <ProfilePage />
+          ) : (
+            <ErrorPage errorData={GeneralErrorData} />
+          ),
+          errorElement: <ErrorPage errorData={GeneralErrorData} />,
         },
       ],
     },
@@ -203,22 +247,26 @@ function App() {
     {
       path: "/resetPassword/:email/:password",
       element: <CreateNewPassword />,
-      errorElement: <ErrorPage />,
+      errorElement: <ErrorPage errorData={GeneralErrorData} />,
     },
     {
       path: "/forgetPassword",
-      element: <ForgetPassword />,
-      errorElement: <ErrorPage />,
+      element: isVRPIUserLoggedIn ? (
+        <ForgetPassword />
+      ) : (
+        <ErrorPage errorData={GeneralErrorData} />
+      ),
+      errorElement: <ErrorPage errorData={GeneralErrorData} />,
     },
     {
       path: "/vrpi-user/verify-account/:email/:otp",
       element: <VerificationPage />,
-      errorElement: <ErrorPage />,
+      errorElement: <ErrorPage errorData={GeneralErrorData} />,
     },
     {
       path: "/mandatoryCertificates",
       element: <MandatoryCertificates />,
-      errorElement: <ErrorPage />,
+      errorElement: <ErrorPage errorData={GeneralErrorData} />,
     },
   ]);
 

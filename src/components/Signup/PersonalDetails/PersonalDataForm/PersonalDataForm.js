@@ -201,6 +201,55 @@ const PersonalDataForm = ({ role }) => {
       setErrorMessage("invalid fields");
     }
   };
+
+  // const handleSubmit = async () => {
+  //   if (formIsValid) {
+  //     const formData = new FormData();
+
+  //     // Append common form fields to formData
+  //     formData.append("firstName", firstNameInput.value);
+  //     formData.append("lastName", lastNameInput.value);
+  //     formData.append("phoneNumber", mobileNumberInput.value);
+  //     formData.append("email", emailInput.value);
+  //     formData.append("createPassword", confirmPasswordInput.value);
+
+  //     // Append role-specific form fields to formData based on the role
+  //     if (role === "student") {
+  //       formData.append("fathersName", fatherNameInput.value);
+  //       formData.append("gender", gender.value);
+  //       formData.append("dateOfBirth", formattedDOB);
+  //       formData.append("address", permanentInput.value);
+  //       formData.append("occupation", occupation?.value);
+  //       formData.append("aadharCardNumber", aadhaarInput?.value);
+
+  //       // Append files to formData for student role
+  //       if (aadhaarCardFrontFile) {
+  //         formData.append("aadharFront", aadhaarCardFrontFile);
+  //       }
+  //       if (aadhaarCardBackFile) {
+  //         formData.append("aadharBack", aadhaarCardBackFile);
+  //       }
+  //       if (passportFile) {
+  //         formData.append("profilePic", passportFile);
+  //       }
+  //     } else if (role === "client") {
+  //       formData.append("gender", gender?.value);
+  //     }
+
+  //     // Send formData to the server
+
+  //     console.log(formData.forEach);
+
+  //     sendRequest({
+  //       url: `${url.backendBaseUrl}/vrpi-user/create`,
+  //       method: "POST",
+  //       body: formData,
+  //     });
+  //   } else {
+  //     setErrorMessage("Invalid fields");
+  //   }
+  // };
+
   const Line1 = (
     <div className={style.line1}>
       <InputWithInvalidText
@@ -473,7 +522,7 @@ const PersonalDataForm = ({ role }) => {
             }}
             doNotScrollToTop={true}
           >
-            {isLoading ? <CircularProgress color="primary" /> : "Save & Submit"}
+            {isLoading ? <CircularProgress variant="solid" /> : "Save & Submit"}
             {/* Save & Submit */}
           </Button>
         </div>

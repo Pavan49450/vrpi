@@ -157,7 +157,14 @@ const LoginForm = () => {
         // style={{ backgroundColor: !formIsValid && "#ccc" }}
         onClick={submitHandler}
       >
-        {isLoading ? <CircularProgress color="red" /> : "Login"}
+        {isLoading ? (
+          <>
+            <CircularProgress style={{ color: "white" }} />
+            <span>Loading...</span>
+          </>
+        ) : (
+          "Login"
+        )}
       </Button>
       <div className={style.line}>
         <div className={style.lineOn}></div>

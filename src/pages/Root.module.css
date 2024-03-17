@@ -13,6 +13,20 @@
   margin-top: 0;
 }
 
+.ErrorContainer {
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  margin: auto;
+}
+
+.ErrorContainer h2 {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
 @media (max-width: 800px) {
   .main {
   }
