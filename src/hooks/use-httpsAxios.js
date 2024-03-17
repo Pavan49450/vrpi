@@ -11,7 +11,11 @@ const useHttpsAxios = () => {
     setIsLoading(true);
     setError(null);
     setStatusCode(null);
-
+    setResponseData(null);
+    // for (const entry of requestConfig.body.entries()) {
+    //   console.log(entry);
+    // }
+    console.log(responseData);
     try {
       const response = await axios({
         method: requestConfig.method ? requestConfig.method : "GET",

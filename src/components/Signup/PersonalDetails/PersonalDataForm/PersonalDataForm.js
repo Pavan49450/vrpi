@@ -141,12 +141,15 @@ const PersonalDataForm = ({ role }) => {
         } else {
           console.log(statusCode);
           console.error("error: " + error);
+          console.error("error: " + responseData);
+
           setErrorMessage(responseData.response.data.errorMessage);
         }
       }
     };
     if (error) {
       // console.log("error: " + error);
+
       setErrorMessage(error);
       console.log(errorMessage);
     }
@@ -171,9 +174,9 @@ const PersonalDataForm = ({ role }) => {
           createPassword: confirmPasswordInput.value,
           occupation: occupation.value,
           aadharCardNumber: aadhaarInput?.value,
-          aadharFront: JSON.stringify(aadhaarCardFrontFile),
-          aadharBack: JSON.stringify(aadhaarCardBackFile),
-          profilePic: JSON.stringify(passportFile),
+          aadharFront: aadhaarCardFrontFile,
+          aadharBack: aadhaarCardBackFile,
+          profilePic: passportFile,
           roles: role,
         };
       } else if (role === "client") {
@@ -189,6 +192,7 @@ const PersonalDataForm = ({ role }) => {
         };
       }
       console.log(formData);
+
       sendRequest({
         url: `${url.backendBaseUrl}/vrpi-user/create`,
         method: "POST",
@@ -238,7 +242,7 @@ const PersonalDataForm = ({ role }) => {
 
   //     // Send formData to the server
 
-  //     console.log(formData.forEach);
+  //     console.log(formData.firstName);
 
   //     sendRequest({
   //       url: `${url.backendBaseUrl}/vrpi-user/create`,
@@ -522,7 +526,11 @@ const PersonalDataForm = ({ role }) => {
             }}
             doNotScrollToTop={true}
           >
-            {isLoading ? <CircularProgress variant="solid" /> : "Save & Submit"}
+            {isLoading ? (
+              <CircularProgress style={{ color: "white" }} />
+            ) : (
+              "Save & Submit"
+            )}
             {/* Save & Submit */}
           </Button>
         </div>

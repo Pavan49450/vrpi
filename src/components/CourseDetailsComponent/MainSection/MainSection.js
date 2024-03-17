@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import CustomImage from "../../../UI/Image/Image";
 import Rating from "../../../UI/Rating/Rating";
 import Button from "../../../UI/Button/Button";
@@ -8,6 +8,7 @@ import UserDataComponent from "../../../data/user";
 import { setComingSoon } from "../../../store/ComingSoonSlice";
 
 import style from "./MainSection.module.css";
+import ConfirmationModal from "../../../UI/ConfirmModel/ConfirmationModal";
 
 const MainSection = ({ content }) => {
   const dispatch = useDispatch();
@@ -19,7 +20,11 @@ const MainSection = ({ content }) => {
 
   const handleLoginHandler = () => {
     if (!isVRPIUserLoggedIn) {
-      navigate("/login");
+      // navigate("/login");
+      setConfirmationMessage(
+        "You need to be logged in to enroll. Do you want to proceed to login?"
+      );
+      setConfirmationModalOpen(true);
       return;
     }
 
@@ -28,20 +33,70 @@ const MainSection = ({ content }) => {
     }
 
     if (!userData.user.educationalDetails) {
-      navigate("/educationalDetails");
+      // navigate("/educationalDetails");
+      setConfirmationMessage(
+        "Please fill out your educational details before enrolling."
+      );
+      setConfirmationModalOpen(true);
       return;
     }
 
     if (userData.uploadedCertificates < 4) {
-      navigate("/mandatoryCertificates");
+      // navigate("/mandatoryCertificates");
+      setConfirmationMessage(
+        "Please fill upload all mandatory certificates before enrolling"
+      );
+      setConfirmationModalOpen(true);
       return;
     }
 
     console.log("You are ready!");
   };
 
+  const [confirmationModalOpen, setConfirmationModalOpen] = useState(false);
+  const [confirmationMessage, setConfirmationMessage] = useState("");
+
+  // const [logoutModalOpen, setLogoutModalOpen] = useState(false);
+  // const { pathname } = useLocation();
+  // const [showProfileDropDown, setShowProfileDropDown] = useState(false);
+  // const handleLogout = () => {
+  //   setShowProfileDropDown(!showProfileDropDown);
+  //   setLogoutModalOpen(true);
+  // };
+
+  // const handleLogoutConfirm = () => {
+  //   navigate("/login");
+  // };
+
+  // const closeLogoutModal = () => {
+  //   setLogoutModalOpen(false);
+  // };
+
+  const handleConfirm = () => {
+    setConfirmationModalOpen(false);
+    if (!isVRPIUserLoggedIn) {
+      navigate("/login");
+    } else if (!userData.user.educationalDetails) {
+      navigate("/educationalDetails");
+    } else if (userData.uploadedCertificates < 4) {
+      navigate("/mandatoryCertificates");
+    }
+  };
+
+  const handleCancel = () => {
+    setConfirmationModalOpen(false);
+  };
+
   return (
     <div className={style.container}>
+      <ConfirmationModal
+        isOpen={confirmationModalOpen}
+        onRequestClose={() => setConfirmationModalOpen(false)}
+        title="Confirmation"
+        message={confirmationMessage}
+        onConfirm={handleConfirm}
+        onCancel={handleCancel}
+      />
       <img
         src={require(`../../../assets/courses/${content.image}`)}
         alt=""
