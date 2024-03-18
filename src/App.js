@@ -195,7 +195,7 @@ function App() {
     },
     {
       path: "/dashboard",
-      element: isVRPIUserLoggedIn ? (
+      element: !isVRPIUserLoggedIn ? (
         <DashboardRoot />
       ) : (
         <ErrorPage errorData={GeneralErrorData} />
