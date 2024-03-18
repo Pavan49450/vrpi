@@ -5,6 +5,9 @@ import Button from "../../../UI/Button/Button";
 import InputWithInvalidText from "../../../UI/Input/InputWithInvalidText";
 import useInput from "../../../hooks/use-Input";
 import { annualIncomeValidator } from "../../InputValidations/InputValidations";
+import useHttpsAxios from "../../../hooks/use-httpsAxios";
+import { useSelector } from "react-redux";
+import { url } from "../../../constants";
 
 const MandatoryCertificatesForm = () => {
   const [incomeCertificateFile, setIncomeCertificateFile] = useState(null);
@@ -12,7 +15,7 @@ const MandatoryCertificatesForm = () => {
   const [aadhaarCardBackFile, setAadhaarCardBackFile] = useState(null);
   const [passportFile, setPassportFile] = useState(null);
 
-  const annualIncomeInput = useInput({ validateValue: annualIncomeValidator });
+  // const annualIncomeInput = useInput({ validateValue: annualIncomeValidator });
 
   const [formIsValid, setFormIsValid] = useState(false);
 
@@ -32,34 +35,60 @@ const MandatoryCertificatesForm = () => {
 
   useEffect(() => {
     // Check the validity of all input fields and set formIsValid accordingly
-    const isIncomeValid = annualIncomeInput.isValid;
+    // const isIncomeValid = annualIncomeInput.isValid;
     const isAadhaarCardFrontValid = aadhaarCardFrontFile !== null;
     const isAadhaarCardBackValid = aadhaarCardBackFile !== null;
     const isPassportValid = passportFile !== null;
+    const isIncomeValid = incomeCertificateFile !== null;
 
     setFormIsValid(
-      isIncomeValid &&
-        isAadhaarCardFrontValid &&
+      // isIncomeValid &&
+      isAadhaarCardFrontValid &&
         isAadhaarCardBackValid &&
-        isPassportValid
+        isPassportValid &&
+        isIncomeValid
     );
   }, [
-    annualIncomeInput.isValid,
+    // annualIncomeInput.isValid,
     aadhaarCardFrontFile,
     aadhaarCardBackFile,
     passportFile,
+    incomeCertificateFile,
   ]);
+
+  useEffect(() => {});
+
+  const userId = useSelector((state) => state.login.userId);
+
+  const { sendRequest, responseData, isLoading, statusCode, error } =
+    useHttpsAxios();
+
+  useEffect(() => {
+    if (formIsValid && (statusCode === 200 || statusCode === 201)) {
+      console.log(responseData);
+
+      // navigate("/mandatoryCertificates");
+    } else if (statusCode < 0 && statusCode > 202) {
+      console.log(error);
+      console.log(responseData);
+    }
+  });
 
   const handleSubmit = () => {
     if (formIsValid) {
       const formData = {
-        incomeCertificate: incomeCertificateFile,
-        annualIncome: annualIncomeInput.value,
-        aadhaarCardFront: aadhaarCardFrontFile,
-        aadhaarCardBack: aadhaarCardBackFile,
-        passport: passportFile,
+        incomeCert: incomeCertificateFile,
+        // annualIncome: annualIncomeInput.value,
+        aadharFront: aadhaarCardFrontFile,
+        aadharBack: aadhaarCardBackFile,
+        profilePhoto: passportFile,
       };
-      // console.log(formData);
+      console.log(formData);
+      sendRequest({
+        url: `${url.backendBaseUrl}/vrpi-user/update-doc/${userId}`,
+        method: "PUT",
+        data: formData,
+      });
     }
   };
 
@@ -77,7 +106,7 @@ const MandatoryCertificatesForm = () => {
           <li>File size should be 5MB</li>
         </ul>
       </div>
-      <InputWithInvalidText
+      {/* <InputWithInvalidText
         ErrorMessage={"Invalid Annual Income"}
         className={style.Input}
         inputFields={{
@@ -91,7 +120,7 @@ const MandatoryCertificatesForm = () => {
           isTouched: annualIncomeInput.isFocused,
         }}
         mandatory="true"
-      />
+      /> */}
     </div>
   );
 

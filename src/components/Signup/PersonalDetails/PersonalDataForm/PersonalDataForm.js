@@ -176,7 +176,7 @@ const PersonalDataForm = ({ role }) => {
           aadharCardNumber: aadhaarInput?.value,
           aadharFront: aadhaarCardFrontFile,
           aadharBack: aadhaarCardBackFile,
-          profilePic: passportFile,
+          profilePhoto: passportFile,
           roles: role,
         };
       } else if (role === "client") {

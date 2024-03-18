@@ -170,106 +170,118 @@ const UpdateUserDetails = () => {
       >
         <div className={style.container}>
           <h1>Update Profile</h1>
-          <InputWithInvalidText
-            ErrorMessage={"Invalid First Name"}
-            className={style.Input}
-            inputFields={{
-              placeholder: "First Name",
-              value: firstNameInput.value,
-              isInvalid: firstNameInput.hasError,
-              onBlurHandler: firstNameInput.validateValueHandler,
-              onFocusHandler: firstNameInput.focusHandler,
-              onChange: firstNameInput.valueChangeHandler,
-              type: "text",
-              isTouched: firstNameInput.isFocused,
-            }}
-            mandatory="true"
-          />
-          <InputWithInvalidText
-            ErrorMessage={"Invalid Last Name"}
-            className={style.Input}
-            inputFields={{
-              placeholder: "Last Name",
-              value: lastNameInput.value,
-              isInvalid: lastNameInput.hasError,
-              onBlurHandler: lastNameInput.validateValueHandler,
-              onFocusHandler: lastNameInput.focusHandler,
-              onChange: lastNameInput.valueChangeHandler,
-              type: "text",
-              isTouched: lastNameInput.isFocused,
-            }}
-            mandatory="true"
-          />
-          <InputWithInvalidText
-            ErrorMessage={"Invalid Mobile Number"}
-            className={style.Input}
-            inputFields={{
-              placeholder: "Update your Mobile Number",
-              value: mobileNumberInput.value,
-              isInvalid: mobileNumberInput.hasError,
-              onBlurHandler: mobileNumberInput.validateValueHandler,
-              onFocusHandler: mobileNumberInput.focusHandler,
-              onChange: mobileNumberInput.valueChangeHandler,
-              type: "text",
-              isTouched: mobileNumberInput.isFocused,
-            }}
-            mandatory="true"
-          />
-          <InputWithInvalidText
-            ErrorMessage={"Invalid Address"}
-            className={style.Input}
-            inputFields={{
-              placeholder: "Update your Address",
-              value: addressInput.value,
-              isInvalid: addressInput.hasError,
-              onBlurHandler: addressInput.validateValueHandler,
-              onFocusHandler: addressInput.focusHandler,
-              onChange: addressInput.valueChangeHandler,
-              type: "text",
-              isTouched: addressInput.isFocused,
-            }}
-            mandatory="true"
-          />
-          <CustomFileUploader
-            onChange={handlePassportChange}
-            buttonText="Upload Profile Picture"
-            acceptedFileType={["image/jpeg", "image/png", "image/pdf"]}
-          />
-          <ul>
-            {/* <li>Should contain Front & Back</li> */}
-            <li>Can be png. pdf. jpeg</li>
-            <li>File size should be 5MB</li>
-          </ul>
-          <CustomFileUploader
-            onChange={handleAadhaarCardFrontChange}
-            buttonText="Upload Aadhaar Card (Front)"
-            acceptedFileType={["image/jpeg", "image/png", "image/pdf"]}
-          />
-          <ul>
-            {/* <li>Should contain Front & Back</li> */}
-            <li>Can be png. pdf. jpeg</li>
-            <li>File size should be 5MB</li>
-          </ul>
-          <CustomFileUploader
-            onChange={handleAadhaarCardBackChange}
-            buttonText="Upload Aadhaar Card (Back)"
-            acceptedFileType={["image/jpeg", "image/png", "image/pdf"]}
-          />
-          <ul>
-            {/* <li>Should contain Front & Back</li> */}
-            <li>Can be png. pdf. jpeg</li>
-            <li>File size should be 5MB</li>
-          </ul>
-          <CustomFileUploader
-            onChange={handleIncomeCertificateChange}
-            buttonText="Upload Income Certificate"
-            acceptedFileType={["image/jpeg", "image/png", "image/pdf"]}
-          />
-          <ul>
-            {/* <li>Should contain Front & Back</li> */}
-            <li>Can be png. pdf. jpeg</li>
-            <li>File size should be 5MB</li>
-          </ul>
+          <div className={style.Inputs}>
+            <InputWithInvalidText
+              ErrorMessage={"Invalid First Name"}
+              className={style.Input}
+              inputFields={{
+                placeholder: "First Name",
+                value: firstNameInput.value,
+                isInvalid: firstNameInput.hasError,
+                onBlurHandler: firstNameInput.validateValueHandler,
+                onFocusHandler: firstNameInput.focusHandler,
+                onChange: firstNameInput.valueChangeHandler,
+                type: "text",
+                isTouched: firstNameInput.isFocused,
+              }}
+              mandatory="true"
+            />
+            <InputWithInvalidText
+              ErrorMessage={"Invalid Last Name"}
+              className={style.Input}
+              inputFields={{
+                placeholder: "Last Name",
+                value: lastNameInput.value,
+                isInvalid: lastNameInput.hasError,
+                onBlurHandler: lastNameInput.validateValueHandler,
+                onFocusHandler: lastNameInput.focusHandler,
+                onChange: lastNameInput.valueChangeHandler,
+                type: "text",
+                isTouched: lastNameInput.isFocused,
+              }}
+              mandatory="true"
+            />
+            <InputWithInvalidText
+              ErrorMessage={"Invalid Mobile Number"}
+              className={style.Input}
+              inputFields={{
+                placeholder: "Update your Mobile Number",
+                value: mobileNumberInput.value,
+                isInvalid: mobileNumberInput.hasError,
+                onBlurHandler: mobileNumberInput.validateValueHandler,
+                onFocusHandler: mobileNumberInput.focusHandler,
+                onChange: mobileNumberInput.valueChangeHandler,
+                type: "text",
+                isTouched: mobileNumberInput.isFocused,
+              }}
+              mandatory="true"
+            />
+            <InputWithInvalidText
+              ErrorMessage={"Invalid Address"}
+              className={style.Input}
+              inputFields={{
+                placeholder: "Update your Address",
+                value: addressInput.value,
+                isInvalid: addressInput.hasError,
+                onBlurHandler: addressInput.validateValueHandler,
+                onFocusHandler: addressInput.focusHandler,
+                onChange: addressInput.valueChangeHandler,
+                type: "text",
+                isTouched: addressInput.isFocused,
+              }}
+              mandatory="true"
+            />
+            <div>
+              <CustomFileUploader
+                onChange={handlePassportChange}
+                buttonText="Upload Profile Picture"
+                acceptedFileType={["image/jpeg", "image/png", "image/pdf"]}
+              />
+              <ul>
+                {/* <li>Should contain Front & Back</li> */}
+                <li>Can be png. pdf. jpeg</li>
+                <li>File size should be 5MB</li>
+              </ul>
+            </div>
+            <div>
+              <CustomFileUploader
+                onChange={handleAadhaarCardFrontChange}
+                buttonText="Upload Aadhaar Card (Front)"
+                acceptedFileType={["image/jpeg", "image/png", "image/pdf"]}
+              />
+              <ul>
+                {/* <li>Should contain Front & Back</li> */}
+                <li>Can be png. pdf. jpeg</li>
+                <li>File size should be 5MB</li>
+              </ul>
+            </div>
+            <div>
+              <CustomFileUploader
+                onChange={handleAadhaarCardBackChange}
+                buttonText="Upload Aadhaar Card (Back)"
+                acceptedFileType={["image/jpeg", "image/png", "image/pdf"]}
+              />
+              <ul>
+                {/* <li>Should contain Front & Back</li> */}
+                <li>Can be png. pdf. jpeg</li>
+                <li>File size should be 5MB</li>
+              </ul>
+            </div>
+
+            <div>
+              <CustomFileUploader
+                onChange={handleIncomeCertificateChange}
+                buttonText="Upload Income Certificate"
+                acceptedFileType={["image/jpeg", "image/png", "image/pdf"]}
+              />
+              <ul>
+                {/* <li>Should contain Front & Back</li> */}
+                <li>Can be png. pdf. jpeg</li>
+                <li>File size should be 5MB</li>
+              </ul>
+            </div>
+          </div>
+
           <div className={style.submitBtn}>
             <Button
               onClick={handleSubmit}

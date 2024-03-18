@@ -11,6 +11,10 @@ import {
 import style from "./EducationalDetailsForm.module.css";
 import Button from "../../../../UI/Button/Button";
 import { DegreeData, EducationLevelData } from "../../../../data/EducationData";
+import useHttpsAxios from "../../../../hooks/use-httpsAxios";
+import { url } from "../../../../constants";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const EducationalDetailsForm = () => {
   const instituteNameInput = useInput({ validateValue: nameValidation });
@@ -29,6 +33,8 @@ const EducationalDetailsForm = () => {
   const [degree, setDegree] = useState();
 
   const [formIsValid, setFormIsValid] = useState(false);
+
+  const userId = useSelector((state) => state.login.userId);
 
   useEffect(() => {
     const dropdownIsValid =
@@ -64,6 +70,22 @@ const EducationalDetailsForm = () => {
     percentageInput.isValid,
   ]);
 
+  const navigate = useNavigate();
+
+  const { sendRequest, responseData, error, isLoading, statusCode } =
+    useHttpsAxios();
+
+  useEffect(() => {
+    if (formIsValid && (statusCode === 200 || statusCode === 201)) {
+      console.log(responseData);
+
+      // navigate("/mandatoryCertificates");
+    } else if (statusCode < 0 && statusCode > 202) {
+      console.log(error);
+      console.log(responseData);
+    }
+  });
+
   const submitHandler = () => {
     const educationLevelFinal =
       educationLevel?.value !== "other"
@@ -86,6 +108,14 @@ const EducationalDetailsForm = () => {
     if (formIsValid) {
       // console.log(formData);
       console.log("Form submitted successfully!");
+      sendRequest({
+        url: `${url.backendBaseUrl}/education-details/create-education-details/${userId}`,
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: formData,
+      });
     } else {
       console.log("Form submission failed. Please check the fields.");
     }
