@@ -15,6 +15,7 @@ import useHttpsAxios from "../../../../hooks/use-httpsAxios";
 import { url } from "../../../../constants";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { CircularProgress } from "@material-ui/core";
 
 const EducationalDetailsForm = () => {
   const instituteNameInput = useInput({ validateValue: nameValidation });
@@ -290,8 +291,13 @@ const EducationalDetailsForm = () => {
           onClick={submitHandler}
           disabled={!formIsValid}
           style={{ backgroundColor: !formIsValid && "#ccc" }}
+          doNotScrollToTop={true}
         >
-          Save & Submit
+          {isLoading ? (
+            <CircularProgress style={{ color: "white" }} />
+          ) : (
+            "Save & Submit"
+          )}
         </Button>
       </div>
     </div>

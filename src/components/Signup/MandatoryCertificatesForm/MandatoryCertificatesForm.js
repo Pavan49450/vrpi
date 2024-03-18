@@ -8,6 +8,7 @@ import { annualIncomeValidator } from "../../InputValidations/InputValidations";
 import useHttpsAxios from "../../../hooks/use-httpsAxios";
 import { useSelector } from "react-redux";
 import { url } from "../../../constants";
+import { CircularProgress } from "@material-ui/core";
 
 const MandatoryCertificatesForm = () => {
   const [incomeCertificateFile, setIncomeCertificateFile] = useState(null);
@@ -189,8 +190,13 @@ const MandatoryCertificatesForm = () => {
           className={style.submitBtn}
           disabled={!formIsValid}
           style={{ backgroundColor: !formIsValid && "#ccc" }}
+          doNotScrollToTop={true}
         >
-          Save & Submit
+          {isLoading ? (
+            <CircularProgress style={{ color: "white" }} />
+          ) : (
+            "Save & Submit"
+          )}
         </Button>
       </div>
     </div>

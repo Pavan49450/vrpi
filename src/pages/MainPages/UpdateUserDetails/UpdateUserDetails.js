@@ -125,16 +125,20 @@ const UpdateUserDetails = () => {
       const formData = {
         firstName: firstNameInput.value,
         lastName: lastNameInput.value,
-        phoneNumber: mobileNumberInput.value,
-        address: addressInput.value,
-
-        fathersName: userData.user.fatherName,
+        fathersName: userData.user.fathersName,
         gender: userData.user.gender,
         dateOfBirth: userData.user.dateOfBirth,
+        phoneNumber: mobileNumberInput.value,
+        address: addressInput.value,
         email: userData.user.email,
-
         occupation: userData.user.occupation,
         aadharCardNumber: userData.user.aadharCardNumber,
+        roles: [],
+        aadharFront: aadhaarCardFrontFile,
+        aadharBack: aadhaarCardBackFile,
+        profilePic: passportFile,
+        incomeCert: incomeCertificateFile,
+
         // "aadharFront": "YWFkaGFyX2Zyb250MTAuanBn",
         // "aadharBack": "YWFkaGFyX2JhY2sxMC5qcGc=",
         // "profilePic": "cHJvZmlsZTEwLmpwZw==",
