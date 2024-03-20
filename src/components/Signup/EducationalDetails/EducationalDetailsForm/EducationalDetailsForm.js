@@ -14,8 +14,10 @@ import { DegreeData, EducationLevelData } from "../../../../data/EducationData";
 import useHttpsAxios from "../../../../hooks/use-httpsAxios";
 import { url } from "../../../../constants";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { CircularProgress } from "@material-ui/core";
+import Message from "../../../../UI/Popup/Message";
+import { setMessage } from "../../../../store/MessageDisplay/MessageActions";
 
 const EducationalDetailsForm = () => {
   const instituteNameInput = useInput({ validateValue: nameValidation });
@@ -73,17 +75,47 @@ const EducationalDetailsForm = () => {
 
   const navigate = useNavigate();
 
+  const dispatch = useDispatch();
+
+  const { message, type, dontClose } = useSelector((state) => state.message);
+
+  const SuccessResponseHandler = (formData) => {
+    console.log(formData);
+
+    // Dispatch success message
+    dispatch(
+      setMessage("Uploaded educational details successfully", "success", true)
+    );
+
+    // Dispatch normal message after 2 seconds
+    // setTimeout(() => {
+    //   dispatch(setMessage("Please upload Mandatory Certificates", "normal"));
+    // }, 2000);
+
+    // Navigate to mandatoryCertificates after 4 seconds
+    setTimeout(() => {
+      if (type === "") {
+        navigate("/mandatoryCertificates");
+      }
+    }, 1500);
+  };
+
   const { sendRequest, responseData, error, isLoading, statusCode } =
     useHttpsAxios();
 
   useEffect(() => {
     if (formIsValid && (statusCode === 200 || statusCode === 201)) {
-      console.log(responseData);
-
+      SuccessResponseHandler();
+      // console.log(responseData);
+      // setMessageType("success");
+      // setMessage("Uploaded educational details successfully");
       // navigate("/mandatoryCertificates");
     } else if (statusCode < 0 && statusCode > 202) {
       console.log(error);
       console.log(responseData);
+      // setMessageType("error");
+      // setMessage(responseData.response.data.errorMessage);
+      dispatch(setMessage(responseData.response.data.errorMessage, "error"));
     }
   });
 
@@ -107,7 +139,8 @@ const EducationalDetailsForm = () => {
       percentageInput,
     };
     if (formIsValid) {
-      // console.log(formData);
+      SuccessResponseHandler(formData);
+      console.log(formData);
       console.log("Form submitted successfully!");
       sendRequest({
         url: `${url.backendBaseUrl}/education-details/create-education-details/${userId}`,
@@ -273,8 +306,20 @@ const EducationalDetailsForm = () => {
     </div>
   );
 
+  // const [message, setMessage] = useState("");
+  // const [messageType, setMessageType] = useState("");
+
+  // const handleErrorClose = () => setMessage("");
+
   return (
     <div className={style.form}>
+      {/* {message && (
+        <Message
+          message={message}
+          type={messageType}
+          onClose={handleErrorClose}
+        />
+      )} */}
       <p className={style.note}>
         Note : All <span className={style.important}>*</span> fields are
         Mandatory

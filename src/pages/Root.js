@@ -15,7 +15,9 @@ import Footer from "../components/Layout/Footer/Footer";
 import JoinUs from "../components/JoinUs/JoinUs";
 import ComingSoon from "../UI/ComingSoon/ComingSoon";
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import Message from "../UI/Popup/Message";
+import { clearMessage } from "../store/MessageDisplay/MessageActions";
 
 const hideHeaderRoutes = [
   "/login",
@@ -36,6 +38,13 @@ const RootLayout = () => {
   const location = useLocation();
   const { email, otp } = useParams();
   const { isVRPIUserLoggedIn, userId } = useSelector((state) => state.login);
+
+  const { message, type } = useSelector((state) => state.message);
+  const dispatch = useDispatch();
+
+  const handleErrorClose = () => {
+    dispatch(clearMessage());
+  };
 
   const dashboardLink = {
     name: "Dashboard",
@@ -83,6 +92,9 @@ const RootLayout = () => {
           !shouldRenderHeader && style.noMargin
         }`}
       >
+        {message && (
+          <Message message={message} type={type} onClose={handleErrorClose} />
+        )}
         <Outlet />
       </main>
       {shouldRenderHeader && !isHeaderHidden && <JoinUs />}

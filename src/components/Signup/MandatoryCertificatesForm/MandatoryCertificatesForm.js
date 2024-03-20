@@ -6,9 +6,11 @@ import InputWithInvalidText from "../../../UI/Input/InputWithInvalidText";
 import useInput from "../../../hooks/use-Input";
 import { annualIncomeValidator } from "../../InputValidations/InputValidations";
 import useHttpsAxios from "../../../hooks/use-httpsAxios";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { url } from "../../../constants";
 import { CircularProgress } from "@material-ui/core";
+import { useNavigate } from "react-router-dom";
+import { setMessage } from "../../../store/MessageDisplay/MessageActions";
 
 const MandatoryCertificatesForm = () => {
   const [incomeCertificateFile, setIncomeCertificateFile] = useState(null);
@@ -33,6 +35,9 @@ const MandatoryCertificatesForm = () => {
   const handlePassportChange = (file) => {
     setPassportFile(file);
   };
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     // Check the validity of all input fields and set formIsValid accordingly
@@ -64,11 +69,18 @@ const MandatoryCertificatesForm = () => {
   const { sendRequest, responseData, isLoading, statusCode, error } =
     useHttpsAxios();
 
+  const SuccessResponseHandler = () => {
+    dispatch(setMessage("Uploaded your Certificates Successfully", "success"));
+
+    setTimeout(() => {
+      navigate("/dashboard");
+    }, [1500]);
+  };
+
   useEffect(() => {
     if (formIsValid && (statusCode === 200 || statusCode === 201)) {
       console.log(responseData);
-
-      // navigate("/mandatoryCertificates");
+      SuccessResponseHandler();
     } else if (statusCode < 0 && statusCode > 202) {
       console.log(error);
       console.log(responseData);
@@ -85,11 +97,12 @@ const MandatoryCertificatesForm = () => {
         profilePhoto: passportFile,
       };
       console.log(formData);
-      sendRequest({
-        url: `${url.backendBaseUrl}/vrpi-user/update-doc/${userId}`,
-        method: "PUT",
-        data: formData,
-      });
+      SuccessResponseHandler();
+      //   sendRequest({
+      //     url: `${url.backendBaseUrl}/vrpi-user/update-doc/${userId}`,
+      //     method: "PUT",
+      //     data: formData,
+      //   });
     }
   };
 

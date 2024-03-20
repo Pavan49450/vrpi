@@ -23,6 +23,7 @@ import { url } from "../../../../constants";
 import useFormatDate from "../../../../hooks/use-formatDate";
 import Message from "../../../../UI/Popup/Message";
 import { CircularProgress } from "@material-ui/core";
+import { setMessage } from "../../../../store/MessageDisplay/MessageActions";
 
 const Genders = [
   { value: "female", label: "Female" },
@@ -60,10 +61,6 @@ const PersonalDataForm = ({ role }) => {
   const [occupation, setOccupation] = useState();
 
   const [formIsValid, setFormIsValid] = useState(false);
-
-  const [errorMessage, setErrorMessage] = useState("");
-
-  const handleErrorClose = () => setErrorMessage("");
 
   const [aadhaarCardFrontFile, setAadhaarCardFrontFile] = useState(null);
   const [aadhaarCardBackFile, setAadhaarCardBackFile] = useState(null);
@@ -143,15 +140,20 @@ const PersonalDataForm = ({ role }) => {
           console.error("error: " + error);
           console.error("error: " + responseData);
 
-          setErrorMessage(responseData.response.data.errorMessage);
+          dispatch(
+            setMessage(
+              responseData.response.data.statusMessage
+                ? responseData.response.data.statusMessage
+                : responseData.response.data.errorMessage,
+              "error"
+            )
+          );
         }
       }
     };
     if (error) {
-      // console.log("error: " + error);
-
-      setErrorMessage(error);
-      console.log(errorMessage);
+      dispatch(setMessage(error, "error"));
+      console.log(error);
     }
 
     Validation();
@@ -202,7 +204,7 @@ const PersonalDataForm = ({ role }) => {
         body: formData,
       });
     } else {
-      setErrorMessage("invalid fields");
+      dispatch(setMessage("invalid fields", "error"));
     }
   };
 
@@ -489,54 +491,40 @@ const PersonalDataForm = ({ role }) => {
   );
 
   return (
-    <>
-      {/* {isLoading ? (
-        <p>loading...</p>
-      ) : ( */}
-      <div className={style.form}>
-        {errorMessage && (
-          <Message
-            message={errorMessage}
-            type="error"
-            onClose={handleErrorClose}
-          />
-        )}
-        <p className={style.note}>
-          Note : All <span className={style.important}>*</span> fields are
-          Mandatory
-        </p>
-        <div className={style.formFields}>
-          {Line1}
-          {Line2}
-          {Line3}
-          {Line4}
-          {Line5}
-          {role === "student" && Line6}
-          {role === "student" && Line7}
-          {role === "student" && Line8}
-        </div>
-        <div className={style.buttonContainer}>
-          <Button
-            onClick={handleSubmit}
-            className={style.submitBtn}
-            disabled={!formIsValid}
-            style={{
-              backgroundColor: !formIsValid && "#ccc",
-              padding: isLoading && "0",
-            }}
-            doNotScrollToTop={true}
-          >
-            {isLoading ? (
-              <CircularProgress style={{ color: "white" }} />
-            ) : (
-              "Save & Submit"
-            )}
-            {/* Save & Submit */}
-          </Button>
-        </div>
+    <div className={style.form}>
+      <p className={style.note}>
+        Note : All <span className={style.important}>*</span> fields are
+        Mandatory
+      </p>
+      <div className={style.formFields}>
+        {Line1}
+        {Line2}
+        {Line3}
+        {Line4}
+        {Line5}
+        {role === "student" && Line6}
+        {role === "student" && Line7}
+        {role === "student" && Line8}
       </div>
-      {/* )} */}
-    </>
+      <div className={style.buttonContainer}>
+        <Button
+          onClick={handleSubmit}
+          className={style.submitBtn}
+          disabled={!formIsValid}
+          style={{
+            backgroundColor: !formIsValid && "#ccc",
+            padding: isLoading && "0",
+          }}
+          doNotScrollToTop={true}
+        >
+          {isLoading ? (
+            <CircularProgress style={{ color: "white" }} />
+          ) : (
+            "Save & Submit"
+          )}
+        </Button>
+      </div>
+    </div>
   );
 };
 

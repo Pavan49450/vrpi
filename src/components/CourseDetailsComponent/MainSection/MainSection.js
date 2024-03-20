@@ -35,7 +35,7 @@ const MainSection = ({ content }) => {
     if (!userData.user.educationalDetails) {
       // navigate("/educationalDetails");
       setConfirmationMessage(
-        "Please fill out your educational details before enrolling."
+        "Please fill out your 'educational details' and 'mandatory certificates' before enrolling."
       );
       setConfirmationModalOpen(true);
       return;

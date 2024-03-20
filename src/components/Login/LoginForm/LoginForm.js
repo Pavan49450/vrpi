@@ -17,14 +17,15 @@ import useHttpsAxios from "../../../hooks/use-httpsAxios";
 import { useDispatch } from "react-redux";
 import { CircularProgress } from "@material-ui/core";
 import { loginWithUserId } from "../../../store/LoginStateActions";
+import { setMessage } from "../../../store/MessageDisplay/MessageActions";
 
 const LoginForm = () => {
   const [formIsValid, setFormIsValid] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
   const [termsAccepted, setTermsAccepted] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
+  // const [errorMessage, setErrorMessage] = useState("");
 
-  const handleErrorClose = () => setErrorMessage("");
+  // const handleErrorClose = () => setErrorMessage("");
 
   const navigate = useNavigate();
 
@@ -45,7 +46,6 @@ const LoginForm = () => {
       if (responseData) {
         // console.log(statusCode);
         if (statusCode === 200 || statusCode === 201) {
-          setErrorMessage("");
           // console.log("data->", responseData);
           dispatch(loginWithUserId(responseData.userId));
           emailInput.reset();
@@ -54,7 +54,10 @@ const LoginForm = () => {
         } else {
           // console.log("error->", error);
           if (error !== null || error !== undefined) {
-            setErrorMessage(responseData.response.data.statusMessage);
+            // setErrorMessage(responseData.response.data.statusMessage);
+            dispatch(
+              setMessage(responseData.response.data.statusMessage, "error")
+            );
           }
         }
       }
@@ -69,9 +72,9 @@ const LoginForm = () => {
 
   const submitHandler = (event) => {
     event.preventDefault();
-    setErrorMessage("");
+    // setErrorMessage("");
     if (formIsValid) {
-      setErrorMessage("");
+      // setErrorMessage("");
       sendRequest({
         url: `${url.backendBaseUrl}/vrpi-user/login`,
         method: "POST",
@@ -84,8 +87,14 @@ const LoginForm = () => {
         },
       });
     } else {
-      setErrorMessage(
-        "Please complete all fields and accept the terms and conditions."
+      // setErrorMessage(
+      //   "Please complete all fields and accept the terms and conditions."
+      // );
+      dispatch(
+        setMessage(
+          "Please complete all fields and accept the terms and conditions.",
+          "error"
+        )
       );
       console.log("Form has validation errors. Please fix them.");
     }
@@ -134,13 +143,13 @@ const LoginForm = () => {
 
   return (
     <div className={`${style.card} ${style.signIn}`}>
-      {errorMessage && (
+      {/* {errorMessage && (
         <Message
           message={errorMessage}
           type="error"
           onClose={handleErrorClose}
         />
-      )}
+      )} */}
       <h1 className={style.title}>Login</h1>
       <div style={{ width: "100%" }}>
         {EmailComponent}

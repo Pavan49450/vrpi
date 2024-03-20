@@ -1,24 +1,34 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Message.module.css"; // Import modular CSS
+import { MdClose } from "react-icons/md"; // Import close icon from react-icons
 
-const Message = ({ message, type, onClose }) => {
+const Message = ({ message, type, onClose, dontClose }) => {
   const [show, setShow] = useState(true);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setShow(false);
-      onClose();
-    }, 4000);
-
-    return () => clearTimeout(timer);
+    if (!dontClose) {
+      const timer = setTimeout(() => {
+        setShow(false);
+        onClose();
+      }, 4000);
+      return () => clearTimeout(timer);
+    }
   }, [onClose]);
 
   return (
-    <div
-      className={`${styles.message} ${styles[type]} ${show ? styles.show : ""}`}
-      onClick={onClose}
-    >
-      <p>{message}</p>
+    <div className={styles.overlay}>
+      <div
+        className={`${styles.message} ${styles[type]} ${
+          show ? styles.show : ""
+        }`}
+      >
+        <span onClick={onClose} className={styles.popupClose}>
+          <MdClose />
+        </span>
+        <div className={styles.messageContainer}>
+          <p>{message}</p>
+        </div>
+      </div>
     </div>
   );
 };
