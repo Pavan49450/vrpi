@@ -119,7 +119,7 @@ const LoginForm = () => {
       ErrorMessage={"Invalid Email"}
       className={`${style.Input} `}
       inputFields={{
-        placeholder: "Enter your Username",
+        placeholder: "Enter your Email",
         value: emailInput.value,
         isInvalid: emailInput.hasError,
         onBlurHandler: emailInput.validateValueHandler,

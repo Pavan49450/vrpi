@@ -10,7 +10,7 @@ const useInput = ({ initialValue = "", validateValue }) => {
   };
 
   const validateValueHandler = () => {
-    // setIsTouched(false);
+    setIsTouched(false);
     return validateValue(value);
   };
 
