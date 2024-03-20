@@ -182,7 +182,7 @@ const Header = ({
       <ul>
         {JoinUsBarData.socialMediaIcons.map((icon, index) => (
           <li key={index}>
-            <a href={icon.address}>
+            <a href={icon.address} target="_blank" rel="noopener noreferrer">
               <img
                 src={require(`../../../assets/socialMediaIcons/${icon.src}`)}
                 alt={icon.alt}

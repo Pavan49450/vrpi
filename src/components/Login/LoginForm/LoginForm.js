@@ -218,27 +218,32 @@ const CheckboxSection = ({ setRememberMe, setTermsAccepted }) => (
       />
       <label htmlFor="termsAccepted">
         I, agree to all the{" "}
-        <NavLink
-          to="#"
-          style={{
-            fontSize: "0.7rem",
-            textDecoration: "none",
-            color: "#ff6501",
-          }}
+        <a
+          href={url.termsAndConditions}
+          className={style.policyLinks}
+          target="_blank"
+          rel="noopener noreferrer"
         >
           Terms and Conditions
-        </NavLink>{" "}
-        and{" "}
-        <NavLink
-          to="#"
-          style={{
-            fontSize: "0.7rem",
-            textDecoration: "none",
-            color: "#ff6501",
-          }}
+        </a>{" "}
+        ,{" "}
+        <a
+          href={url.refundPolicyLink}
+          className={style.policyLinks}
+          target="_blank"
+          rel="noopener noreferrer"
         >
-          Privacy Policy
-        </NavLink>
+          Refund Policy
+        </a>{" "}
+        and{" "}
+        <a
+          href={url.shippingLink}
+          className={style.policyLinks}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Shipping Policy
+        </a>
       </label>
     </div>
   </div>
