@@ -98,9 +98,9 @@ const EducationalDetailsForm = () => {
         : degree.value;
 
     const formData = {
-      educationLevelFinal,
-      degreeFinal,
-      instituteNameInput,
+      educationDetails: educationLevelFinal,
+      degree: degreeFinal,
+      institute: instituteNameInput,
       instituteLocationInput,
       startYearInput,
       endYearInput,
