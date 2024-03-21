@@ -8,7 +8,6 @@
   border-radius: 5px;
   font-size: 16px;
   opacity: 0;
-  transition: opacity 0.3s ease-in-out;
   color: var(--white);
   text-align: center;
   z-index: 5;
@@ -39,7 +38,7 @@
   right: 10px;
   cursor: pointer;
   color: var(--white);
-  font-size: 24px; /* Adjust the font-size to make the icon bigger */
+  font-size: 24px;
 }
 
 .popupClose:hover {
@@ -63,9 +62,21 @@
 
 .show {
   opacity: 1;
+  animation: fadeIn 0.4s ease-in-out;
 }
 
 .normal {
   background-color: var(--skyBlue);
   color: var(--white);
+}
+
+@keyframes fadeIn {
+  0% {
+    transform: translate(-50%, -50%) scale(0.5);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1) translate(-50%, -50%);
+    opacity: 1;
+  }
 }
