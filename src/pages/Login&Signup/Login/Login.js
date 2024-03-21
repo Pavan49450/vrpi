@@ -5,7 +5,7 @@ import style from "./Login.module.css";
 const loginScreenData = {
   title: "Welcome Back!",
   description:
-    "Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur.",
+    "“We’re glad you’re back! Let’s dive back into VR PI Group of Companies.”",
   image: "loginPageImage.svg",
 };
 

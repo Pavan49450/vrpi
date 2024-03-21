@@ -93,6 +93,6 @@
 
 @media (max-width: 500px) {
   .form {
-    margin: 0;
+    margin: 1rem;
   }
 }

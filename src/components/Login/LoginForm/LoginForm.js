@@ -16,8 +16,12 @@ import { url } from "../../../constants";
 import useHttpsAxios from "../../../hooks/use-httpsAxios";
 import { useDispatch } from "react-redux";
 import { CircularProgress } from "@material-ui/core";
-import { loginWithUserId } from "../../../store/LoginStateActions";
+import {
+  loginWithUserData,
+  loginWithUserId,
+} from "../../../store/LoginStateActions";
 import { setMessage } from "../../../store/MessageDisplay/MessageActions";
+import { MandatoryCertificatesData } from "../../../data/user";
 
 const LoginForm = () => {
   const [formIsValid, setFormIsValid] = useState(false);
@@ -46,11 +50,25 @@ const LoginForm = () => {
       if (responseData) {
         // console.log(statusCode);
         if (statusCode === 200 || statusCode === 201) {
-          // console.log("data->", responseData);
-          dispatch(loginWithUserId(responseData.userId));
-          emailInput.reset();
-          passwordInput.reset();
-          navigate("/dashboard");
+          console.log("data->", responseData.userDto);
+          if (responseData.userDto) {
+            dispatch(loginWithUserId(responseData.userDto.id));
+
+            const userData = {
+              user: responseData.userDto,
+              MandatoryCertificatesData: MandatoryCertificatesData,
+              uploadedCertificates: 0,
+              certificatesToUpload: 4,
+              enrolledCourses: responseData.courseList,
+              educationalDetails: responseData.educationDetails,
+            };
+
+            console.log(userData);
+            dispatch(loginWithUserData(userData));
+            emailInput.reset();
+            passwordInput.reset();
+            navigate("/dashboard");
+          }
         } else {
           // console.log("error->", error);
           if (error !== null || error !== undefined) {

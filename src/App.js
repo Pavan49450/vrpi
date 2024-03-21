@@ -251,7 +251,7 @@ function App() {
     },
     {
       path: "/forgetPassword",
-      element: isVRPIUserLoggedIn ? (
+      element: !isVRPIUserLoggedIn ? (
         <ForgetPassword />
       ) : (
         <ErrorPage errorData={GeneralErrorData} />

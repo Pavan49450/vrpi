@@ -36,6 +36,7 @@
   height: 40px;
   align-items: center;
   width: 100%;
+  justify-content: flex-end;
 }
 .dropdownNavbar {
   display: flex;

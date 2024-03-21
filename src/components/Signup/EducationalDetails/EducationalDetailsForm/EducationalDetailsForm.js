@@ -82,17 +82,10 @@ const EducationalDetailsForm = () => {
   const SuccessResponseHandler = (formData) => {
     console.log(formData);
 
-    // Dispatch success message
     dispatch(
       setMessage("Uploaded educational details successfully", "success", true)
     );
 
-    // Dispatch normal message after 2 seconds
-    // setTimeout(() => {
-    //   dispatch(setMessage("Please upload Mandatory Certificates", "normal"));
-    // }, 2000);
-
-    // Navigate to mandatoryCertificates after 4 seconds
     setTimeout(() => {
       if (type === "") {
         navigate("/mandatoryCertificates");
@@ -130,18 +123,18 @@ const EducationalDetailsForm = () => {
         : degree.value;
 
     const formData = {
-      educationDetails: educationLevelFinal,
+      educationLevel: educationLevelFinal,
       degree: degreeFinal,
-      institute: instituteNameInput,
-      instituteLocationInput,
-      startYearInput,
-      endYearInput,
-      percentageInput,
+      institutionName: instituteNameInput.value,
+      instituteLocation: instituteLocationInput.value,
+      startDate: startYearInput.value,
+      endDate: endYearInput.value,
+      grade: percentageInput.value,
     };
     if (formIsValid) {
-      SuccessResponseHandler(formData);
-      console.log(formData);
-      console.log("Form submitted successfully!");
+      // SuccessResponseHandler(formData);
+      // console.log(formData);
+      // console.log("Form submitted successfully!");
       sendRequest({
         url: `${url.backendBaseUrl}/education-details/create-education-details/${userId}`,
         method: "POST",

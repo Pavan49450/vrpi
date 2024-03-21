@@ -5,7 +5,7 @@ import DashboardHeader from "../../components/Dashboard/Layout/Header/DashboardH
 import DashboardOverview from "../../components/Dashboard/Layout/DashboardOverview/DashboardOverview";
 import UserDataComponent from "../../data/user";
 import { logout } from "../../store/LoginStateActions";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ConfirmationModal from "../../UI/ConfirmModel/ConfirmationModal";
 
 const DashboardRoot = () => {
@@ -22,7 +22,7 @@ const DashboardRoot = () => {
     navigate("/login");
   };
 
-  const userData = UserDataComponent();
+  // const userData = UserDataComponent();
 
   const [logoutModalOpen, setLogoutModalOpen] = useState(false);
 
@@ -87,6 +87,8 @@ const DashboardRoot = () => {
   const toggleMenuBar = () => {
     setShowMenuBar(!showMenuBar);
   };
+
+  const userData = useSelector((state) => state.userData.userData);
 
   useEffect(() => {
     const handleScrollLock = () => {

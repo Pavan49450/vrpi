@@ -9,13 +9,13 @@ import style from "./SignUp.module.css";
 const welcomePageScreenData = {
   title: "Welcome!!",
   description:
-    "Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur.",
+    "Welcome to VR PI Group of Companies! We’re thrilled to have you on board.",
   image: "welcomePageImage.svg",
 };
 const personalPageScreenData = {
   title: "Create Account",
   description:
-    "Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur.",
+    "At moment we don’t have your Data to create your account. So lets just start to create your Account",
   image: "personalDetailsPageImage.svg",
 };
 

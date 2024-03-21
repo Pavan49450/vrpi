@@ -3,7 +3,7 @@ import CompanyDetailsComponent from "../../../components/Signup/CompanyDetailsCo
 const CompanyDetailsScreenData = {
   title: "Educational Details",
   description:
-    "We need these details to validate the candidate for our Knowledge Hub Programs",
+    "At moment we don’t have your Data to create your account. So lets just start to create your Account",
   image: "companyDetailsImage.svg",
 };
 const CompanyDetails = () => {

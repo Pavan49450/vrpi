@@ -8,7 +8,7 @@ const MandatoryCertificates = () => {
   const welcomePageScreenData = {
     title: "Mandatory Certificate",
     description:
-      "Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur.",
+      "At moment we don’t have your Data to create your account. So lets just start to create your Account",
     image: "personalDetailsPageImage.svg",
   };
 

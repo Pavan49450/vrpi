@@ -19,76 +19,68 @@ import { loginWithUserData } from "../store/LoginStateActions";
 // };
 
 const UserDataComponent = () => {
-  const userId = useSelector((state) => state.login.userId);
-  const { sendRequest, responseData, statusCode } = useHttpsAxios();
-
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    if (userId && userId !== null) {
-      sendRequest({
-        url: `${url.backendBaseUrl}/vrpi-user/${userId}`,
-        headers: { "Content-Type": "application/json", Accept: "*/*" },
-      });
-    }
-  }, [userId, sendRequest]);
-
-  const MandatoryCertificatesData = [
-    {
-      title: "Income Certificate",
-      note: "Note: Upload Income Certificate which is valid for a period of 1 year from the date of issue.",
-      uploadedAreNot: responseData?.incomeCertificate || false,
-    },
-    {
-      title: "Aadhaar Card (Front)",
-      note: "Note: Make sure address of yours should be visible clearly, and can be of png.,jpeg., pdf of size 5MB. ",
-      uploadedAreNot: responseData?.aadharFront || false,
-    },
-    {
-      title: "Aadhaar Card (Back)",
-      note: "Note: Make sure address of yours should be visible clearly, and can be of png.,jpeg., pdf of size 5MB. ",
-      uploadedAreNot: responseData?.aadharBack || false,
-    },
-    {
-      title: "Passport Size photo",
-      note: "Note: Upload your Passport size Photo of size 5MB and can be of png.,jpeg., pdf.",
-      uploadedAreNot: responseData?.profilePic || false,
-    },
-  ];
-
-  // Calculate number of uploaded certificates
-  const uploadedCertificates = MandatoryCertificatesData.filter(
-    (certificate) => certificate.uploadedAreNot
-  ).length;
-
-  // Calculate number of certificates needed to upload
-  const certificatesToUpload =
-    MandatoryCertificatesData.length - uploadedCertificates;
-
-  const userData = {
-    user: responseData,
-    MandatoryCertificatesData,
-    uploadedCertificates,
-    certificatesToUpload,
-    enrolledCourses:
-      responseData && responseData.enrolledCourses
-        ? responseData.enrolledCourses
-        : [],
-    educationalDetails:
-      responseData && responseData.educationalDetails
-        ? responseData.educationalDetails
-        : null,
-  };
-
-  useEffect(() => {
-    if (userId && userId !== null) {
-      if (statusCode === 200) {
-        dispatch(loginWithUserData(userData));
-      }
-    }
-  }, [statusCode, userId, userData]);
-
-  return userData;
+  // const userId = useSelector((state) => state.login.userId);
+  // const { sendRequest, responseData, statusCode } = useHttpsAxios();
+  // const dispatch = useDispatch();
+  // useEffect(() => {
+  //   if (userId && userId !== null) {
+  //     sendRequest({
+  //       url: `${url.backendBaseUrl}/vrpi-user/${userId}`,
+  //       headers: { "Content-Type": "application/json", Accept: "*/*" },
+  //     });
+  //   }
+  // }, [userId, sendRequest]);
+  // const MandatoryCertificatesData = [
+  //   {
+  //     title: "Income Certificate",
+  //     note: "Note: Upload Income Certificate which is valid for a period of 1 year from the date of issue.",
+  //     uploadedAreNot: responseData?.incomeCertificate || false,
+  //   },
+  //   {
+  //     title: "Aadhaar Card (Front)",
+  //     note: "Note: Make sure address of yours should be visible clearly, and can be of png.,jpeg., pdf of size 5MB. ",
+  //     uploadedAreNot: responseData?.aadharFront || false,
+  //   },
+  //   {
+  //     title: "Aadhaar Card (Back)",
+  //     note: "Note: Make sure address of yours should be visible clearly, and can be of png.,jpeg., pdf of size 5MB. ",
+  //     uploadedAreNot: responseData?.aadharBack || false,
+  //   },
+  //   {
+  //     title: "Passport Size photo",
+  //     note: "Note: Upload your Passport size Photo of size 5MB and can be of png.,jpeg., pdf.",
+  //     uploadedAreNot: responseData?.profilePic || false,
+  //   },
+  // ];
+  // // Calculate number of uploaded certificates
+  // const uploadedCertificates = MandatoryCertificatesData.filter(
+  //   (certificate) => certificate.uploadedAreNot
+  // ).length;
+  // // Calculate number of certificates needed to upload
+  // const certificatesToUpload =
+  //   MandatoryCertificatesData.length - uploadedCertificates;
+  // const userData = {
+  //   user: responseData,
+  //   MandatoryCertificatesData,
+  //   uploadedCertificates,
+  //   certificatesToUpload,
+  //   enrolledCourses:
+  //     responseData && responseData.enrolledCourses
+  //       ? responseData.enrolledCourses
+  //       : [],
+  //   educationalDetails:
+  //     responseData && responseData.educationalDetails
+  //       ? responseData.educationalDetails
+  //       : null,
+  // };
+  // useEffect(() => {
+  //   if (userId && userId !== null) {
+  //     if (statusCode === 200) {
+  //       dispatch(loginWithUserData(userData));
+  //     }
+  //   }
+  // }, [statusCode, userId, userData]);
+  // return userData;
 };
 
 // export const SaveUserDataInRedux = () => {
@@ -125,5 +117,29 @@ export const user = {
     grade: "8.5",
   },
 };
+
+export const MandatoryCertificatesData = [
+  {
+    title: "Income Certificate",
+    note: "Note: Upload Income Certificate which is valid for a period of 1 year from the date of issue.",
+    // uploadedAreNot: responseData?.incomeCertificate || false,
+    uploadedAreNot: false,
+  },
+  {
+    title: "Aadhaar Card (Front)",
+    note: "Note: Make sure address of yours should be visible clearly, and can be of png.,jpeg., pdf of size 5MB. ",
+    uploadedAreNot: false,
+  },
+  {
+    title: "Aadhaar Card (Back)",
+    note: "Note: Make sure address of yours should be visible clearly, and can be of png.,jpeg., pdf of size 5MB. ",
+    uploadedAreNot: false,
+  },
+  {
+    title: "Passport Size photo",
+    note: "Note: Upload your Passport size Photo of size 5MB and can be of png.,jpeg., pdf.",
+    uploadedAreNot: false,
+  },
+];
 
 export default UserDataComponent;

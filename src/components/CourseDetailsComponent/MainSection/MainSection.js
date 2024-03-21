@@ -13,7 +13,8 @@ import ConfirmationModal from "../../../UI/ConfirmModel/ConfirmationModal";
 const MainSection = ({ content }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const userData = UserDataComponent();
+
+  const userData = useSelector((state) => state.userData.userData);
   const isVRPIUserLoggedIn = useSelector(
     (state) => state.login.isVRPIUserLoggedIn
   );

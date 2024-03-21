@@ -27,7 +27,7 @@ const MyDashboard = () => {
       setHideWelcome(true);
     }, 10000);
     // fetchData();
-  }, []);
+  }, [userData]);
 
   return (
     <div className={style.container}>

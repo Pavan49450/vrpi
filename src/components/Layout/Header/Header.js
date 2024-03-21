@@ -215,14 +215,14 @@ const Header = ({
                 />
               )}
             </div>
-            {dropdownLinks && (
-              <div className={style.lowerBar}>
+            <div className={style.lowerBar}>
+              {dropdownLinks && (
                 <div className={style.dropdownNavbar}>
                   <ul className={style.dropdownNav}>{dropdownElements}</ul>
                 </div>
-                {navButtons}
-              </div>
-            )}
+              )}
+              {navButtons}
+            </div>
           </div>
         </nav>
       ) : (

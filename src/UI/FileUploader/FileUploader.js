@@ -35,7 +35,7 @@ const CustomFileUploader = ({
         ref={inputRef}
         onChange={handleFileChange}
         style={{ display: "none" }}
-        accept={acceptedFileType.join(",")}
+        // accept={acceptedFileType.join(",")}
       />
       <button className={style.uploadButton} onClick={handleButtonClick}>
         <span className={`${fileName ? style.transition : style.placeholder}`}>

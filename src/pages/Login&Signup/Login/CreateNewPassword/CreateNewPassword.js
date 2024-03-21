@@ -14,7 +14,7 @@ const CreateNewPassword = () => {
   const loginScreenData = {
     title: "Welcome Back!",
     description:
-      "Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur.",
+      "At moment we don’t have your Data to create your account. So lets just start to create your Account",
     image: "loginPageImage.svg",
   };
 

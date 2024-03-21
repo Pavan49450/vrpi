@@ -8,7 +8,7 @@ import { url } from "../../../constants";
 const verificationPageScreenData = {
   title: "Verification",
   description:
-    "Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet consectetur.",
+    "Verification helps in preventing fraud and unauthorized access. Thank you for Verifying your account",
   image: "verificationPageImage.svg",
 };
 
