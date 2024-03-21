@@ -13,19 +13,29 @@
   margin-top: 0;
 }
 
+.ErrorContainerMain {
+  display: flex;
+  justify-content: center;
+}
+
 .ErrorContainer {
   max-width: 500px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 2rem;
-  margin: auto;
-  margin-bottom: 2rem;
+
+  margin: 1rem;
 }
 
 .ErrorContainer h2 {
   font-size: 2rem;
   font-weight: 600;
+  text-align: center;
+}
+
+.ErrorContainer p {
+  text-align: center;
 }
 
 @media (max-width: 800px) {

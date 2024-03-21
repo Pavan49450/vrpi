@@ -41,14 +41,14 @@ const ProfileBar = ({ user }) => {
                 </span>
                 <span className={style.userId}>Student | {user.gender}</span>
               </div>
-              <div>
+              {/* <div>
                 <Button
                   onClick={() => navigate("/editProfileDetails")}
                   style={{ padding: "0.2rem 2rem" }}
                 >
                   Edit
                 </Button>
-              </div>
+              </div> */}
             </div>
             <div className={style.contactDetails}>
               <div className={style.contactCard}>

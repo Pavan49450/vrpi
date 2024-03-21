@@ -63,8 +63,8 @@ const LoginForm = () => {
               educationalDetails: responseData.educationDetails,
             };
 
-            console.log(userData);
-            dispatch(loginWithUserData(userData));
+            // console.log(userData);
+            // dispatch(loginWithUserData(userData));
             emailInput.reset();
             passwordInput.reset();
             navigate("/dashboard");

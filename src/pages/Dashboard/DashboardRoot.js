@@ -7,6 +7,7 @@ import UserDataComponent from "../../data/user";
 import { logout } from "../../store/LoginStateActions";
 import { useDispatch, useSelector } from "react-redux";
 import ConfirmationModal from "../../UI/ConfirmModel/ConfirmationModal";
+import { fetchUserData } from "../../store/LoginStateSlice";
 
 const DashboardRoot = () => {
   const navigate = useNavigate();
@@ -106,6 +107,12 @@ const DashboardRoot = () => {
     };
   }, [showMenuBar]);
 
+  useEffect(() => {
+    dispatch(fetchUserData());
+
+    console.log("userData", userData);
+  }, [userData]);
+
   return (
     <div className={style.container}>
       <ConfirmationModal
@@ -121,13 +128,13 @@ const DashboardRoot = () => {
         toggleMenuBar={toggleMenuBar}
         DashboardLinks={DashboardLinks}
       />
-      <DashboardOverview
+      {/* <DashboardOverview
         userDetails={userData.user}
         toggleMenuBar={toggleMenuBar}
         DashboardLinks={DashboardLinks}
       >
         <Outlet />
-      </DashboardOverview>
+      </DashboardOverview> */}
     </div>
   );
 };

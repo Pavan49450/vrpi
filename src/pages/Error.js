@@ -5,9 +5,7 @@ const ErrorPage = ({ errorData }) => {
   const navigate = useNavigate();
 
   return (
-    <main>
-      {/* <h1>Something went wrong :(</h1> */}
-      {console.log(errorData)}
+    <main className={style.ErrorContainerMain}>
       {errorData && (
         <div className={style.ErrorContainer}>
           <img src={require(`../assets/errorPage/${errorData.image}`)} alt="" />
