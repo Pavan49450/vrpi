@@ -7,7 +7,8 @@ import UserDataComponent from "../../data/user";
 import { logout } from "../../store/LoginStateActions";
 import { useDispatch, useSelector } from "react-redux";
 import ConfirmationModal from "../../UI/ConfirmModel/ConfirmationModal";
-import { fetchUserData } from "../../store/LoginStateSlice";
+import { CircularProgress } from "@material-ui/core";
+// import { fetchUserData } from "../../store/LoginStateSlice";
 
 const DashboardRoot = () => {
   const navigate = useNavigate();
@@ -107,11 +108,14 @@ const DashboardRoot = () => {
     };
   }, [showMenuBar]);
 
-  useEffect(() => {
-    dispatch(fetchUserData());
+  const FetchUserData = UserDataComponent();
 
-    console.log("userData", userData);
-  }, [userData]);
+  useEffect(() => {
+    // dispatch(fetchUserData());
+    if (FetchUserData.userData) {
+      console.log("userData", FetchUserData.userData.user);
+    }
+  }, [FetchUserData.userData]);
 
   return (
     <div className={style.container}>
@@ -128,13 +132,19 @@ const DashboardRoot = () => {
         toggleMenuBar={toggleMenuBar}
         DashboardLinks={DashboardLinks}
       />
-      {/* <DashboardOverview
-        userDetails={userData.user}
-        toggleMenuBar={toggleMenuBar}
-        DashboardLinks={DashboardLinks}
-      >
-        <Outlet />
-      </DashboardOverview> */}
+      {!FetchUserData.isLoading ? (
+        <DashboardOverview
+          userDetails={FetchUserData && FetchUserData.userData.user}
+          toggleMenuBar={toggleMenuBar}
+          DashboardLinks={DashboardLinks}
+        >
+          <Outlet />
+        </DashboardOverview>
+      ) : (
+        <div className={style.loadingState}>
+          <CircularProgress />
+        </div>
+      )}
     </div>
   );
 };

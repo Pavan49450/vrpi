@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
-import "./Image.css";
+import styles from "./Image.module.css";
 import GhostLoading from "../../animations/GhostLoading";
+import { CircularProgress } from "@material-ui/core";
 
 const CustomImage = ({
   src,
@@ -21,8 +22,14 @@ const CustomImage = ({
   };
 
   return (
-    <div className={`custom-image-wrapper ${classForDiv}`}>
-      {loading && <GhostLoading count={1} />}
+    <div className={`${styles.customImageWrapper} ${classForDiv}`}>
+      {loading && (
+        // <GhostLoading count={1} />
+        <div className={styles.loadingState}>
+          <CircularProgress />
+        </div>
+      )}
+      {/* {!loading && ( */}
       <img
         src={src}
         alt={alt}
@@ -34,6 +41,7 @@ const CustomImage = ({
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
       />
+      {/* )} */}
     </div>
   );
 };

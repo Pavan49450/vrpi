@@ -1,6 +1,8 @@
+import { useSelector } from "react-redux";
 import style from "./ProfileDetails.module.css";
 
 const ProfileDetails = ({ user }) => {
+  const userId = useSelector((state) => state.login.userId);
   return (
     <div className={style.container}>
       <div className={style.head}>
@@ -34,7 +36,7 @@ const ProfileDetails = ({ user }) => {
             src={require(`../../../../assets/dashboard/idIcon.png`)}
             alt=""
           />
-          <span>{user.id}</span>
+          <span>{userId}</span>
         </div>
         <div className={style.detailsData}>
           <img

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import CustomImage from "../../../../UI/Image/Image";
 import style from "./DashboardOverview.module.css";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../../../store/LoginStateActions";
 import ConfirmationModal from "../../../../UI/ConfirmModel/ConfirmationModal";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -31,7 +31,7 @@ const DashboardOverview = ({
   const closeLogoutModal = () => {
     setLogoutModalOpen(false);
   };
-
+  const userId = useSelector((state) => state.login.userId);
   return (
     <div className={style.mainContainer}>
       <div className={style.overviewContainer}>
@@ -47,10 +47,11 @@ const DashboardOverview = ({
         <div className={style.overviewContents}>
           {userDetails && (
             <div className={style.userDetails}>
+              {/* {console.log(userDetails)} */}
               <span className={style.userName}>
                 {userDetails.firstName} {userDetails.lastName}
               </span>
-              <span className={style.userId}>#{userDetails.id}</span>
+              <span className={style.userId}>#{userId}</span>
             </div>
           )}
           <CustomImage

@@ -1,25 +1,29 @@
+import { useSelector } from "react-redux";
 import styles from "./StudentDetails.module.css";
 
 const StudentDetails = ({ user }) => {
   // Define default values for each section if user data is undefined
+
+  const userId = useSelector((state) => state.login.userId);
+
   const defaultPersonalDetails = {
     title: "Personal Details",
     content: [
       {
         title: "Name",
-        content: `${user?.firstName || ""} ${user?.lastName || ""}`,
+        content: `${user?.firstName || ""} ${user?.lastName || "No data"}`,
       },
       {
         title: "Date of Birth",
-        content: user?.dateOfBirth || "",
+        content: user?.dateOfBirth || "No data",
       },
       {
         title: "Gender",
-        content: user?.gender || "",
+        content: user?.gender || "No data",
       },
       {
         title: "Occupation",
-        content: user?.occupation || "",
+        content: user?.occupation || "No data",
       },
     ],
   };
@@ -67,15 +71,15 @@ const StudentDetails = ({ user }) => {
     content: [
       {
         title: "Profile ID",
-        content: user?.id || "",
+        content: userId || "No data",
       },
       {
         title: "Date Joined",
-        content: user?.joinedDate || "",
+        content: user?.joinedDate || "No data",
       },
       {
         title: "Email",
-        content: user?.email || "",
+        content: user?.email || "No data",
       },
     ],
   };

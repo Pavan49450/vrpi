@@ -8,63 +8,76 @@ import { EduTechData } from "../../../data/EduTechData";
 import UserDataComponent from "../../../data/user";
 import style from "./MyDashboard.module.css";
 import { useSelector } from "react-redux";
+import { CircularProgress } from "@material-ui/core";
 
 const MyDashboard = () => {
   const [hideWelcome, setHideWelcome] = useState(false);
   // const [userData, setUserData] = useState(null);
 
-  // const userData = UserDataComponent();
+  const FetchUserData = UserDataComponent();
 
-  const userData = useSelector((state) => state.userData.userData);
+  // const userData = useSelector((state) => state.userData.userData);
   useEffect(() => {
     // const fetchData = async () => {
     //   setUserData(userDataResponse);
     // };
 
-    console.log(userData);
+    console.log("userdata", FetchUserData);
 
     setTimeout(() => {
       setHideWelcome(true);
     }, 10000);
     // fetchData();
-  }, [userData]);
+  }, [FetchUserData.userData]);
 
   return (
-    <div className={style.container}>
-      {!hideWelcome && userData && <WelcomeScreen user={userData.user} />}
-      <div className={style.containers}>
-        <div className={style.mainContainer}>
-          {userData &&
-          userData.user &&
-          userData.user.educationalDetails !== null ? (
-            <ProfileDetails user={userData.user} />
-          ) : (
-            <EnrolledCourseComponent
-              enrolledCourses={userData?.enrolledCourses || []}
-            />
+    <>
+      {FetchUserData.userData && !FetchUserData.isLoading ? (
+        <div className={style.container}>
+          {!hideWelcome && FetchUserData && (
+            <WelcomeScreen user={FetchUserData.userData.user} />
           )}
-          <Courses data={EduTechData} />
-          {/* {console.log(
+          <div className={style.containers}>
+            <div className={style.mainContainer}>
+              {FetchUserData.userData &&
+              FetchUserData.userData.user &&
+              FetchUserData.userData.user.educationalDetails !== null ? (
+                <ProfileDetails user={FetchUserData.userData.user} />
+              ) : (
+                <EnrolledCourseComponent
+                  enrolledCourses={
+                    FetchUserData.userData?.enrolledCourses || []
+                  }
+                />
+              )}
+              <Courses data={EduTechData} />
+              {/* {console.log(
             "userData.user.enrolledCourses.length",
             userData.user && userData.user.enrolledCourses.length
           )} */}
-          {/* {userData.user && !userData.user.enrolledCourses && ( */}
-          {/* userData.user.enrolledCourses.length === 0 && */}
-          {userData?.enrolledCourses && (
-            <div className={style.rightSideContents}>
-              <RightSideContents />
+              {/* {userData.user && !userData.user.enrolledCourses && ( */}
+              {/* userData.user.enrolledCourses.length === 0 && */}
+              {FetchUserData.userData?.enrolledCourses && (
+                <div className={style.rightSideContents}>
+                  <RightSideContents />
+                </div>
+              )}
             </div>
-          )}
-        </div>
-        {/* {userData.user && !userData.user.enrolledCourses && ( */}
-        {/* userData.enrolledCourses.length === 0 */}
-        {userData?.enrolledCourses && (
-          <div className={style.sideContainer}>
-            <RightSideContents />
+            {/* {userData.user && !userData.user.enrolledCourses && ( */}
+            {/* userData.enrolledCourses.length === 0 */}
+            {FetchUserData.userData?.enrolledCourses && (
+              <div className={style.sideContainer}>
+                <RightSideContents />
+              </div>
+            )}
           </div>
-        )}
-      </div>
-    </div>
+        </div>
+      ) : (
+        <div className={style.loadingState}>
+          <CircularProgress />
+        </div>
+      )}
+    </>
   );
 };
 

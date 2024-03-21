@@ -20,7 +20,7 @@ import { loginWithUserData } from "../store/LoginStateActions";
 
 const UserDataComponent = () => {
   const userId = useSelector((state) => state.login.userId);
-  const { sendRequest, responseData, statusCode } = useHttpsAxios();
+  const { sendRequest, responseData, statusCode, isLoading } = useHttpsAxios();
 
   const dispatch = useDispatch();
 
@@ -84,13 +84,13 @@ const UserDataComponent = () => {
   useEffect(() => {
     if (userId && userId !== null) {
       if (statusCode === 200) {
-        console.log("userData", userData);
-        dispatch(loginWithUserData(userData));
+        // console.log("userData", userData);
+        // dispatch(loginWithUserData(userData));
       }
     }
-  }, [statusCode, userId, userData]);
+  }, [userId, statusCode]);
 
-  return userData;
+  return { userData: userData, isLoading: isLoading };
 };
 
 // export const SaveUserDataInRedux = () => {

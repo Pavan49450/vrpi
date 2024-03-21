@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import CustomImage from "../../../UI/Image/Image";
@@ -9,12 +9,15 @@ import { setComingSoon } from "../../../store/ComingSoonSlice";
 
 import style from "./MainSection.module.css";
 import ConfirmationModal from "../../../UI/ConfirmModel/ConfirmationModal";
+import { CircularProgress } from "@material-ui/core";
+import useHttpsAxios from "../../../hooks/use-httpsAxios";
 
 const MainSection = ({ content }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const userData = useSelector((state) => state.userData.userData);
+  // const userData = useSelector((state) => state.userData.userData);
+  const FetchUserData = UserDataComponent();
   const isVRPIUserLoggedIn = useSelector(
     (state) => state.login.isVRPIUserLoggedIn
   );
@@ -29,11 +32,11 @@ const MainSection = ({ content }) => {
       return;
     }
 
-    if (!userData.user) {
+    if (!FetchUserData.userData.user) {
       return;
     }
 
-    if (!userData.user.educationalDetails) {
+    if (!FetchUserData.userData.user.educationalDetails) {
       // navigate("/educationalDetails");
       setConfirmationMessage(
         "Please fill out your 'educational details' and 'mandatory certificates' before enrolling."
@@ -42,7 +45,7 @@ const MainSection = ({ content }) => {
       return;
     }
 
-    if (userData.uploadedCertificates < 4) {
+    if (FetchUserData.userData.uploadedCertificates < 4) {
       // navigate("/mandatoryCertificates");
       setConfirmationMessage(
         "Please fill upload all mandatory certificates before enrolling"
@@ -73,13 +76,31 @@ const MainSection = ({ content }) => {
   //   setLogoutModalOpen(false);
   // };
 
+  // const { sendRequest, responseData, statusCode, error, isLoading } =
+  //   useHttpsAxios();
+
+  // useEffect(() => {
+  //   if (responseData) {
+  //     if (statusCode === 200 || statusCode === 201) {
+  //       console.log("data->", responseData);
+  //     }
+  //   }
+  // });
+
   const handleConfirm = () => {
     setConfirmationModalOpen(false);
     if (!isVRPIUserLoggedIn) {
       navigate("/login");
-    } else if (!userData.user.educationalDetails) {
+    } else if (!FetchUserData.userData.user.educationalDetails) {
+      // sendRequest({
+      //   url: "http://localhost:8082/enroll-course?courseId=1&userId=13",
+      //   method: "POST",
+      //   headers: {
+      //     "Content-Type": "application/json",
+      //   },
+      // });
       navigate("/educationalDetails");
-    } else if (userData.uploadedCertificates < 4) {
+    } else if (FetchUserData.userData.uploadedCertificates < 4) {
       navigate("/mandatoryCertificates");
     }
   };
@@ -136,7 +157,9 @@ const MainSection = ({ content }) => {
           <span>Provided Course Language - “ {content.language} ”</span>
         </div>
         <div className={style.buttons}>
-          <Button onClick={handleLoginHandler}>Enroll Now</Button>
+          <Button onClick={handleLoginHandler}>
+            {FetchUserData.isLoading ? <CircularProgress /> : "Enroll Now"}
+          </Button>
           <Button
             // onClick={() => dispatch(setComingSoon(true))}
             onClick={() => navigate("/contact")}
