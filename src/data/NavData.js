@@ -5,14 +5,14 @@ export const MainHeaderLinks = [
   // { name: "Campanies", address: "/companies" },
   // { name: "Careers", address: "/careers", active: false },
   // { name: "KnowledgeHub", address: "/knowledgeHub" },
-  // { name: "Contact Us", address: "/contact", active: false },
+  { name: "Contact Us", address: "/contact", active: true },
 ];
 
 export const KnowledgeHubHeaderLinks = [
   { name: "Edu-tech", address: "/edutech", active: true },
   { name: "Interships", address: "/internships", active: true },
 
-  // { name: "Contact Us", address: "/contact", active: false },
+  { name: "Contact Us", address: "/contact", active: true },
 ];
 
 export const buttonsLinks = [{ name: "Login", link: "/login", active: true }];
@@ -203,10 +203,19 @@ export const quickLinks = [
   // { name: "Careers", address: "/careers", active: false },
   { name: "Edutech", address: "/edutech", active: true },
   { name: "Internships", address: "/internships", active: true },
+  {
+    name: "Contact Us",
+    address: "/contact",
+    active: true,
+  },
 ];
 
 export const ContactUs = {
-  address: ["Hyderabad (India)", "New Jersey (USA)"],
+  address: [
+    "2/27/163, GANDHI NAGAR STREET, NEAR JAMMI CHETTU, WANAPARTHY , Wanaparthy, TELANGANA, 509103",
+
+    // "Hyderabad (India)", "New Jersey (USA)"
+  ],
   phoneNumber: "+91 8790946714",
   infoEmailId: "info@vrpigroup.com",
 };
@@ -258,5 +267,10 @@ export const navElementsForMobileData = [
   //   active: false,
   // },
   // { name: "Careers", link: "/", dropdownElement: false, active: false },
-  // { name: "Contact Us", link: "/", dropdownElement: false, active: false },
+  {
+    name: "Contact Us",
+    link: "/contact",
+    dropdownElement: false,
+    active: true,
+  },
 ];

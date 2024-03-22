@@ -249,7 +249,16 @@ const CheckboxSection = ({ setRememberMe, setTermsAccepted }) => (
           rel="noopener noreferrer"
         >
           Terms and Conditions
-        </a>{" "}
+        </a>
+        ,{" "}
+        <NavLink
+          to={url.privacyPolicyLink}
+          className={style.policyLinks}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Privacy Policy
+        </NavLink>{" "}
         ,{" "}
         <a
           href={url.refundPolicyLink}

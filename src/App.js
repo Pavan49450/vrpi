@@ -38,6 +38,7 @@ import ProfilePage from "./pages/Dashboard/ProfilePage/ProfilePage";
 import UpdateUserDetails from "./pages/MainPages/UpdateUserDetails/UpdateUserDetails";
 import { useEffect } from "react";
 import { SaveUserDataInRedux } from "./data/user";
+import PrivacyPolicy from "./pages/MainPages/PrivacyPolicy/PrivacyPolicy";
 
 function App() {
   // const navigate = useNavigate();
@@ -266,6 +267,16 @@ function App() {
     {
       path: "/mandatoryCertificates",
       element: <MandatoryCertificates />,
+      errorElement: <ErrorPage errorData={GeneralErrorData} />,
+    },
+    {
+      path: "/mandatoryCertificates",
+      element: <MandatoryCertificates />,
+      errorElement: <ErrorPage errorData={GeneralErrorData} />,
+    },
+    {
+      path: "/privacy-policy",
+      element: <PrivacyPolicy />,
       errorElement: <ErrorPage errorData={GeneralErrorData} />,
     },
   ]);
