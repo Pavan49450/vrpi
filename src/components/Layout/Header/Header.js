@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import style from "./HeaderNew.module.css";
+import style from "./Header.module.css";
 import { NavLink, useNavigate } from "react-router-dom";
 import HeaderDropdown from "./HeaderComponents/HeaderDropDown";
 import Logo from "../../Logo/Logo";
@@ -206,13 +206,15 @@ const Header = ({
             <div className={style.navBackground}>
               <div className={style.nav}>{navElements}</div>
               {dashboard.active && (
-                <img
-                  src={require(`../../../assets/dashboard/profilePic.png`)}
-                  alt={dashboard.name}
-                  onClick={() => navigate(dashboard.link)}
-                  title={dashboard.name}
-                  className={style.dashboardIcon}
-                />
+                <div className={style.dashboardIconContainer}>
+                  <img
+                    src={require(`../../../assets/dashboard/profilePic.png`)}
+                    alt={dashboard.name}
+                    onClick={() => navigate(dashboard.link)}
+                    title={dashboard.name}
+                    className={style.dashboardIcon}
+                  />
+                </div>
               )}
             </div>
             <div className={style.lowerBar}>

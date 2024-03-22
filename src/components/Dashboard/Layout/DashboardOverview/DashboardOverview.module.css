@@ -112,4 +112,11 @@
   .menuIcon {
     display: flex;
   }
+  .overviewContainer {
+    margin: 0;
+    padding: 0.2rem;
+  }
+  .userDetails {
+    display: none;
+  }
 }

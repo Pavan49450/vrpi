@@ -6,7 +6,7 @@ const ProfileDetails = ({ user }) => {
   return (
     <div className={style.container}>
       <div className={style.head}>
-        <div>
+        <div className={style.details2}>
           <div className={style.userImage}>
             <img
               src={require(`../../../../assets/dashboard/${

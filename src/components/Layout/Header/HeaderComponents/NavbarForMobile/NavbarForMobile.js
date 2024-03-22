@@ -97,13 +97,15 @@ function NavbarForMobile({ navElements, dashboard }) {
           <div className={style.bar3}></div>
         </div>
         {dashboard.active && (
-          <img
-            src={require(`../../../../../assets/dashboard/myDashboard-w.png`)}
-            alt={dashboard.name}
-            onClick={() => navigate(dashboard.link)}
-            title={dashboard.name}
-            className={style.dashboardIcon}
-          />
+          <div className={style.dashboardIconContainer}>
+            <img
+              src={require(`../../../../../assets/dashboard/profilePic.png`)}
+              alt={dashboard.name}
+              onClick={() => navigate(dashboard.link)}
+              title={dashboard.name}
+              className={style.dashboardIcon}
+            />
+          </div>
         )}
       </div>
 

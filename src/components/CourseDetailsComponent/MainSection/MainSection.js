@@ -158,7 +158,10 @@ const MainSection = ({ content }) => {
         </div>
         <div className={style.buttons}>
           <Button onClick={handleLoginHandler}>
-            {FetchUserData.isLoading ? <CircularProgress /> : "Enroll Now"}
+            {
+              // isLoading
+              false ? <CircularProgress /> : "Enroll Now"
+            }
           </Button>
           <Button
             // onClick={() => dispatch(setComingSoon(true))}
