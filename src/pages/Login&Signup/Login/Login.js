@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import LoginForm from "../../../components/Login/LoginForm/LoginForm";
 import SignUpOrLoginContainer from "../../../components/SignUpOrLoginContainer/SignUpOrLoginConatainer";
 import style from "./Login.module.css";
@@ -10,6 +11,10 @@ const loginScreenData = {
 };
 
 const Login = () => {
+  useEffect(() => {
+    document.title = "Login";
+  }, []);
+
   return (
     <SignUpOrLoginContainer
       screenData={loginScreenData}

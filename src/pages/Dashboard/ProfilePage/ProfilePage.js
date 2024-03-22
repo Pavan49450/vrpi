@@ -5,11 +5,18 @@ import UserDataComponent from "../../../data/user";
 import { CircularProgress } from "@material-ui/core";
 
 import style from "./ProfilePage.module.css";
+import { useEffect } from "react";
 
 const ProfilePage = () => {
   // const userData = UserDataComponent();
   // const userData = useSelector((state) => state.userData.userData);
   const FetchUserData = UserDataComponent();
+
+  useEffect(() => {
+    if (FetchUserData) {
+      document.title = `${FetchUserData.firstName} Dashboard`;
+    }
+  });
   return (
     <>
       {FetchUserData.isLoading ? (

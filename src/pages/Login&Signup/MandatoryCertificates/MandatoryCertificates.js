@@ -3,6 +3,7 @@ import SignUpOrLoginContainer from "../../../components/SignUpOrLoginContainer/S
 import MandatoryCertificatesForm from "../../../components/Signup/MandatoryCertificatesForm/MandatoryCertificatesForm";
 import { clearMessage } from "../../../store/MessageDisplay/MessageActions";
 import Message from "../../../UI/Popup/Message";
+import { useEffect } from "react";
 
 const MandatoryCertificates = () => {
   const welcomePageScreenData = {
@@ -14,6 +15,10 @@ const MandatoryCertificates = () => {
 
   const { message, type } = useSelector((state) => state.message);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    document.title = "Mandatory Certificate";
+  }, []);
 
   const handleErrorClose = () => {
     dispatch(clearMessage());

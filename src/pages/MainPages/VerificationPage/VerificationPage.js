@@ -21,7 +21,7 @@ const VerificationPage = () => {
   useEffect(() => {
     // console.log("email->", email);
     // console.log("otp->", otp);
-
+    document.title = "Email Verification";
     const validation = async () => {
       try {
         const response = await sendRequest({

@@ -1,8 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import Button from "../UI/Button/Button";
 import style from "./Root.module.css";
+import { useEffect } from "react";
 const ErrorPage = ({ errorData }) => {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    document.title = "Error Page";
+  }, []);
 
   return (
     <main className={style.ErrorContainerMain}>

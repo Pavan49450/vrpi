@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./PrivacyPolicy.module.css";
 import Logo from "../../../components/Logo/Logo";
 
@@ -106,6 +106,10 @@ const PrivacyPolicy = () => {
       ],
     },
   };
+
+  useEffect(() => {
+    document.title = "Privacy Policy";
+  }, []);
 
   return (
     <div className={styles.privacyPolicy}>

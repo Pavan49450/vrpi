@@ -23,6 +23,9 @@ const MyDashboard = () => {
     // };
 
     console.log("userdata", FetchUserData);
+    if (FetchUserData) {
+      document.title = `${FetchUserData.firstName} Dashboard`;
+    }
 
     setTimeout(() => {
       setHideWelcome(true);

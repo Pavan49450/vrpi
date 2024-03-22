@@ -119,7 +119,7 @@ const Header = ({
           {link.active ? (
             <>
               <NavLink
-                // to={link.address}
+                to={link.address}
                 title={`Link to ${link.name}`}
                 // onClick={handleMobileMenuToggle}
                 className={style.dropdownLink}

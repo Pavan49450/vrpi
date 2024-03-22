@@ -1,0 +1,17 @@
+/* HideExtraText.module.css */
+
+.container {
+  overflow: hidden;
+}
+
+.text {
+  cursor: pointer;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+}
+
+.ShowExtraText {
+  overflow: auto;
+}

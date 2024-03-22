@@ -29,6 +29,7 @@ const CreateNewPassword = () => {
   });
 
   useEffect(() => {
+    document.title = "Create New Password";
     setFormIsValid(passwordInput.isValid && confirmPasswordInput.isValid);
   }, [passwordInput.isValid, confirmPasswordInput.isValid]);
 

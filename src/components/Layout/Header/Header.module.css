@@ -156,6 +156,7 @@
   font-weight: 700;
   background: var(--primary);
   transition: all 0.2s ease;
+  margin-right: 3px;
 }
 .signUpBtn:hover {
   transform: scale(1.09);

@@ -12,7 +12,6 @@ import Companies from "./pages/MainPages/Companies/Companies";
 import Services from "./pages/MainPages/Services/Services";
 import Careers from "./pages/MainPages/Carrers/Careers";
 import Construction from "./pages/MainPages/Construction/Contruction";
-import KnowledgeHub from "./pages/KnowledgeHub/KnowledgeHub";
 import Internships from "./pages/KnowledgeHub/Internships";
 import EduTech from "./pages/KnowledgeHub/EduTech";
 import ContactUs from "./pages/MainPages/ContactUs/ContactUs";
@@ -149,11 +148,6 @@ function App() {
           errorElement: <ErrorPage errorData={GeneralErrorData} />,
         },
 
-        {
-          path: "/knowledgeHub",
-          element: <KnowledgeHub />,
-          errorElement: <ErrorPage errorData={GeneralErrorData} />,
-        },
         {
           path: "/edutech",
           // index: true,

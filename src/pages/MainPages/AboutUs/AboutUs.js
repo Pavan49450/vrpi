@@ -8,7 +8,12 @@ import OurServices from "../../../components/AboutUsComponents/OurServices/OurSe
 import OurTeam from "../../../components/AboutUsComponents/OurTeam/OurTeam";
 import Quote from "../../../components/AboutUsComponents/Quote/Quote";
 import style from "./AboutUs.module.css";
+import { useEffect } from "react";
 export default function AboutUs() {
+  useEffect(() => {
+    document.title = "VRPI Group Of Companies - About Us";
+  }, []);
+
   return (
     <div className={style.AboutUs}>
       <MainScreen />

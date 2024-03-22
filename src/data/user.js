@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Devops } from "./EdutechCourses/Devops";
-import { JavaFullStackCourse } from "./EdutechCourses/JavaFullStack";
+import { Devops } from "./EdutechCourses/DevopsData/Devops";
+import { JavaFullStackCourse } from "./EdutechCourses/JavaFullStackData/JavaFullStack";
 import { useEffect } from "react";
 import axios from "axios";
 import { url } from "../constants";

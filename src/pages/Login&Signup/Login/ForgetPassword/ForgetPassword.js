@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import Button from "../../../../UI/Button/Button";
 import InputWithInvalidText from "../../../../UI/Input/InputWithInvalidText";
 import { emailValidation } from "../../../../components/InputValidations/InputValidations";
@@ -13,6 +14,10 @@ const ForgetPassword = () => {
   };
 
   const emailInput = useInput({ validateValue: emailValidation });
+
+  useEffect(() => {
+    document.title = "Forget Password";
+  });
 
   const handleSubmit = () => {
     console.log(emailInput.value);

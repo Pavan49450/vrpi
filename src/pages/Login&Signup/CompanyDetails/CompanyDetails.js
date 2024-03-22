@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import SignUpOrLoginContainer from "../../../components/SignUpOrLoginContainer/SignUpOrLoginConatainer";
 import CompanyDetailsComponent from "../../../components/Signup/CompanyDetailsComponent/CompanyDetailsComponent";
 const CompanyDetailsScreenData = {
@@ -7,6 +8,9 @@ const CompanyDetailsScreenData = {
   image: "companyDetailsImage.svg",
 };
 const CompanyDetails = () => {
+  useEffect(() => {
+    document.title = "Company Details Form";
+  }, []);
   return (
     <SignUpOrLoginContainer screenData={CompanyDetailsScreenData}>
       <CompanyDetailsComponent />

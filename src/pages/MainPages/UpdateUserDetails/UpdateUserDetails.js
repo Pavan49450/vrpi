@@ -24,6 +24,10 @@ const UpdateUserDetails = () => {
     image: "loginPageImage.svg",
   };
 
+  useEffect(() => {
+    document.title = "User Details Update Page";
+  }, []);
+
   const [formIsValid, setFormIsValid] = useState();
 
   const navigate = useNavigate();

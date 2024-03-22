@@ -1,5 +1,9 @@
-export default function Companies(){
-    return<div>
-        Companies
-    </div>
-} 
+import { useEffect } from "react";
+
+export default function Companies() {
+  useEffect(() => {
+    document.title = "VRPI Group Of Companies - Companies";
+  }, []);
+
+  return <div>Companies</div>;
+}

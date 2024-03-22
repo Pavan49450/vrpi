@@ -5,8 +5,12 @@ import OurClients from "../../../components/OurClients/OurClients";
 import OurCompanies from "../../../components/HomeComponents/OurCompanies/OurCompanies";
 import OurPartners from "../../../components/OurPartners/OurPartners";
 import WhyChooseUs from "../../../components/HomeComponents/WhyChooseUs/WhyChooseUs";
+import { useEffect } from "react";
 
 const Home = () => {
+  useEffect(() => {
+    document.title = "VRPI Group Of Companies - Home";
+  }, []);
   return (
     <div style={{ width: "100%" }}>
       <MainScreen />

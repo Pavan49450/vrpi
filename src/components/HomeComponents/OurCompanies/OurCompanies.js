@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import Button from "../../../UI/Button/Button";
 import { useDispatch } from "react-redux";
 import { setComingSoon } from "../../../store/ComingSoonSlice";
+import HideExtraText from "../../../UI/HideExtraText/HideExtraText";
 const OurCompanies = () => {
   const [selectedCompany, setSelectedCompany] = useState(Companies[0]);
 
@@ -25,6 +26,7 @@ const OurCompanies = () => {
             satisfaction, we collectively strive to elevate industry standards,
             drive progress, and make a positive impact on the world."
           </p>
+
           <div
             className={style.companies}
             style={{ backgroundColor: selectedCompany.backgroundColor }}
@@ -70,7 +72,10 @@ const Company = ({ company, handleCompanyClick }) => {
         <h2>{company.title}</h2>
         <Button onClick={handleLinks}>Explore more</Button>
       </div>
-      <p>{company.content}</p>
+      {/* <p>{company.content}</p> */}
+      <HideExtraText lines="6" height="100px">
+        {company.content}
+      </HideExtraText>
       <div className={style.belowContent}>
         <div className={style.companyImages}>
           {Companies.map((companyForImage, index) => (

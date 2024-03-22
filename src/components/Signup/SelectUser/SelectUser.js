@@ -29,10 +29,7 @@ const SelectUser = () => {
     <div className={style.container}>
       <div className={style.head}>
         <h1>Who you are?</h1>
-        <p>
-          Lorem ipsum dolor sit amet consectetur. Lorem ipsum dolor sit amet
-          consectetur.{" "}
-        </p>
+        <p>Please select a role</p>
       </div>
       <div className={style.users}>
         {users.map((user, index) => (

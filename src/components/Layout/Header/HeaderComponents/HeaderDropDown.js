@@ -40,7 +40,9 @@ const HeaderDropdown = ({ data, onMouseEnter, onMouseLeave, style }) => {
             }
             onMouseEnter={() => handleItemHover(item)}
           >
-            <div style={{ transform: "skew(20deg)" }}>{item.label}</div>
+            <div style={{ transform: "skew(20deg)" }} onClick={handleLinks}>
+              {item.label}
+            </div>
           </div>
         ))}
       </div>

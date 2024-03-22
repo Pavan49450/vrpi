@@ -24,6 +24,13 @@ const SignUp = () => {
 
   useEffect(() => {
     // console.log("userState->", userState);
+    if (userState.role === null && userState.step === null) {
+      document.title = "Welcome to Sign Up page!";
+    } else if (userState.role === "student" && userState.step === 1) {
+      document.title = "Personal Details";
+    } else {
+      document.title = "Thank You";
+    }
   }, [userState]);
 
   return (

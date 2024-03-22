@@ -20,6 +20,9 @@ const CourseDetails = () => {
         (course) => course.id === courseId
       );
       setContent(Course);
+      if (Course) {
+        document.title = `Course - ${Course.name}`;
+      }
     }
   }, [courseId]);
 

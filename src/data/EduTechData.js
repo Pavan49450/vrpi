@@ -1,9 +1,9 @@
-import { AI } from "./EdutechCourses/AI";
-import { Devops } from "./EdutechCourses/Devops";
-import { Embedded } from "./EdutechCourses/Embedded";
-import { JavaFullStackCourse } from "./EdutechCourses/JavaFullStack";
-import { Python } from "./EdutechCourses/Python";
-import { UIUX } from "./EdutechCourses/UIUX";
+import { AI } from "./EdutechCourses/AIData/AI";
+import { Devops } from "./EdutechCourses/DevopsData/Devops";
+import { Embedded } from "./EdutechCourses/EmbeddedData/Embedded";
+import { JavaFullStackCourse } from "./EdutechCourses/JavaFullStackData/JavaFullStack";
+import { Python } from "./EdutechCourses/PythonData/Python";
+import { UIUX } from "./EdutechCourses/UIUXData/UIUX";
 
 const mainContent = {
   head: "For hundreds of succesful students here embrace our new COMMUNITY explore and grow",

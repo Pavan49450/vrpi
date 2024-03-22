@@ -1,0 +1,56 @@
+import { JFSCCourseContent } from "./CourseContent";
+import { JFSCSyllabus } from "./Syllabus";
+import { JFSCtoolsAndTechnologyUsed } from "./ToolsAndTechnologyUsed";
+
+const JFSCIntructorDetails = {
+  name: "Amol Jangid",
+  description: [
+    "I have total 12 years of IT experience. From last 9 years I am delivering the training in various technologies like MEAN Stack, MERN Stack, Java Full Stack, Python Full Stack.",
+  ],
+  image: "javaInstructor.jpeg",
+};
+
+export const JavaFullStackCourse = {
+  id: "1",
+  name: "Java Full-Stack",
+  courseLink: "/",
+  active: true,
+  type: "online",
+  content: [" Scholarship on course fee", "Virtual Classes"],
+
+  price: "34999",
+  buttonContent: "Enroll Now",
+  image: "javaCourse2.jpg",
+  language: "English",
+  live: {
+    onLive: true,
+    meetingLink: "",
+  },
+  recordedVideos: [
+    {
+      videoTitle: "Introduction to Java Programming",
+      videoDescription: "",
+      videoLink: "",
+    },
+    { videoTitle: "Setting up the JDE", videoDescription: "", videoLink: "" },
+    {
+      videoTitle: "Introduction to Java Programming",
+      videoDescription: "",
+      videoLink: "",
+    },
+    {
+      videoTitle: "Introduction to Java Programming",
+      videoDescription: "",
+      videoLink: "",
+    },
+  ],
+  instructor: JFSCIntructorDetails,
+  rating: "4.5",
+  reviewsCount: "10k",
+  studentsEnrolled: "50",
+  updatedDate: "Feb 2014",
+  toolsAndTechnologyUsed: JFSCtoolsAndTechnologyUsed,
+  courseContent: JFSCCourseContent,
+
+  syllabus: JFSCSyllabus,
+};
