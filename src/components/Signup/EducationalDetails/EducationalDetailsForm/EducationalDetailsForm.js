@@ -106,11 +106,23 @@ const EducationalDetailsForm = () => {
     } else if (statusCode < 0 && statusCode > 202) {
       console.log(error);
       console.log(responseData);
-      // setMessageType("error");
-      // setMessage(responseData.response.data.errorMessage);
+
       dispatch(setMessage(responseData.response.data.errorMessage, "error"));
     }
-  });
+    if (error) {
+      console.log(error);
+      console.log(responseData);
+      dispatch(
+        setMessage(
+          // responseData.response.data
+          //   ? responseData.response.data.errorMessage
+          //   :
+          responseData.message,
+          "error"
+        )
+      );
+    }
+  }, [statusCode, responseData]);
 
   const submitHandler = () => {
     const educationLevelFinal =
@@ -127,9 +139,9 @@ const EducationalDetailsForm = () => {
       degree: degreeFinal,
       institutionName: instituteNameInput.value,
       instituteLocation: instituteLocationInput.value,
-      startDate: startYearInput.value,
-      endDate: endYearInput.value,
-      grade: percentageInput.value,
+      startYear: startYearInput.value,
+      endYear: endYearInput.value,
+      percentageOrCgpa: percentageInput.value,
     };
     if (formIsValid) {
       // SuccessResponseHandler(formData);

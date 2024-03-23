@@ -113,7 +113,7 @@ const DashboardRoot = () => {
   useEffect(() => {
     // dispatch(fetchUserData());
     if (FetchUserData.userData) {
-      console.log("userData", FetchUserData.userData.user);
+      // console.log("userData", FetchUserData.userData.user);
     }
   }, [FetchUserData.userData]);
 

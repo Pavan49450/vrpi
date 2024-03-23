@@ -5,7 +5,7 @@ const WelcomeScreen = ({ user }) => {
     <>
       {user && (
         <div className={style.welcomeScreen}>
-          {console.log(user)}
+          {/* {console.log(user)} */}
           <h1>Welcome Back, {user.firstName}!</h1>
           <p>Always stay updated with your Profile</p>
         </div>

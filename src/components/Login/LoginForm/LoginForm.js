@@ -70,15 +70,15 @@ const LoginForm = () => {
             navigate("/dashboard");
           }
         } else {
-          // console.log("error->", error);
-          // console.log("error->", responseData);
+          console.log("error->", error);
+          console.log("error->", responseData);
           if (error !== null || error !== undefined) {
-            // setErrorMessage(responseData.response.data.statusMessage);
             dispatch(
               setMessage(
-                responseData.response.data.statusMessage
-                  ? responseData.response.data.statusMessage
-                  : responseData.response.data.errorMessage,
+                // responseData.response.data.statusMessage
+                //   ? responseData.response.data.statusMessage
+                //   : responseData.response.data.errorMessage,
+                responseData.message,
                 "error"
               )
             );

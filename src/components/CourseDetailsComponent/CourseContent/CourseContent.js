@@ -1,13 +1,16 @@
-import React, { useState } from "react";
-import styles from "./CourseContent.module.css"; // Import your modular CSS file
+import React, { useEffect, useState } from "react";
+import styles from "./CourseContent.module.css";
 import Section from "../../../UI/Sections/Section";
 import Button from "../../../UI/Button/Button";
 import { useDispatch } from "react-redux";
 import { setComingSoon } from "../../../store/ComingSoonSlice";
+import UserDataComponent from "../../../data/user";
+import { CircularProgress } from "@material-ui/core";
+import PleaseEnrollBtn from "./PleaseEnrollBtn/PleaseEnrollBtn";
 
-const CourseContent = ({ courseContent }) => {
+const CourseContent = ({ courseContent, courId }) => {
   const [openChapters, setOpenChapters] = useState([]);
-  const [openModules, setOpenModule] = useState([]);
+  const [openModules, setOpenModules] = useState([]);
 
   const dispatch = useDispatch();
 
@@ -21,104 +24,177 @@ const CourseContent = ({ courseContent }) => {
 
   const toggleModule = (index) => {
     if (openModules.includes(index)) {
-      setOpenModule(openModules.filter((item) => item !== index));
+      setOpenModules(openModules.filter((item) => item !== index));
     } else {
-      setOpenModule([...openModules, index]);
+      setOpenModules([...openModules, index]);
     }
   };
 
-  const isChapterOpen = (index) => {
-    return openChapters.includes(index);
-  };
+  const [enrolled, setEnrolled] = useState(false);
 
-  const isModuleOpen = (index) => {
-    return openModules.includes(index);
-  };
+  const FetchUserData = UserDataComponent();
+
+  useEffect(() => {
+    if (FetchUserData) {
+      // console.log("userData", FetchUserData.userData.enrolledCourses);
+      if (FetchUserData.userData.enrolledCourses.length <= 0) {
+        setEnrolled(false);
+      } else if (FetchUserData.userData.enrolledCourses.includes(courId)) {
+        console.log("enrolled");
+        setEnrolled(true);
+      }
+    }
+  }, [FetchUserData, courId]);
+
   return (
     <Section title="Course Content">
-      <h1 className={styles.techStack}>{courseContent.techStack}</h1>
-
-      <div className={styles.courseContent}>
-        {courseContent.chapters.map((chapter, chapterIndex) => (
-          <div key={chapterIndex} className={styles.chapter}>
-            <div
-              className={styles.chapterHeader}
-              onClick={() => toggleChapter(chapterIndex)}
-            >
-              <h3>{chapter.title}</h3>
-              {/* <span> */}
-              {isChapterOpen(chapterIndex) ? (
-                <img
-                  src={require("../../../assets/courses/arrowUpPrimary.png")}
-                  alt=""
-                  style={{
-                    width: "30px",
-                  }}
-                ></img>
-              ) : (
-                <img
-                  src={require("../../../assets/courses/arrowDownPrimary.png")}
-                  alt=""
-                  style={{
-                    width: "30px",
-                  }}
-                ></img>
-              )}
-              {/* </span> */}
-            </div>
-            {isChapterOpen(chapterIndex) && (
-              <div className={styles.modules}>
-                {chapter.modules.map((module, moduleIndex) => (
-                  <div
-                    key={moduleIndex}
-                    className={styles.module}
-                    style={{ cursor: module.lessons ? "pointer" : "default" }}
-                    onClick={() => toggleModule(moduleIndex)}
-                  >
-                    <div className={styles.moduleEach}>
-                      <h4>{module.title}</h4>
-                      {module.lessons && !isModuleOpen(moduleIndex) && (
-                        <img
-                          src={require("../../../assets/courses/arrowRight.png")}
-                          alt=""
-                          style={{
-                            width: "50px",
-                          }}
-                        ></img>
-                      )}
-                    </div>
-                    {module.lessons && isModuleOpen(moduleIndex) && (
-                      <ul className={styles.lessons}>
-                        {module.lessons.map((lesson, lessonIndex) => (
-                          <li key={lessonIndex} className={styles.lesson}>
-                            {lesson.title}
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-        ))}
-      </div>
-      <div className={styles.realProject}>
-        <h2>
-          Get Hands-on experience by enrolling to our course which includes a
-          Real-Time Project
-        </h2>
-        <Button
-          onClick={() => {
-            dispatch(setComingSoon(true));
-          }}
-          className={styles.viewBtn}
-        >
-          View My Project
-        </Button>
-      </div>
+      {/* {enrolled && ( */}
+      <>
+        <h1 className={styles.techStack}>{courseContent.techStack}</h1>
+        <div className={styles.courseContent}>
+          {courseContent.chapters.map((chapter, chapterIndex) => (
+            <Chapter
+              key={chapterIndex}
+              chapter={chapter}
+              chapterIndex={chapterIndex}
+              isOpen={openChapters.includes(chapterIndex)}
+              toggleChapter={toggleChapter}
+              openModules={openModules}
+              toggleModule={toggleModule}
+              isFirstChapter={chapterIndex === 0}
+            />
+          ))}
+        </div>
+        <div className={styles.realProject}>
+          <h2>
+            Get Hands-on experience by enrolling to our course which includes a
+            Real-Time Project
+          </h2>
+          <Button
+            onClick={() => {
+              dispatch(setComingSoon(true));
+            }}
+            className={styles.viewBtn}
+          >
+            View My Project
+          </Button>
+        </div>
+      </>
+      {/* )} */}
     </Section>
   );
 };
 
 export default CourseContent;
+
+const ArrowToggleComponent = ({ isOpen, image1, image2 }) => {
+  return (
+    <img
+      src={require(`../../../assets/courses/${isOpen ? image1 : image2}`)}
+      alt=""
+      style={{ width: "30px" }}
+    />
+  );
+};
+const PleaseEnroll = () => {
+  return (
+    <div className={styles.pleaseEnroll}>
+      {console.log("Please Enroll")}
+      {/* Please enroll to access this chapter. */}
+      <h2>Sorry!! You are not enrolled the course so far</h2>
+      <p>To get to know more about the course structure Join our course</p>
+      <PleaseEnrollBtn />
+    </div>
+  );
+};
+const Chapter = ({
+  chapter,
+  chapterIndex,
+  isOpen,
+  toggleChapter,
+  openModules,
+  toggleModule,
+  isFirstChapter,
+  enrolled,
+}) => {
+  const handleClickChapter = () => {
+    toggleChapter(chapterIndex);
+  };
+
+  return (
+    <div key={chapterIndex} className={styles.chapter}>
+      <div
+        className={styles.chapterHeader}
+        onClick={handleClickChapter}
+        style={{ cursor: "pointer" }}
+      >
+        <h3>{chapter.title}</h3>
+        <ArrowToggleComponent
+          isOpen={isOpen}
+          image1="arrowUpPrimary.png"
+          image2="arrowDownPrimary.png"
+        />
+      </div>
+      {isOpen && (
+        <>
+          {isFirstChapter ? (
+            <div className={styles.modules}>
+              {chapter.modules.map((module, moduleIndex) => (
+                <Module
+                  key={moduleIndex}
+                  module={module}
+                  moduleIndex={moduleIndex}
+                  isOpen={openModules.includes(moduleIndex)}
+                  toggleModule={toggleModule}
+                  showLessons={moduleIndex < 3} // Only show lessons for first three modules
+                />
+              ))}
+            </div>
+          ) : (
+            <PleaseEnroll />
+          )}
+        </>
+      )}
+    </div>
+  );
+};
+
+const Module = ({ module, moduleIndex, isOpen, toggleModule, showLessons }) => {
+  const handleClickModule = () => {
+    toggleModule(moduleIndex);
+  };
+
+  return (
+    <div
+      key={moduleIndex}
+      className={styles.module}
+      style={{ cursor: "pointer" }}
+    >
+      <div className={styles.moduleEach} onClick={handleClickModule}>
+        <h4>{module.title}</h4>
+        {module.lessons && !isOpen && (
+          <img
+            src={require("../../../assets/courses/arrowRight.png")}
+            alt=""
+            style={{ width: "50px" }}
+          />
+        )}
+      </div>
+      {module.lessons && isOpen && (
+        <>
+          {showLessons ? (
+            <ul className={styles.lessons}>
+              {module.lessons.map((lesson, lessonIndex) => (
+                <li key={lessonIndex} className={styles.lesson}>
+                  {lesson.title}
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <PleaseEnroll />
+          )}
+        </>
+      )}
+    </div>
+  );
+};

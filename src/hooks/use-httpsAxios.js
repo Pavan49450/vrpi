@@ -15,7 +15,6 @@ const useHttpsAxios = () => {
     // for (const entry of requestConfig.body.entries()) {
     //   console.log(entry);
     // }
-    console.log(responseData);
     try {
       const response = await axios({
         method: requestConfig.method ? requestConfig.method : "GET",

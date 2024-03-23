@@ -84,7 +84,7 @@
   color: var(--primary);
 }
 
-.buttons button {
+/* .buttons button {
   border-radius: 10px;
   padding: 0.2rem;
   font-size: 1.1rem;
@@ -94,7 +94,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-}
+} */
 
 @media (max-width: 768px) {
   .container {

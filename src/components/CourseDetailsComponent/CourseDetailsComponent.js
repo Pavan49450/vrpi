@@ -13,7 +13,10 @@ const CourseDetails = ({ content }) => {
       <MainSection content={content} />
       <Syllabus syllabus={content.syllabus} />
       <CourseBenefits benefits={content.benefits} />
-      <CourseContent courseContent={content.courseContent} />
+      <CourseContent
+        courseContent={content.courseContent}
+        courId={content.id}
+      />
       <ToolsRequired toolsRequired={content.toolsAndTechnologyUsed} />
       <CourseEligibility />
       <WhyToChooseUs />

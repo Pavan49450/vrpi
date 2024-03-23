@@ -22,7 +22,7 @@ const MyDashboard = () => {
     //   setUserData(userDataResponse);
     // };
 
-    console.log("userdata", FetchUserData);
+    // console.log("userdata", FetchUserData);
     if (FetchUserData) {
       document.title = `${FetchUserData.firstName} Dashboard`;
     }

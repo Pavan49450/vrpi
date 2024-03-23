@@ -25,7 +25,6 @@ const UserDataComponent = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log("run");
     if (userId && userId !== null) {
       sendRequest({
         url: `${url.backendBaseUrl}/vrpi-user/get-user-details/${userId}`,
