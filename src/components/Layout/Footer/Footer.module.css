@@ -168,6 +168,10 @@
     align-items: flex-start;
     padding-left: 3rem;
   }
+
+  .container {
+    margin: 0;
+  }
   .Footer div {
     /* margin: auto; */
   }

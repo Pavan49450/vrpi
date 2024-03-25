@@ -12,7 +12,7 @@ const ConfirmationModal = ({
   return (
     <>
       {isOpen && (
-        <div className={style.modalOverlay}>
+        <div className={style.modalOverlay} onClick={onRequestClose}>
           <div className={style.modal}>
             <div className={style.modalHeader}>
               <h2>{title}</h2>

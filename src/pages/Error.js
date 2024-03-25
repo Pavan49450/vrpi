@@ -18,10 +18,10 @@ const ErrorPage = ({ errorData }) => {
           <p>{errorData.message}</p>
           <Button
             onClick={() => {
-              navigate(-1);
+              navigate(errorData.navigateTo);
             }}
           >
-            Go Back
+            {errorData.navigateButton}
           </Button>
         </div>
       )}

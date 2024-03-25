@@ -64,7 +64,7 @@ const PersonalDataForm = ({ role }) => {
 
   const [aadhaarCardFrontFile, setAadhaarCardFrontFile] = useState(null);
   const [aadhaarCardBackFile, setAadhaarCardBackFile] = useState(null);
-  const [passportFile, setPassportFile] = useState(null);
+  const [profilePhotoFile, setProfilePhotoFile] = useState(null);
 
   const handleAadhaarCardFrontChange = (file) => {
     setAadhaarCardFrontFile(file);
@@ -73,8 +73,8 @@ const PersonalDataForm = ({ role }) => {
     setAadhaarCardBackFile(file);
   };
 
-  const handlePassportChange = (file) => {
-    setPassportFile(file);
+  const handleProfilePhotoChange = (file) => {
+    setProfilePhotoFile(file);
   };
 
   const dispatch = useDispatch();
@@ -178,7 +178,7 @@ const PersonalDataForm = ({ role }) => {
           aadharCardNumber: aadhaarInput?.value,
           aadharFront: aadhaarCardFrontFile,
           aadharBack: aadhaarCardBackFile,
-          profilePhoto: passportFile,
+          profilePhoto: profilePhotoFile,
           roles: role,
         };
       } else if (role === "client") {
@@ -341,7 +341,7 @@ const PersonalDataForm = ({ role }) => {
         <div className={style.line3}>
           <CustomDatePicker
             selectedDate={DOB}
-            onChange={(date) => setDOB(date.toString())}
+            onChange={(date) => setDOB(date && date.toString())}
             className={`${style.Input} ${style.date}`}
             placeholderText="Date of Birth"
             mandatory
@@ -479,8 +479,8 @@ const PersonalDataForm = ({ role }) => {
   const Line8 = (
     <div className={style.line8}>
       <CustomFileUploader
-        onChange={handlePassportChange}
-        buttonText="Upload Passport"
+        onChange={handleProfilePhotoChange}
+        buttonText="Upload Profile Photo"
         acceptedFileType={["image/jpeg", "image/png"]}
       />
       <ul>

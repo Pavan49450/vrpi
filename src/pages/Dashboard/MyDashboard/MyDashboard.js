@@ -23,8 +23,8 @@ const MyDashboard = () => {
     // };
 
     // console.log("userdata", FetchUserData);
-    if (FetchUserData) {
-      document.title = `${FetchUserData.firstName} Dashboard`;
+    if (FetchUserData.userData.user) {
+      document.title = `${FetchUserData.userData.user.firstName} - Dashboard`;
     }
 
     setTimeout(() => {
@@ -37,8 +37,11 @@ const MyDashboard = () => {
     <>
       {FetchUserData.userData && !FetchUserData.isLoading ? (
         <div className={style.container}>
-          {!hideWelcome && FetchUserData && (
-            <WelcomeScreen user={FetchUserData.userData.user} />
+          {FetchUserData && (
+            <WelcomeScreen
+              user={FetchUserData.userData.user}
+              onClose={hideWelcome}
+            />
           )}
           <div className={style.containers}>
             <div className={style.mainContainer}>

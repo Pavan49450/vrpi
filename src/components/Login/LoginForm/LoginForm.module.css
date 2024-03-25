@@ -83,11 +83,6 @@
   height: 50px;
 }
 
-.submitBtn:hover {
-  background: transparent;
-  color: var(--primary);
-}
-
 .signUpBtn {
   background-color: transparent;
   width: 70%;
@@ -95,18 +90,12 @@
   color: var(--primary);
   border-radius: 4px;
   font-size: 1.2rem;
-  /* font-family: "Libre Baskerville", serif; */
-  /* margin-right: 15px; */
+
   transition: all 0.5s ease;
   text-align: center;
   text-decoration: none;
   padding: 0.5rem 0;
   border: 1px solid var(--primary);
-}
-
-.signUpBtn:hover {
-  background-color: transparent;
-  color: var(--primary);
 }
 
 .checkPassword {

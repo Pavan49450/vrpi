@@ -19,6 +19,8 @@ const CustomDatePicker = ({
   const handleLabelClick = () => {
     setIsFocused(true);
     datePickerRef.current.input.focus();
+    // datePickerRef.current.setOpen(true);
+    // datePickerRef.current.click();
   };
 
   const handleDatePickerBlur = () => {

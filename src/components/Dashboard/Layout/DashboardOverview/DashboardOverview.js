@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CustomImage from "../../../../UI/Image/Image";
 import style from "./DashboardOverview.module.css";
 import { useDispatch, useSelector } from "react-redux";
@@ -17,6 +17,22 @@ const DashboardOverview = ({
   const { pathname } = useLocation();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const [hideDropdown, setHideDropdown] = useState(false);
+
+  useEffect(() => {
+    let timeoutId;
+    if (!showProfileDropDown) {
+      timeoutId = setTimeout(() => {
+        setHideDropdown(true);
+      }, 300);
+    } else {
+      setHideDropdown(false);
+    }
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [showProfileDropDown]);
 
   const handleLogout = () => {
     setShowProfileDropDown(!showProfileDropDown);
@@ -72,26 +88,29 @@ const DashboardOverview = ({
             </div>
           )}
         </div>
-        <div
-          onMouseEnter={() => setShowProfileDropDown(true)}
-          onMouseLeave={() => setShowProfileDropDown(false)}
-          className={`${style.dropdown} ${
-            showProfileDropDown && style.showDropdown
-          }`}
-        >
+
+        {!hideDropdown && (
           <div
-            className={style.options}
-            onClick={() => {
-              setShowProfileDropDown(!showProfileDropDown);
-              navigate("/dashboard/studentProfile");
-            }}
+            onMouseEnter={() => setShowProfileDropDown(true)}
+            onMouseLeave={() => setShowProfileDropDown(false)}
+            className={`${style.dropdown} ${
+              showProfileDropDown && style.showDropdown
+            }`}
           >
-            Profile
+            <div
+              className={style.options}
+              onClick={() => {
+                setShowProfileDropDown(!showProfileDropDown);
+                navigate("/dashboard/studentProfile");
+              }}
+            >
+              <span>Profile</span>
+            </div>
+            <div className={style.options} onClick={handleLogout}>
+              <span>Logout</span>
+            </div>
           </div>
-          <div className={style.options} onClick={handleLogout}>
-            Logout
-          </div>
-        </div>
+        )}
       </div>
       <ConfirmationModal
         isOpen={logoutModalOpen}

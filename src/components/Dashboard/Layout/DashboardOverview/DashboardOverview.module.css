@@ -16,13 +16,16 @@
   position: absolute;
   top: 50px;
   right: 0rem;
+
   opacity: 0;
+  /* transform: translate(0, -200%); */
   /* visibility: hidden; */
   transition: all 0.3s ease;
 }
 
 .showDropdown {
   opacity: 1;
+  /* transform: translate(0); */
   visibility: visible;
 }
 

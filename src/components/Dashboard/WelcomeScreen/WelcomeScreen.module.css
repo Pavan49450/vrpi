@@ -17,6 +17,12 @@
   opacity: 0.8;
 }
 
+.hide {
+  transition: all 0.3s ease;
+  transform: translate(-100%);
+  opacity: 0;
+}
+
 @media (max-width: 650px) {
   .welcomeScreen {
     margin: 0;

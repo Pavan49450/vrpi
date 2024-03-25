@@ -4,8 +4,8 @@
   border: 0px solid !important;
   box-shadow: 0px 0px 4px #ccc !important;
   position: absolute;
-  top: 25%;
-  left: 25%;
+  top: 0;
+  /* left: 25%; */
 }
 
 .react-datepicker__day--selected {
@@ -23,8 +23,8 @@
   border: 1px solid #cccccc73;
   margin: 0 !important;
   border-radius: 0px !important;
-  padding: 0.5rem;
-  width: 50px !important;
+  padding: 0.5rem 0;
+  width: 45px !important;
 }
 .react-datepicker__day-name {
   border: 0px solid;
@@ -55,6 +55,15 @@
   height: 100%;
   top: 0;
   left: 0;
-  transform: none !important;
+  /* transform: none !important;   */
   /* background-color: #00000056; */
+}
+
+.react-datepicker__triangle {
+  /* bottom: 80% !important; */
+}
+
+.react-datepicker-popper {
+  display: flex !important;
+  justify-content: center;
 }

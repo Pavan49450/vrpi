@@ -13,8 +13,8 @@ const ProfilePage = () => {
   const FetchUserData = UserDataComponent();
 
   useEffect(() => {
-    if (FetchUserData) {
-      document.title = `${FetchUserData.firstName} Dashboard`;
+    if (FetchUserData.userData.user) {
+      document.title = `${FetchUserData.userData.user.firstName} - Profile Page`;
     }
   });
   return (

@@ -54,6 +54,8 @@ function App() {
     title: "Oh no, Something went wrong",
     message: "The issue may be Temporary. Please go back and try again",
     image: "commonErrorPage.png",
+    navigateButton: "Go to Home Page",
+    navigateTo: "/",
     // button: {
     //   title: "Go Back",
     //   actions: () => {
@@ -66,6 +68,8 @@ function App() {
     message:
       "Please click on the below button, where it redirects to previous page.",
     image: "pageNotFound.png",
+    navigateButton: "Go to dashboard",
+    navigateTo: "/dashboard",
     // button: {
     //   title: "Go Back",
     //   actions: () => {
