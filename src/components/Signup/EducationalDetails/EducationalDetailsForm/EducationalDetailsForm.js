@@ -18,6 +18,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { CircularProgress } from "@material-ui/core";
 import Message from "../../../../UI/Popup/Message";
 import { setMessage } from "../../../../store/MessageDisplay/MessageActions";
+import LoadingButton from "../../../../UI/LoadingButton/LoadingButton";
 
 const EducationalDetailsForm = () => {
   const instituteNameInput = useInput({ validateValue: nameValidation });
@@ -337,18 +338,15 @@ const EducationalDetailsForm = () => {
         {Line5}
       </div>
       <div className={style.submitButton}>
-        <Button
+        <LoadingButton
           onClick={submitHandler}
           disabled={!formIsValid}
-          style={{ backgroundColor: !formIsValid && "#ccc" }}
+          style={{ backgroundColor: !formIsValid && "#ccc", width: "200px" }}
           doNotScrollToTop={true}
-        >
-          {isLoading ? (
-            <CircularProgress style={{ color: "white" }} />
-          ) : (
-            "Save & Submit"
-          )}
-        </Button>
+          text={"Save & Submit"}
+          loaderColor={"white"}
+          isLoading={isLoading}
+        ></LoadingButton>
       </div>
     </div>
   );

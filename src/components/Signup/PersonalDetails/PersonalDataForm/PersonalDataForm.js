@@ -24,6 +24,7 @@ import useFormatDate from "../../../../hooks/use-formatDate";
 import Message from "../../../../UI/Popup/Message";
 import { CircularProgress } from "@material-ui/core";
 import { setMessage } from "../../../../store/MessageDisplay/MessageActions";
+import LoadingButton from "../../../../UI/LoadingButton/LoadingButton";
 
 const Genders = [
   { value: "female", label: "Female" },
@@ -517,22 +518,18 @@ const PersonalDataForm = ({ role }) => {
         {role === "student" && Line8}
       </div>
       <div className={style.buttonContainer}>
-        <Button
+        <LoadingButton
           onClick={handleSubmit}
           className={style.submitBtn}
           disabled={!formIsValid}
           style={{
             backgroundColor: !formIsValid && "#ccc",
-            padding: isLoading && "0",
           }}
+          text="Save & Submit"
           doNotScrollToTop={true}
-        >
-          {isLoading ? (
-            <CircularProgress style={{ color: "white" }} />
-          ) : (
-            "Save & Submit"
-          )}
-        </Button>
+          loaderColor="white"
+          isLoading={isLoading}
+        />
       </div>
     </div>
   );

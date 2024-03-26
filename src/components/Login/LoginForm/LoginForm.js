@@ -22,6 +22,7 @@ import {
 } from "../../../store/LoginStateActions";
 import { setMessage } from "../../../store/MessageDisplay/MessageActions";
 import { MandatoryCertificatesData } from "../../../data/user";
+import LoadingButton from "../../../UI/LoadingButton/LoadingButton";
 
 const LoginForm = () => {
   const [formIsValid, setFormIsValid] = useState(false);
@@ -184,21 +185,16 @@ const LoginForm = () => {
         setRememberMe={setRememberMe}
         setTermsAccepted={setTermsAccepted}
       />
-      <Button
+
+      <LoadingButton
         className={formIsValid ? style.submitBtn : `${style.disabled}`}
         disabled={!formIsValid}
-        // style={{ backgroundColor: !formIsValid && "#ccc" }}
+        style={{ backgroundColor: !formIsValid && "#ccc" }}
+        text={"Login"}
+        loaderColor="white"
+        isLoading={isLoading}
         onClick={submitHandler}
-      >
-        {isLoading ? (
-          <>
-            <CircularProgress style={{ color: "white" }} />
-            <span>Loading...</span>
-          </>
-        ) : (
-          "Login"
-        )}
-      </Button>
+      />
       <div className={style.line}>
         <div className={style.lineOn}></div>
         <span className={style.or}>Don’t have an Account?</span>

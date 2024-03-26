@@ -11,6 +11,7 @@ import { url } from "../../../constants";
 import { CircularProgress } from "@material-ui/core";
 import { useNavigate } from "react-router-dom";
 import { setMessage } from "../../../store/MessageDisplay/MessageActions";
+import LoadingButton from "../../../UI/LoadingButton/LoadingButton";
 
 const MandatoryCertificatesForm = () => {
   const [incomeCertificateFile, setIncomeCertificateFile] = useState(null);
@@ -212,19 +213,16 @@ const MandatoryCertificatesForm = () => {
         {Line3}
       </div>
       <div className={style.buttonContainer}>
-        <Button
+        <LoadingButton
           onClick={handleSubmit}
           className={style.submitBtn}
           disabled={!formIsValid}
           style={{ backgroundColor: !formIsValid && "#ccc" }}
           doNotScrollToTop={true}
-        >
-          {isLoading ? (
-            <CircularProgress style={{ color: "white" }} />
-          ) : (
-            "Save & Submit"
-          )}
-        </Button>
+          isLoading={isLoading}
+          text={"Sava & Submit"}
+          loaderColor={"white"}
+        ></LoadingButton>
       </div>
     </div>
   );

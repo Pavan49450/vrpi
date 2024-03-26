@@ -5,7 +5,7 @@ import Button from "../../../UI/Button/Button";
 
 import style from "./MainSection.module.css";
 
-import PleaseEnrollBtn from "../CourseContent/PleaseEnrollBtn/PleaseEnrollBtn";
+import PleaseEnrollBtn from "../PleaseEnrollBtn/PleaseEnrollBtn";
 
 const MainSection = ({ content }) => {
   const navigate = useNavigate();
@@ -50,7 +50,7 @@ const MainSection = ({ content }) => {
           <span>Provided Course Language - “ {content.language} ”</span>
         </div>
         <div className={style.buttons}>
-          <PleaseEnrollBtn />
+          <PleaseEnrollBtn courseId={content.id} />
           <Button
             // onClick={() => dispatch(setComingSoon(true))}
             onClick={() => navigate("/contact")}

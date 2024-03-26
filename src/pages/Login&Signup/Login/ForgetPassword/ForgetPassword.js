@@ -5,6 +5,9 @@ import { emailValidation } from "../../../../components/InputValidations/InputVa
 import SignUpOrLoginContainer from "../../../../components/SignUpOrLoginContainer/SignUpOrLoginConatainer";
 import useInput from "../../../../hooks/use-Input";
 import style from "./ForgetPassword.module.css";
+import { url } from "../../../../constants";
+import useHttpsAxios from "../../../../hooks/use-httpsAxios";
+import { CircularProgress } from "@material-ui/core";
 const ForgetPassword = () => {
   const loginScreenData = {
     title: "Welcome Back!",
@@ -19,8 +22,39 @@ const ForgetPassword = () => {
     document.title = "Forget Password";
   });
 
+  const { sendRequest, responseData, isLoading, statusCode, error } =
+    useHttpsAxios();
+
+  const SuccessResponseHandler = () => {
+    // dispatch(setMessage("Uploaded your Certificates Successfully", "success"));
+    // setTimeout(() => {
+    //   navigate("/dashboard");
+    // }, [1500]);
+  };
+
+  useEffect(() => {
+    if (emailInput.isValid && (statusCode === 200 || statusCode === 201)) {
+      console.log(responseData);
+      SuccessResponseHandler();
+    } else if (statusCode < 0 && statusCode > 202) {
+      console.log(error);
+      console.log(responseData);
+    }
+  });
+
   const handleSubmit = () => {
-    console.log(emailInput.value);
+    if (emailInput.isValid) {
+      const formData = {
+        email: emailInput.value,
+      };
+      console.log(formData);
+      // SuccessResponseHandler();
+      sendRequest({
+        url: `${url.backendBaseUrl}/vrpi-user/forgot-password`,
+        method: "POST",
+        data: formData,
+      });
+    }
   };
 
   return (
@@ -51,7 +85,11 @@ const ForgetPassword = () => {
             disabled={!emailInput.isValid}
             style={{ backgroundColor: !emailInput.isValid && "#ccc" }}
           >
-            Submit
+            {isLoading ? (
+              <CircularProgress style={{ color: "white" }} />
+            ) : (
+              "Submit"
+            )}
           </Button>
         </div>
       </SignUpOrLoginContainer>

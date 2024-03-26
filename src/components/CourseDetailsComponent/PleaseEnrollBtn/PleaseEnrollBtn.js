@@ -1,13 +1,13 @@
-import { CircularProgress } from "@material-ui/core";
-import Button from "../../../../UI/Button/Button";
-// import styles from "./PleaseEnrollBtn.module.css";
 import { useNavigate } from "react-router-dom";
-import UserDataComponent from "../../../../data/user";
+import UserDataComponent from "../../../data/user";
 import { useSelector } from "react-redux";
-import { useState } from "react";
-import ConfirmationModal from "../../../../UI/ConfirmModel/ConfirmationModal";
+import { useEffect, useState } from "react";
+import ConfirmationModal from "../../../UI/ConfirmModel/ConfirmationModal";
+import useHttpsAxios from "../../../hooks/use-httpsAxios";
+import { url } from "../../../constants";
+import LoadingButton from "../../../UI/LoadingButton/LoadingButton";
 
-const PleaseEnrollBtn = ({ userId, courseId }) => {
+const PleaseEnrollBtn = ({ courseId }) => {
   const navigate = useNavigate();
 
   // const userData = useSelector((state) => state.userData.userData);
@@ -15,9 +15,13 @@ const PleaseEnrollBtn = ({ userId, courseId }) => {
   const isVRPIUserLoggedIn = useSelector(
     (state) => state.login.isVRPIUserLoggedIn
   );
+  const userId = useSelector((state) => state.login.userId);
 
   const [confirmationModalOpen, setConfirmationModalOpen] = useState(false);
   const [confirmationMessage, setConfirmationMessage] = useState("");
+
+  const { sendRequest, isLoading, error, responseData, statusCode } =
+    useHttpsAxios();
 
   const handleLoginHandler = () => {
     console.log("here");
@@ -60,21 +64,37 @@ const PleaseEnrollBtn = ({ userId, courseId }) => {
     console.log("You are ready!");
   };
 
+  // useEffect(() => {
+  //   if (statusCode === 200 || statusCode === 201) {
+  //     console.log(responseData);
+  //     // SuccessResponseHandler();
+  //   } else if (statusCode < 0 && statusCode > 202) {
+  //     console.log(error);
+  //     console.log(responseData);
+  //   }
+
+  //   if (error) {
+  //     console.log(error);
+  //     console.log("res->", responseData);
+  //   }
+  // }, [responseData]);
+
   const handleConfirm = () => {
     setConfirmationModalOpen(false);
-    if (!isVRPIUserLoggedIn) {
-      navigate("/login");
-    } else if (!FetchUserData.userData.user.educationalDetails) {
-      // sendRequest({
-      //   url: "http://localhost:8082/enroll-course?courseId=1&userId=13",
-      //   method: "POST",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      // });
-      navigate("/educationalDetails");
-    } else if (FetchUserData.userData.uploadedCertificates < 4) {
-      navigate("/mandatoryCertificates");
+    if (FetchUserData.userData.user) {
+      console.log("In");
+      if (!isVRPIUserLoggedIn) {
+        navigate("/login");
+      } else if (!FetchUserData.userData.user.educationalDetails) {
+        // sendRequest({
+        //   url: `${url.backendBaseUrl}/enroll-course?courseId=${courseId}&userId=${userId}`,
+        //   method: "POST",
+
+        // });
+        navigate("/educationalDetails");
+      } else if (FetchUserData.userData.uploadedCertificates < 4) {
+        navigate("/mandatoryCertificates");
+      }
     }
   };
 
@@ -92,9 +112,13 @@ const PleaseEnrollBtn = ({ userId, courseId }) => {
         onConfirm={handleConfirm}
         onCancel={handleCancel}
       />
-      <Button onClick={handleLoginHandler} doNotScrollToTop={true}>
-        Enroll Now
-      </Button>
+
+      <LoadingButton
+        text="Enroll now"
+        isLoading={isLoading}
+        loaderColor="white"
+        onClick={handleLoginHandler}
+      />
     </>
   );
 };

@@ -10,6 +10,8 @@ import {
 } from "../../../InputValidations/InputValidations";
 import style from "./CompanyDetailsForm.module.css";
 import Button from "../../../../UI/Button/Button";
+import LoadingButton from "../../../../UI/LoadingButton/LoadingButton";
+import useHttpsAxios from "../../../../hooks/use-httpsAxios";
 
 const lookingForData = [
   { label: "Rent-a-Desk", value: "Rent-a-Desk" },
@@ -45,6 +47,8 @@ const CompanyDetailsForm = () => {
     establishedYearInput.isValid,
     locationInput.isValid,
   ]);
+
+  const { isLoading } = useHttpsAxios();
 
   const submitHandler = () => {
     const formData = {
@@ -161,13 +165,23 @@ const CompanyDetailsForm = () => {
         {Line4}
       </div>
       <div className={style.submitButton}>
-        <Button
+        {/* <Button
           onClick={submitHandler}
           disabled={!formIsValid}
           style={{ backgroundColor: !formIsValid && "#ccc" }}
         >
           Save & Submit
-        </Button>
+        </Button> */}
+
+        <LoadingButton
+          onClick={submitHandler}
+          disabled={!formIsValid}
+          style={{ backgroundColor: !formIsValid && "#ccc", width: "200px" }}
+          doNotScrollToTop={true}
+          text={"Save & Submit"}
+          loaderColor={"white"}
+          isLoading={isLoading}
+        ></LoadingButton>
       </div>
     </div>
   );

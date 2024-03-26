@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { setComingSoon } from "../../../store/ComingSoonSlice";
 import UserDataComponent from "../../../data/user";
 import { CircularProgress } from "@material-ui/core";
-import PleaseEnrollBtn from "./PleaseEnrollBtn/PleaseEnrollBtn";
+import PleaseEnrollBtn from "../PleaseEnrollBtn/PleaseEnrollBtn";
 
 const CourseContent = ({ courseContent, courId }) => {
   const [openChapters, setOpenChapters] = useState([]);
@@ -62,6 +62,7 @@ const CourseContent = ({ courseContent, courId }) => {
               openModules={openModules}
               toggleModule={toggleModule}
               isFirstChapter={chapterIndex === 0}
+              courseId={courId}
             />
           ))}
         </div>
@@ -96,14 +97,14 @@ const ArrowToggleComponent = ({ isOpen, image1, image2 }) => {
     />
   );
 };
-const PleaseEnroll = () => {
+const PleaseEnroll = ({ courseId }) => {
   return (
     <div className={styles.pleaseEnroll}>
       {console.log("Please Enroll")}
       {/* Please enroll to access this chapter. */}
       <h2>Sorry!! You are not enrolled the course so far</h2>
       <p>To get to know more about the course structure Join our course</p>
-      <PleaseEnrollBtn />
+      <PleaseEnrollBtn courseId={courseId} />
     </div>
   );
 };
@@ -116,6 +117,7 @@ const Chapter = ({
   toggleModule,
   isFirstChapter,
   enrolled,
+  courseId,
 }) => {
   const handleClickChapter = () => {
     toggleChapter(chapterIndex);
@@ -147,11 +149,12 @@ const Chapter = ({
                   isOpen={openModules.includes(moduleIndex)}
                   toggleModule={toggleModule}
                   showLessons={moduleIndex < 3} // Only show lessons for first three modules
+                  courseId={courseId}
                 />
               ))}
             </div>
           ) : (
-            <PleaseEnroll />
+            <PleaseEnroll courseId={courseId} />
           )}
         </>
       )}
@@ -159,7 +162,14 @@ const Chapter = ({
   );
 };
 
-const Module = ({ module, moduleIndex, isOpen, toggleModule, showLessons }) => {
+const Module = ({
+  module,
+  moduleIndex,
+  isOpen,
+  toggleModule,
+  showLessons,
+  courseId,
+}) => {
   const handleClickModule = () => {
     toggleModule(moduleIndex);
   };
@@ -191,7 +201,7 @@ const Module = ({ module, moduleIndex, isOpen, toggleModule, showLessons }) => {
               ))}
             </ul>
           ) : (
-            <PleaseEnroll />
+            <PleaseEnroll courseId={courseId} />
           )}
         </>
       )}

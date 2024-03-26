@@ -5,6 +5,7 @@ import style from "./VerificationPage.module.css";
 import { useEffect } from "react";
 import useHttpsAxios from "../../../hooks/use-httpsAxios";
 import { url } from "../../../constants";
+import { CircularProgress } from "@material-ui/core";
 const verificationPageScreenData = {
   title: "Verification",
   description:
@@ -53,7 +54,8 @@ const VerificationPage = () => {
         classForMainContent={style.mainContent}
       >
         {isLoading ? (
-          <p>Loading...</p>
+          // <p>Loading...</p>
+          <CircularProgress />
         ) : (
           <div className={style.container}>
             <img

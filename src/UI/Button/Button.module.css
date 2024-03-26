@@ -10,6 +10,7 @@
   /* box-shadow: 2px 2px 2px grey; */
 }
 .disabledBtn {
+  background-color: #ccc;
   border: 0px solid;
   padding: 10px 30px;
   border-radius: 5px;
