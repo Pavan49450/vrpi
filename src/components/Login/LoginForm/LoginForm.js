@@ -106,7 +106,7 @@ const LoginForm = () => {
           "Content-Type": "application/json",
         },
         body: {
-          email: emailInput.value,
+          email: emailInput.value.toLowerCase(),
           password: passwordInput.value,
         },
       });

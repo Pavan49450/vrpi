@@ -171,7 +171,7 @@ const PersonalDataForm = ({ role }) => {
           phoneNumber: mobileNumberInput.value,
           dateOfBirth: formattedDOB,
           address: permanentInput.value,
-          email: emailInput.value,
+          email: emailInput.value.toLowerCase(),
 
           createPassword: confirmPasswordInput.value,
           occupation: occupation.value,
@@ -187,7 +187,7 @@ const PersonalDataForm = ({ role }) => {
           lastName: lastNameInput.value,
           phoneNumber: mobileNumberInput.value,
           gender: gender,
-          email: emailInput.value,
+          email: emailInput.value.toLowerCase(),
 
           createPassword: confirmPasswordInput.value,
           roles: role,

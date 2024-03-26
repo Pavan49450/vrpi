@@ -13,7 +13,7 @@ const DashboardHeader = ({ showMenuBar, toggleMenuBar, DashboardLinks }) => {
 
           <Header
             showMenuBar={showMenuBar}
-            toggleMenuBar={toggleMenuBar}
+            toggleMenuBar={showMenuBar ? toggleMenuBar : () => {}}
             DashboardLinks={DashboardLinks}
           />
         </>
