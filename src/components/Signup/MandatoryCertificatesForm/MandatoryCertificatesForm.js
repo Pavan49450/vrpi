@@ -48,7 +48,6 @@ const MandatoryCertificatesForm = () => {
     const isIncomeValid = incomeCertificateFile !== null;
 
     setFormIsValid(
-      // isIncomeValid &&
       isAadhaarCardFrontValid &&
         isAadhaarCardBackValid &&
         isPassportValid &&
@@ -97,12 +96,12 @@ const MandatoryCertificatesForm = () => {
         profilePhoto: passportFile,
       };
       console.log(formData);
-      SuccessResponseHandler();
-      //   sendRequest({
-      //     url: `${url.backendBaseUrl}/vrpi-user/update-doc/${userId}`,
-      //     method: "PUT",
-      //     data: formData,
-      //   });
+      // SuccessResponseHandler();
+      sendRequest({
+        url: `${url.backendBaseUrl}/vrpi-user/update-doc/${userId}`,
+        method: "PUT",
+        data: formData,
+      });
     }
   };
 
@@ -112,7 +111,12 @@ const MandatoryCertificatesForm = () => {
         <CustomFileUploader
           onChange={handleIncomeCertificateFileChange}
           buttonText="Income Certificate"
-          acceptedFileType={["image/jpeg", "image/png", "image/pdf"]}
+          acceptedFileType={[
+            "image/jpeg",
+            "image/png",
+            "image/pdf",
+            "application/pdf",
+          ]}
           mandatory
         />
         <ul>
@@ -144,7 +148,12 @@ const MandatoryCertificatesForm = () => {
         <CustomFileUploader
           onChange={handleAadhaarCardFrontChange}
           buttonText="Upload Aadhaar Card(Front)"
-          acceptedFileType={["image/jpeg", "image/png", "image/pdf"]}
+          acceptedFileType={[
+            "image/jpeg",
+            "image/png",
+            "image/pdf",
+            "application/pdf",
+          ]}
           mandatory
         />
         <ul>
@@ -156,7 +165,12 @@ const MandatoryCertificatesForm = () => {
         <CustomFileUploader
           onChange={handleAadhaarCardBackChange}
           buttonText="Upload Aadhaar Card(Back)"
-          acceptedFileType={["image/jpeg", "image/png", "image/pdf"]}
+          acceptedFileType={[
+            "image/jpeg",
+            "image/png",
+            "image/pdf",
+            "application/pdf",
+          ]}
           mandatory
         />
         <ul>
@@ -172,12 +186,12 @@ const MandatoryCertificatesForm = () => {
       <div className={style.uploadInputs}>
         <CustomFileUploader
           onChange={handlePassportChange}
-          buttonText="Upload Passport"
+          buttonText="Upload Profile Photo"
           acceptedFileType={["image/jpeg", "image/png"]}
           mandatory
         />
         <ul>
-          <li>Can be png. pdf. jpeg</li>
+          <li>Can be png, jpeg</li>
           <li>File size must should be 5MB</li>
         </ul>
       </div>

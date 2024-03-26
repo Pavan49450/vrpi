@@ -453,7 +453,12 @@ const PersonalDataForm = ({ role }) => {
         <CustomFileUploader
           onChange={handleAadhaarCardFrontChange}
           buttonText="Upload Aadhaar Card(Front)"
-          acceptedFileType={["image/jpeg", "image/png", "image/pdf"]}
+          acceptedFileType={[
+            "image/jpeg",
+            "image/png",
+            "image/pdf",
+            "application/pdf",
+          ]}
         />
         <ul>
           {/* <li>Should contain Front & Back</li> */}
@@ -465,7 +470,12 @@ const PersonalDataForm = ({ role }) => {
         <CustomFileUploader
           onChange={handleAadhaarCardBackChange}
           buttonText="Upload Aadhaar Card(Back)"
-          acceptedFileType={["image/jpeg", "image/png", "image/pdf"]}
+          acceptedFileType={[
+            "image/jpeg",
+            "image/png",
+            "image/pdf",
+            "application/pdf",
+          ]}
         />
         <ul>
           {/* <li>Should contain Front & Back</li> */}
