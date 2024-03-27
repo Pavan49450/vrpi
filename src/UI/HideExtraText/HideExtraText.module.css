@@ -13,7 +13,3 @@
 .ShowExtraText {
   overflow: hidden; /* Hide scrollbar initially */
 }
-
-.scrollable {
-  overflow-y: scroll; /* Show scrollbar when clicked */
-}

@@ -11,9 +11,7 @@ const HideExtraText = ({ children, className, style, lines }) => {
   return (
     <div className={styles.container}>
       <p
-        className={`${styles.text} ${
-          showExtraText && styles.scrollable
-        } ${className}`}
+        className={`${styles.text} ${showExtraText} ${className}`}
         style={{
           ...style,
           WebkitLineClamp: showExtraText ? "unset" : lines, // Show all lines when clicked
