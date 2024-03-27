@@ -86,7 +86,7 @@ const Header = ({
   };
 
   const navElements = links.map((link, index) => (
-    <li key={index} className={style.element}>
+    <li key={Math.random()} className={style.element}>
       {link.active ? (
         <NavLink
           to={link.address}
@@ -115,7 +115,7 @@ const Header = ({
 
   const dropdownElements = dropdownLinks
     ? dropdownLinks.map((link, index) => (
-        <li key={link.name} className={style.dropdownElement}>
+        <li key={Math.random()} className={style.dropdownElement}>
           {link.active ? (
             <>
               <NavLink
@@ -156,7 +156,7 @@ const Header = ({
     <>
       {button.active ? (
         <Button
-          key={index}
+          key={Math.random()}
           className={style.signUpBtn}
           // to={button.link}
           onClick={() => navigate(button.link)}
@@ -165,7 +165,7 @@ const Header = ({
         </Button>
       ) : (
         <Button
-          key={index}
+          key={Math.random()}
           className={style.signUpBtn}
           onClick={() => dispatch(setComingSoon(true))}
         >
@@ -181,7 +181,7 @@ const Header = ({
       <p>Join Us Via</p>
       <ul>
         {JoinUsBarData.socialMediaIcons.map((icon, index) => (
-          <li key={index}>
+          <li key={Math.random()}>
             <a href={icon.address} target="_blank" rel="noopener noreferrer">
               <img
                 src={require(`../../../assets/socialMediaIcons/${icon.src}`)}

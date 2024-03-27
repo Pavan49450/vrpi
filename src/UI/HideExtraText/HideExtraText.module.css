@@ -1,5 +1,3 @@
-/* HideExtraText.module.css */
-
 .container {
   overflow: hidden;
 }
@@ -13,5 +11,9 @@
 }
 
 .ShowExtraText {
-  overflow: auto;
+  overflow: hidden; /* Hide scrollbar initially */
+}
+
+.scrollable {
+  overflow-y: scroll; /* Show scrollbar when clicked */
 }

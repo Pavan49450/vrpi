@@ -8,7 +8,7 @@ const OurServices = () => {
       <Section title="Our Companies & Services">
         <div className={style.companies}>
           {Companies.map((company, index) => (
-            <>
+            <div key={Math.random()}>
               {company && (
                 <PictureDragCard
                   image={company.image}
@@ -17,7 +17,7 @@ const OurServices = () => {
                   key={company.index}
                 />
               )}
-            </>
+            </div>
           ))}
         </div>
       </Section>

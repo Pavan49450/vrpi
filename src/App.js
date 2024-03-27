@@ -38,6 +38,7 @@ import UpdateUserDetails from "./pages/MainPages/UpdateUserDetails/UpdateUserDet
 import { useEffect } from "react";
 import { SaveUserDataInRedux } from "./data/user";
 import PrivacyPolicy from "./pages/MainPages/PrivacyPolicy/PrivacyPolicy";
+import VerifyPayment from "./pages/MainPages/VerifyPayment/VerifyPayment";
 
 function App() {
   // const navigate = useNavigate();
@@ -275,6 +276,11 @@ function App() {
     {
       path: "/privacy-policy",
       element: <PrivacyPolicy />,
+      errorElement: <ErrorPage errorData={GeneralErrorData} />,
+    },
+    {
+      path: "/verify-payment",
+      element: <VerifyPayment />,
       errorElement: <ErrorPage errorData={GeneralErrorData} />,
     },
   ]);

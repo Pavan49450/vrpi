@@ -1,24 +1,22 @@
-// HideExtraText.js
-
 import React, { useState } from "react";
 import styles from "./HideExtraText.module.css";
 
 const HideExtraText = ({ children, className, style, lines }) => {
-  const [showExtraText, setShowExtraText] = useState(true);
+  const [showExtraText, setShowExtraText] = useState(false); // Initially hide extra text
 
   const handleToFullText = () => {
     setShowExtraText(!showExtraText);
   };
 
   return (
-    <div className={`${styles.container}`}>
+    <div className={styles.container}>
       <p
-        className={` ${
-          showExtraText ? styles.text : styles.ShowExtraText
+        className={`${styles.text} ${
+          showExtraText && styles.scrollable
         } ${className}`}
         style={{
           ...style,
-          WebkitLineClamp: showExtraText ? lines : "unset",
+          WebkitLineClamp: showExtraText ? "unset" : lines, // Show all lines when clicked
         }}
         onClick={handleToFullText}
       >

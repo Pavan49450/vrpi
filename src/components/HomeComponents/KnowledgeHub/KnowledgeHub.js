@@ -37,7 +37,7 @@ const KnowledgeHub = () => {
           </p>
           <div className={style.programs}>
             {programs.map((program) => (
-              <div className={style.program}>
+              <div className={style.program} key={Math.random()}>
                 <div className={style.programImage}>
                   <CustomImage
                     src={require(`../../../assets/${program.image}`)}

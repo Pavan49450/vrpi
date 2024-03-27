@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "./HeaderDropDown.module.css";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Button from "../../../../UI/Button/Button";
 import { useDispatch } from "react-redux";
 import { setComingSoon } from "../../../../store/ComingSoonSlice";
@@ -32,7 +32,7 @@ const HeaderDropdown = ({ data, onMouseEnter, onMouseLeave, style }) => {
       <div className={styles.dropdownContent}>
         {data.map((item) => (
           <div
-            key={item.label}
+            key={Math.random()}
             className={
               selectedItem.label === item.label
                 ? `${styles.dropdownItem} ${styles.selectedItem}`

@@ -93,22 +93,11 @@ const SwipeablePictures = () => {
     <div className={style.imageContainer}>
       <SwipeableViews index={index} enableMouseEvents>
         {mainScreenDetails.map((screen, idx) => (
-          <div key={idx} className={classes.slide}>
+          <div key={Math.random()} className={classes.slide}>
             <div className={style.contentContainer}>
-              {/* <h1 className={style.head}>{screen.head}</h1> */}
-              {/* <h1 className={style.content}>{screen.content}</h1> */}
               {screen.content.map((content) => (
-                // <HighlightCapsWords
-                //   sentence={content}
-                //   // color="#ff6501"
-                //   style={{
-                //     color: "#ff6501",
-                //     fontSize: "1.5rem",
-                //     fontWeight: "600",
-                //   }}
-                //   className={style.content}
-                // />
                 <Title
+                  key={Math.random()}
                   title={content}
                   highlightWord={screen.head}
                   styles={{

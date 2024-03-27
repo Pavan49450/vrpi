@@ -58,7 +58,7 @@ function NavbarForMobile({ navElements, dashboard }) {
       >
         {links &&
           links.map((link) => (
-            <li key={link.name}>
+            <li key={Math.random()}>
               {link.active ? (
                 <NavLink
                   to={link.link}

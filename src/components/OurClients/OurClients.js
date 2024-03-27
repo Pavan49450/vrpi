@@ -19,7 +19,7 @@ const OurClients = () => {
         <div className={style.clientBox}>
           <div className={style.clientsImages}>
             {ImageList.map((clientImage) => (
-              <div className={style.clientImage}>
+              <div className={style.clientImage} key={Math.random()}>
                 <img
                   src={require(`../../assets/clients/${clientImage}`)}
                   alt=""
