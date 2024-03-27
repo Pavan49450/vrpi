@@ -7,6 +7,7 @@ import Button from "../Button/Button";
 import { useNavigate } from "react-router-dom";
 import HighlightCapsWords from "../HighlightWords/HighlightCapsWords";
 import Title from "../Title/Title";
+import CustomImage from "../Image/Image";
 const mainScreenDetails = [
   {
     content: [
@@ -85,9 +86,12 @@ const SwipeablePictures = () => {
     setIndex((prevIndex) => (prevIndex + 1) % mainScreenDetails.length);
   };
 
-  // const handlePrevious = () => {
-  //   setIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length);
-  // };
+  const handlePrevious = () => {
+    setIndex(
+      (prevIndex) =>
+        (prevIndex - 1 + mainScreenDetails.length) % mainScreenDetails.length
+    );
+  };
 
   return (
     <div className={style.imageContainer}>
@@ -117,18 +121,23 @@ const SwipeablePictures = () => {
             <img
               src={require(`../../assets/home/${screen.image}`)}
               alt={`Pictures ${idx + 1}`}
-              className={classes.image}
+              className={style.image}
             />
           </div>
         ))}
       </SwipeableViews>
-      <div className={classes.controls}>
-        {/* <Button onClick={handlePrevious} variant="contained" color="primary">
-          Previous
-        </Button>
-        <Button onClick={handleNext} variant="contained" color="primary">
-          Next
-        </Button> */}
+      <div className={style.controls}>
+        <img
+          onClick={handlePrevious}
+          src={require(`../../assets/previousIcon.png`)}
+          alt="icon"
+        ></img>
+
+        <img
+          src={require(`../../assets/nextIcon.png`)}
+          onClick={handleNext}
+          alt="icon"
+        ></img>
       </div>
     </div>
   );
