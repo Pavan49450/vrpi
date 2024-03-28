@@ -1,9 +1,7 @@
 // reducer.js
 
-import { createAsyncThunk } from "@reduxjs/toolkit";
 import { LOGIN, LOGINDA, LOGOUT, loginWithUserData } from "./LoginStateActions";
 import UserDataComponent from "../data/user";
-import { useSelector } from "react-redux";
 
 const initialUserState = {
   isVRPIUserLoggedIn: localStorage.getItem("isVRPIUserLoggedIn") === "true",
@@ -11,8 +9,17 @@ const initialUserState = {
 };
 
 const initialUserDataState = {
-  userData: null,
-  // JSON.parse(localStorage.getItem("userData")),
+  userData: {
+    userData: {
+      user: null,
+      MandatoryCertificatesData: null,
+      uploadedCertificates: 0,
+      certificatesToUpload: 4,
+      enrolledCourses: [],
+      educationalDetails: null,
+    },
+    isLoading: false,
+  },
 };
 
 const UserStateReducer = (state = initialUserState, action) => {
@@ -63,7 +70,7 @@ const UserDataStateReducer = (state = initialUserDataState, action) => {
         userData: action.payload.userData,
       };
     case LOGOUT:
-      localStorage.removeItem("userData");
+      // localStorage.removeItem("userData");
       return {
         ...state,
         userData: null,

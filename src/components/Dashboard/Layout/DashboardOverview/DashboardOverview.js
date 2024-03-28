@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../../../store/LoginStateActions";
 import ConfirmationModal from "../../../../UI/ConfirmModel/ConfirmationModal";
 import { useLocation, useNavigate } from "react-router-dom";
+import { url } from "../../../../constants";
+import ProfilePic from "../../ProfilePic/ProfilePic";
 
 const DashboardOverview = ({
   userDetails,
@@ -77,14 +79,28 @@ const DashboardOverview = ({
           />
           {userDetails && (
             <div className={style.profilePic}>
-              <CustomImage
+              {/* <CustomImage
+                // src={require(`../../../../assets/dashboard/${
+                //   userDetails.profilePic || "profilePic.png"
+                // }`)}
+                src={`${url.backendBaseUrl}/vrpi-user/get-image/profilePic/${userId}`}
+                alt=""
+                onMouseEnter={() => setShowProfileDropDown(true)}
+                onMouseLeave={() => setShowProfileDropDown(false)}
+              /> */}
+
+              <ProfilePic
+                onMouseEnter={() => setShowProfileDropDown(true)}
+                onMouseLeave={() => setShowProfileDropDown(false)}
+              />
+              {/* <CustomImage
                 src={require(`../../../../assets/dashboard/${
                   userDetails.profilePic || "profilePic.png"
                 }`)}
                 alt=""
                 onMouseEnter={() => setShowProfileDropDown(true)}
                 onMouseLeave={() => setShowProfileDropDown(false)}
-              />
+              /> */}
             </div>
           )}
         </div>

@@ -1,4 +1,5 @@
 import Button from "../../../../UI/Button/Button";
+import ProfilePic from "../../ProfilePic/ProfilePic";
 import style from "./ProfileBanner.module.css";
 import { useNavigate } from "react-router-dom";
 
@@ -26,12 +27,13 @@ const ProfileBar = ({ user }) => {
       {user && (
         <div className={style.profileImageContainer}>
           <div className={style.profileImage}>
-            <img
+            {/* <img
               src={require(`../../../../assets/dashboard/${
                 user.profilePic || "profilePic.png"
               }`)}
               alt="banner"
-            ></img>
+            ></img> */}
+            <ProfilePic />
           </div>
           <div className={style.details}>
             <div className={style.headContainer}>

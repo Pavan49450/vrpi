@@ -19,6 +19,8 @@ import { CircularProgress } from "@material-ui/core";
 import Message from "../../../../UI/Popup/Message";
 import { setMessage } from "../../../../store/MessageDisplay/MessageActions";
 import LoadingButton from "../../../../UI/LoadingButton/LoadingButton";
+import CustomDatePicker from "../../../../UI/DatePIcker/DatePIcker";
+import GetCurrentDate from "../../../../hooks/GetCurrentData";
 
 const EducationalDetailsForm = () => {
   const instituteNameInput = useInput({ validateValue: nameValidation });
@@ -115,10 +117,9 @@ const EducationalDetailsForm = () => {
       console.log(responseData);
       dispatch(
         setMessage(
-          // responseData.response.data
-          //   ? responseData.response.data.errorMessage
-          //   :
-          responseData.message,
+          responseData.response.data
+            ? responseData.response.data.errorMessage
+            : responseData.message,
           "error"
         )
       );
@@ -140,14 +141,14 @@ const EducationalDetailsForm = () => {
       degree: degreeFinal,
       institutionName: instituteNameInput.value,
       instituteLocation: instituteLocationInput.value,
-      startYear: startYearInput.value,
-      endYear: endYearInput.value,
-      percentageOrCgpa: percentageInput.value,
+      startDate: `${startYearInput.value}-06-01`,
+      endDate: `${endYearInput.value}-04-01`,
+      grade: percentageInput.value,
+      userId: userId,
+      createdAt: GetCurrentDate(),
+      updatedAt: GetCurrentDate(),
     };
     if (formIsValid) {
-      // SuccessResponseHandler(formData);
-      // console.log(formData);
-      // console.log("Form submitted successfully!");
       sendRequest({
         url: `${url.backendBaseUrl}/education-details/create-education-details/${userId}`,
         method: "POST",

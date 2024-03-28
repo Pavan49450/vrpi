@@ -3,6 +3,7 @@ import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import style from "./NavbarForMobile.module.css";
 import { useDispatch } from "react-redux";
 import { setComingSoon } from "../../../../../store/ComingSoonSlice";
+import ProfilePic from "../../../../Dashboard/ProfilePic/ProfilePic";
 
 function NavbarForMobile({ navElements, dashboard }) {
   const { pathname } = useLocation();
@@ -98,9 +99,7 @@ function NavbarForMobile({ navElements, dashboard }) {
         </div>
         {dashboard.active && (
           <div className={style.dashboardIconContainer}>
-            <img
-              src={require(`../../../../../assets/dashboard/profilePic.png`)}
-              alt={dashboard.name}
+            <ProfilePic
               onClick={() => navigate(dashboard.link)}
               title={dashboard.name}
               className={style.dashboardIcon}

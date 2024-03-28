@@ -9,6 +9,7 @@ import { setComingSoon } from "../../../store/ComingSoonSlice";
 import NavbarForMobile from "./HeaderComponents/NavbarForMobile/NavbarForMobile";
 import { navElementsForMobileData } from "../../../data/NavData";
 import Button from "../../../UI/Button/Button";
+import ProfilePic from "../../Dashboard/ProfilePic/ProfilePic";
 
 const Header = ({
   links,
@@ -207,11 +208,16 @@ const Header = ({
               <div className={style.nav}>{navElements}</div>
               {dashboard.active && (
                 <div className={style.dashboardIconContainer}>
-                  <img
+                  {/* <img
                     src={require(`../../../assets/dashboard/profilePic.png`)}
                     alt={dashboard.name}
                     onClick={() => navigate(dashboard.link)}
                     title={dashboard.name}
+                    className={style.dashboardIcon}
+                  /> */}
+
+                  <ProfilePic
+                    onClick={() => navigate(dashboard.link)}
                     className={style.dashboardIcon}
                   />
                 </div>

@@ -89,19 +89,20 @@ const MandatoryCertificatesForm = () => {
 
   const handleSubmit = () => {
     if (formIsValid) {
-      const formData = {
-        incomeCert: incomeCertificateFile,
-        // annualIncome: annualIncomeInput.value,
-        aadharFront: aadhaarCardFrontFile,
-        aadharBack: aadhaarCardBackFile,
-        profilePhoto: passportFile,
-      };
-      console.log(formData);
-      // SuccessResponseHandler();
+      const formData = new FormData();
+      formData.append("incomeCert", incomeCertificateFile);
+      // formData.append("annualIncome", annualIncomeInput.value);
+      formData.append("aadharFront", aadhaarCardFrontFile);
+      formData.append("aadharBack", aadhaarCardBackFile);
+      formData.append("profilePhoto", passportFile);
+
       sendRequest({
         url: `${url.backendBaseUrl}/vrpi-user/update-doc/${userId}`,
         method: "PUT",
         data: formData,
+        headers: {
+          "Content-Type": "multipart/form-data", // Set content type to multipart/form-data
+        },
       });
     }
   };

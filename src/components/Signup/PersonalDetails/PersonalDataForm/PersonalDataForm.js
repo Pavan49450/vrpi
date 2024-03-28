@@ -236,14 +236,12 @@ const PersonalDataForm = ({ role }) => {
   //       if (aadhaarCardBackFile) {
   //         formData.append("aadharBack", aadhaarCardBackFile);
   //       }
-  //       if (passportFile) {
-  //         formData.append("profilePic", passportFile);
+  //       if (profilePhotoFile) {
+  //         formData.append("profilePic", profilePhotoFile);
   //       }
   //     } else if (role === "client") {
   //       formData.append("gender", gender?.value);
   //     }
-
-  //     // Send formData to the server
 
   //     console.log(formData.firstName);
 
@@ -253,7 +251,7 @@ const PersonalDataForm = ({ role }) => {
   //       body: formData,
   //     });
   //   } else {
-  //     setErrorMessage("Invalid fields");
+  //     dispatch(setMessage("invalid fields", "error"));
   //   }
   // };
 

@@ -1,11 +1,9 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { Devops } from "./EdutechCourses/DevopsData/Devops";
 import { JavaFullStackCourse } from "./EdutechCourses/JavaFullStackData/JavaFullStack";
 import { useEffect } from "react";
-import axios from "axios";
 import { url } from "../constants";
 import useHttpsAxios from "../hooks/use-httpsAxios";
-import { loginWithUserData } from "../store/LoginStateActions";
 
 // export const user = {
 //   id: 1,
@@ -22,7 +20,9 @@ const UserDataComponent = () => {
   const userId = useSelector((state) => state.login.userId);
   const { sendRequest, responseData, statusCode, isLoading } = useHttpsAxios();
 
-  const dispatch = useDispatch();
+  // const userDataFromRedux = useSelector((state) => state.userData.userData);
+
+  // const dispatch = useDispatch();
 
   useEffect(() => {
     if (userId && userId !== null) {
@@ -80,16 +80,31 @@ const UserDataComponent = () => {
         : null,
   };
 
+  // useEffect(() => {
+  //   if (userId && userId !== null) {
+  //     if (statusCode === 200) {
+  //       dispatch(
+  //         loginWithUserData({
+  //           userData: userData,
+  //           isLoading: isLoading,
+  //         })
+  //       );
+  //     }
+  //   }
+  // }, [userId, statusCode]);
+
   useEffect(() => {
     if (userId && userId !== null) {
       if (statusCode === 200) {
-        // console.log("userData", userData);
-        // dispatch(loginWithUserData(userData));
+        // console.log("userData1", userDataFromRedux);
+        console.log("userData2", userData);
       }
     }
   }, [userId, statusCode]);
-
-  return { userData: userData, isLoading: isLoading };
+  return {
+    userData: userData,
+    isLoading: isLoading,
+  };
 };
 
 // export const SaveUserDataInRedux = () => {

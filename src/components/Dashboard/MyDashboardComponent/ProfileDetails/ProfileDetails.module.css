@@ -23,6 +23,8 @@
   position: absolute;
   top: calc(19.5px);
   border-radius: 50%;
+  width: 120px;
+  height: 120px;
 }
 
 .profileInfo {

@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import style from "./ProfileDetails.module.css";
+import ProfilePic from "../../ProfilePic/ProfilePic";
 
 const ProfileDetails = ({ user }) => {
   const userId = useSelector((state) => state.login.userId);
@@ -8,12 +9,13 @@ const ProfileDetails = ({ user }) => {
       <div className={style.head}>
         <div className={style.details2}>
           <div className={style.userImage}>
-            <img
+            {/* <img
               src={require(`../../../../assets/dashboard/${
                 user.image ? user.image : "profilePic.png"
               }`)}
               alt=""
-            />
+            /> */}
+            <ProfilePic />
           </div>
           <div className={style.profileStatus}>
             <div className={style.profile}>My Profile 70%</div>
