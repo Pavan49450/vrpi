@@ -104,7 +104,11 @@ const CustomKnowledgeHubComponent = ({ data, backgroundImage }) => {
           </p>
           {data.mainContent.button ? (
             data.mainContent.button.active ? (
-              <NavLink className={style.btn} to={data.mainContent.button.link}>
+              <NavLink
+                className={style.btn}
+                to={data.mainContent.button.link}
+                key={Math.random()}
+              >
                 {data.mainContent.button.name}
               </NavLink>
             ) : (
@@ -150,7 +154,7 @@ const CustomKnowledgeHubComponent = ({ data, backgroundImage }) => {
               <h3>{data.benefitsData.head}</h3>
               <div className={style.benefits}>
                 {data.benefitsData.benefits.map((benefit) => (
-                  <div className={style.benefit}>
+                  <div className={style.benefit} key={Math.random()}>
                     <img src={require(`../../assets/DoneIcon.png`)} alt="" />
                     <p>{benefit}</p>
                   </div>
@@ -183,7 +187,7 @@ const CustomKnowledgeHubComponent = ({ data, backgroundImage }) => {
           >
             <div className={style.Instructors}>
               {data.InstructorSection.Instructors.map((Instructor) => (
-                <div className={style.Instructor}>
+                <div className={style.Instructor} key={Math.random()}>
                   <img
                     src={require(`../../assets/${Instructor.address}`)}
                     alt=""

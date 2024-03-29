@@ -7,7 +7,7 @@ const Locations = () => {
       <h1>Our Branch Locations</h1>
       <div className={style.locations}>
         {LocationData.map((location) => (
-          <div className={style.locationCard}>
+          <div className={style.locationCard} key={Math.random()}>
             <div className={style.contentLine}>
               <img
                 src={require("../../../assets/footer/Location.png")}

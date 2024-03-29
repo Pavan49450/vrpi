@@ -56,7 +56,7 @@ const AllCardsSection = ({ data, ifCourseDetails, className }) => {
         <>
           {allCourses.map((courseSection) => {
             return (
-              <>
+              <div key={Math.random()}>
                 {courseSection.courses.length !== 0 && (
                   <Section
                     className={style.cardSection}
@@ -70,19 +70,24 @@ const AllCardsSection = ({ data, ifCourseDetails, className }) => {
                       } ${className} ${style.CourseCards} `}
                     >
                       {courseSection.courses.map((CardDetails) => {
-                        return <CourseCard CardDetails={CardDetails} />;
+                        return (
+                          <CourseCard
+                            CardDetails={CardDetails}
+                            key={Math.random()}
+                          />
+                        );
                       })}
                     </div>
                   </Section>
                 )}
-              </>
+              </div>
             );
           })}
         </>
       ) : (
         <>
           {allInternships.map((internships) => (
-            <>
+            <div key={Math.random()}>
               {internships.internships.length !== 0 && (
                 <Section
                   className={style.cardSection}
@@ -94,12 +99,17 @@ const AllCardsSection = ({ data, ifCourseDetails, className }) => {
                     className={`${style.cardStack} ${style.internshipsCards}`}
                   >
                     {internships.internships.map((CardDetails) => {
-                      return <InternshipCard CardDetails={CardDetails} />;
+                      return (
+                        <InternshipCard
+                          CardDetails={CardDetails}
+                          key={Math.random()}
+                        />
+                      );
                     })}
                   </div>
                 </Section>
               )}
-            </>
+            </div>
           ))}
         </>
       )}

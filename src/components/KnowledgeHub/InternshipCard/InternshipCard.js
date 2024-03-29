@@ -3,7 +3,7 @@ import style from "./InternshipCard.module.css";
 import { useDispatch } from "react-redux";
 import { setComingSoon } from "../../../store/ComingSoonSlice";
 
-const InternshipCard = ({ key, CardDetails }) => {
+const InternshipCard = ({ CardDetails }) => {
   const dispatch = useDispatch();
   return (
     <div className={style.card}>

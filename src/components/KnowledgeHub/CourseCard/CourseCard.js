@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { setComingSoon } from "../../../store/ComingSoonSlice";
 import Button from "../../../UI/Button/Button";
 
-const CourseCard = ({ key, CardDetails }) => {
+const CourseCard = ({ CardDetails }) => {
   const dispatch = useDispatch();
 
   const handleClick = () => {
@@ -24,6 +24,7 @@ const CourseCard = ({ key, CardDetails }) => {
               to={`/edutech/${CardDetails.id}`}
               className={style.link}
               onClick={handleClick}
+              key={Math.random()}
             >
               <Button
                 // onClick={() => dispatch(setComingSoon(true))}
@@ -37,6 +38,7 @@ const CourseCard = ({ key, CardDetails }) => {
               // to={`/edutech/${CardDetails.id}`}
               className={style.link}
               onClick={handleClick}
+              key={Math.random()}
             >
               <Button
                 onClick={() => dispatch(setComingSoon(true))}
@@ -51,7 +53,7 @@ const CourseCard = ({ key, CardDetails }) => {
             style={{ display: "flex", gap: "0.3rem", flexDirection: "column" }}
           >
             {CardDetails.content.map((content) => (
-              <div className={style.cardBenefits}>
+              <div className={style.cardBenefits} key={Math.random()}>
                 <img src={require(`../../../assets/courses/done.png`)} alt="" />
                 <p>{content}</p>
               </div>
