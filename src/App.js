@@ -279,7 +279,7 @@ function App() {
       errorElement: <ErrorPage errorData={GeneralErrorData} />,
     },
     {
-      path: "/verify-payment",
+      path: "/verify-payments",
       element: <VerifyPayment />,
       errorElement: <ErrorPage errorData={GeneralErrorData} />,
     },

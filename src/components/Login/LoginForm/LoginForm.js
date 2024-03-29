@@ -108,7 +108,7 @@ const LoginForm = () => {
         },
         body: {
           email: emailInput.value.toLowerCase(),
-          password: passwordInput.value,
+          createPassword: passwordInput.value,
         },
       });
     } else {

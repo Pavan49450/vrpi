@@ -123,7 +123,7 @@ const PersonalDataForm = ({ role }) => {
     emailInput.isValid,
     passwordInput.isValid,
     confirmPasswordInput.isValid,
-    // aadhaarInput.isValid,
+    aadhaarInput.isValid,
     DOB,
   ]);
 
@@ -442,6 +442,7 @@ const PersonalDataForm = ({ role }) => {
           type: "text",
           isTouched: aadhaarInput.isFocused,
         }}
+        mandatory
       />
     </div>
   );
@@ -512,8 +513,8 @@ const PersonalDataForm = ({ role }) => {
         {Line4}
         {Line5}
         {role === "student" && Line6}
-        {role === "student" && Line7}
-        {role === "student" && Line8}
+        {/* {role === "student" && Line7}
+        {role === "student" && Line8} */}
       </div>
       <div className={style.buttonContainer}>
         <LoadingButton

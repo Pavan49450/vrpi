@@ -5,7 +5,12 @@ import { DevopsToolsAndTechnologyUsed } from "./ToolsAndTechnologyUsed";
 export const Devops = {
   id: "2",
   type: "online",
-
+  duration: {
+    durationMetric: "months",
+    training: 6,
+    internship: 3,
+    total: 12,
+  },
   name: "DevOps with Cloud",
   courseLink: "/",
   active: true,
@@ -34,7 +39,7 @@ export const Devops = {
     },
   ],
 
-  price: "24999",
+  price: "45000",
   buttonContent: "Enroll Now",
   image: "devopsCourse2.jpg",
   language: "English",

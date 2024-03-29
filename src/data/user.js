@@ -97,7 +97,7 @@ const UserDataComponent = () => {
     if (userId && userId !== null) {
       if (statusCode === 200) {
         // console.log("userData1", userDataFromRedux);
-        console.log("userData2", userData);
+        // console.log("userData2", userData);
       }
     }
   }, [userId, statusCode]);

@@ -15,9 +15,14 @@ export const Embedded = {
     "Virtual Classes",
     "Live Practical Training ",
   ],
-  price: "85000",
+  price: "75000",
   image: "embeddedCourse2.webp",
-
+  duration: {
+    durationMetric: "months",
+    training: 6,
+    internship: 4,
+    total: 12,
+  },
   buttonContent: "Enroll Now",
   language: "English",
   instructor: {

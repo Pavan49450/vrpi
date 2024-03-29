@@ -64,20 +64,20 @@ const PleaseEnrollBtn = ({ courseId }) => {
     console.log("You are ready!");
   };
 
-  // useEffect(() => {
-  //   if (statusCode === 200 || statusCode === 201) {
-  //     console.log(responseData);
-  //     // SuccessResponseHandler();
-  //   } else if (statusCode < 0 && statusCode > 202) {
-  //     console.log(error);
-  //     console.log(responseData);
-  //   }
+  useEffect(() => {
+    if (statusCode === 200 || statusCode === 201) {
+      console.log(responseData);
+      // SuccessResponseHandler();
+    } else if (statusCode < 0 && statusCode > 202) {
+      console.log(error);
+      console.log(responseData);
+    }
 
-  //   if (error) {
-  //     console.log(error);
-  //     console.log("res->", responseData);
-  //   }
-  // }, [responseData]);
+    if (error) {
+      console.log(error);
+      console.log("res->", responseData);
+    }
+  }, [responseData]);
 
   const handleConfirm = () => {
     setConfirmationModalOpen(false);
@@ -86,12 +86,11 @@ const PleaseEnrollBtn = ({ courseId }) => {
       if (!isVRPIUserLoggedIn) {
         navigate("/login");
       } else if (!FetchUserData.userData.user.educationalDetails) {
-        // sendRequest({
-        //   url: `${url.backendBaseUrl}/enroll-course?courseId=${courseId}&userId=${userId}`,
-        //   method: "POST",
-
-        // });
-        navigate("/educationalDetails");
+        sendRequest({
+          url: `${url.backendBaseUrl}/course/enroll-course?courseId=${courseId}&userId=${userId}`,
+          method: "POST",
+        });
+        // navigate("/educationalDetails");
       } else if (FetchUserData.userData.uploadedCertificates < 4) {
         navigate("/mandatoryCertificates");
       }

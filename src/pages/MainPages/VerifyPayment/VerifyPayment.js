@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import useHttpsAxios from "../../../hooks/use-httpsAxios";
 import { url } from "../../../constants";
 import { CircularProgress } from "@material-ui/core";
+import styles from "./VerifyPayments.module.css";
 
 const VerifyPayment = () => {
   // Extract query parameters from the URL
@@ -27,20 +28,6 @@ const VerifyPayment = () => {
   const { sendRequest, isLoading, responseData, statusCode, error } =
     useHttpsAxios();
   useEffect(() => {
-    // console.log(
-    //   amount,
-    //   courseId,
-    //   orderId,
-    //   paymentId,
-    //   paymentLinkUrl,
-    //   razorpayPaymentId,
-    //   razorpayPaymentLinkId,
-    //   razorpayPaymentLinkReferenceId,
-    //   razorpayPaymentLinkStatus,
-    //   razorpaySignature,
-    //   userId
-    // );
-
     sendRequest({
       url: `${url.backendBaseUrl}/vrpi-user/verify-payment&amount=${amount}&orderId${orderId}&paymentId=${paymentId}&paymentLinkUrl=${paymentLinkUrl}&razorpay_payment_id=${razorpayPaymentId}
       &razorpay_payment_link_id=${razorpayPaymentLinkId}
@@ -58,7 +45,7 @@ const VerifyPayment = () => {
   }, []);
 
   return (
-    <>
+    <div style={styles.container}>
       {isLoading ? (
         <CircularProgress />
       ) : (
@@ -68,7 +55,7 @@ const VerifyPayment = () => {
           <p>Course ID: {courseId}</p>
         </div>
       )}
-    </>
+    </div>
   );
 };
 

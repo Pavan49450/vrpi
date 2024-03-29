@@ -11,7 +11,13 @@ export const UIUX = {
   active: false,
 
   content: [" Scholarship on course fee", "Virtual Classes"],
-  // price: "34999",
+  // price: "60000",
+  duration: {
+    durationMetric: "months",
+    training: 6,
+    internship: 3,
+    total: 12,
+  },
   buttonContent: "Enroll Now",
   image: "UIUXCourse2.webp",
   language: "English",
