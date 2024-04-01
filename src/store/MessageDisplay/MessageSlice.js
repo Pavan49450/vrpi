@@ -4,9 +4,11 @@ const initialState = {
   message: "",
   type: "",
   dontClose: false,
+  time: 4,
 };
 
 const messageReducer = (state = initialState, action) => {
+  console.log(action.payload);
   switch (action.type) {
     case "SET_MESSAGE":
       return {
@@ -14,6 +16,7 @@ const messageReducer = (state = initialState, action) => {
         message: action.payload.message,
         type: action.payload.type,
         dontClose: action.payload.dontClose,
+        time: action.payload.time,
       };
     case "CLEAR_MESSAGE":
       return {
@@ -21,6 +24,7 @@ const messageReducer = (state = initialState, action) => {
         message: "",
         type: "",
         dontClose: false,
+        time: 4,
       };
     default:
       return state;

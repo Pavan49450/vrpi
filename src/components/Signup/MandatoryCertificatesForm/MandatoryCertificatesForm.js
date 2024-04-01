@@ -12,6 +12,8 @@ import { CircularProgress } from "@material-ui/core";
 import { useNavigate } from "react-router-dom";
 import { setMessage } from "../../../store/MessageDisplay/MessageActions";
 import LoadingButton from "../../../UI/LoadingButton/LoadingButton";
+import axios from "axios";
+import useHttps from "../../../hooks/use-https";
 
 const MandatoryCertificatesForm = () => {
   const [incomeCertificateFile, setIncomeCertificateFile] = useState(null);
@@ -62,50 +64,107 @@ const MandatoryCertificatesForm = () => {
     incomeCertificateFile,
   ]);
 
-  useEffect(() => {});
+  useEffect(() => {
+    dispatch(setMessage("Upload Mandatory Certificates", "normal", true));
+  }, []);
 
   const userId = useSelector((state) => state.login.userId);
 
-  const { sendRequest, responseData, isLoading, statusCode, error } =
-    useHttpsAxios();
+  const [isLoading, setIsLoading] = useState(false);
+
+  // const { sendRequest, responseData, isLoading, statusCode, error } =
+  //   useHttpsAxios();
 
   const SuccessResponseHandler = () => {
-    dispatch(setMessage("Uploaded your Certificates Successfully", "success"));
+    dispatch(
+      setMessage(
+        "Uploaded your Certificates Successfully",
+        "success",
+        false,
+        1.5
+      )
+    );
 
     setTimeout(() => {
       navigate("/dashboard");
     }, [1500]);
   };
 
-  useEffect(() => {
-    if (formIsValid && (statusCode === 200 || statusCode === 201)) {
-      console.log(responseData);
-      SuccessResponseHandler();
-    } else if (statusCode < 0 && statusCode > 202) {
-      console.log(error);
-      console.log(responseData);
-    }
-  });
+  // useEffect(() => {
+  //   if (formIsValid && (statusCode === 200 || statusCode === 201)) {
+  //     console.log(responseData);
+  //     SuccessResponseHandler();
+  //   } else if (statusCode < 0 && statusCode > 202) {
+  //     console.log(error);
+  //     console.log(responseData);
+  //   }
+  // });
 
-  const handleSubmit = () => {
-    if (formIsValid) {
+  const handleSubmit = async () => {
+    try {
       const formData = new FormData();
       formData.append("incomeCert", incomeCertificateFile);
       // formData.append("annualIncome", annualIncomeInput.value);
       formData.append("aadharFront", aadhaarCardFrontFile);
       formData.append("aadharBack", aadhaarCardBackFile);
       formData.append("profilePhoto", passportFile);
+      setIsLoading(true);
+      const response = await axios.put(
+        `http://localhost:8080/vrpi-user/update-doc/${userId}`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
 
-      sendRequest({
-        url: `${url.backendBaseUrl}/vrpi-user/update-doc/${userId}`,
-        method: "PUT",
-        data: formData,
-        headers: {
-          "Content-Type": "multipart/form-data", // Set content type to multipart/form-data
-        },
-      });
+      // setMessage(response.data.message, "success");
+      setIsLoading(false);
+      console.log(response);
+      SuccessResponseHandler();
+    } catch (error) {
+      if (error.response) {
+        setIsLoading(false);
+
+        setMessage(
+          error.response.data.detail || "Error updating user documents.",
+          "error"
+        );
+        console.error("Error updating user documents:", error.response.data);
+      } else if (error.request) {
+        setIsLoading(false);
+
+        setMessage("No response received from the server.", "error");
+        console.error("No response received:", error.request);
+      } else {
+        setIsLoading(false);
+
+        setMessage("An error occurred while sending the request.", "error");
+        console.error("Error:", error.message);
+      }
     }
   };
+
+  // const handleSubmit = async () => {
+  //   if (formIsValid) {
+  //     const formData = new FormData();
+  //     formData.append("incomeCert", incomeCertificateFile);
+  //     // formData.append("annualIncome", annualIncomeInput.value);
+  //     formData.append("aadharFront", aadhaarCardFrontFile);
+  //     formData.append("aadharBack", aadhaarCardBackFile);
+  //     formData.append("profilePhoto", passportFile);
+
+  //     sendRequest({
+  //       url: `${url.backendBaseUrl}/vrpi-user/update-doc/${userId}`,
+  //       method: "put",
+  //       data: formData,
+  //       headers: {
+  //         "Content-Type": "multipart/form-data",
+  //       },
+  //     });
+  //   }
+  // };
 
   const Line1 = (
     <div className={style.line1}>

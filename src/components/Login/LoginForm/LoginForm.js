@@ -50,22 +50,25 @@ const LoginForm = () => {
     const Validation = () => {
       if (responseData) {
         // console.log(statusCode);
+
+        if (!statusCode) {
+          console.log("data", responseData.message);
+          dispatch(
+            setMessage(
+              responseData.response.data.statusMessage
+                ? responseData.response.data.statusMessage
+                : responseData.response.data.errorMessage,
+              "error",
+              false,
+              4
+            )
+          );
+        }
+
         if (statusCode === 200 || statusCode === 201) {
           console.log("data->", responseData.userDto);
           if (responseData.userDto) {
             dispatch(loginWithUserId(responseData.userDto.id));
-
-            const userData = {
-              user: responseData.userDto,
-              MandatoryCertificatesData: MandatoryCertificatesData,
-              uploadedCertificates: 0,
-              certificatesToUpload: 4,
-              enrolledCourses: responseData.courseList,
-              educationalDetails: responseData.educationDetails,
-            };
-
-            // console.log(userData);
-            // dispatch(loginWithUserData(userData));
             emailInput.reset();
             passwordInput.reset();
             navigate("/dashboard");
@@ -73,17 +76,18 @@ const LoginForm = () => {
         } else {
           console.log("error->", error);
           console.log("error->", responseData);
-          if (error !== null || error !== undefined) {
-            dispatch(
-              setMessage(
-                // responseData.response.data.statusMessage
-                //   ? responseData.response.data.statusMessage
-                //   : responseData.response.data.errorMessage,
-                responseData.message,
-                "error"
-              )
-            );
-          }
+          // if (error !== null || error !== undefined) {
+          dispatch(
+            setMessage(
+              responseData.response.data.statusMessage
+                ? responseData.response.data.statusMessage
+                : responseData.response.data.errorMessage,
+              "error",
+              false,
+              4
+            )
+          );
+          // }
         }
       }
     };
@@ -112,9 +116,6 @@ const LoginForm = () => {
         },
       });
     } else {
-      // setErrorMessage(
-      //   "Please complete all fields and accept the terms and conditions."
-      // );
       dispatch(
         setMessage(
           "Please complete all fields and accept the terms and conditions.",

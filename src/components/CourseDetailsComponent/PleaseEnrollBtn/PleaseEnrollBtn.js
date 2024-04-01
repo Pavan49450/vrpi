@@ -23,10 +23,24 @@ const PleaseEnrollBtn = ({ courseId }) => {
   const { sendRequest, isLoading, error, responseData, statusCode } =
     useHttpsAxios();
 
+  useEffect(() => {
+    if (statusCode === 200 || statusCode === 201) {
+      console.log(responseData);
+      window.location.href = responseData;
+    } else if (statusCode < 0 && statusCode > 202) {
+      console.log(error);
+      console.log(responseData);
+    }
+
+    if (error) {
+      console.log(error);
+      console.log("res->", responseData);
+    }
+  }, [responseData]);
+
   const handleLoginHandler = () => {
     console.log("here");
     if (!isVRPIUserLoggedIn) {
-      // navigate("/login");
       console.log("here2");
 
       setConfirmationMessage(
@@ -43,8 +57,7 @@ const PleaseEnrollBtn = ({ courseId }) => {
       return;
     }
 
-    if (!FetchUserData.userData.user.educationalDetails) {
-      // navigate("/educationalDetails");
+    if (!FetchUserData.userData.educationalDetails) {
       setConfirmationMessage(
         "Please fill out your 'educational details' and 'mandatory certificates' before enrolling."
       );
@@ -52,8 +65,7 @@ const PleaseEnrollBtn = ({ courseId }) => {
       return;
     }
 
-    if (FetchUserData.userData.uploadedCertificates < 4) {
-      // navigate("/mandatoryCertificates");
+    if (FetchUserData.userData.certificatesToUpload !== 0) {
       setConfirmationMessage(
         "Please fill upload all mandatory certificates before enrolling"
       );
@@ -62,39 +74,35 @@ const PleaseEnrollBtn = ({ courseId }) => {
     }
 
     console.log("You are ready!");
+
+    EnrollToTheCourse();
   };
 
-  useEffect(() => {
-    if (statusCode === 200 || statusCode === 201) {
-      console.log(responseData);
-      // SuccessResponseHandler();
-    } else if (statusCode < 0 && statusCode > 202) {
-      console.log(error);
-      console.log(responseData);
-    }
-
-    if (error) {
-      console.log(error);
-      console.log("res->", responseData);
-    }
-  }, [responseData]);
+  const EnrollToTheCourse = async () => {
+    sendRequest({
+      url: `${url.backendBaseUrl}/course/enroll-course?courseId=${courseId}&userId=${userId}`,
+      method: "POST",
+    });
+  };
 
   const handleConfirm = () => {
-    setConfirmationModalOpen(false);
-    if (FetchUserData.userData.user) {
-      console.log("In");
-      if (!isVRPIUserLoggedIn) {
-        navigate("/login");
-      } else if (!FetchUserData.userData.user.educationalDetails) {
-        sendRequest({
-          url: `${url.backendBaseUrl}/course/enroll-course?courseId=${courseId}&userId=${userId}`,
-          method: "POST",
-        });
-        // navigate("/educationalDetails");
-      } else if (FetchUserData.userData.uploadedCertificates < 4) {
-        navigate("/mandatoryCertificates");
-      }
+    console.log("In");
+
+    console.log("In0");
+
+    if (!isVRPIUserLoggedIn) {
+      console.log("In1");
+      navigate("/login");
+    } else if (!FetchUserData.userData.educationalDetails) {
+      console.log("In2");
+
+      navigate("/educationalDetails");
+    } else if (FetchUserData.userData.certificatesToUpload !== 0) {
+      console.log("In3");
+
+      navigate("/mandatoryCertificates");
     }
+    setConfirmationModalOpen(false);
   };
 
   const handleCancel = () => {

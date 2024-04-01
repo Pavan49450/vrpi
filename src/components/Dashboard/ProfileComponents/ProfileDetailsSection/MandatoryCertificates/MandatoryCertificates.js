@@ -76,14 +76,17 @@ const MandatoryCertificates = ({ user }) => {
             </div>
           </div>
         ))}
-        <Button
-          onClick={() => {
-            navigate("/mandatoryCertificates");
-          }}
-          className={style.uploadBtn}
-        >
-          Upload Certificates ({user.certificatesToUpload} remaining)
-        </Button>
+        {user.certificatesToUpload > 0 && (
+          <Button
+            onClick={() => {
+              navigate("/mandatoryCertificates");
+            }}
+            className={style.uploadBtn}
+            disabled={user.certificatesToUpload === 0}
+          >
+            Upload Certificates ({user.certificatesToUpload} remaining)
+          </Button>
+        )}
       </div>
     </div>
   );

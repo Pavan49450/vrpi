@@ -2,15 +2,16 @@ import React, { useState, useEffect } from "react";
 import styles from "./Message.module.css"; // Import modular CSS
 import { MdClose } from "react-icons/md"; // Import close icon from react-icons
 
-const Message = ({ message, type, onClose, dontClose }) => {
+const Message = ({ message, type, onClose, dontClose, time }) => {
   const [show, setShow] = useState(true);
 
   useEffect(() => {
     if (!dontClose) {
+      console.log("dontClose->", dontClose);
       const timer = setTimeout(() => {
         setShow(false);
         onClose();
-      }, 4000);
+      }, time * 1000 || 4000);
       return () => clearTimeout(timer);
     }
   }, [onClose]);

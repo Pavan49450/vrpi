@@ -1,9 +1,9 @@
 // actions.js
 
-export const setMessage = (message, type, dontClose) => {
+export const setMessage = (message, type, dontClose, time) => {
   return {
     type: "SET_MESSAGE",
-    payload: { message, type, dontClose },
+    payload: { message, type, dontClose, time },
   };
 };
 

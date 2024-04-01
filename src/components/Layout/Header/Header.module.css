@@ -19,8 +19,9 @@
   height: 40px;
   cursor: pointer;
   border-radius: 50%;
+  overflow: hidden;
   /* margin: 5px; */
-  border: 2px solid var(--white);
+  /* border: 2px solid var(--white); */
   /* padding: 2px; */
 }
 

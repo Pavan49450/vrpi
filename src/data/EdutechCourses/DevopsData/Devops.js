@@ -44,12 +44,12 @@ export const Devops = {
   image: "devopsCourse2.jpg",
   language: "English",
   instructor: {
-    name: "Gayathri Prasad",
-    image: "Instructor1.png",
+    name: "Y Santhosh Kumar",
+    image: "devopsInstructor.jpg",
     description: [
-      // "I’m Gayatri. Your Instructor for this Course",
-      "Lorem ipsum dolor sit amet consectetur. Sodales eget convallis sem iaculis. Lorem ipsum dolor sit amet consectetur. Sodales eget convallis sem iaculis.",
-      "Lorem ipsum dolor sit amet consectetur. Sodales eget convallis sem iaculis. Lorem ipsum dolor sit amet consectetur. Sodales eget convallis sem iaculis.",
+      "I have over 9 years of experience, From last 3+ Years Working in VRPI Groups of company as DevOps Engineer.",
+      "My previous assignment was as Python Developer.",
+      "Expertise on Build and Release Process. Certified Open AI and ChatGPT_4 Prompt Engineer .",
     ],
   },
   rating: "4.5",

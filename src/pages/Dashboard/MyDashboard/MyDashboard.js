@@ -47,8 +47,12 @@ const MyDashboard = () => {
             <div className={style.mainContainer}>
               {FetchUserData.userData &&
               FetchUserData.userData.user &&
-              FetchUserData.userData.user.educationalDetails !== null ? (
-                <ProfileDetails user={FetchUserData.userData.user} />
+              (FetchUserData.userData.educationalDetails === null ||
+                FetchUserData.userData.uploadedCertificates > 0) ? (
+                <ProfileDetails
+                  user={FetchUserData.userData.user}
+                  userData={FetchUserData.userData}
+                />
               ) : (
                 <EnrolledCourseComponent
                   enrolledCourses={
@@ -63,19 +67,21 @@ const MyDashboard = () => {
           )} */}
               {/* {userData.user && !userData.user.enrolledCourses && ( */}
               {/* userData.user.enrolledCourses.length === 0 && */}
-              {FetchUserData.userData?.enrolledCourses && (
-                <div className={style.rightSideContents}>
-                  <RightSideContents />
-                </div>
-              )}
+              {FetchUserData.userData?.enrolledCourses &&
+                FetchUserData.userData?.certificatesToUpload !== 0 && (
+                  <div className={style.rightSideContents}>
+                    <RightSideContents />
+                  </div>
+                )}
             </div>
             {/* {userData.user && !userData.user.enrolledCourses && ( */}
             {/* userData.enrolledCourses.length === 0 */}
-            {FetchUserData.userData?.enrolledCourses && (
-              <div className={style.sideContainer}>
-                <RightSideContents />
-              </div>
-            )}
+            {FetchUserData.userData?.enrolledCourses &&
+              FetchUserData.userData?.certificatesToUpload !== 0 && (
+                <div className={style.sideContainer}>
+                  <RightSideContents />
+                </div>
+              )}
           </div>
         </div>
       ) : (

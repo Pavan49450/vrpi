@@ -8,6 +8,7 @@ import {
   confirmPasswordValidation,
   addressValidation,
   DOBValidation,
+  fullNameValidation,
 } from "../../../InputValidations/InputValidations";
 import style from "./PersonalDataForm.module.css";
 import Dropdown from "../../../../UI/Dropdown/Dropdown";
@@ -42,7 +43,7 @@ const PersonalDataForm = ({ role }) => {
   const firstNameInput = useInput({ validateValue: nameValidation });
   const lastNameInput = useInput({ validateValue: nameValidation });
 
-  const fatherNameInput = useInput({ validateValue: nameValidation });
+  const fatherNameInput = useInput({ validateValue: fullNameValidation });
   const mobileNumberInput = useInput({ validateValue: mobileNumberValidation });
   // const DOBInput = useInput({ validateValue: nameValidation });
 
@@ -94,7 +95,7 @@ const PersonalDataForm = ({ role }) => {
         emailInput.isValid &&
         passwordInput.isValid &&
         confirmPasswordInput.isValid &&
-        // aadhaarInput.isValid &&
+        aadhaarInput.isValid &&
         gender &&
         occupation;
     } else if (role === "client") {
@@ -177,9 +178,9 @@ const PersonalDataForm = ({ role }) => {
           createPassword: confirmPasswordInput.value,
           occupation: occupation.value,
           aadharCardNumber: aadhaarInput?.value,
-          aadharFront: aadhaarCardFrontFile,
-          aadharBack: aadhaarCardBackFile,
-          profilePhoto: profilePhotoFile,
+          // aadharFront: null,
+          // aadharBack: null,
+          // profilePhoto: null,
           roles: role,
         };
       } else if (role === "client") {

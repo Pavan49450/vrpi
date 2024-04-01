@@ -39,7 +39,9 @@ const RootLayout = () => {
   const { email, otp } = useParams();
   const { isVRPIUserLoggedIn, userId } = useSelector((state) => state.login);
 
-  const { message, type } = useSelector((state) => state.message);
+  const { message, type, dontClose, time } = useSelector(
+    (state) => state.message
+  );
   const dispatch = useDispatch();
 
   const handleErrorClose = () => {
@@ -93,7 +95,13 @@ const RootLayout = () => {
         }`}
       >
         {message && (
-          <Message message={message} type={type} onClose={handleErrorClose} />
+          <Message
+            message={message}
+            type={type}
+            onClose={handleErrorClose}
+            dontClose={dontClose}
+            time={time && 4000}
+          />
         )}
         <Outlet />
       </main>

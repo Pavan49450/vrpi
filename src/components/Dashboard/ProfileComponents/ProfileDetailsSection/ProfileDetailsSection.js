@@ -30,7 +30,10 @@ const ProfileDetailsSection = ({ user }) => {
           </div>
           <div className={styles.content}>
             {selectedOption === "details" && (
-              <StudentDetails user={user.user} />
+              <StudentDetails
+                user={user.user}
+                educationalDetails={user.educationalDetails}
+              />
             )}
             {selectedOption === "documents" && (
               <MandatoryCertificates user={user} />

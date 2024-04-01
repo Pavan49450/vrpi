@@ -13,7 +13,9 @@ const MandatoryCertificates = () => {
     image: "personalDetailsPageImage.svg",
   };
 
-  const { message, type } = useSelector((state) => state.message);
+  const { message, type, dontClose, time } = useSelector(
+    (state) => state.message
+  );
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -27,7 +29,13 @@ const MandatoryCertificates = () => {
   return (
     <div style={{ display: "flex" }}>
       {message && (
-        <Message message={message} type={type} onClose={handleErrorClose} />
+        <Message
+          message={message}
+          type={type}
+          onClose={handleErrorClose}
+          dontClose={dontClose}
+          time={time && 4000}
+        />
       )}
       <SignUpOrLoginContainer screenData={welcomePageScreenData}>
         <MandatoryCertificatesForm />

@@ -218,7 +218,7 @@ const Header = ({
 
                   <ProfilePic
                     onClick={() => navigate(dashboard.link)}
-                    className={style.dashboardIcon}
+                    classForDiv={style.dashboardIcon}
                   />
                 </div>
               )}

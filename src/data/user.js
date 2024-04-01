@@ -37,22 +37,22 @@ const UserDataComponent = () => {
     {
       title: "Income Certificate",
       note: "Note: Upload Income Certificate which is valid for a period of 1 year from the date of issue.",
-      uploadedAreNot: responseData?.incomeCertificate || false,
+      uploadedAreNot: responseData && (responseData.user.incomeCert || false),
     },
     {
       title: "Aadhaar Card (Front)",
       note: "Note: Make sure address of yours should be visible clearly, and can be of png.,jpeg., pdf of size 5MB. ",
-      uploadedAreNot: responseData?.aadharFront || false,
+      uploadedAreNot: responseData && (responseData.user.aadharFront || false),
     },
     {
       title: "Aadhaar Card (Back)",
       note: "Note: Make sure address of yours should be visible clearly, and can be of png.,jpeg., pdf of size 5MB. ",
-      uploadedAreNot: responseData?.aadharBack || false,
+      uploadedAreNot: responseData && (responseData.user.aadharBack || false),
     },
     {
       title: "Passport Size photo",
       note: "Note: Upload your Passport size Photo of size 5MB and can be of png.,jpeg., pdf.",
-      uploadedAreNot: responseData?.profilePic || false,
+      uploadedAreNot: responseData && (responseData.user.profilePic || false),
     },
   ];
 
@@ -66,18 +66,13 @@ const UserDataComponent = () => {
     MandatoryCertificatesData.length - uploadedCertificates;
 
   const userData = {
-    user: responseData,
+    user: responseData && responseData.user,
     MandatoryCertificatesData,
     uploadedCertificates,
     certificatesToUpload,
     enrolledCourses:
-      responseData && responseData.enrolledCourses
-        ? responseData.enrolledCourses
-        : [],
-    educationalDetails:
-      responseData && responseData.educationalDetails
-        ? responseData.educationalDetails
-        : null,
+      responseData && responseData.courseList ? responseData.courseList : [],
+    educationalDetails: responseData?.educationDetails, // Access educationDetails directly
   };
 
   // useEffect(() => {
@@ -93,14 +88,19 @@ const UserDataComponent = () => {
   //   }
   // }, [userId, statusCode]);
 
-  useEffect(() => {
-    if (userId && userId !== null) {
-      if (statusCode === 200) {
-        // console.log("userData1", userDataFromRedux);
-        // console.log("userData2", userData);
-      }
-    }
-  }, [userId, statusCode]);
+  // useEffect(() => {
+  //   if (userId && userId !== null) {
+  //     if (statusCode === 200) {
+  //       // console.log("userData1", userDataFromRedux);
+  //       console.log(
+  //         "userData2",
+  //         // responseData && (responseData.educationalDetails || null)
+  //         // responseData.educationDetails
+  //         userData
+  //       );
+  //     }
+  //   }
+  // }, [userId, statusCode]);
   return {
     userData: userData,
     isLoading: isLoading,

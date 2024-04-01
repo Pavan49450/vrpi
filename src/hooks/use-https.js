@@ -3,8 +3,10 @@ import { useState, useCallback } from "react";
 const useHttps = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [statusCode, setStatusCode] = useState(null);
+  const [responseData, setResponseData] = useState(null);
 
-  const sendRequest = useCallback(async (requestConfig, applyData) => {
+  const sendRequest = useCallback(async (requestConfig) => {
     setIsLoading(true);
     setError(null);
 
@@ -19,11 +21,14 @@ const useHttps = () => {
         throw new Error(`Request failed with status ${response.status}`);
       }
 
-      const data = await response.json();
-      applyData(data);
+      const responseData = await response.json();
+      // applyData(data);
+      setStatusCode(await responseData.status);
+      setResponseData(await responseData.data);
     } catch (err) {
-      console.error(err); // Log the actual error to the console
-      setError(err.message || "An unknown error occurred");
+      setStatusCode(err.response?.status);
+      setError(err);
+      setResponseData(err);
     }
     setIsLoading(false);
   }, []);
@@ -32,6 +37,8 @@ const useHttps = () => {
     isLoading,
     sendRequest,
     error,
+    statusCode,
+    responseData,
   };
 };
 

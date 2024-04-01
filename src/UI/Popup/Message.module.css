@@ -30,6 +30,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  padding-top: 24px;
 }
 
 .popupClose {
@@ -66,8 +67,7 @@
 }
 
 .normal {
-  background-color: var(--skyBlue);
-  color: var(--white);
+  background-color: #ccc;
 }
 
 @keyframes fadeIn {

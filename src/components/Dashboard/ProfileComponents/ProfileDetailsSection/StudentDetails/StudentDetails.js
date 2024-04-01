@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import styles from "./StudentDetails.module.css";
 
-const StudentDetails = ({ user }) => {
+const StudentDetails = ({ user, educationalDetails }) => {
   // Define default values for each section if user data is undefined
 
   const userId = useSelector((state) => state.login.userId);
@@ -30,31 +30,35 @@ const StudentDetails = ({ user }) => {
 
   const defaultEducationalDetails = {
     title: "Education details",
-    content: user?.educationalDetails
+    content: educationalDetails
       ? [
           {
+            title: "Education level",
+            content: educationalDetails.educationLevel || "No data",
+          },
+          {
             title: "Degree in",
-            content: user.educationalDetails.DegreeIn || "No data",
+            content: educationalDetails.degree || "No data",
           },
           {
             title: "Institute Name",
-            content: user.educationalDetails.InstituteName || "No data",
+            content: educationalDetails.institutionName || "No data",
           },
           {
             title: "Institute Location",
-            content: user.educationalDetails.InstituteLocation || "No data",
+            content: educationalDetails.instituteLocation || "No data",
           },
           {
             title: "Start Year",
-            content: user.educationalDetails.startYear || "No data",
+            content: educationalDetails.startDate || "No data",
           },
           {
             title: "End Year",
-            content: user.educationalDetails.endYear || "No data",
+            content: educationalDetails.endDate || "No data",
           },
           {
             title: "Percentage/ CGPA",
-            content: user.educationalDetails.grade || "No data",
+            content: educationalDetails.grade || "No data",
           },
         ]
       : [
@@ -73,10 +77,10 @@ const StudentDetails = ({ user }) => {
         title: "Profile ID",
         content: userId || "No data",
       },
-      {
-        title: "Date Joined",
-        content: user?.joinedDate || "No data",
-      },
+      // {
+      //   title: "Date Joined",
+      //   content: user?.joinedDate || "No data",
+      // },
       {
         title: "Email",
         content: user?.email || "No data",
