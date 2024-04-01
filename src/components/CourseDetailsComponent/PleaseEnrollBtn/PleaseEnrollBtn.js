@@ -10,7 +10,6 @@ import LoadingButton from "../../../UI/LoadingButton/LoadingButton";
 const PleaseEnrollBtn = ({ courseId }) => {
   const navigate = useNavigate();
 
-  // const userData = useSelector((state) => state.userData.userData);
   const FetchUserData = UserDataComponent();
   const isVRPIUserLoggedIn = useSelector(
     (state) => state.login.isVRPIUserLoggedIn
@@ -38,18 +37,30 @@ const PleaseEnrollBtn = ({ courseId }) => {
     }
   }, [responseData]);
 
-  const handleLoginHandler = () => {
-    console.log("here");
+  const NotLoginStateHandler = () => {
+    setConfirmationMessage(
+      "You need to be logged in to enroll. Do you want to proceed to login?"
+    );
+    setConfirmationModalOpen(true);
+  };
+
+  const NotSubmittedEducationalDetailsHandler = () => {
+    setConfirmationMessage(
+      "Please fill out your 'educational details' and 'mandatory certificates' before enrolling."
+    );
+    setConfirmationModalOpen(true);
+  };
+
+  const NotSubmittedMandatoryCertificatesHandler = () => {
+    setConfirmationMessage(
+      "Please fill upload all mandatory certificates before enrolling"
+    );
+    setConfirmationModalOpen(true);
+  };
+
+  const handleEnrollCourseHandler = () => {
     if (!isVRPIUserLoggedIn) {
-      console.log("here2");
-
-      setConfirmationMessage(
-        "You need to be logged in to enroll. Do you want to proceed to login?"
-      );
-
-      console.log(confirmationMessage);
-
-      setConfirmationModalOpen(true);
+      NotLoginStateHandler();
       return;
     }
 
@@ -58,22 +69,14 @@ const PleaseEnrollBtn = ({ courseId }) => {
     }
 
     if (!FetchUserData.userData.educationalDetails) {
-      setConfirmationMessage(
-        "Please fill out your 'educational details' and 'mandatory certificates' before enrolling."
-      );
-      setConfirmationModalOpen(true);
+      NotSubmittedEducationalDetailsHandler();
       return;
     }
 
     if (FetchUserData.userData.certificatesToUpload !== 0) {
-      setConfirmationMessage(
-        "Please fill upload all mandatory certificates before enrolling"
-      );
-      setConfirmationModalOpen(true);
+      NotSubmittedMandatoryCertificatesHandler();
       return;
     }
-
-    console.log("You are ready!");
 
     EnrollToTheCourse();
   };
@@ -86,20 +89,11 @@ const PleaseEnrollBtn = ({ courseId }) => {
   };
 
   const handleConfirm = () => {
-    console.log("In");
-
-    console.log("In0");
-
     if (!isVRPIUserLoggedIn) {
-      console.log("In1");
       navigate("/login");
     } else if (!FetchUserData.userData.educationalDetails) {
-      console.log("In2");
-
       navigate("/educationalDetails");
     } else if (FetchUserData.userData.certificatesToUpload !== 0) {
-      console.log("In3");
-
       navigate("/mandatoryCertificates");
     }
     setConfirmationModalOpen(false);
@@ -124,7 +118,7 @@ const PleaseEnrollBtn = ({ courseId }) => {
         text="Enroll now"
         isLoading={isLoading}
         loaderColor="white"
-        onClick={handleLoginHandler}
+        onClick={handleEnrollCourseHandler}
       />
     </>
   );

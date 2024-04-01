@@ -2,4 +2,26 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  max-width: 800px;
+  margin: auto;
+  gap: 2rem;
+}
+
+.paymentStatus {
+  display: flex;
+  gap: 1rem;
+}
+.paymentStatus span {
+  font-size: 2rem;
+  font-weight: 500;
+}
+
+.paymentStatus img {
+  width: 50px;
+}
+
+.paymentMessage {
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-align: center;
 }
