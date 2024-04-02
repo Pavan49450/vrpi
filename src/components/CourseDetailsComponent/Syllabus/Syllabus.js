@@ -34,7 +34,7 @@ const Syllabus = ({ syllabus }) => {
           <div>
             <ul className={style.topics}>
               {syllabus.topics.map((topic) => (
-                <li className={style.topic}>
+                <li className={style.topic} key={Math.random()}>
                   <h2>
                     {topic.title}
                     {": "}

@@ -90,9 +90,9 @@ const EducationalDetailsForm = () => {
     );
 
     setTimeout(() => {
-      if (type === "") {
-        navigate("/mandatoryCertificates");
-      }
+      // if (type === "") {
+      navigate("/mandatoryCertificates");
+      // }
     }, 1500);
   };
 

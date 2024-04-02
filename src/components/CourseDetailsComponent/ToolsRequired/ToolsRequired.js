@@ -7,10 +7,10 @@ const ToolsRequired = ({ toolsRequired }) => {
         <h1>{toolsRequired.title}</h1>
         <div className={style.stacks}>
           {toolsRequired.techStacks.map((stacks) => (
-            <div className={style.stack}>
+            <div className={style.stack} key={Math.random()}>
               <h2>{stacks.title}</h2>
               {stacks.stacks.map((tech) => (
-                <div className={style.technology}>
+                <div className={style.technology} key={Math.random()}>
                   <img
                     src={require("../../../assets/courses/doubleDone.png")}
                     alt=""

@@ -28,7 +28,7 @@ const WhyToChooseUs = () => {
       <h2 className={style.head}>{WhyToChooseUsData.description}</h2>
       <div className={style.points}>
         {WhyToChooseUsData.points.map((point, index) => (
-          <div className={style.point}>
+          <div className={style.point} key={Math.random()}>
             <span className={style.pointNumber}>0{index + 1}</span>
             <h2>{point.title}</h2>
             <p className={style.description}>{point.description}</p>

@@ -58,6 +58,11 @@ const PleaseEnrollBtn = ({ courseId }) => {
     setConfirmationModalOpen(true);
   };
 
+  const EnrollIngToTheCourse = () => {
+    setConfirmationMessage("Proceed to Payments");
+    setConfirmationModalOpen(true);
+  };
+
   const handleEnrollCourseHandler = () => {
     if (!isVRPIUserLoggedIn) {
       NotLoginStateHandler();
@@ -77,8 +82,7 @@ const PleaseEnrollBtn = ({ courseId }) => {
       NotSubmittedMandatoryCertificatesHandler();
       return;
     }
-
-    EnrollToTheCourse();
+    EnrollIngToTheCourse();
   };
 
   const EnrollToTheCourse = async () => {
@@ -95,6 +99,8 @@ const PleaseEnrollBtn = ({ courseId }) => {
       navigate("/educationalDetails");
     } else if (FetchUserData.userData.certificatesToUpload !== 0) {
       navigate("/mandatoryCertificates");
+    } else {
+      EnrollToTheCourse();
     }
     setConfirmationModalOpen(false);
   };

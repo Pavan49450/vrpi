@@ -13,7 +13,7 @@ const CourseEligibility = () => {
     <Section title="Who can take this course ?">
       <ul className={style.eligibilityList}>
         {CourseEligibilityData.map((x) => (
-          <li>{x}</li>
+          <li key={Math.random()}>{x}</li>
         ))}
       </ul>
     </Section>

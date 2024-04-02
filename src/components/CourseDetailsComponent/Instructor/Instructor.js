@@ -17,7 +17,7 @@ const Instructor = ({ instructorData }) => {
             <h2>Hii!!</h2>
             <h2>I’m {instructorData.name} Your Instructor for this Course</h2>
             {instructorData.description.map((x) => (
-              <p>{x}</p>
+              <p key={Math.random()}>{x}</p>
             ))}
           </div>
         </div>

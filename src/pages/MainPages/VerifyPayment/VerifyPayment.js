@@ -63,46 +63,45 @@ const VerifyPayment = () => {
 
   const navigate = useNavigate();
 
+  const SuccessfulRequest = {
+    image: "paymentSuccessfulImage.png",
+    assetIcon: "success.png",
+    buttonActions: {
+      title: "Do to Dashboard",
+
+      action: () => {
+        navigate("/dashboard");
+      },
+    },
+    text: "Payment Successful",
+    paymentStatus: razorpayPaymentLinkStatus,
+    message:
+      "Thank you, for choosing Edu-tech! Please click on the below button, where yo can access your course.",
+  };
+
+  const failedRequest = {
+    image: "paymentFailedImage.png",
+    assetIcon: "cancel.png",
+    buttonActions: {
+      title: "Try Again",
+
+      action: () => {},
+    },
+    text: "Payment Failed",
+    paymentStatus: null,
+    message:
+      "Your transaction has bee failed due to some technical issues. Please try again.",
+  };
+
   const paymentStatusData =
     razorpayPaymentLinkStatus === "paid" && razorpaySignature
-      ? {
-          image: "paymentSuccessfulImage.png",
-          assetIcon: "success.png",
-          buttonActions: {
-            title: "Do to Dashboard",
-
-            action: () => {
-              navigate("/dashboard");
-            },
-          },
-          text: "Payment Successful",
-          paymentStatus: razorpayPaymentLinkStatus,
-          message:
-            "Thank you, for choosing Edu-tech! Please click on the below button, where yo can access your course.",
-        }
-      : {
-          image: "paymentFailedImage.png",
-          assetIcon: "cancel.png",
-          buttonActions: {
-            title: "Try Again",
-
-            action: () => {},
-          },
-          text: "Payment Failed",
-          paymentStatus: null,
-          message:
-            "Your transaction has bee failed due to some technical issues. Please try again.",
-        };
+      ? SuccessfulRequest
+      : failedRequest;
   return (
     <div className={styles.container}>
       {isLoading ? (
         <CircularProgress />
       ) : (
-        // <div>
-        //   <h1>Payment Verification</h1>
-        //   <p>Amount: {amount}</p>
-        //   <p>Course ID: {courseId}</p>
-        // </div>
         <div className={styles.container}>
           <CustomImage
             src={require(`../../../assets/verifyPayments/${paymentStatusData.image}`)}

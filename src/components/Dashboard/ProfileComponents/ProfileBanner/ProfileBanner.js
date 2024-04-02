@@ -72,6 +72,7 @@ const ProfileBar = ({ user }) => {
                   src={require(`../../../../assets/dashboard/HomeWork.png`)}
                   alt=""
                 />
+                {console.log("user", user)}
                 <span>{user.address === "" || "No data"}</span>
               </div>
             </div>
