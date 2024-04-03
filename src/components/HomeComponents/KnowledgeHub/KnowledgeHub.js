@@ -1,6 +1,7 @@
 import Button from "../../../UI/Button/Button";
 import CustomImage from "../../../UI/Image/Image";
 import Section from "../../../UI/Sections/Section";
+import Title from "../../../UI/Title/Title";
 import style from "./KnowledgeHub.module.css";
 import { useNavigate } from "react-router-dom";
 

@@ -100,7 +100,7 @@ const RootLayout = () => {
             type={type}
             onClose={handleErrorClose}
             dontClose={dontClose}
-            time={time && 4000}
+            time={time || 4000}
           />
         )}
         <Outlet />

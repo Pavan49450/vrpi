@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { EduTechData } from "../../../data/EduTechData";
 import { InternshipsData } from "../../../data/InternshipsData";
 import AllCardsSection from "../../../components/KnowledgeHub/AllCardsSection/AllCardsSection";
@@ -8,11 +8,16 @@ import ContactUsForm from "../../../components/ContactUs/ContactForm/ContactUsFo
 import FAQsComponent from "../../../components/KnowledgeHub/FAQs/FAQs";
 import style from "./CourseDetails.module.css";
 import CourseDetailsComponent from "../../../components/CourseDetailsComponent/CourseDetailsComponent";
+import ErrorPage from "../../Error";
+import { GeneralErrorData, InvalidCourse } from "../../../data/ErrorData";
+import Content from "../../../components/Companies/Construction/Content";
 const CourseDetails = () => {
   const { courseId } = useParams();
   const { internshipId } = useParams();
   const [content, setContent] = useState();
   // const [internship, setInternship] = useState();
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (courseId) {
@@ -25,6 +30,12 @@ const CourseDetails = () => {
       }
     }
   }, [courseId]);
+
+  // useEffect(() => {
+  //   if (!content) {
+  //     navigate("/error");
+  //   }
+  // }, [content]);
 
   useEffect(() => {
     if (internshipId) {
@@ -39,19 +50,25 @@ const CourseDetails = () => {
   // console.log("internship", internship);
 
   return (
-    <div className={style.container}>
-      {content && <CourseDetailsComponent content={content} />}
-      <AllCardsSection
-        data={internshipId ? InternshipsData : EduTechData}
-        ifCourseDetails={true}
-      />
-      <Section title="Get In Touch with us">
-        <ContactUsForm />
-      </Section>
-      <FAQsComponent
-        FAQs={internshipId ? InternshipsData.FAQs : EduTechData.FAQs}
-      />
-    </div>
+    <>
+      {content ? (
+        <div className={style.container}>
+          {content && <CourseDetailsComponent content={content} />}
+          <AllCardsSection
+            data={internshipId ? InternshipsData : EduTechData}
+            ifCourseDetails={true}
+          />
+          <Section title="Get In Touch with us">
+            <ContactUsForm />
+          </Section>
+          <FAQsComponent
+            FAQs={internshipId ? InternshipsData.FAQs : EduTechData.FAQs}
+          />
+        </div>
+      ) : (
+        <ErrorPage errorData={InvalidCourse} />
+      )}
+    </>
   );
 };
 

@@ -72,11 +72,11 @@ const DashboardOverview = ({
               <span className={style.userId}>#{userId}</span>
             </div>
           )}
-          <CustomImage
+          {/* <CustomImage
             src={require("../../../../assets/dashboard/notificationIcon.png")}
             alt=""
             style={{ cursor: "pointer" }}
-          />
+          /> */}
           {userDetails && (
             <div className={style.profilePic}>
               {/* <CustomImage

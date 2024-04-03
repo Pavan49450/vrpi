@@ -80,7 +80,7 @@ const MandatoryCertificatesForm = () => {
       setMessage(
         "Uploaded your Certificates Successfully",
         "success",
-        false,
+        true,
         1.5
       )
     );

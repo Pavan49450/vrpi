@@ -73,7 +73,7 @@ const Company = ({ company, handleCompanyClick }) => {
         <Button onClick={handleLinks}>Explore more</Button>
       </div>
       {/* <p>{company.content}</p> */}
-      <HideExtraText lines="6" height="100px">
+      <HideExtraText lines={`${width > 500 ? "2" : "6"}`} height="100px">
         {company.content}
       </HideExtraText>
       <div className={style.belowContent}>

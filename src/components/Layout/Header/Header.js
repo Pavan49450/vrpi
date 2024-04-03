@@ -201,7 +201,7 @@ const Header = ({
     <>
       {width > breakpoint ? (
         <nav className={style.Header}>
-          <Logo />
+          <Logo className={style.logoContainer} />
           <div className={style.navbar}>
             {JoinUsBar}
             <div className={style.navBackground}>
@@ -236,7 +236,7 @@ const Header = ({
       ) : (
         <nav className={style.headerForMobile}>
           <div className={style.mainForMobile}>
-            <Logo />
+            <Logo con />
             {navButtons}
           </div>
           {/* {navElementsForMobile} */}

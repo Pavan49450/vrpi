@@ -1,3 +1,4 @@
+import Section from "../../../UI/Sections/Section";
 import SwipeablePictures from "../../../UI/SwipeablePictures/SwipeablePictures";
 import CountDownAnimation from "../../../animations/CountDownAnimation/CountDownAnimation";
 import style from "./MainSection.module.css";

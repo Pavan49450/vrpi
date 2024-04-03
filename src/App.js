@@ -35,10 +35,10 @@ import PurchaseHistory from "./pages/Dashboard/PurchaseHistory/PurchaseHistory";
 import { useSelector } from "react-redux";
 import ProfilePage from "./pages/Dashboard/ProfilePage/ProfilePage";
 import UpdateUserDetails from "./pages/MainPages/UpdateUserDetails/UpdateUserDetails";
-import { useEffect } from "react";
-import { SaveUserDataInRedux } from "./data/user";
+
 import PrivacyPolicy from "./pages/MainPages/PrivacyPolicy/PrivacyPolicy";
 import VerifyPayment from "./pages/MainPages/VerifyPayment/VerifyPayment";
+import { GeneralErrorData, PageNotFoundErrorData } from "./data/ErrorData";
 
 function App() {
   // const navigate = useNavigate();
@@ -50,34 +50,6 @@ function App() {
   // useEffect(() => {
   //   SaveUserDataInRedux();
   // });
-
-  const GeneralErrorData = {
-    title: "Oh no, Something went wrong",
-    message: "The issue may be Temporary. Please go back and try again",
-    image: "commonErrorPage.png",
-    navigateButton: "Go to Home Page",
-    navigateTo: "/",
-    // button: {
-    //   title: "Go Back",
-    //   actions: () => {
-    //     navigate(-1);
-    //   },
-    // },
-  };
-  const PageNotFoundErrorData = {
-    title: "You’re at the wrong place!",
-    message:
-      "Please click on the below button, where it redirects to previous page.",
-    image: "pageNotFound.png",
-    navigateButton: "Go to dashboard",
-    navigateTo: "/dashboard",
-    // button: {
-    //   title: "Go Back",
-    //   actions: () => {
-    //     navigate(-1);
-    //   },
-    // },
-  };
 
   const router = createBrowserRouter([
     {
@@ -187,6 +159,12 @@ function App() {
         //   errorElement: <ErrorPage />,
         // },
       ],
+    },
+
+    {
+      path: "/error",
+      element: <ErrorPage errorData={GeneralErrorData} />,
+      errorElement: <ErrorPage errorData={GeneralErrorData} />,
     },
     {
       path: "/editProfileDetails",

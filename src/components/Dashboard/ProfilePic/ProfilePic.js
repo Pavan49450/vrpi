@@ -13,6 +13,8 @@ const ProfilePic = ({
   onMouseLeave,
   title,
   classForDiv,
+  containerClass,
+  LoadingColor,
 }) => {
   const userId = useSelector((state) => state.login.userId);
 
@@ -31,9 +33,19 @@ const ProfilePic = ({
   };
 
   return (
-    <>
+    <div
+      className={`${containerClass}`}
+      style={
+        containerClass
+          ? null
+          : {
+              width: "100%",
+              height: "100%",
+            }
+      }
+    >
       {FetchUserData.isLoading ? (
-        <CircularProgress />
+        <CircularProgress style={{ color: LoadingColor }} />
       ) : (
         <>
           {Submitted ? (
@@ -59,12 +71,13 @@ const ProfilePic = ({
               title={title}
               onError={handleImageError}
               className={`${className} ${styles.image}`}
+              classForDiv={`${classForDiv}`}
               style={style}
             />
           )}
         </>
       )}
-    </>
+    </div>
   );
 };
 

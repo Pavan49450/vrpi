@@ -4,7 +4,11 @@ import MandatoryCertificatesForm from "../../../components/Signup/MandatoryCerti
 import { clearMessage } from "../../../store/MessageDisplay/MessageActions";
 import Message from "../../../UI/Popup/Message";
 import { useEffect } from "react";
-
+import UserDataComponent from "../../../data/user";
+import { CircularProgress } from "@material-ui/core";
+import ErrorPage from "../../Error";
+import { PageNotFoundErrorData } from "../../../data/ErrorData";
+import styles from "./MandatoryCertificates.module.css";
 const MandatoryCertificates = () => {
   const welcomePageScreenData = {
     title: "Mandatory Certificate",
@@ -25,22 +29,32 @@ const MandatoryCertificates = () => {
   const handleErrorClose = () => {
     dispatch(clearMessage());
   };
-
+  const FetchUserData = UserDataComponent();
   return (
-    <div style={{ display: "flex" }}>
-      {message && (
-        <Message
-          message={message}
-          type={type}
-          onClose={handleErrorClose}
-          dontClose={dontClose}
-          time={time && 4000}
-        />
+    <>
+      {FetchUserData.isLoading ? (
+        <div className={styles.loadingContainer}>
+          <CircularProgress />
+        </div>
+      ) : FetchUserData.userData.educationalDetails ? (
+        <ErrorPage errorData={PageNotFoundErrorData} />
+      ) : (
+        <div style={{ display: "flex" }}>
+          {message && (
+            <Message
+              message={message}
+              type={type}
+              onClose={handleErrorClose}
+              dontClose={dontClose}
+              time={time && 4000}
+            />
+          )}
+          <SignUpOrLoginContainer screenData={welcomePageScreenData}>
+            <MandatoryCertificatesForm />
+          </SignUpOrLoginContainer>
+        </div>
       )}
-      <SignUpOrLoginContainer screenData={welcomePageScreenData}>
-        <MandatoryCertificatesForm />
-      </SignUpOrLoginContainer>
-    </div>
+    </>
   );
 };
 

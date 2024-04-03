@@ -9,7 +9,10 @@ const ProfileDetails = ({ user, userData }) => {
       <div className={style.head}>
         <div className={style.details2}>
           <div className={style.userImage}>
-            <ProfilePic />
+            <ProfilePic
+              containerClass={style.imageContainer}
+              LoadingColor="white"
+            />
           </div>
           <div className={style.profileStatus}>
             {userData &&
