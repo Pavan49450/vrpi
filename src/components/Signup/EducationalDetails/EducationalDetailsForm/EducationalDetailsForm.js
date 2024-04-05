@@ -9,17 +9,13 @@ import {
   yearValidation,
 } from "../../../InputValidations/InputValidations";
 import style from "./EducationalDetailsForm.module.css";
-import Button from "../../../../UI/Button/Button";
 import { DegreeData, EducationLevelData } from "../../../../data/EducationData";
 import useHttpsAxios from "../../../../hooks/use-httpsAxios";
 import { url } from "../../../../constants";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { CircularProgress } from "@material-ui/core";
-import Message from "../../../../UI/Popup/Message";
 import { setMessage } from "../../../../store/MessageDisplay/MessageActions";
 import LoadingButton from "../../../../UI/LoadingButton/LoadingButton";
-import CustomDatePicker from "../../../../UI/DatePIcker/DatePIcker";
 import GetCurrentDate from "../../../../hooks/GetCurrentData";
 
 const EducationalDetailsForm = () => {
@@ -79,8 +75,6 @@ const EducationalDetailsForm = () => {
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
-
-  const { message, type, dontClose } = useSelector((state) => state.message);
 
   const SuccessResponseHandler = (formData) => {
     // console.log(formData);

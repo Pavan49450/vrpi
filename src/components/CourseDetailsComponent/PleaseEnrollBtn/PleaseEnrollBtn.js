@@ -161,7 +161,7 @@ const PleaseEnrollBtn = ({ courseId }) => {
         text={enrolled ? "Enrolled" : "Enroll now"}
         style={{ color: !enrolled ? "white" : "black" }}
         disabled={enrolled}
-        isLoading={isLoading}
+        isLoading={isLoading || FetchUserData.isLoading}
         loaderColor="white"
         onClick={handleEnrollCourseHandler}
       />

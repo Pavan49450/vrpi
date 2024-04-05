@@ -22,8 +22,7 @@ const ForgetPassword = () => {
     document.title = "Forget Password";
   });
 
-  const { sendRequest, responseData, isLoading, statusCode, error } =
-    useHttpsAxios();
+  const { sendRequest, isLoading, statusCode } = useHttpsAxios();
 
   const SuccessResponseHandler = () => {
     // dispatch(setMessage("Uploaded your Certificates Successfully", "success"));

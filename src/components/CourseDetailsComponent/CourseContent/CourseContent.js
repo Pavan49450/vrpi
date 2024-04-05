@@ -35,14 +35,20 @@ const CourseContent = ({ courseContent, courId }) => {
   const FetchUserData = UserDataComponent();
 
   useEffect(() => {
-    if (FetchUserData) {
+    if (FetchUserData.userData.user) {
       // console.log("userData", FetchUserData.userData.enrolledCourses);
-      if (FetchUserData.userData.enrolledCourses.length <= 0) {
+      if (FetchUserData.userData.courseList <= 0) {
         setEnrolled(false);
-      } else if (FetchUserData.userData.enrolledCourses.includes(courId)) {
+      } else if (
+        FetchUserData.userData.courseList.find((course) => {
+          return course.id.toString() === courId.toString();
+        })
+      ) {
         setEnrolled(true);
       }
     }
+
+    console.log(enrolled);
   }, [FetchUserData, courId]);
 
   return (
@@ -62,6 +68,7 @@ const CourseContent = ({ courseContent, courId }) => {
               toggleModule={toggleModule}
               isFirstChapter={chapterIndex === 0}
               courseId={courId}
+              enrolled={enrolled}
             />
           ))}
         </div>
@@ -136,7 +143,7 @@ const Chapter = ({
       </div>
       {isOpen && (
         <>
-          {isFirstChapter ? (
+          {isFirstChapter || enrolled ? (
             <div className={styles.modules}>
               {chapter.modules.map((module, moduleIndex) => (
                 <Module
@@ -147,6 +154,7 @@ const Chapter = ({
                   toggleModule={toggleModule}
                   showLessons={moduleIndex < 3} // Only show lessons for first three modules
                   courseId={courseId}
+                  enrolled={enrolled}
                 />
               ))}
             </div>
@@ -166,6 +174,7 @@ const Module = ({
   toggleModule,
   showLessons,
   courseId,
+  enrolled,
 }) => {
   const handleClickModule = () => {
     toggleModule(moduleIndex);
@@ -189,7 +198,7 @@ const Module = ({
       </div>
       {module.lessons && isOpen && (
         <>
-          {showLessons ? (
+          {showLessons || enrolled ? (
             <ul className={styles.lessons}>
               {module.lessons.map((lesson, lessonIndex) => (
                 <li key={lessonIndex} className={styles.lesson}>

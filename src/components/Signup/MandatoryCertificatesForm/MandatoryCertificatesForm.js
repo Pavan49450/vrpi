@@ -1,19 +1,11 @@
 import { useEffect, useState } from "react";
 import CustomFileUploader from "../../../UI/FileUploader/FileUploader";
 import style from "./MandatoryCertificatesForm.module.css";
-import Button from "../../../UI/Button/Button";
-import InputWithInvalidText from "../../../UI/Input/InputWithInvalidText";
-import useInput from "../../../hooks/use-Input";
-import { annualIncomeValidator } from "../../InputValidations/InputValidations";
-import useHttpsAxios from "../../../hooks/use-httpsAxios";
 import { useDispatch, useSelector } from "react-redux";
-import { url } from "../../../constants";
-import { CircularProgress } from "@material-ui/core";
 import { useNavigate } from "react-router-dom";
 import { setMessage } from "../../../store/MessageDisplay/MessageActions";
 import LoadingButton from "../../../UI/LoadingButton/LoadingButton";
 import axios from "axios";
-import useHttps from "../../../hooks/use-https";
 
 const MandatoryCertificatesForm = () => {
   const [incomeCertificateFile, setIncomeCertificateFile] = useState(null);
@@ -109,7 +101,7 @@ const MandatoryCertificatesForm = () => {
       formData.append("aadharBack", aadhaarCardBackFile);
       formData.append("profilePhoto", passportFile);
       setIsLoading(true);
-      const response = await axios.put(
+      await axios.put(
         `http://localhost:8080/vrpi-user/update-doc/${userId}`,
         formData,
         {

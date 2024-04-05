@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import useInput from "../../../hooks/use-Input";
-import Message from "../../../UI/Popup/Message";
 import CustomCheckbox from "../../../UI/Checkbox/Checkbox";
 import Button from "../../../UI/Button/Button";
 import style from "./LoginForm.module.css";
@@ -15,13 +14,8 @@ import PasswordValidationBox from "../PasswordValidationBox/PasswordValidationBo
 import { url } from "../../../constants";
 import useHttpsAxios from "../../../hooks/use-httpsAxios";
 import { useDispatch } from "react-redux";
-import { CircularProgress } from "@material-ui/core";
-import {
-  loginWithUserData,
-  loginWithUserId,
-} from "../../../store/LoginStateActions";
+import { loginWithUserId } from "../../../store/LoginStateActions";
 import { setMessage } from "../../../store/MessageDisplay/MessageActions";
-import { MandatoryCertificatesData } from "../../../data/user";
 import LoadingButton from "../../../UI/LoadingButton/LoadingButton";
 
 const LoginForm = () => {

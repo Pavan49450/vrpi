@@ -7,7 +7,6 @@ import WelcomeScreen from "../../../components/Dashboard/WelcomeScreen/WelcomeSc
 import { EduTechData } from "../../../data/EduTechData";
 import UserDataComponent from "../../../data/user";
 import style from "./MyDashboard.module.css";
-import { useSelector } from "react-redux";
 import { CircularProgress } from "@material-ui/core";
 
 const MyDashboard = () => {

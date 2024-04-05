@@ -16,8 +16,7 @@ const verificationPageScreenData = {
 const VerificationPage = () => {
   const { email, otp } = useParams();
 
-  const { sendRequest, isLoading, error, statusCode, responseData } =
-    useHttpsAxios();
+  const { sendRequest, isLoading, statusCode } = useHttpsAxios();
 
   useEffect(() => {
     // console.log("email->", email);

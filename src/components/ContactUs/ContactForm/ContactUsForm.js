@@ -9,7 +9,6 @@ import {
   emailValidation,
   fullNameValidation,
   mobileNumberValidation,
-  nameValidation,
 } from "../../InputValidations/InputValidations";
 import useHttpsAxios from "../../../hooks/use-httpsAxios";
 import { url } from "../../../constants";

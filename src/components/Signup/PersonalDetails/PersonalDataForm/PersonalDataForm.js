@@ -14,16 +14,14 @@ import style from "./PersonalDataForm.module.css";
 import Dropdown from "../../../../UI/Dropdown/Dropdown";
 import { useEffect, useState } from "react";
 import InputWithInvalidText from "../../../../UI/Input/InputWithInvalidText";
-import Button from "../../../../UI/Button/Button";
-import CustomFileUploader from "../../../../UI/FileUploader/FileUploader";
+
 import CustomDatePicker from "../../../../UI/DatePIcker/DatePIcker";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../../../store/UserSlice";
 import useHttpsAxios from "../../../../hooks/use-httpsAxios";
 import { url } from "../../../../constants";
 import useFormatDate from "../../../../hooks/use-formatDate";
-import Message from "../../../../UI/Popup/Message";
-import { CircularProgress } from "@material-ui/core";
+
 import { setMessage } from "../../../../store/MessageDisplay/MessageActions";
 import LoadingButton from "../../../../UI/LoadingButton/LoadingButton";
 
@@ -63,21 +61,6 @@ const PersonalDataForm = ({ role }) => {
   const [occupation, setOccupation] = useState();
 
   const [formIsValid, setFormIsValid] = useState(false);
-
-  const [aadhaarCardFrontFile, setAadhaarCardFrontFile] = useState(null);
-  const [aadhaarCardBackFile, setAadhaarCardBackFile] = useState(null);
-  const [profilePhotoFile, setProfilePhotoFile] = useState(null);
-
-  const handleAadhaarCardFrontChange = (file) => {
-    setAadhaarCardFrontFile(file);
-  };
-  const handleAadhaarCardBackChange = (file) => {
-    setAadhaarCardBackFile(file);
-  };
-
-  const handleProfilePhotoChange = (file) => {
-    setProfilePhotoFile(file);
-  };
 
   const dispatch = useDispatch();
   const formattedDOB = useFormatDate(DOB);
@@ -448,58 +431,58 @@ const PersonalDataForm = ({ role }) => {
     </div>
   );
 
-  const Line7 = (
-    <div className={style.line7}>
-      <div>
-        <CustomFileUploader
-          onChange={handleAadhaarCardFrontChange}
-          buttonText="Upload Aadhaar Card(Front)"
-          acceptedFileType={[
-            "image/jpeg",
-            "image/png",
-            "image/pdf",
-            "application/pdf",
-          ]}
-        />
-        <ul>
-          {/* <li>Should contain Front & Back</li> */}
-          <li>Can be png. pdf. jpeg</li>
-          <li>File size should be 5MB</li>
-        </ul>
-      </div>
-      <div>
-        <CustomFileUploader
-          onChange={handleAadhaarCardBackChange}
-          buttonText="Upload Aadhaar Card(Back)"
-          acceptedFileType={[
-            "image/jpeg",
-            "image/png",
-            "image/pdf",
-            "application/pdf",
-          ]}
-        />
-        <ul>
-          {/* <li>Should contain Front & Back</li> */}
-          <li>Can be png. pdf. jpeg</li>
-          <li>File size should be 5MB</li>
-        </ul>
-      </div>
-    </div>
-  );
+  // const Line7 = (
+  //   <div className={style.line7}>
+  //     <div>
+  //       <CustomFileUploader
+  //         onChange={handleAadhaarCardFrontChange}
+  //         buttonText="Upload Aadhaar Card(Front)"
+  //         acceptedFileType={[
+  //           "image/jpeg",
+  //           "image/png",
+  //           "image/pdf",
+  //           "application/pdf",
+  //         ]}
+  //       />
+  //       <ul>
+  //         {/* <li>Should contain Front & Back</li> */}
+  //         <li>Can be png. pdf. jpeg</li>
+  //         <li>File size should be 5MB</li>
+  //       </ul>
+  //     </div>
+  //     <div>
+  //       <CustomFileUploader
+  //         onChange={handleAadhaarCardBackChange}
+  //         buttonText="Upload Aadhaar Card(Back)"
+  //         acceptedFileType={[
+  //           "image/jpeg",
+  //           "image/png",
+  //           "image/pdf",
+  //           "application/pdf",
+  //         ]}
+  //       />
+  //       <ul>
+  //         {/* <li>Should contain Front & Back</li> */}
+  //         <li>Can be png. pdf. jpeg</li>
+  //         <li>File size should be 5MB</li>
+  //       </ul>
+  //     </div>
+  //   </div>
+  // );
 
-  const Line8 = (
-    <div className={style.line8}>
-      <CustomFileUploader
-        onChange={handleProfilePhotoChange}
-        buttonText="Upload Profile Photo"
-        acceptedFileType={["image/jpeg", "image/png"]}
-      />
-      <ul>
-        <li>Can be png. pdf. jpeg</li>
-        <li>File size must should be 5MB</li>
-      </ul>
-    </div>
-  );
+  // const Line8 = (
+  //   <div className={style.line8}>
+  //     <CustomFileUploader
+  //       onChange={handleProfilePhotoChange}
+  //       buttonText="Upload Profile Photo"
+  //       acceptedFileType={["image/jpeg", "image/png"]}
+  //     />
+  //     <ul>
+  //       <li>Can be png. pdf. jpeg</li>
+  //       <li>File size must should be 5MB</li>
+  //     </ul>
+  //   </div>
+  // );
 
   return (
     <div className={style.form}>

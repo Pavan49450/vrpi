@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import style from "./UpdateUserDetails.module.css";
-import { useNavigate } from "react-router-dom";
 import useInput from "../../../hooks/use-Input";
 import SignUpOrLoginContainer from "../../../components/SignUpOrLoginContainer/SignUpOrLoginConatainer";
 import InputWithInvalidText from "../../../UI/Input/InputWithInvalidText";
@@ -11,7 +10,6 @@ import {
   mobileNumberValidation,
   nameValidation,
 } from "../../../components/InputValidations/InputValidations";
-import UserDataComponent from "../../../data/user";
 import { useSelector } from "react-redux";
 import useHttpsAxios from "../../../hooks/use-httpsAxios";
 import { url } from "../../../constants";
@@ -30,7 +28,6 @@ const UpdateUserDetails = () => {
 
   const [formIsValid, setFormIsValid] = useState();
 
-  const navigate = useNavigate();
   const userData = useSelector((state) => state.userData.userData);
 
   // useEffect(() => {
@@ -120,8 +117,7 @@ const UpdateUserDetails = () => {
     incomeCertificateFile,
   ]);
 
-  const { sendRequest, isLoading, error, responseData, statusCode } =
-    useHttpsAxios();
+  const { sendRequest, statusCode } = useHttpsAxios();
 
   const handleSubmit = () => {
     // Add your form submission logic here

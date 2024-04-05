@@ -13,7 +13,7 @@ const Message = ({ message, type, onClose, dontClose, time }) => {
       }, time * 1000 || 4000);
       return () => clearTimeout(timer);
     }
-  }, [onClose]);
+  }, [onClose, dontClose, time]);
 
   return (
     <div className={styles.overlay}>
