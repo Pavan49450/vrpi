@@ -49,10 +49,7 @@ const LoginForm = () => {
   useEffect(() => {
     const Validation = () => {
       if (responseData) {
-        // console.log(statusCode);
-
         if (!statusCode) {
-          console.log("data", responseData.message);
           dispatch(
             setMessage(
               responseData.response.data.statusMessage
@@ -66,7 +63,6 @@ const LoginForm = () => {
         }
 
         if (statusCode === 200 || statusCode === 201) {
-          console.log("data->", responseData.userDto);
           if (responseData.userDto) {
             dispatch(loginWithUserId(responseData.userDto.id));
             emailInput.reset();
@@ -74,9 +70,6 @@ const LoginForm = () => {
             navigate("/dashboard");
           }
         } else {
-          console.log("error->", error);
-          console.log("error->", responseData);
-          // if (error !== null || error !== undefined) {
           dispatch(
             setMessage(
               responseData.response.data.statusMessage
@@ -122,7 +115,7 @@ const LoginForm = () => {
           "error"
         )
       );
-      console.log("Form has validation errors. Please fix them.");
+      // console.log("Form has validation errors. Please fix them.");
     }
   };
 

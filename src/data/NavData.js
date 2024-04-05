@@ -4,42 +4,9 @@ export const MainHeaderLinks = [
   { name: "About Us", address: "/about", active: true },
   // { name: "Services", address: "/services" },
   // { name: "Campanies", address: "/companies" },
-  { name: "Careers", address: "/careers", active: true },
+  // { name: "Careers", address: "/careers", active: true },
   // { name: "KnowledgeHub", address: "/knowledgeHub" },
   { name: "Contact Us", address: "/contact", active: true },
-];
-
-const data = [
-  {
-    step: "1",
-    descriptionTitle: "",
-    description: "",
-  },
-  {
-    step: "1",
-    descriptionTitle: "",
-    description: "",
-  },
-  {
-    step: "1",
-    descriptionTitle: "",
-    description: "",
-  },
-  {
-    step: "1",
-    descriptionTitle: "",
-    description: "",
-  },
-  {
-    step: "1",
-    descriptionTitle: "",
-    description: "",
-  },
-  {
-    step: "1",
-    descriptionTitle: "",
-    description: "",
-  },
 ];
 
 export const KnowledgeHubHeaderLinks = [

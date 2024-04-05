@@ -12,85 +12,68 @@ import { CircularProgress } from "@material-ui/core";
 
 const MyDashboard = () => {
   const [hideWelcome, setHideWelcome] = useState(false);
-  // const [userData, setUserData] = useState(null);
+  const userData = UserDataComponent();
 
-  const FetchUserData = UserDataComponent();
-
-  // const userData = useSelector((state) => state.userData.userData);
   useEffect(() => {
-    // const fetchData = async () => {
-    //   setUserData(userDataResponse);
-    // };
-
-    // console.log("userdata", FetchUserData);
-    if (FetchUserData.userData.user) {
-      document.title = `${FetchUserData.userData.user.firstName} - Dashboard`;
+    if (userData.userData.user) {
+      document.title = `${userData.userData.user.firstName} - Dashboard`;
     }
 
-    setTimeout(() => {
+    const timer = setTimeout(() => {
       setHideWelcome(true);
     }, 10000);
-    // fetchData();
-  }, [FetchUserData.userData]);
 
-  return (
-    <>
-      {FetchUserData.userData && !FetchUserData.isLoading ? (
-        <div className={style.container}>
-          {FetchUserData && (
-            <WelcomeScreen
-              user={FetchUserData.userData.user}
-              onClose={hideWelcome}
-            />
-          )}
-          <div className={style.containers}>
-            <div className={style.mainContainer}>
-              {FetchUserData.userData &&
-              FetchUserData.userData.user &&
-              (FetchUserData.userData.educationalDetails === null ||
-                FetchUserData.userData.uploadedCertificates > 0) ? (
-                <ProfileDetails
-                  user={FetchUserData.userData.user}
-                  userData={FetchUserData.userData}
-                />
-              ) : (
-                <EnrolledCourseComponent
-                  enrolledCourses={
-                    FetchUserData.userData?.enrolledCourses || []
-                  }
-                />
-              )}
-              <Courses data={EduTechData} />
-              {/* {console.log(
-            "userData.user.enrolledCourses.length",
-            userData.user && userData.user.enrolledCourses.length
-          )} */}
-              {/* {userData.user && !userData.user.enrolledCourses && ( */}
-              {/* userData.user.enrolledCourses.length === 0 && */}
-              {FetchUserData.userData?.enrolledCourses &&
-                FetchUserData.userData?.certificatesToUpload !== 0 && (
-                  <div className={style.rightSideContents}>
-                    <RightSideContents />
-                  </div>
+    return () => clearTimeout(timer);
+  }, [userData.userData]);
+
+  if (userData.isLoading && userData.userData.user) {
+    return (
+      <div className={style.loadingState}>
+        <CircularProgress />
+      </div>
+    );
+  } else {
+    return (
+      <div className={style.container}>
+        <WelcomeScreen user={userData.userData.user} onClose={hideWelcome} />
+        <div className={style.containers}>
+          <div className={style.mainContainer}>
+            {userData.userData.user && !userData.userData.allDocAreUploaded ? (
+              <ProfileDetails
+                user={userData.userData.user}
+                userData={userData.userData}
+              />
+            ) : (
+              <>
+                {userData.userData.user && (
+                  <ProfileDetails
+                    user={userData.userData.user}
+                    userData={userData.userData}
+                  />
                 )}
-            </div>
-            {/* {userData.user && !userData.user.enrolledCourses && ( */}
-            {/* userData.enrolledCourses.length === 0 */}
-            {FetchUserData.userData?.enrolledCourses &&
-              FetchUserData.userData?.certificatesToUpload !== 0 && (
-                <div className={style.sideContainer}>
+                <EnrolledCourseComponent
+                  enrolledCourses={userData.userData?.courseList || []}
+                />
+              </>
+            )}
+            <Courses data={EduTechData} />
+            {userData.userData?.enrolledCourses &&
+              userData.userData?.certificatesToUpload !== 0 && (
+                <div className={style.rightSideContents}>
                   <RightSideContents />
                 </div>
               )}
           </div>
+          {userData.userData?.enrolledCourses &&
+            userData.userData?.certificatesToUpload !== 0 && (
+              <div className={style.sideContainer}>
+                <RightSideContents />
+              </div>
+            )}
         </div>
-      ) : (
-        <div className={style.loadingState}>
-          <CircularProgress />
-        </div>
-      )}
-    </>
-  );
+      </div>
+    );
+  }
 };
 
 export default MyDashboard;

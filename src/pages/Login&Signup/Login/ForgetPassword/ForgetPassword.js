@@ -34,11 +34,11 @@ const ForgetPassword = () => {
 
   useEffect(() => {
     if (emailInput.isValid && (statusCode === 200 || statusCode === 201)) {
-      console.log(responseData);
+      // console.log(responseData);
       SuccessResponseHandler();
     } else if (statusCode < 0 && statusCode > 202) {
-      console.log(error);
-      console.log(responseData);
+      // console.log(error);
+      // console.log(responseData);
     }
   });
 
@@ -47,7 +47,7 @@ const ForgetPassword = () => {
       const formData = {
         email: emailInput.value,
       };
-      console.log(formData);
+      // console.log(formData);
       // SuccessResponseHandler();
       sendRequest({
         url: `${url.backendBaseUrl}/vrpi-user/forgot-password`,

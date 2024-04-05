@@ -83,7 +83,7 @@ const EducationalDetailsForm = () => {
   const { message, type, dontClose } = useSelector((state) => state.message);
 
   const SuccessResponseHandler = (formData) => {
-    console.log(formData);
+    // console.log(formData);
 
     dispatch(
       setMessage("Uploaded educational details successfully", "success", true)
@@ -107,14 +107,14 @@ const EducationalDetailsForm = () => {
       // setMessage("Uploaded educational details successfully");
       // navigate("/mandatoryCertificates");
     } else if (statusCode < 0 && statusCode > 202) {
-      console.log(error);
-      console.log(responseData);
+      // console.log(error);
+      // console.log(responseData);
 
       dispatch(setMessage(responseData.response.data.errorMessage, "error"));
     }
     if (error) {
-      console.log(error);
-      console.log(responseData);
+      // console.log(error);
+      // console.log(responseData);
       dispatch(
         setMessage(
           responseData.response.data
@@ -158,7 +158,7 @@ const EducationalDetailsForm = () => {
         body: formData,
       });
     } else {
-      console.log("Form submission failed. Please check the fields.");
+      // console.log("Form submission failed. Please check the fields.");
     }
   };
 

@@ -60,9 +60,9 @@ const CompanyDetailsForm = () => {
     };
     if (formIsValid) {
       // console.log(formData);
-      console.log("Form submitted successfully!");
+      // console.log("Form submitted successfully!");
     } else {
-      console.log("Form submission failed. Please check the fields.");
+      // console.log("Form submission failed. Please check the fields.");
     }
   };
 

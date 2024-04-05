@@ -32,6 +32,14 @@ const courseBenefits = [
 
 const Courses = [JavaFullStackCourse, Devops, UIUX, Embedded, AI, Python];
 
+export const GetCourseByCourseId = (courseId) => {
+  const fetchedCourse = Courses.find(
+    (course) => course.id.toString() === courseId.toString()
+  );
+
+  return fetchedCourse;
+};
+
 const benefitsData = {
   title: "Edu-Tech Benefits",
   highlightWord: "Edu-Tech",

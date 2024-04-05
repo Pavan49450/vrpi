@@ -79,7 +79,6 @@ export default function SignUp() {
   const submitHandler = (event) => {
     event.preventDefault();
     if (formIsValid) {
-      console.log("Sign up Successful");
       // console.log(
       //   "User Details",
       //   enteredName,
@@ -95,7 +94,7 @@ export default function SignUp() {
       navigate("/");
     } else {
       alert("Please complete all fields and accept the terms and conditions.");
-      console.log("Form has validation errors. Please fix them.");
+      // console.log("Form has validation errors. Please fix them.");
     }
   };
 

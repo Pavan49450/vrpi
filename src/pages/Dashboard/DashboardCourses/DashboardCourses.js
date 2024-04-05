@@ -3,21 +3,31 @@ import EnrolledCourseComponent from "../../../components/Dashboard/EnrolledCours
 import Courses from "../../../components/Dashboard/MyDashboardComponent/Courses/Courses";
 import { EduTechData } from "../../../data/EduTechData";
 import UserDataComponent from "../../../data/user";
+import { CircularProgress } from "@material-ui/core";
 
 const DashboardCourses = () => {
-  const user = UserDataComponent();
+  const FetchUserData = UserDataComponent();
 
   useEffect(() => {
     document.title = "Edutech Courses";
   });
 
   // Check if user data and necessary properties are defined
-  const userExists = user && user.educationalDetails && user.enrolledCourses;
+  const userExists =
+    FetchUserData &&
+    FetchUserData.userData.educationalDetails &&
+    FetchUserData.userData.courseList;
 
   return (
     <div>
-      {userExists && (
-        <EnrolledCourseComponent enrolledCourses={user.enrolledCourses} />
+      {FetchUserData.isLoading ? (
+        <CircularProgress />
+      ) : (
+        userExists && (
+          <EnrolledCourseComponent
+            enrolledCourses={FetchUserData.userData.enrolledCourses}
+          />
+        )
       )}
       <Courses data={EduTechData} />
     </div>

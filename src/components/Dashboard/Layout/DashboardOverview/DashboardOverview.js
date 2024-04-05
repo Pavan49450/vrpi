@@ -65,7 +65,6 @@ const DashboardOverview = ({
         <div className={style.overviewContents}>
           {userDetails && (
             <div className={style.userDetails}>
-              {/* {console.log(userDetails)} */}
               <span className={style.userName}>
                 {userDetails.firstName} {userDetails.lastName}
               </span>

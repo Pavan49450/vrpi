@@ -1,14 +1,16 @@
 import { useNavigate } from "react-router-dom";
 import UserDataComponent from "../../../data/user";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useEffect, useState } from "react";
 import ConfirmationModal from "../../../UI/ConfirmModel/ConfirmationModal";
 import useHttpsAxios from "../../../hooks/use-httpsAxios";
 import { url } from "../../../constants";
 import LoadingButton from "../../../UI/LoadingButton/LoadingButton";
+import { setMessage } from "../../../store/MessageDisplay/MessageActions";
 
 const PleaseEnrollBtn = ({ courseId }) => {
   const navigate = useNavigate();
+  const [enrolled, setEnrolled] = useState(false);
 
   const FetchUserData = UserDataComponent();
   const isVRPIUserLoggedIn = useSelector(
@@ -23,17 +25,52 @@ const PleaseEnrollBtn = ({ courseId }) => {
     useHttpsAxios();
 
   useEffect(() => {
+    if (FetchUserData.userData && FetchUserData.userData.courseList) {
+      const courseList = FetchUserData.userData.courseList;
+      const hasCourseId = courseList.some((course) => {
+        // console.log(
+        //   "Course id from the Data->",
+        //   course.id,
+        //   "Course id from the props->",
+        //   courseId
+        // );
+        return course.id.toString() === courseId.trim().toString();
+      });
+      // console.log(courseList);
+      // console.log(hasCourseId);
+      if (hasCourseId) {
+        setEnrolled(hasCourseId);
+      }
+    }
+  }, [FetchUserData.userData.courseList]);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
     if (statusCode === 200 || statusCode === 201) {
-      console.log(responseData);
       window.location.href = responseData;
     } else if (statusCode < 0 && statusCode > 202) {
-      console.log(error);
-      console.log(responseData);
+      dispatch(
+        setMessage(
+          responseData.response.data.statusMessage
+            ? responseData.response.data.statusMessage
+            : responseData.response.data.errorMessage,
+          "error",
+          false,
+          4
+        )
+      );
     }
 
     if (error) {
-      console.log(error);
-      console.log("res->", responseData);
+      setMessage(
+        responseData.response.data.statusMessage
+          ? responseData.response.data.statusMessage
+          : responseData.response.data.errorMessage,
+        "error",
+        false,
+        4
+      );
     }
   }, [responseData]);
 
@@ -121,7 +158,9 @@ const PleaseEnrollBtn = ({ courseId }) => {
       />
 
       <LoadingButton
-        text="Enroll now"
+        text={enrolled ? "Enrolled" : "Enroll now"}
+        style={{ color: !enrolled ? "white" : "black" }}
+        disabled={enrolled}
         isLoading={isLoading}
         loaderColor="white"
         onClick={handleEnrollCourseHandler}

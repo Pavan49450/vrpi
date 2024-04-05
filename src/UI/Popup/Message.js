@@ -7,7 +7,6 @@ const Message = ({ message, type, onClose, dontClose, time }) => {
 
   useEffect(() => {
     if (!dontClose) {
-      console.log("dontClose->", dontClose);
       const timer = setTimeout(() => {
         setShow(false);
         onClose();

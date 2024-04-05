@@ -152,8 +152,8 @@ const UpdateUserDetails = () => {
         // aadharBack: aadhaarCardBackFile,
         // incomeCertificate: incomeCertificateFile,
       };
-      console.log("Form data", formData);
-      console.log("User data", userData.user);
+      // console.log("Form data", formData);
+      // console.log("User data", userData.user);
 
       sendRequest({
         url: `${url.backendBaseUrl}/vrpi-user/update-user/${userData.user.id}`,
@@ -164,7 +164,7 @@ const UpdateUserDetails = () => {
         },
       });
       if (statusCode === 200 || statusCode === 201) {
-        console.log(responseData);
+        // console.log(responseData);
       }
       // navigate("/login");
     }

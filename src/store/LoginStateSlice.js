@@ -1,7 +1,6 @@
 // reducer.js
 
-import { LOGIN, LOGINDA, LOGOUT, loginWithUserData } from "./LoginStateActions";
-import UserDataComponent from "../data/user";
+import { LOGIN, LOGINDA, LOGOUT } from "./LoginStateActions";
 
 const initialUserState = {
   isVRPIUserLoggedIn: localStorage.getItem("isVRPIUserLoggedIn") === "true",
@@ -45,22 +44,6 @@ const UserStateReducer = (state = initialUserState, action) => {
   }
 };
 
-// Thunk action creator to fetch user data
-const fetchUserData = () => async (dispatch, getState) => {
-  // const { userId } = getState().UserStateReducer;
-  // const userId = useSelector((state) => state.login.userId);
-  const userId = localStorage.getItem("userId");
-  const userData = UserDataComponent(); // Fetch user data
-  dispatch(loginWithUserData(userData)); // Dispatch action to update user data
-  console.log(userId);
-  // if (userId) {
-  //   try {
-  //   } catch (error) {
-  //     console.error("Error fetching user data:", error);
-  //   }
-  // }
-};
-
 const UserDataStateReducer = (state = initialUserDataState, action) => {
   switch (action.type) {
     case LOGINDA:
@@ -80,4 +63,4 @@ const UserDataStateReducer = (state = initialUserDataState, action) => {
   }
 };
 
-export { UserStateReducer, UserDataStateReducer, fetchUserData };
+export { UserStateReducer, UserDataStateReducer };

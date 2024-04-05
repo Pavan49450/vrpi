@@ -135,12 +135,12 @@ const PersonalDataForm = ({ role }) => {
     const Validation = () => {
       if (responseData) {
         if (statusCode === 200 || statusCode === 201) {
-          console.log("Created user successfully");
+          // console.log("Created user successfully");
           dispatch(setUser({ role: role, step: 2 }));
         } else {
-          console.log(statusCode);
-          console.error("error: " + error);
-          console.error("error: " + responseData);
+          // console.log(statusCode);
+          // console.error("error: " + error);
+          // console.error("error: " + responseData);
 
           dispatch(
             setMessage(
@@ -155,7 +155,7 @@ const PersonalDataForm = ({ role }) => {
     };
     if (error) {
       dispatch(setMessage(error, "error"));
-      console.log(error);
+      // console.log(error);
     }
 
     Validation();
@@ -195,7 +195,7 @@ const PersonalDataForm = ({ role }) => {
           roles: role,
         };
       }
-      console.log(formData);
+      // console.log(formData);
 
       sendRequest({
         url: `${url.backendBaseUrl}/vrpi-user/create`,

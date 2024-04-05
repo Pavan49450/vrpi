@@ -64,9 +64,6 @@ export default function SignIn() {
   const submitHandler = (event) => {
     event.preventDefault();
     if (formIsValid) {
-      console.log("Sign up Successful");
-
-      // console.log("login details", email, enteredPassword);
       emailReset();
       passwordReset();
       navigate("/");
@@ -76,7 +73,7 @@ export default function SignIn() {
       setErrorMessage(
         "Please complete all fields and accept the terms and conditions."
       );
-      console.log("Form has validation errors. Please fix them.");
+      // console.log("Form has validation errors. Please fix them.");
     }
   };
 

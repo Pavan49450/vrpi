@@ -40,7 +40,6 @@ const CourseContent = ({ courseContent, courId }) => {
       if (FetchUserData.userData.enrolledCourses.length <= 0) {
         setEnrolled(false);
       } else if (FetchUserData.userData.enrolledCourses.includes(courId)) {
-        console.log("enrolled");
         setEnrolled(true);
       }
     }
@@ -100,8 +99,6 @@ const ArrowToggleComponent = ({ isOpen, image1, image2 }) => {
 const PleaseEnroll = ({ courseId }) => {
   return (
     <div className={styles.pleaseEnroll}>
-      {console.log("Please Enroll")}
-      {/* Please enroll to access this chapter. */}
       <h2>Sorry!! You are not enrolled the course so far</h2>
       <p>To get to know more about the course structure Join our course</p>
       <PleaseEnrollBtn courseId={courseId} />

@@ -20,7 +20,7 @@ const CustomFileUploader = ({
       setFileSize(file.size); // Set the uploaded file size
     } else {
       // Handle invalid file type or size
-      console.log("Invalid file type or size");
+      // console.log("Invalid file type or size");
     }
   };
 

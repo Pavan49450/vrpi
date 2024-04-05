@@ -46,6 +46,7 @@ const MainSection = ({ content }) => {
           <CustomImage
             src={require(`../../../assets/courses/link.png`)}
             alt=""
+            classForDiv={style.linkIcon}
           />
           <span>Provided Course Language - “ {content.language} ”</span>
         </div>

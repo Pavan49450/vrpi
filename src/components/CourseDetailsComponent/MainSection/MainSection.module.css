@@ -21,6 +21,10 @@
   justify-content: space-around;
 }
 
+.linkIcon {
+  width: auto !important;
+}
+
 .content h1 {
   font-size: 2rem;
   width: 100%;

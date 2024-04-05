@@ -1,6 +1,8 @@
 import React from "react";
 import styles from "./PurchaseHistoryComponent.module.css";
 import CustomImage from "../../../UI/Image/Image";
+import UserDataComponent from "../../../data/user";
+import { CircularProgress } from "@material-ui/core";
 
 // Example purchases data
 const examplePurchases = [
@@ -39,28 +41,50 @@ const PurchaseItem = ({ purchase }) => {
 };
 
 function PurchaseHistoryComponent() {
-  return (
-    <>
-      {examplePurchases.length !== 0 ? (
-        <div>
-          <h1 className={styles.heading}>My Purchases</h1>
-          <div className={styles.data}>
-            {examplePurchases.map((purchase, index) => (
-              <PurchaseItem key={index} purchase={purchase} />
-            ))}
+  const FetchUserData = UserDataComponent();
+
+  const PurchasesData = FetchUserData.userData
+    ? FetchUserData.userData.courseList.map((course) => {
+        return {
+          course: course.courseName,
+          courseId: course.id,
+          // joinedOn: course.joinedOn,
+          // duration: course.duration,
+          // amountPaid: course.amountPaid,
+        };
+      })
+    : [];
+
+  if (FetchUserData.isLoading) {
+    return (
+      <div className={styles.loadingState}>
+        <CircularProgress />
+      </div>
+    );
+  } else {
+    return (
+      <div>
+        {PurchasesData.length !== 0 ? (
+          <div>
+            <h1 className={styles.heading}>My Purchases</h1>
+            <div className={styles.data}>
+              {PurchasesData.map((purchase, index) => (
+                <PurchaseItem key={index} purchase={purchase} />
+              ))}
+            </div>
           </div>
-        </div>
-      ) : (
-        <div className={styles.noData}>
-          <CustomImage
-            src={require("../../../assets/dashboard/NoDataImage.png")}
-            alt=""
-          />
-          <p>No Payments history</p>
-        </div>
-      )}
-    </>
-  );
+        ) : (
+          <div className={styles.noData}>
+            <CustomImage
+              src={require("../../../assets/dashboard/NoDataImage.png")}
+              alt=""
+            />
+            <p>No Payments history</p>
+          </div>
+        )}
+      </div>
+    );
+  }
 }
 
 export default PurchaseHistoryComponent;

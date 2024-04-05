@@ -80,7 +80,7 @@ const ContactUsForm = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (formIsValid) {
-      console.log("Form submitted successfully");
+      // console.log("Form submitted successfully");
       // console.log(
       //   "Info->",
       //   nameInput.value,
@@ -108,7 +108,7 @@ const ContactUsForm = () => {
       });
     } else {
       setErrorMessage("Please fill out all fields correctly");
-      console.log("Please fill out all fields correctly");
+      // console.log("Please fill out all fields correctly");
     }
   };
 

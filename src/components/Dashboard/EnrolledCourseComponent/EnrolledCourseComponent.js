@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import style from "./EnrolledCourseComponent.module.css";
 import EnrolledCourses from "./EnrolledCourses/EnrolledCourses";
 import LiveClasses from "./LiveClasses/LiveClasses";

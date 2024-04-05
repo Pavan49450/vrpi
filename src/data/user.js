@@ -72,7 +72,14 @@ const UserDataComponent = () => {
     certificatesToUpload,
     enrolledCourses:
       responseData && responseData.courseList ? responseData.courseList : [],
-    educationalDetails: responseData?.educationDetails, // Access educationDetails directly
+    educationalDetails: responseData?.educationDetails,
+    courseList: responseData?.courseList || [],
+    allDocAreUploaded:
+      responseData &&
+      (responseData.user.incomeCert || false) &&
+      (responseData.user.aadharFront || false) &&
+      (responseData.user.aadharBack || false) &&
+      (responseData.user.profilePic || false),
   };
 
   // useEffect(() => {

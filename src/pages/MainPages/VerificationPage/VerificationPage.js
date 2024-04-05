@@ -31,10 +31,10 @@ const VerificationPage = () => {
         });
 
         if (response && (statusCode === 200 || statusCode === 201)) {
-          console.log("Verified");
+          // console.log("Verified");
         }
       } catch (error) {
-        console.log("Error:", error.message);
+        // console.log("Error:", error.message);
       }
     };
 
@@ -42,8 +42,8 @@ const VerificationPage = () => {
   }, [sendRequest]);
 
   useEffect(() => {
-    console.log(responseData);
-    console.log(statusCode);
+    // console.log(responseData);
+    // console.log(statusCode);
   });
 
   const navigate = useNavigate();

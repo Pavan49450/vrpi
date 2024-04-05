@@ -12,6 +12,7 @@ const ProfileDetails = ({ user, userData }) => {
             <ProfilePic
               containerClass={style.imageContainer}
               LoadingColor="white"
+              classForDiv={style.imageContainerClass}
             />
           </div>
           <div className={style.profileStatus}>

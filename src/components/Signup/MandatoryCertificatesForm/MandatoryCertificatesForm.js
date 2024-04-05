@@ -121,7 +121,7 @@ const MandatoryCertificatesForm = () => {
 
       // setMessage(response.data.message, "success");
       setIsLoading(false);
-      console.log(response);
+      // console.log(response);
       SuccessResponseHandler();
     } catch (error) {
       if (error.response) {
@@ -131,17 +131,17 @@ const MandatoryCertificatesForm = () => {
           error.response.data.detail || "Error updating user documents.",
           "error"
         );
-        console.error("Error updating user documents:", error.response.data);
+        // console.error("Error updating user documents:", error.response.data);
       } else if (error.request) {
         setIsLoading(false);
 
         setMessage("No response received from the server.", "error");
-        console.error("No response received:", error.request);
+        // console.error("No response received:", error.request);
       } else {
         setIsLoading(false);
 
         setMessage("An error occurred while sending the request.", "error");
-        console.error("Error:", error.message);
+        // console.error("Error:", error.message);
       }
     }
   };
