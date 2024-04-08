@@ -4,6 +4,8 @@ import { DevopsToolsAndTechnologyUsed } from "./ToolsAndTechnologyUsed";
 
 export const Devops = {
   id: "2",
+  courseCode: "vprico002",
+
   type: "online",
   duration: {
     durationMetric: "months",

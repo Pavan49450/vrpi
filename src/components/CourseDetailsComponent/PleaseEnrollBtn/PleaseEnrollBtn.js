@@ -8,7 +8,7 @@ import { url } from "../../../constants";
 import LoadingButton from "../../../UI/LoadingButton/LoadingButton";
 import { setMessage } from "../../../store/MessageDisplay/MessageActions";
 
-const PleaseEnrollBtn = ({ courseId }) => {
+const PleaseEnrollBtn = ({ courseId, courseCode }) => {
   const navigate = useNavigate();
   const [enrolled, setEnrolled] = useState(false);
 
@@ -34,7 +34,7 @@ const PleaseEnrollBtn = ({ courseId }) => {
         //   "Course id from the props->",
         //   courseId
         // );
-        return course.id.toString() === courseId.trim().toString();
+        return course.courseCode.toString() === courseCode.trim().toString();
       });
       // console.log(courseList);
       // console.log(hasCourseId);

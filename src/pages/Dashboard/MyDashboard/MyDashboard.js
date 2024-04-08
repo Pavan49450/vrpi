@@ -8,6 +8,7 @@ import { EduTechData } from "../../../data/EduTechData";
 import UserDataComponent from "../../../data/user";
 import style from "./MyDashboard.module.css";
 import { CircularProgress } from "@material-ui/core";
+import ErrorPage from "../../Error";
 
 const MyDashboard = () => {
   const [hideWelcome, setHideWelcome] = useState(false);
@@ -20,7 +21,7 @@ const MyDashboard = () => {
 
     const timer = setTimeout(() => {
       setHideWelcome(true);
-    }, 10000);
+    }, 1000000);
 
     return () => clearTimeout(timer);
   }, [userData.userData]);
@@ -31,44 +32,52 @@ const MyDashboard = () => {
         <CircularProgress />
       </div>
     );
+  } else if (userData.error) {
+    return (
+      <ErrorPage
+        errorData={{
+          title: userData.error.message,
+          message: "Oh no, Something went wrong",
+          image: "commonErrorPage.png",
+          navigateButton: null,
+          navigateTo: null,
+        }}
+      ></ErrorPage>
+    );
   } else {
     return (
       <div className={style.container}>
         <WelcomeScreen user={userData.userData.user} onClose={hideWelcome} />
         <div className={style.containers}>
-          <div className={style.mainContainer}>
-            {userData.userData.user && !userData.userData.allDocAreUploaded ? (
-              <ProfileDetails
-                user={userData.userData.user}
-                userData={userData.userData}
-              />
-            ) : (
-              <>
-                {userData.userData.user && (
-                  <ProfileDetails
-                    user={userData.userData.user}
-                    userData={userData.userData}
-                  />
-                )}
+          {userData.userData && (
+            <div className={style.mainContainer}>
+              {userData.userData.user && (
+                <ProfileDetails
+                  user={userData.userData.user}
+                  userData={userData.userData}
+                />
+              )}
+
+              {userData.userData.courseList && (
                 <EnrolledCourseComponent
                   enrolledCourses={userData.userData?.courseList || []}
                 />
-              </>
-            )}
-            <Courses data={EduTechData} />
-            {userData.userData?.enrolledCourses &&
-              userData.userData?.certificatesToUpload !== 0 && (
+              )}
+              <Courses data={EduTechData} />
+              {userData.userData && (
+                // userData.userData?.certificatesToUpload !== 0 &&
                 <div className={style.rightSideContents}>
-                  <RightSideContents />
+                  <RightSideContents userData={userData.userData} />
                 </div>
               )}
-          </div>
-          {userData.userData?.enrolledCourses &&
-            userData.userData?.certificatesToUpload !== 0 && (
-              <div className={style.sideContainer}>
-                <RightSideContents />
-              </div>
-            )}
+            </div>
+          )}
+          {userData.userData && (
+            // userData.userData?.certificatesToUpload !== 0 &&
+            <div className={style.sideContainer}>
+              <RightSideContents userData={userData.userData} />
+            </div>
+          )}
         </div>
       </div>
     );

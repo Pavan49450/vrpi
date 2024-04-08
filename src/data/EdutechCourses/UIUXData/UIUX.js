@@ -4,6 +4,7 @@ import { UIUXToolsAndTechnologyUsed } from "./ToolsAndTechnologyUsed";
 
 export const UIUX = {
   id: "3",
+  courseCode: "vprico003",
   type: "upcoming",
 
   name: "UI/UX Designing",

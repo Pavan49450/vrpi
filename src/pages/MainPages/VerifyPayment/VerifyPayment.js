@@ -7,6 +7,8 @@ import CustomImage from "../../../UI/Image/Image";
 import Button from "../../../UI/Button/Button";
 import { url } from "../../../constants";
 import UserDataComponent from "../../../data/user";
+import ErrorPage from "../../Error";
+import { GeneralErrorData } from "../../../data/ErrorData";
 const VerifyPayment = () => {
   const queryParams = new URLSearchParams(window.location.search);
   const location = useLocation();
@@ -37,58 +39,63 @@ const VerifyPayment = () => {
 
   const FetchUserData = UserDataComponent();
 
+  const fetchData = async () => {
+    try {
+      setIsLoading(true);
+      const response = await axios.get(`${url.backendBaseUrl}${pathname}`, {
+        params: {
+          amount,
+          courseId,
+          orderId,
+          razorpay_payment_id: razorpayPaymentId,
+          razorpay_payment_link_id: razorpayPaymentLinkId,
+          razorpay_payment_link_reference_id: razorpayPaymentLinkReferenceId,
+          razorpay_payment_link_status: razorpayPaymentLinkStatus,
+          razorpay_signature: razorpaySignature,
+          userId,
+        },
+      });
+      // console.log(response);
+
+      if (response.status && response.data === "Payment successful") {
+        setPaymentVerificationStatus(true);
+      }
+      setIsLoading(false);
+    } catch (error) {
+      console.error(error);
+      setError(error);
+      setIsLoading(false);
+    }
+  };
+
   useEffect(() => {
-    if (FetchUserData?.userData.courseList) {
+    console.log("run");
+    if (FetchUserData?.userData.courseList && !FetchUserData?.isLoading) {
       const findCourse = FetchUserData.userData.courseList.find(
         (course) => course.id.toString() === courseId.toString()
       );
 
-      console.log(findCourse);
-      console.log(verified);
-      if (verified === false && paymentVerificationStatus === false) {
-        const fetchData = async () => {
-          if (findCourse) {
-            setVerified(true);
-            setPaymentVerificationStatus(true);
+      // console.log(findCourse);
+      // console.log(verified);
+      console.log("error->", FetchUserData.error);
 
-            return;
-          } else {
-            try {
-              setIsLoading(true);
-              const response = await axios.get(
-                `${url.backendBaseUrl}${pathname}`,
-                {
-                  params: {
-                    amount,
-                    courseId,
-                    orderId,
-                    razorpay_payment_id: razorpayPaymentId,
-                    razorpay_payment_link_id: razorpayPaymentLinkId,
-                    razorpay_payment_link_reference_id:
-                      razorpayPaymentLinkReferenceId,
-                    razorpay_payment_link_status: razorpayPaymentLinkStatus,
-                    razorpay_signature: razorpaySignature,
-                    userId,
-                  },
-                }
-              );
-              console.log(response);
+      if (
+        verified === false &&
+        paymentVerificationStatus === false &&
+        !FetchUserData.error
+      ) {
+        if (findCourse) {
+          setVerified(true);
+          setPaymentVerificationStatus(true);
 
-              if (response.status && response.data === "Payment successful") {
-                setPaymentVerificationStatus(true);
-              }
-              setIsLoading(false);
-            } catch (error) {
-              setError(error);
-              setIsLoading(false);
-            }
-          }
-        };
-
-        fetchData();
+          return;
+        } else {
+          fetchData();
+          return;
+        }
       }
     }
-  }, [FetchUserData?.userData.courseList, courseId]);
+  }, []);
 
   const successfulRequest = {
     image: "paymentSuccessfulImage.png",
@@ -118,6 +125,10 @@ const VerifyPayment = () => {
       "Your transaction has failed due to some technical issues. Please try again.",
   };
 
+  // const Error = {
+
+  // }
+
   const paymentStatusData =
     (razorpayPaymentLinkStatus === "paid" &&
       razorpaySignature &&
@@ -126,41 +137,55 @@ const VerifyPayment = () => {
       ? successfulRequest
       : failedRequest;
 
-  return (
-    <div className={styles.container}>
-      {FetchUserData.isLoading && isLoading ? (
-        <CircularProgress />
-      ) : (
-        <div className={styles.container}>
-          <CustomImage
-            src={require(`../../../assets/verifyPayments/${paymentStatusData.image}`)}
-            alt={paymentStatusData.text}
-            classForDiv={styles.imageContainer}
-          />
-          <div className={styles.paymentStatus}>
+  if (FetchUserData.error || error) {
+    return (
+      <ErrorPage
+        errorData={{
+          title: FetchUserData.error.message,
+          message: "Oh no, Something went wrong",
+          image: "commonErrorPage.png",
+          navigateButton: null,
+          navigateTo: null,
+        }}
+      ></ErrorPage>
+    );
+  } else {
+    return (
+      <div className={styles.container}>
+        {FetchUserData.isLoading && isLoading ? (
+          <CircularProgress />
+        ) : (
+          <div className={styles.container}>
             <CustomImage
-              src={require(`../../../assets/verifyPayments/${paymentStatusData.assetIcon}`)}
+              src={require(`../../../assets/verifyPayments/${paymentStatusData.image}`)}
               alt={paymentStatusData.text}
               classForDiv={styles.imageContainer}
             />
-            <span
-              style={{
-                color: `${
-                  paymentStatusData.paymentStatus ? "#00B112" : "#E30000"
-                }`,
-              }}
-            >
-              {paymentStatusData.text}
-            </span>
+            <div className={styles.paymentStatus}>
+              <CustomImage
+                src={require(`../../../assets/verifyPayments/${paymentStatusData.assetIcon}`)}
+                alt={paymentStatusData.text}
+                classForDiv={styles.imageContainer}
+              />
+              <span
+                style={{
+                  color: `${
+                    paymentStatusData.paymentStatus ? "#00B112" : "#E30000"
+                  }`,
+                }}
+              >
+                {paymentStatusData.text}
+              </span>
+            </div>
+            <p className={styles.paymentMessage}>{paymentStatusData.message}</p>
+            <Button onClick={paymentStatusData.buttonActions.action}>
+              {paymentStatusData.buttonActions.title}
+            </Button>
           </div>
-          <p className={styles.paymentMessage}>{paymentStatusData.message}</p>
-          <Button onClick={paymentStatusData.buttonActions.action}>
-            {paymentStatusData.buttonActions.title}
-          </Button>
-        </div>
-      )}
-    </div>
-  );
+        )}
+      </div>
+    );
+  }
 };
 
 export default VerifyPayment;

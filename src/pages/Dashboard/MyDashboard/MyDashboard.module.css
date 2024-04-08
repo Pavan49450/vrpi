@@ -1,7 +1,14 @@
 .containers {
   display: flex;
   gap: 1rem;
+  /* flex-direction: column; */
 }
+/* .container {
+  display: flex;
+  flex-direction: column;
+
+  gap: 1rem;
+} */
 
 .mainContainer {
   width: 100%;
@@ -14,7 +21,10 @@
 .sideContainer {
   width: 350px;
   min-width: 350px;
-  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  height: fit-content;
+  gap: 1rem;
 }
 
 .rightSideContents {
@@ -33,6 +43,9 @@
     display: none;
   }
   .rightSideContents {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+    gap: 1rem;
   }
 }

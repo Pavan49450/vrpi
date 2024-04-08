@@ -43,14 +43,14 @@ const PurchaseItem = ({ purchase }) => {
 function PurchaseHistoryComponent() {
   const FetchUserData = UserDataComponent();
 
-  const PurchasesData = FetchUserData.userData
-    ? FetchUserData.userData.courseList.map((course) => {
+  const PurchasesData = FetchUserData.userData.courseList
+    ? FetchUserData.userData?.courseList.map((course) => {
         return {
-          course: course.courseName,
-          courseId: course.id,
-          // joinedOn: course.joinedOn,
-          // duration: course.duration,
-          // amountPaid: course.amountPaid,
+          course: course.courseName || "No data",
+          courseId: course.id || "No data",
+          joinedOn: course.enrollmentDate || "No data",
+          duration: course.duration || "No data",
+          amountPaid: course.amount || "No data",
         };
       })
     : [];

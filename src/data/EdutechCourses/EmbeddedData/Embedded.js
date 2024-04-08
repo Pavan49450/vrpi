@@ -5,6 +5,7 @@ import { EmbeddedToolsAndTechnologyUsed } from "./ToolsAndTechnologyUsed";
 export const Embedded = {
   id: "4",
   type: "offline",
+  courseCode: "vprico004",
 
   name: "Embedded & IoT",
   courseLink: "/",

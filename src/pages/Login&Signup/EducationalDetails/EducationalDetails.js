@@ -20,7 +20,7 @@ const EducationalDetails = () => {
   const FetchUserData = UserDataComponent();
 
   return (
-    <div>
+    <>
       {FetchUserData.isLoading ? (
         <div className={styles.loadingContainer}>
           <CircularProgress />
@@ -32,7 +32,7 @@ const EducationalDetails = () => {
           <EducationalDetailsComponent />
         </SignUpOrLoginContainer>
       )}
-    </div>
+    </>
   );
 };
 

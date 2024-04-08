@@ -16,6 +16,7 @@ const CourseDetails = ({ content }) => {
       <CourseContent
         courseContent={content.courseContent}
         courId={content.id}
+        courseCode={content.courseCode}
       />
       <ToolsRequired toolsRequired={content.toolsAndTechnologyUsed} />
       <CourseEligibility />

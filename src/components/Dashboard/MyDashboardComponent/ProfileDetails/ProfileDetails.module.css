@@ -106,6 +106,9 @@
     position: relative;
     top: 0;
   }
+  .imageContainer {
+    position: static;
+  }
   .joinUs {
     left: 0;
     width: 100%;

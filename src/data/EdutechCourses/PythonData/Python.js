@@ -5,6 +5,7 @@ import { PythonToolsAndTechnologyUsed } from "./ToolsAndTechnologyUsed";
 export const Python = {
   id: "6",
   type: "upcoming",
+  courseCode: "vprico006",
 
   name: "Python",
   courseLink: "/",

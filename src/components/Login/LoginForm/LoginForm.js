@@ -57,8 +57,8 @@ const LoginForm = () => {
         }
 
         if (statusCode === 200 || statusCode === 201) {
-          if (responseData.userDto) {
-            dispatch(loginWithUserId(responseData.userDto.id));
+          if (responseData) {
+            dispatch(loginWithUserId(responseData));
             emailInput.reset();
             passwordInput.reset();
             navigate("/dashboard");

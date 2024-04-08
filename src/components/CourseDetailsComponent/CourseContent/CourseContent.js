@@ -8,7 +8,7 @@ import UserDataComponent from "../../../data/user";
 import { CircularProgress } from "@material-ui/core";
 import PleaseEnrollBtn from "../PleaseEnrollBtn/PleaseEnrollBtn";
 
-const CourseContent = ({ courseContent, courId }) => {
+const CourseContent = ({ courseContent, courId, courseCode }) => {
   const [openChapters, setOpenChapters] = useState([]);
   const [openModules, setOpenModules] = useState([]);
 
@@ -69,6 +69,7 @@ const CourseContent = ({ courseContent, courId }) => {
               isFirstChapter={chapterIndex === 0}
               courseId={courId}
               enrolled={enrolled}
+              courseCode={courseCode}
             />
           ))}
         </div>
@@ -103,12 +104,12 @@ const ArrowToggleComponent = ({ isOpen, image1, image2 }) => {
     />
   );
 };
-const PleaseEnroll = ({ courseId }) => {
+const PleaseEnroll = ({ courseId, courseCode }) => {
   return (
     <div className={styles.pleaseEnroll}>
       <h2>Sorry!! You are not enrolled the course so far</h2>
       <p>To get to know more about the course structure Join our course</p>
-      <PleaseEnrollBtn courseId={courseId} />
+      <PleaseEnrollBtn courseId={courseId} courseCode={courseCode} />
     </div>
   );
 };
@@ -122,6 +123,7 @@ const Chapter = ({
   isFirstChapter,
   enrolled,
   courseId,
+  courseCode,
 }) => {
   const handleClickChapter = () => {
     toggleChapter(chapterIndex);
@@ -159,7 +161,7 @@ const Chapter = ({
               ))}
             </div>
           ) : (
-            <PleaseEnroll courseId={courseId} />
+            <PleaseEnroll courseId={courseId} courseCode={courseCode} />
           )}
         </>
       )}

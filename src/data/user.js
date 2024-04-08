@@ -16,16 +16,112 @@ import useHttpsAxios from "../hooks/use-httpsAxios";
 //   enrolledCourses: [],
 // };
 
+// const UserDataComponent = () => {
+//   const userId = useSelector((state) => state.login.userId);
+//   const { sendRequest, responseData, statusCode, isLoading } = useHttpsAxios();
+
+//   // const userDataFromRedux = useSelector((state) => state.userData.userData);
+
+//   // const dispatch = useDispatch();
+
+//   useEffect(() => {
+//     if (userId && userId !== null) {
+//       sendRequest({
+//         url: `${url.backendBaseUrl}/vrpi-user/get-user-details/${userId}`,
+//         headers: { "Content-Type": "application/json", Accept: "*/*" },
+//       });
+//     }
+//   }, [userId, sendRequest]);
+
+//   const MandatoryCertificatesData = [
+//     {
+//       title: "Income Certificate",
+//       note: "Note: Upload Income Certificate which is valid for a period of 1 year from the date of issue.",
+//       uploadedAreNot: responseData && (responseData.user.incomeCert || false),
+//     },
+//     {
+//       title: "Aadhaar Card (Front)",
+//       note: "Note: Make sure address of yours should be visible clearly, and can be of png.,jpeg., pdf of size 5MB. ",
+//       uploadedAreNot: responseData && (responseData.user.aadharFront || false),
+//     },
+//     {
+//       title: "Aadhaar Card (Back)",
+//       note: "Note: Make sure address of yours should be visible clearly, and can be of png.,jpeg., pdf of size 5MB. ",
+//       uploadedAreNot: responseData && (responseData.user.aadharBack || false),
+//     },
+//     {
+//       title: "Passport Size photo",
+//       note: "Note: Upload your Passport size Photo of size 5MB and can be of png.,jpeg., pdf.",
+//       uploadedAreNot: responseData && (responseData.user.profilePic || false),
+//     },
+//   ];
+
+//   // Calculate number of uploaded certificates
+//   const uploadedCertificates = MandatoryCertificatesData.filter(
+//     (certificate) => certificate.uploadedAreNot
+//   ).length;
+
+//   // Calculate number of certificates needed to upload
+//   const certificatesToUpload =
+//     MandatoryCertificatesData.length - uploadedCertificates;
+
+//   const userData = {
+//     user: responseData && responseData.user,
+//     MandatoryCertificatesData,
+//     uploadedCertificates,
+//     certificatesToUpload,
+//     // enrolledCourses:
+//     //   responseData && responseData.courseList ? responseData.courseList : [],
+//     educationalDetails: responseData && responseData.educationDetails,
+//     courseList: responseData?.courseList && responseData.courseList,
+//     allDocAreUploaded:
+//       responseData &&
+//       (responseData.user.incomeCert || false) &&
+//       (responseData.user.aadharFront || false) &&
+//       (responseData.user.aadharBack || false) &&
+//       (responseData.user.profilePic || false),
+//   };
+
+//   // useEffect(() => {
+//   //   if (userId && userId !== null) {
+//   //     if (statusCode === 200) {
+//   //       dispatch(
+//   //         loginWithUserData({
+//   //           userData: userData,
+//   //           isLoading: isLoading,
+//   //         })
+//   //       );
+//   //     }
+//   //   }
+//   // }, [userId, statusCode]);
+
+//   useEffect(() => {
+//     if (userId && userId !== null) {
+//       if (statusCode === 200) {
+//         // console.log("userData1", userDataFromRedux);
+//         console.log(
+//           "userData2",
+//           responseData.courseList
+//           // responseData && (responseData.educationalDetails || null)
+//           // responseData.educationDetails
+//           // userData
+//         );
+//       }
+//     }
+//   }, [userId, statusCode]);
+//   return {
+//     userData: userData,
+//     isLoading: isLoading,
+//   };
+// };
+
 const UserDataComponent = () => {
   const userId = useSelector((state) => state.login.userId);
-  const { sendRequest, responseData, statusCode, isLoading } = useHttpsAxios();
-
-  // const userDataFromRedux = useSelector((state) => state.userData.userData);
-
-  // const dispatch = useDispatch();
+  const { sendRequest, responseData, statusCode, isLoading, error } =
+    useHttpsAxios();
 
   useEffect(() => {
-    if (userId && userId !== null) {
+    if (userId) {
       sendRequest({
         url: `${url.backendBaseUrl}/vrpi-user/get-user-details/${userId}`,
         headers: { "Content-Type": "application/json", Accept: "*/*" },
@@ -37,80 +133,56 @@ const UserDataComponent = () => {
     {
       title: "Income Certificate",
       note: "Note: Upload Income Certificate which is valid for a period of 1 year from the date of issue.",
-      uploadedAreNot: responseData && (responseData.user.incomeCert || false),
+      uploadedAreNot: responseData?.user?.incomeCert || false,
     },
     {
       title: "Aadhaar Card (Front)",
       note: "Note: Make sure address of yours should be visible clearly, and can be of png.,jpeg., pdf of size 5MB. ",
-      uploadedAreNot: responseData && (responseData.user.aadharFront || false),
+      uploadedAreNot: responseData?.user?.aadharFront || false,
     },
     {
       title: "Aadhaar Card (Back)",
       note: "Note: Make sure address of yours should be visible clearly, and can be of png.,jpeg., pdf of size 5MB. ",
-      uploadedAreNot: responseData && (responseData.user.aadharBack || false),
+      uploadedAreNot: responseData?.user?.aadharBack || false,
     },
     {
       title: "Passport Size photo",
       note: "Note: Upload your Passport size Photo of size 5MB and can be of png.,jpeg., pdf.",
-      uploadedAreNot: responseData && (responseData.user.profilePic || false),
+      uploadedAreNot: responseData?.user?.profilePic || false,
     },
   ];
 
-  // Calculate number of uploaded certificates
   const uploadedCertificates = MandatoryCertificatesData.filter(
     (certificate) => certificate.uploadedAreNot
   ).length;
 
-  // Calculate number of certificates needed to upload
   const certificatesToUpload =
     MandatoryCertificatesData.length - uploadedCertificates;
 
   const userData = {
-    user: responseData && responseData.user,
+    user: responseData?.user,
     MandatoryCertificatesData,
     uploadedCertificates,
     certificatesToUpload,
-    enrolledCourses:
-      responseData && responseData.courseList ? responseData.courseList : [],
     educationalDetails: responseData?.educationDetails,
     courseList: responseData?.courseList || [],
     allDocAreUploaded:
-      responseData &&
-      (responseData.user.incomeCert || false) &&
-      (responseData.user.aadharFront || false) &&
-      (responseData.user.aadharBack || false) &&
-      (responseData.user.profilePic || false),
+      responseData?.user?.incomeCert &&
+      responseData?.user?.aadharFront &&
+      responseData?.user?.aadharBack &&
+      responseData?.user?.profilePic,
   };
 
   // useEffect(() => {
-  //   if (userId && userId !== null) {
-  //     if (statusCode === 200) {
-  //       dispatch(
-  //         loginWithUserData({
-  //           userData: userData,
-  //           isLoading: isLoading,
-  //         })
-  //       );
-  //     }
+  //   if (statusCode === 200) {
+  //     console.log("userData2", responseData?.courseList);
   //   }
-  // }, [userId, statusCode]);
+  // }, [statusCode]);
 
-  // useEffect(() => {
-  //   if (userId && userId !== null) {
-  //     if (statusCode === 200) {
-  //       // console.log("userData1", userDataFromRedux);
-  //       console.log(
-  //         "userData2",
-  //         // responseData && (responseData.educationalDetails || null)
-  //         // responseData.educationDetails
-  //         userData
-  //       );
-  //     }
-  //   }
-  // }, [userId, statusCode]);
   return {
-    userData: userData,
-    isLoading: isLoading,
+    userData,
+    isLoading,
+    error: error,
   };
 };
 

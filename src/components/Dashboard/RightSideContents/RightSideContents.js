@@ -1,12 +1,11 @@
 import EdutechBenefits from "./EdutechBenefits/EdutechBenefits";
-import MandatoryCertificates from "./MandatoryCertificates/MandatoryCertificates";
-
-const RightSideContents = () => {
+import MandatoryCertificates from "../ProfileComponents/ProfileDetailsSection/MandatoryCertificates/MandatoryCertificates";
+const RightSideContents = ({ userData }) => {
   return (
-    <div>
-      <MandatoryCertificates />
+    <>
+      {!userData.allDocAreUploaded && <MandatoryCertificates user={userData} />}
       <EdutechBenefits />
-    </div>
+    </>
   );
 };
 

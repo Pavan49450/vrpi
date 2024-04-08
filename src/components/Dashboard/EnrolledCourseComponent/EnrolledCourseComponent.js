@@ -6,8 +6,10 @@ import LiveClasses from "./LiveClasses/LiveClasses";
 const EnrolledCourseComponent = ({ enrolledCourses }) => {
   return (
     <>
-      <EnrolledCourses enrolledCourses={enrolledCourses} />
-      <LiveClasses enrolledCourses={enrolledCourses} />
+      {enrolledCourses && enrolledCourses.length > 0 && (
+        <EnrolledCourses enrolledCourses={enrolledCourses} />
+      )}
+      {/* <LiveClasses enrolledCourses={enrolledCourses} /> */}
     </>
   );
 };

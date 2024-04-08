@@ -51,7 +51,10 @@ const MainSection = ({ content }) => {
           <span>Provided Course Language - “ {content.language} ”</span>
         </div>
         <div className={style.buttons}>
-          <PleaseEnrollBtn courseId={content.id} />
+          <PleaseEnrollBtn
+            courseId={content.id}
+            courseCode={content.courseCode}
+          />
           <Button
             // onClick={() => dispatch(setComingSoon(true))}
             onClick={() => navigate("/contact")}

@@ -12,6 +12,7 @@ const JFSCIntructorDetails = {
 
 export const JavaFullStackCourse = {
   id: "1",
+  courseCode: "vprico001",
   name: "Java Full-Stack",
   courseLink: "/",
   active: true,

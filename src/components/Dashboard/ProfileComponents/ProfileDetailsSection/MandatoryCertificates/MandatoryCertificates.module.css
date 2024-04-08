@@ -4,8 +4,9 @@
   background-color: var(--skyBlue);
   padding: 1rem;
   border-radius: 10px;
-  max-width: 350px;
+  /* max-width: 350px; */
   margin: auto;
+  width: 100%;
 }
 
 .containerTitle {
