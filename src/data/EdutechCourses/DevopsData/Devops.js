@@ -41,7 +41,9 @@ export const Devops = {
     },
   ],
 
-  price: "45000",
+  actualPrice: "45000",
+
+  discountedPrice: "1800",
   buttonContent: "Enroll Now",
   image: "devopsCourse2.jpg",
   language: "English",

@@ -16,7 +16,8 @@ export const Python = {
     "Virtual Classes",
     "Live Practical Training ",
   ],
-  // price: "55000",
+  actualPrice: "55000",
+  discountedPrice: "1800",
   duration: {
     durationMetric: "months",
     training: 6,

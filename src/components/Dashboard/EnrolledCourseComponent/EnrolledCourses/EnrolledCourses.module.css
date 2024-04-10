@@ -11,12 +11,13 @@
 .courses {
   display: flex;
   flex-wrap: wrap;
-
   gap: 1rem;
+  /* justify-content: center; */
 }
 
 .course {
-  /* width: 200px; */
+  width: 100%;
+  max-width: 250px;
   background-color: var(--dilutedPrimary);
   padding: 1rem;
   border-radius: 20px;
@@ -46,4 +47,10 @@
 .viewBtn {
   width: 100px;
   padding: 0.2rem 1rem;
+}
+
+@media (max-width: 850px) {
+  .courses {
+    justify-content: center;
+  }
 }

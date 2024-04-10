@@ -12,7 +12,8 @@ export const UIUX = {
   active: false,
 
   content: [" Scholarship on course fee", "Virtual Classes"],
-  // price: "60000",
+  actualPrice: "60000",
+  discountedPrice: "1800",
   duration: {
     durationMetric: "months",
     training: 6,

@@ -59,9 +59,9 @@ const CourseCard = ({ CardDetails }) => {
               </div>
             ))}
           </div>
-          {CardDetails.price && (
+          {CardDetails.type !== "upcoming" && (
             <span style={{ color: "#ff6501", fontWeight: 700 }}>
-              ₹{CardDetails.price}/-
+              ₹{CardDetails.actualPrice}/-
             </span>
           )}
         </div>

@@ -144,7 +144,9 @@
 }
 
 .signUpBtn {
-  width: 120px;
+  width: 100%;
+  max-width: 150px;
+  padding: 0rem !important;
   border: none;
   color: white;
   border-radius: 10px;

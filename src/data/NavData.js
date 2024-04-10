@@ -16,7 +16,9 @@ export const KnowledgeHubHeaderLinks = [
   { name: "Contact Us", address: "/contact", active: true },
 ];
 
-export const buttonsLinks = [{ name: "Login", link: "/login", active: true }];
+export const buttonsLinks = [
+  { name: "Login / Sign-up", link: "/login", active: true },
+];
 
 export const MainDropdownLinks = [
   {

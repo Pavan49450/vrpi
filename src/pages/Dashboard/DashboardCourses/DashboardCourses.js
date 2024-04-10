@@ -14,9 +14,7 @@ const DashboardCourses = () => {
 
   // Check if user data and necessary properties are defined
   const userExists =
-    FetchUserData &&
-    FetchUserData.userData.educationalDetails &&
-    FetchUserData.userData.courseList;
+    FetchUserData.userData && FetchUserData.userData?.courseList;
 
   return (
     <div>
@@ -25,7 +23,7 @@ const DashboardCourses = () => {
       ) : (
         userExists && (
           <EnrolledCourseComponent
-            enrolledCourses={FetchUserData.userData.enrolledCourses}
+            enrolledCourses={FetchUserData.userData?.courseList}
           />
         )
       )}

@@ -74,10 +74,7 @@ const VerifyPayment = () => {
       const findCourse = FetchUserData.userData.courseList.find(
         (course) => course.id.toString() === courseId.toString()
       );
-
-      // console.log(findCourse);
-      // console.log(verified);
-      console.log("error->", FetchUserData.error);
+      console.log("run1");
 
       if (
         verified === false &&
@@ -95,7 +92,7 @@ const VerifyPayment = () => {
         }
       }
     }
-  }, []);
+  }, [FetchUserData.userData.courseList]);
 
   const successfulRequest = {
     image: "paymentSuccessfulImage.png",
@@ -137,11 +134,22 @@ const VerifyPayment = () => {
       ? successfulRequest
       : failedRequest;
 
-  if (FetchUserData.error || error) {
+  if (FetchUserData.isLoading || isLoading) {
+    // <>{console.log(error)}</>
+
+    return (
+      <div className={styles.loadingContainer}>
+        <CircularProgress />
+      </div>
+    );
+  } else if (
+    FetchUserData.error !== null ||
+    (error !== null && error !== undefined)
+  ) {
     return (
       <ErrorPage
         errorData={{
-          title: FetchUserData.error.message,
+          title: FetchUserData.error?.message || error.message,
           message: "Oh no, Something went wrong",
           image: "commonErrorPage.png",
           navigateButton: null,
@@ -152,37 +160,33 @@ const VerifyPayment = () => {
   } else {
     return (
       <div className={styles.container}>
-        {FetchUserData.isLoading && isLoading ? (
-          <CircularProgress />
-        ) : (
-          <div className={styles.container}>
+        <div className={styles.container}>
+          <CustomImage
+            src={require(`../../../assets/verifyPayments/${paymentStatusData.image}`)}
+            alt={paymentStatusData.text}
+            classForDiv={styles.imageContainer}
+          />
+          <div className={styles.paymentStatus}>
             <CustomImage
-              src={require(`../../../assets/verifyPayments/${paymentStatusData.image}`)}
+              src={require(`../../../assets/verifyPayments/${paymentStatusData.assetIcon}`)}
               alt={paymentStatusData.text}
               classForDiv={styles.imageContainer}
             />
-            <div className={styles.paymentStatus}>
-              <CustomImage
-                src={require(`../../../assets/verifyPayments/${paymentStatusData.assetIcon}`)}
-                alt={paymentStatusData.text}
-                classForDiv={styles.imageContainer}
-              />
-              <span
-                style={{
-                  color: `${
-                    paymentStatusData.paymentStatus ? "#00B112" : "#E30000"
-                  }`,
-                }}
-              >
-                {paymentStatusData.text}
-              </span>
-            </div>
-            <p className={styles.paymentMessage}>{paymentStatusData.message}</p>
-            <Button onClick={paymentStatusData.buttonActions.action}>
-              {paymentStatusData.buttonActions.title}
-            </Button>
+            <span
+              style={{
+                color: `${
+                  paymentStatusData.paymentStatus ? "#00B112" : "#E30000"
+                }`,
+              }}
+            >
+              {paymentStatusData.text}
+            </span>
           </div>
-        )}
+          <p className={styles.paymentMessage}>{paymentStatusData.message}</p>
+          <Button onClick={paymentStatusData.buttonActions.action}>
+            {paymentStatusData.buttonActions.title}
+          </Button>
+        </div>
       </div>
     );
   }
