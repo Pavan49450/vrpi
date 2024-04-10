@@ -54,6 +54,8 @@ const MainSection = ({ content }) => {
           <PleaseEnrollBtn
             courseId={content.id}
             courseCode={content.courseCode}
+            discountedPrice={content.discountedPrice}
+            actualPrice={content.actualPrice}
           />
           <Button
             // onClick={() => dispatch(setComingSoon(true))}

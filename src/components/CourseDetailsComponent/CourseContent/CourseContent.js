@@ -8,7 +8,13 @@ import UserDataComponent from "../../../data/user";
 import { CircularProgress } from "@material-ui/core";
 import PleaseEnrollBtn from "../PleaseEnrollBtn/PleaseEnrollBtn";
 
-const CourseContent = ({ courseContent, courId, courseCode }) => {
+const CourseContent = ({
+  courseContent,
+  courId,
+  courseCode,
+  discountedPrice,
+  actualPrice,
+}) => {
   const [openChapters, setOpenChapters] = useState([]);
   const [openModules, setOpenModules] = useState([]);
 
@@ -70,6 +76,8 @@ const CourseContent = ({ courseContent, courId, courseCode }) => {
               courseId={courId}
               enrolled={enrolled}
               courseCode={courseCode}
+              discountedPrice={discountedPrice}
+              actualPrice={actualPrice}
             />
           ))}
         </div>
@@ -104,12 +112,22 @@ const ArrowToggleComponent = ({ isOpen, image1, image2 }) => {
     />
   );
 };
-const PleaseEnroll = ({ courseId, courseCode }) => {
+const PleaseEnroll = ({
+  courseId,
+  courseCode,
+  discountedPrice,
+  actualPrice,
+}) => {
   return (
     <div className={styles.pleaseEnroll}>
       <h2>Sorry!! You are not enrolled the course so far</h2>
       <p>To get to know more about the course structure Join our course</p>
-      <PleaseEnrollBtn courseId={courseId} courseCode={courseCode} />
+      <PleaseEnrollBtn
+        courseId={courseId}
+        courseCode={courseCode}
+        discountedPrice={discountedPrice}
+        actualPrice={actualPrice}
+      />
     </div>
   );
 };
@@ -124,6 +142,8 @@ const Chapter = ({
   enrolled,
   courseId,
   courseCode,
+  discountedPrice,
+  actualPrice,
 }) => {
   const handleClickChapter = () => {
     toggleChapter(chapterIndex);
@@ -157,11 +177,18 @@ const Chapter = ({
                   showLessons={moduleIndex < 3} // Only show lessons for first three modules
                   courseId={courseId}
                   enrolled={enrolled}
+                  discountedPrice={discountedPrice}
+                  actualPrice={actualPrice}
                 />
               ))}
             </div>
           ) : (
-            <PleaseEnroll courseId={courseId} courseCode={courseCode} />
+            <PleaseEnroll
+              courseId={courseId}
+              courseCode={courseCode}
+              discountedPrice={discountedPrice}
+              actualPrice={actualPrice}
+            />
           )}
         </>
       )}

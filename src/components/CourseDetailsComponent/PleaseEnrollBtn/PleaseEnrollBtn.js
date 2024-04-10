@@ -8,7 +8,12 @@ import { url } from "../../../constants";
 import LoadingButton from "../../../UI/LoadingButton/LoadingButton";
 import { setMessage } from "../../../store/MessageDisplay/MessageActions";
 
-const PleaseEnrollBtn = ({ courseId, courseCode }) => {
+const PleaseEnrollBtn = ({
+  courseId,
+  courseCode,
+  discountedPrice,
+  actualPrice,
+}) => {
   const navigate = useNavigate();
   const [enrolled, setEnrolled] = useState(false);
 
@@ -158,8 +163,12 @@ const PleaseEnrollBtn = ({ courseId, courseCode }) => {
       />
 
       <LoadingButton
-        text={enrolled ? "Enrolled" : "Enroll now"}
-        style={{ color: !enrolled ? "white" : "black" }}
+        text={enrolled ? "Enrolled" : `Enroll now for ₹${discountedPrice}`}
+        style={{
+          color: !enrolled ? "white" : "black",
+          width: "180px",
+          padding: "0",
+        }}
         disabled={enrolled}
         isLoading={isLoading || FetchUserData.isLoading}
         loaderColor="white"
