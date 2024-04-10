@@ -27,13 +27,12 @@ export const AI = {
   image: "aiCourse2.webp",
   buttonContent: "Enroll Now",
   language: "English",
+
   instructor: {
-    name: "Gayathri Prasad",
-    image: "Instructor1.png",
+    name: "Ravikanth Varigonda",
+    image: "profilePic.png",
     description: [
-      // "I’m Gayatri. Your Instructor for this Course",
-      "Lorem ipsum dolor sit amet consectetur. Sodales eget convallis sem iaculis. Lorem ipsum dolor sit amet consectetur. Sodales eget convallis sem iaculis.",
-      "Lorem ipsum dolor sit amet consectetur. Sodales eget convallis sem iaculis. Lorem ipsum dolor sit amet consectetur. Sodales eget convallis sem iaculis.",
+      "Having 23 years experience on Windows, Linux and Android, FreeRTOS, Zephyr OS Design , Development and Architecting BSP, HAL, Device Drivers,Middleware, Stack Development, MQTT, CoaP, IoT , STM32,ESP32, Silicon Labs, Nordic controllers",
     ],
   },
   rating: "4.5",

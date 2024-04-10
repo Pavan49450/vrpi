@@ -163,7 +163,7 @@ const PleaseEnrollBtn = ({
       />
 
       <LoadingButton
-        text={enrolled ? "Enrolled" : `Enroll now for ₹${discountedPrice}`}
+        text={enrolled ? "Enrolled" : `Enroll now for ₹${actualPrice}`}
         style={{
           color: !enrolled ? "white" : "black",
           width: "180px",

@@ -4,12 +4,12 @@ import { PythonToolsAndTechnologyUsed } from "./ToolsAndTechnologyUsed";
 
 export const Python = {
   id: "6",
-  type: "upcoming",
+  type: "online",
   courseCode: "vprico006",
 
   name: "Python",
   courseLink: "/",
-  active: false,
+  active: true,
 
   content: [
     " Scholarship on course fee",
