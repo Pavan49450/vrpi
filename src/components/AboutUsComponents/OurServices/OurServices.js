@@ -8,7 +8,7 @@ const OurServices = () => {
       <Section title="Our Companies & Services">
         <div className={style.companies}>
           {Companies.map((company, index) => (
-            <div key={Math.random()}>
+            <div key={Math.random()} className={style.companyCard}>
               {company && (
                 <PictureDragCard
                   image={company.image}
@@ -27,10 +27,10 @@ const OurServices = () => {
 
 const PictureDragCard = ({ image, title, color }) => {
   return (
-    <div className={style.companyCard}>
+    <>
       <img src={require(`../../../assets/companies/${image}`)} alt="" />
       <h2 style={{ backgroundColor: color }}>{title}</h2>
-    </div>
+    </>
   );
 };
 
