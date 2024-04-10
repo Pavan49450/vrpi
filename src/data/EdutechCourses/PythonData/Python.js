@@ -28,13 +28,11 @@ export const Python = {
   buttonContent: "Enroll Now",
   language: "English",
   instructor: {
-    name: "Gayathri Prasad",
-    image: "Instructor1.png",
+    name: "Amol Jangid",
     description: [
-      // "I’m Gayatri. Your Instructor for this Course",
-      "Lorem ipsum dolor sit amet consectetur. Sodales eget convallis sem iaculis. Lorem ipsum dolor sit amet consectetur. Sodales eget convallis sem iaculis.",
-      "Lorem ipsum dolor sit amet consectetur. Sodales eget convallis sem iaculis. Lorem ipsum dolor sit amet consectetur. Sodales eget convallis sem iaculis.",
+      "I have total 12 years of IT experience. From last 9 years I am delivering the training in various technologies like MEAN Stack, MERN Stack, Java Full Stack, Python Full Stack.",
     ],
+    image: "javaInstructor.jpeg",
   },
   rating: "4.5",
   reviewsCount: "10k",
