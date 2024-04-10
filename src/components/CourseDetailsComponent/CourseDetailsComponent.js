@@ -17,6 +17,8 @@ const CourseDetails = ({ content }) => {
         courseContent={content.courseContent}
         courId={content.id}
         courseCode={content.courseCode}
+        discountedPrice={content.discountedPrice}
+        actualPrice={content.actualPrice}
       />
       <ToolsRequired toolsRequired={content.toolsAndTechnologyUsed} />
       <CourseEligibility />
