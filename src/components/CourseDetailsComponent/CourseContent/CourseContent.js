@@ -5,7 +5,6 @@ import Button from "../../../UI/Button/Button";
 import { useDispatch } from "react-redux";
 import { setComingSoon } from "../../../store/ComingSoonSlice";
 import UserDataComponent from "../../../data/user";
-import { CircularProgress } from "@material-ui/core";
 import PleaseEnrollBtn from "../PleaseEnrollBtn/PleaseEnrollBtn";
 
 const CourseContent = ({

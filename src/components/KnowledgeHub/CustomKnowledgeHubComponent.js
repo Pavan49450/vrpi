@@ -4,7 +4,6 @@ import FAQsComponent from "./FAQs/FAQs";
 import Section from "../../UI/Sections/Section";
 import { useEffect, useState } from "react";
 import HighlightCapsWords from "../../UI/HighlightWords/HighlightCapsWords";
-import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import OurPartners from "../OurPartners/OurPartners";
 import AllCardsSection from "./AllCardsSection/AllCardsSection";
@@ -12,8 +11,6 @@ import AllCardsSection from "./AllCardsSection/AllCardsSection";
 const CustomKnowledgeHubComponent = ({ data, backgroundImage }) => {
   const [width, setWidth] = useState(window.innerWidth);
   const breakpoint = 650;
-
-  const dispatch = useDispatch();
 
   const handleResize = () => {
     setWidth(window.innerWidth);

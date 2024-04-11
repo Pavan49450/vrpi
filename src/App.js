@@ -1,9 +1,5 @@
 import "./App.css";
-import {
-  RouterProvider,
-  createBrowserRouter,
-  useNavigate,
-} from "react-router-dom";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import RootLayout from "./pages/Root";
 import HomePage from "./pages/MainPages/Home/Home";
 import ErrorPage from "./pages/Error";
