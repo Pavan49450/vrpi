@@ -14,6 +14,7 @@ const CourseContent = ({
   courseCode,
   discountedPrice,
   actualPrice,
+  courseType,
 }) => {
   const [openChapters, setOpenChapters] = useState([]);
   const [openModules, setOpenModules] = useState([]);
@@ -78,6 +79,7 @@ const CourseContent = ({
               courseCode={courseCode}
               discountedPrice={discountedPrice}
               actualPrice={actualPrice}
+              courseType={courseType}
             />
           ))}
         </div>
@@ -117,6 +119,7 @@ const PleaseEnroll = ({
   courseCode,
   discountedPrice,
   actualPrice,
+  courseType,
 }) => {
   return (
     <div className={styles.pleaseEnroll}>
@@ -127,6 +130,7 @@ const PleaseEnroll = ({
         courseCode={courseCode}
         discountedPrice={discountedPrice}
         actualPrice={actualPrice}
+        courseType={courseType}
       />
     </div>
   );
@@ -144,6 +148,7 @@ const Chapter = ({
   courseCode,
   discountedPrice,
   actualPrice,
+  courseType,
 }) => {
   const handleClickChapter = () => {
     toggleChapter(chapterIndex);
@@ -179,6 +184,7 @@ const Chapter = ({
                   enrolled={enrolled}
                   discountedPrice={discountedPrice}
                   actualPrice={actualPrice}
+                  courseType={courseType}
                 />
               ))}
             </div>
@@ -188,6 +194,7 @@ const Chapter = ({
               courseCode={courseCode}
               discountedPrice={discountedPrice}
               actualPrice={actualPrice}
+              courseType={courseType}
             />
           )}
         </>

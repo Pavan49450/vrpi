@@ -13,6 +13,7 @@ const PleaseEnrollBtn = ({
   courseCode,
   discountedPrice,
   actualPrice,
+  courseType,
 }) => {
   const navigate = useNavigate();
   const [enrolled, setEnrolled] = useState(false);
@@ -163,7 +164,13 @@ const PleaseEnrollBtn = ({
       />
 
       <LoadingButton
-        text={enrolled ? "Enrolled" : `Enroll now for ₹${actualPrice}`}
+        text={
+          enrolled
+            ? "Enrolled"
+            : `Enroll now for ₹${
+                courseType === "online" ? discountedPrice : actualPrice
+              }`
+        }
         style={{
           color: !enrolled ? "white" : "black",
           width: "180px",

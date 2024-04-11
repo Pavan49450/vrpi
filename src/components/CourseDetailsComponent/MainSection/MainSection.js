@@ -56,6 +56,7 @@ const MainSection = ({ content }) => {
             courseCode={content.courseCode}
             discountedPrice={content.discountedPrice}
             actualPrice={content.actualPrice}
+            courseType={content.type}
           />
           <Button
             // onClick={() => dispatch(setComingSoon(true))}
