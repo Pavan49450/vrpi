@@ -30,7 +30,7 @@ export const Embedded = {
   language: "English",
   instructor: {
     name: "Ravikanth Varigonda",
-    image: "profilePic.png",
+    image: "dummyImage.png",
     description: [
       "Having 23 years experience on Windows, Linux and Android, FreeRTOS, Zephyr OS Design , Development and Architecting BSP, HAL, Device Drivers,Middleware, Stack Development, MQTT, CoaP, IoT , STM32,ESP32, Silicon Labs, Nordic controllers",
     ],
