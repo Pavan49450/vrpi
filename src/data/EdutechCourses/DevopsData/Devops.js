@@ -43,7 +43,7 @@ export const Devops = {
 
   actualPrice: "45000",
 
-  discountedPrice: "1800",
+  discountedPrice: "1770",
   buttonContent: "Enroll Now",
   image: "devopsCourse2.jpg",
   language: "English",

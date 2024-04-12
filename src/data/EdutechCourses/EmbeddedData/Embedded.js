@@ -18,7 +18,7 @@ export const Embedded = {
   ],
   actualPrice: "75000",
 
-  discountedPrice: "1800",
+  discountedPrice: "75000",
   image: "embeddedCourse2.webp",
   duration: {
     durationMetric: "months",

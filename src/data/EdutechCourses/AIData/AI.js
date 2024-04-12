@@ -23,7 +23,7 @@ export const AI = {
     total: 12,
   },
   actualPrice: "65000",
-  discountedPrice: "1800",
+  discountedPrice: "65000",
   image: "aiCourse2.webp",
   buttonContent: "Enroll Now",
   language: "English",

@@ -25,7 +25,7 @@ export const JavaFullStackCourse = {
     total: 12,
   },
   actualPrice: "55000",
-  discountedPrice: "1800",
+  discountedPrice: "1770",
   buttonContent: "Enroll Now",
   image: "javaCourse2.jpg",
   language: "English",
