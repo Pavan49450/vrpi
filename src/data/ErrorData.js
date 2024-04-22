@@ -33,3 +33,16 @@ export const InvalidCourse = {
   //   },
   // },
 };
+export const LoginRequestPage = {
+  title: "Not Logged in",
+  message: "To access this page please login",
+  image: "pageNotFound.png",
+  navigateButton: "Go to login Page",
+  navigateTo: "/login",
+  // button: {
+  //   title: "Go Back",
+  //   actions: () => {
+  //     navigate(-1);
+  //   },
+  // },
+};

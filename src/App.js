@@ -34,7 +34,11 @@ import UpdateUserDetails from "./pages/MainPages/UpdateUserDetails/UpdateUserDet
 
 import PrivacyPolicy from "./pages/MainPages/PrivacyPolicy/PrivacyPolicy";
 import VerifyPayment from "./pages/MainPages/VerifyPayment/VerifyPayment";
-import { GeneralErrorData, PageNotFoundErrorData } from "./data/ErrorData";
+import {
+  GeneralErrorData,
+  LoginRequestPage,
+  PageNotFoundErrorData,
+} from "./data/ErrorData";
 
 function App() {
   // const navigate = useNavigate();
@@ -138,17 +142,6 @@ function App() {
           errorElement: <ErrorPage errorData={GeneralErrorData} />,
         },
 
-        {
-          path: "/educationalDetails",
-          element: <EducationalDetails />,
-          errorElement: <ErrorPage errorData={GeneralErrorData} />,
-        },
-        {
-          path: "/companyDetails",
-          element: <CompanyDetails />,
-          errorElement: <ErrorPage errorData={GeneralErrorData} />,
-        },
-
         // {
         //   path: "/internships/:internshipId",
         //   element: <CIDetails />,
@@ -164,7 +157,11 @@ function App() {
     },
     {
       path: "/editProfileDetails",
-      element: isVRPIUserLoggedIn ? <UpdateUserDetails /> : <ErrorPage />,
+      element: isVRPIUserLoggedIn ? (
+        <UpdateUserDetails />
+      ) : (
+        <ErrorPage errorData={LoginRequestPage} />
+      ),
       errorElement: <ErrorPage errorData={GeneralErrorData} />,
     },
     {
@@ -172,7 +169,7 @@ function App() {
       element: isVRPIUserLoggedIn ? (
         <DashboardRoot />
       ) : (
-        <ErrorPage errorData={GeneralErrorData} />
+        <ErrorPage errorData={LoginRequestPage} />
       ),
       errorElement: <ErrorPage errorData={GeneralErrorData} />,
       children: [
@@ -211,7 +208,7 @@ function App() {
           element: isVRPIUserLoggedIn ? (
             <ProfilePage />
           ) : (
-            <ErrorPage errorData={GeneralErrorData} />
+            <ErrorPage errorData={LoginRequestPage} />
           ),
           errorElement: <ErrorPage errorData={GeneralErrorData} />,
         },
@@ -239,14 +236,32 @@ function App() {
     },
     {
       path: "/mandatoryCertificates",
-      element: <MandatoryCertificates />,
+      element: isVRPIUserLoggedIn ? (
+        <MandatoryCertificates />
+      ) : (
+        <ErrorPage errorData={LoginRequestPage} />
+      ),
       errorElement: <ErrorPage errorData={GeneralErrorData} />,
     },
     {
-      path: "/mandatoryCertificates",
-      element: <MandatoryCertificates />,
+      path: "/educationalDetails",
+      element: isVRPIUserLoggedIn ? (
+        <EducationalDetails />
+      ) : (
+        <ErrorPage errorData={LoginRequestPage} />
+      ),
       errorElement: <ErrorPage errorData={GeneralErrorData} />,
     },
+    {
+      path: "/companyDetails",
+      element: isVRPIUserLoggedIn ? (
+        <CompanyDetails />
+      ) : (
+        <ErrorPage errorData={LoginRequestPage} />
+      ),
+      errorElement: <ErrorPage errorData={GeneralErrorData} />,
+    },
+
     {
       path: "/privacy-policy",
       element: <PrivacyPolicy />,
