@@ -168,7 +168,7 @@ const PleaseEnrollBtn = ({
           enrolled
             ? "Enrolled"
             : `Enroll now for ₹${
-                courseType === "online" ? discountedPrice : actualPrice
+                courseType === "online" ? actualPrice : actualPrice
               }`
         }
         style={{
