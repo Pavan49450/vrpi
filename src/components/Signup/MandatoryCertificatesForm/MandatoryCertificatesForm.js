@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { setMessage } from "../../../store/MessageDisplay/MessageActions";
 import LoadingButton from "../../../UI/LoadingButton/LoadingButton";
 import axios from "axios";
+import { url } from "../../../constants";
 
 const MandatoryCertificatesForm = () => {
   const [incomeCertificateFile, setIncomeCertificateFile] = useState(null);
@@ -102,7 +103,7 @@ const MandatoryCertificatesForm = () => {
       formData.append("profilePhoto", passportFile);
       setIsLoading(true);
       await axios.put(
-        `http://localhost:8080/vrpi-user/update-doc/${userId}`,
+        `${url.backendBaseUrl}/vrpi-user/update-doc/${userId}`,
         formData,
         {
           headers: {
@@ -167,14 +168,14 @@ const MandatoryCertificatesForm = () => {
           acceptedFileType={[
             "image/jpeg",
             "image/png",
-            "image/pdf",
-            "application/pdf",
+            // "image/pdf",
+            // "application/pdf",
           ]}
           mandatory
         />
         <ul>
-          <li>Can be png. pdf. jpeg</li>
-          <li>File size should be 5MB</li>
+          <li>Can be png, jpeg</li>
+          <li>File size should below 5MB</li>
         </ul>
       </div>
       {/* <InputWithInvalidText
@@ -204,14 +205,14 @@ const MandatoryCertificatesForm = () => {
           acceptedFileType={[
             "image/jpeg",
             "image/png",
-            "image/pdf",
-            "application/pdf",
+            // "image/pdf",
+            // "application/pdf",
           ]}
           mandatory
         />
         <ul>
-          <li>Can be png. pdf. jpeg</li>
-          <li>File size should be 5MB</li>
+          <li>Can be png, jpeg</li>
+          <li>File size should below 5MB</li>
         </ul>
       </div>
       <div className={style.uploadInputs}>
@@ -221,14 +222,14 @@ const MandatoryCertificatesForm = () => {
           acceptedFileType={[
             "image/jpeg",
             "image/png",
-            "image/pdf",
-            "application/pdf",
+            // "image/pdf",
+            // "application/pdf",
           ]}
           mandatory
         />
         <ul>
-          <li>Can be png. pdf. jpeg</li>
-          <li>File size should be 5MB</li>
+          <li>Can be png, jpeg</li>
+          <li>File size should below 5MB</li>
         </ul>
       </div>
     </div>
@@ -245,7 +246,7 @@ const MandatoryCertificatesForm = () => {
         />
         <ul>
           <li>Can be png, jpeg</li>
-          <li>File size must should be 5MB</li>
+          <li>File size should below 5MB</li>
         </ul>
       </div>
     </div>

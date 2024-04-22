@@ -50,6 +50,7 @@ const CustomDatePicker = ({
         {placeholderText}{" "}
         {mandatory && <span style={{ color: "red" }}>&nbsp;*</span>}
       </label>
+      <span className={style.format}>yyyy-mm-dd</span>
     </div>
   );
 };
