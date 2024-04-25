@@ -52,7 +52,9 @@ const InputWithInvalidText = ({
       )}
       <label
         className={` ${
-          inputFields.isTouched ? style.transition : style.placeholder
+          inputFields.isTouched || inputFields.value !== ""
+            ? style.transition
+            : style.placeholder
         }`}
         onClick={handleLabelClick}
       >
